@@ -1,0 +1,81 @@
+"use client"
+
+import { motion } from "framer-motion"
+import ServicesCircle from "./services-circle"
+
+export default function ServicesHero() {
+  return (
+    <section className="bg-white py-6 sm:py-8 md:py-10 px-4 min-h-screen flex items-center justify-center sm:px-6 md:px-8 lg:px-12 overflow-hidden">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+          <motion.div
+            className="space-y-3 md:space-y-4"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <motion.h1
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-700"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              Our Services
+            </motion.h1>
+            <motion.h2
+              className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Comprehensive Solutions for Modern Enterprises
+            </motion.h2>
+            <motion.p
+              className="text-gray-700 text-sm md:text-base"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              DevEdge Consulting offers a wide range of services designed to help organizations navigate the complex
+              digital landscape. Our expertise spans cybersecurity, compliance, digital transformation, and more.
+            </motion.p>
+            <motion.p
+              className="text-gray-700 text-sm md:text-base"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              Our Internal Audit approach integrates with all our service offerings, ensuring comprehensive risk
+              assessment and compliance across your entire organization.
+            </motion.p>
+
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 pt-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900">8+ Service Areas</h3>
+                <p className="text-gray-600 text-sm">Integrated solutions for complete coverage</p>
+              </div>
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900">24/7 Support</h3>
+                <p className="text-gray-600 text-sm">Dedicated teams ready to assist anytime</p>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="flex justify-center lg:justify-end"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7 }}
+          >
+            <ServicesCircle />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
