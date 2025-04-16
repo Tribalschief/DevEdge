@@ -92,7 +92,7 @@ export default function ServicesCircle() {
         })}
 
         {/* Center circle with "Internal Audit" text */}
-        <circle cx="200" cy="200" r="60" fill="white" stroke="#9333ea" strokeWidth="2" />
+        <circle cx="200" cy="200" r="70" fill="white" stroke="#9333ea" strokeWidth="2" />
 
         {/* Text in center */}
         <text
@@ -101,10 +101,10 @@ export default function ServicesCircle() {
           textAnchor="middle"
           dominantBaseline="middle"
           fill="#111111"
-          fontSize="16"
+          fontSize="12"
           fontWeight="bold"
         >
-          Internal Audit
+          {services[activeIndex].name}
         </text>
 
         {/* Highlight active service with a line */}
@@ -133,19 +133,7 @@ export default function ServicesCircle() {
         })()}
       </svg>
 
-      {/* Service name display */}
-      <div className="absolute bottom-4 left-0 right-0 text-center">
-        <motion.p
-          key={activeIndex}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="text-lg font-medium text-purple-800"
-        >
-          {services[activeIndex].name}
-        </motion.p>
-      </div>
+     
     </div>
   )
 }

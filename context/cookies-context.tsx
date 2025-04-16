@@ -59,6 +59,7 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
           essential: true, // Always ensure essential cookies are enabled
         })
         setHasConsented(true)
+        setShowConsentDialog(false)
       } catch (e) {
         console.error("Error parsing cookie preferences", e)
         setShowConsentDialog(true)
@@ -66,6 +67,7 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
     } else {
       // Show consent dialog if no consent has been given
       setShowConsentDialog(true)
+      setHasConsented(false)
     }
 
     setIsInitialized(true)

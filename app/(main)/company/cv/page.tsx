@@ -60,8 +60,8 @@ const formSchema = z.object({
   jobType: z.string({
     required_error: "Job type is required",
   }),
-  termsAccepted: z.literal(true, {
-    errorMap: () => ({ message: "You must accept the terms and conditions" }),
+  termsAccepted: z.boolean({
+    required_error: "Terms accepted is required",
   }),
   marketingConsent: z.boolean().optional(),
 })

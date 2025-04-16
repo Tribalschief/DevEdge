@@ -22,7 +22,7 @@ type BigServiceType = {
 
 
 
-interface Offering {
+type Offering = {
   type: string;
   title: string;
   description: string;
@@ -31,13 +31,9 @@ interface Offering {
   backgroundImage?: any;
 }
 
-interface ServicePageProps {
-  params: {
-    slug: string;
-  };
-}
-export default async function ServicePage({ params }: ServicePageProps): Promise<JSX.Element | null> {
-  const { slug } = params;
+
+export default async function ServicePage({ params }: {params: any}){
+  const { slug } = await params;
 const service = await getServiceBySlug(slug); // already filtered by slug
 
 if (!service) {

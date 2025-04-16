@@ -1,0 +1,214 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import Image from "next/image"
+
+export default function SolutionsShowcase() {
+  const [loadedImages, setLoadedImages] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const solutions = [
+    {
+      id: 1,
+      title: "Vehicle Shipping Import/Export ERP",
+      features: [
+        "Manage vehicle auctions with an integrated management system",
+        "Track and organize vehicle inventory across locations in real time",
+        "Streamline documentation for their logistics and global shipping",
+        "Automate finance operations and ensure regulatory compliance",
+        "Build and monitor dashboards for vehicle movement control",
+        "Generate shipping documents like Bill of Lading, BOLs and manage customs",
+      ],
+    },
+    {
+      id: 2,
+      title: "Car Selling Platform",
+      features: [
+        "Showcase vehicles with detailed specifications and high-quality images",
+        "Enable advanced search and filtering options for buyers",
+        "Facilitate secure payment processing and escrow services",
+        "Provide dealer and private seller management portals",
+        "Implement buyer-seller messaging and negotiation system",
+        "Generate analytics on market trends and popular vehicle models",
+      ],
+    },
+    {
+      id: 3,
+      title: "Human Resource Management Solution",
+      features: [
+        "Streamline employee onboarding and documentation processes",
+        "Manage time tracking, attendance, and leave requests",
+        "Automate payroll processing and tax compliance",
+        "Track performance reviews and career development plans",
+        "Facilitate internal job postings and recruitment workflows",
+        "Generate comprehensive HR analytics and compliance reports",
+      ],
+    },
+  ]
+
+  // Update active solution periodically
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % solutions.length)
+    }, 4000) // Change heading every 4 seconds (increased to give more time to read features)
+
+    return () => clearInterval(interval)
+  }, [solutions.length])
+
+  // Also update when all images are loaded
+  useEffect(() => {
+    if (loadedImages === 3) {
+      // Move to next solution immediately when images are loaded
+      setActiveIndex((prevIndex) => (prevIndex + 1) % solutions.length)
+    }
+  }, [loadedImages, solutions.length])
+
+  const handleImageLoad = () => {
+    setLoadedImages((prev) => prev + 1)
+  }
+
+  // Progress indicator for the solution changes
+  const ProgressIndicator = () => {
+    return (
+      <div className="flex justify-center mt-2 space-x-2">
+        {solutions.map((_, index) => (
+          <div
+            key={index}
+            className={`h-1 w-6 rounded-full transition-all duration-300 ${
+              index === activeIndex ? "bg-white" : "bg-white/30"
+            }`}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div className="w-full bg-black text-white min-h-screen flex flex-col items-center py-12 px-4 md:px-8">
+      <div className="max-w-7xl w-full">
+        {/* Heading with dynamic text */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 relative overflow-hidden h-[3rem] md:h-[3.5rem]">
+            {solutions.map((solution, index) => (
+              <span
+                key={index}
+                className={`absolute inset-0 transition-all duration-700 flex items-center justify-center ${
+                  index === activeIndex ? "opacity-100 transform-none" : "opacity-0 -translate-y-4"
+                }`}
+              >
+                {solution.title}
+              </span>
+            ))}
+          </h2>
+          <div className="h-0.5 w-64 md:w-96 bg-white mx-auto"></div>
+          <ProgressIndicator />
+        </div>
+
+        {/* Content grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Left column - Solution cards */}
+          <div className="space-y-4">
+            {solutions.map((solution, idx) => (
+              <div
+                key={solution.id}
+                className={`bg-white bg-opacity-10 rounded-lg p-5 backdrop-blur-sm transition-all duration-500 ${
+                  idx === activeIndex ? "ring-2 ring-white ring-opacity-50 scale-[1.02]" : ""
+                }`}
+              >
+                <div className="flex items-start gap-3">
+                  <div
+                    className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5 transition-colors duration-300 ${
+                      idx === activeIndex ? "bg-white text-black" : "bg-white/50 text-black"
+                    }`}
+                  >
+                    <span className="font-bold text-sm">{solution.id}</span>
+                  </div>
+                  <div className="w-full">
+                    <h3
+                      className={`font-medium text-lg transition-colors duration-300 ${
+                        idx === activeIndex ? "text-white" : "text-white/70"
+                      }`}
+                    >
+                      {solution.title}
+                    </h3>
+
+                    {/* Features list with conditional rendering based on active state */}
+                    <ul
+                      className={`mt-2 space-y-1 text-sm transition-all duration-500 ${
+                        idx === activeIndex ? "max-h-96 opacity-100 text-gray-300" : "max-h-0 opacity-0 overflow-hidden"
+                      }`}
+                    >
+                      {solution.features.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <span className="text-xs mt-1">{index + 1}.</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Right column - Image showcase */}
+          <div className="rounded-lg overflow-hidden relative aspect-video">
+            {/* Placeholder images that will trigger the counter when loaded */}
+            <div className="relative w-full h-full">
+              <Image
+                src="/placeholder.svg?height=400&width=600"
+                alt="Solution visualization 1"
+                width={600}
+                height={400}
+                className="absolute inset-0 w-full h-full object-cover opacity-0"
+                onLoad={handleImageLoad}
+              />
+              <Image
+                src="/placeholder.svg?height=400&width=600"
+                alt="Solution visualization 2"
+                width={600}
+                height={400}
+                className="absolute inset-0 w-full h-full object-cover opacity-0"
+                onLoad={handleImageLoad}
+              />
+              <Image
+                src="/placeholder.svg?height=400&width=600"
+                alt="Solution visualization 3"
+                width={600}
+                height={400}
+                className="absolute inset-0 w-full h-full object-cover opacity-0"
+                onLoad={handleImageLoad}
+              />
+
+              {/* Visible content */}
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+                <div className="text-center p-6">
+                  <p className="text-xl font-medium mb-4">{solutions[activeIndex].title}</p>
+
+                  {/* Feature highlights for the active solution */}
+                  <div className="text-sm text-left max-w-md mx-auto">
+                    {solutions[activeIndex].features.slice(0, 3).map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2 mb-2 opacity-90">
+                        <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0"></div>
+                        <p>{feature}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex justify-center mt-4 space-x-1">
+                    <span className={`w-2 h-2 rounded-full ${loadedImages >= 1 ? "bg-white" : "bg-gray-500"}`}></span>
+                    <span className={`w-2 h-2 rounded-full ${loadedImages >= 2 ? "bg-white" : "bg-gray-500"}`}></span>
+                    <span className={`w-2 h-2 rounded-full ${loadedImages >= 3 ? "bg-white" : "bg-gray-500"}`}></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  )
+}
