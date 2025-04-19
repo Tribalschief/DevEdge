@@ -27,8 +27,9 @@ export const Navbar = () => {
     <div
       className={`flex px-4 md:px-8 lg:px-[10rem] justify-between mx-auto min-w-full h-[80px] md:h-[100px] ${scrolled ? "bg-black" : "bg-transparent"} transition-all duration-300 fixed top-0 z-50 items-center`}
     >
+      <Link href="/">
       <Logo dark={scrolled} />
-
+      </Link>
       {/* Desktop Navigation */}
       <div className={`hidden md:flex items-center gap-x-6 lg:gap-x-10 ${scrolled ? "text-gray-50" : "text-gray-950"}`}>
         <Link href="/" className="text-lg lg:text-xl font-semibold cursor-pointer">

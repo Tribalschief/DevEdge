@@ -92,7 +92,7 @@ export function DevEdgeWordCloudSVG() {
       text: "INDUSTRIAL CONTROL SYSTEMS",
       size: "medium",
       color: "#6208CA", // Red
-      x: 600,
+      x: 580,
       y: 450,
       rotation: 0,
       delay: 1.2,
@@ -122,7 +122,7 @@ export function DevEdgeWordCloudSVG() {
       text: "TECHNOLOGY CONSULTING",
       size: "large",
       color: "#666666", // Gray
-      x: 500,
+      x: 400,
       y: 160,
       rotation: 0,
       delay: 1.8,
@@ -142,7 +142,7 @@ export function DevEdgeWordCloudSVG() {
       text: "PRECISION DATA MANAGEMENT",
       size: "medium",
       color: "#666666", // Gray
-      x: 610,
+      x: 550,
       y: 330,
       rotation: 0,
       delay: 2.2,

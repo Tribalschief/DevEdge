@@ -273,7 +273,7 @@ export default function FeatureGrid() {
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
-            Our Guiding <span className="text-pink-600">Principles</span>
+            Our Guiding <span className="text-[#6208CA]">Core Principles</span>
           </h2>
 
           <p className="max-w-3xl mx-auto text-lg text-gray-600">

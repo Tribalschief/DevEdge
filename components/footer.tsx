@@ -9,12 +9,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Company Info Column */}
         <div className="space-y-6">
-          <div className="flex items-center space-x-2">
-            <Image src={logo} alt="DevEdge Logo" width={80} height={80} className="w-20 h-auto" />
-           
+          <div className="flex items-center space-x-2"><Link href="/">
+            <Image src={logo} alt="DevEdge Logo" width={160} height={160}  />
+            </Link>
           </div>
 
-          <Link href="https://linkedin.com" className="inline-block text-blue-400">
+          <Link href="https://linkedin.com" className="inline-block text-[#6208CA]">
             <Linkedin size={24} />
           </Link>
 
@@ -24,10 +24,10 @@ export default function Footer() {
           </p>
 
           <div className="flex space-x-6 text-sm">
-            <Link href="/privacy-policy" className="hover:underline">
+            <Link href="/(policies)/privacy" className="hover:underline">
               Privacy Policy
             </Link>
-            <Link href="/terms-of-use" className="hover:underline">
+            <Link href="/(policies)/privacy" className="hover:underline">
               Terms of use
             </Link>
           </div>

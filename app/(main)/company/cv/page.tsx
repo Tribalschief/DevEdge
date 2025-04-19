@@ -277,15 +277,15 @@ export default function CVSubmissionForm() {
   }
 
   return (
-    <div>
+    <div className=" mt-24 ml-4 mx-8 sm:py-10">
       <CookieConsentDialog />
 
-      <button className="flex items-center text-[#0D8A6A] mb-8 font-medium">
+      <button className="flex items-center text-[#6208CA] mb-8 font-medium">
         <ChevronLeft className="h-5 w-5" />
         Back
       </button>
 
-      <div className="h-0.5 w-64 bg-[#0D8A6A] mb-10"></div>
+      <div className="h-0.5 w-64 bg-[#6208CA] mb-10"></div>
 
       <h1 className="text-3xl font-medium mb-6">Submit Your CV</h1>
 
