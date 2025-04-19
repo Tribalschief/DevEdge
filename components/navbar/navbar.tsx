@@ -104,7 +104,7 @@ export const Navbar = () => {
                 </span>
               </div>
               <Link
-                href="/rfp"
+                href="/erp"
                 className="text-xl font-semibold cursor-pointer"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

@@ -131,7 +131,7 @@ export default function RootLayout({
         <CookieConsentProvider>
           {children}
           <CookieConsentDialog />
-          <CookieScriptLoader googleAnalyticsId="G-352756919" />
+          <CookieScriptLoader googleAnalyticsId={process.env.GOOGLE_ID}/>
         </CookieConsentProvider>
         <Footer/>
       </body>
