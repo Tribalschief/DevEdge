@@ -5,7 +5,7 @@ import WorldMap from "./wm"
 
 export const GlobalExpertiseHero = () => {
   return (
-    <section className="bg-[#f3edf8] my-20 min-h-screen flex items-center justify-center lg:my-0 md:py-10 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden">
+    <section className="bg-[#f3edf8] mt-20 lg:h-[700px] min-h-screen flex items-center justify-center lg:my-0 md:py-10 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden">
       <div className="container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2  items-center">
           <motion.div

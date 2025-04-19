@@ -67,7 +67,7 @@ export default function HeroCarousel() {
   }
 
   return (
-    <div className="relative min-h-screen lg:mt-[100px] mt-auto overflow-hidden" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className="relative lg:h-[700px] min-h-screen lg:mt-[100px] mt-auto overflow-hidden" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div
           key={currentSlide}
