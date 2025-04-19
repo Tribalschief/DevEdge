@@ -179,7 +179,7 @@ export function DevEdgeWordCloudSVG() {
 
   return (
     <div className="w-full max-w-4xl mx-auto overflow-hidden">
-      <div className="relative rounded-lg p-6 bg-white" style={{ height: "600px" }}>
+      <div className="relative border rounded-lg p-6 bg-white" style={{ height: "600px" }}>
         <AnimatePresence mode="wait">
           {showLogo && (
             <motion.div

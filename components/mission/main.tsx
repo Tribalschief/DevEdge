@@ -17,7 +17,7 @@ export default function MissionVision() {
     "smart automation, robust risk management, and future-ready technologies."
 
   return (
-    <div className="w-full mx-[80px] p-6 md:p-8">
+    <div className="w-full mx-auto p-6 md:p-8">
       <div className="grid md:grid-cols-2 gap-16  mx-[100px] items-center">
         <div className="space-y-12">
           <ContentSection title="Our Mission" icon={Om.src} content={missionContent} />

@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { debounce } from "@/lib/utils"
 import { useRouter } from "next/navigation"
+import { createClient } from "next-sanity"
 
 // Static pages from your array
 const staticPages = [
@@ -17,6 +18,14 @@ const staticPages = [
   { title: "Leadership", path: "/company/leadership" },
   { title: "RFP", path: "/rfp" },
 ]
+
+// Sanity client configuration
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+  apiVersion: "2023-05-03",
+  useCdn: true,
+})
 
 type SearchResult = {
   _id?: string
@@ -28,7 +37,7 @@ type SearchResult = {
   description?: string
   image?: string
   services?: Array<{ name: string; image?: string }>
-  type: "static" | "offering" | "other"
+  type: "static" | "offering" | "other" | "service"
 }
 
 export default function Searching() {
@@ -55,32 +64,36 @@ export default function Searching() {
       }))
   }
 
-  // Function to search Sanity content
+  // Function to search Sanity content directly
   const searchSanity = async (searchQuery: string): Promise<SearchResult[]> => {
     if (!searchQuery || searchQuery.length < 2) return []
 
     setIsLoading(true)
     try {
-      const response = await fetch(`/api/unified-search?q=${encodeURIComponent(searchQuery)}`)
-      if (!response.ok) throw new Error("Search failed")
+      // GROQ query to search for offeringCategory documents by title
+      const query = `*[_type == "offeringCategory" && title match "*${searchQuery}*"] {
+        _id,
+        _type,
+        title,
+        slug,
+        overview,
+        "image": image.asset->url,
+        services
+      }`
 
-      const data = await response.json()
+      const data = await client.fetch(query)
+
       return data.map((item: any) => ({
         _id: item._id,
         _type: item._type,
         title: item.title,
-        path:
-          item._type === "offeringCategory"
-            ? `/offerings/${item.slug?.current}`
-            : item.slug?.current
-              ? `/${item.slug.current}`
-              : `/${item._type}/${item._id}`,
+        path: `/offerings/${item.slug?.current}`,
         slug: item.slug,
         overview: item.overview,
-        description: item.description || item.overview || "",
+        description: item.overview || "",
         image: item.image,
         services: item.services,
-        type: item._type === "offeringCategory" ? "offering" : "other",
+        type: "offering",
       }))
     } catch (error) {
       console.error("Error searching content:", error)
@@ -173,7 +186,7 @@ export default function Searching() {
         <Input
           ref={inputRef}
           type="search"
-          placeholder="Search pages, offerings, and content..."
+          placeholder="Search offerings and pages..."
           className="w-full pl-8 pr-10"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -221,11 +234,6 @@ export default function Searching() {
                           Offerings ({results.filter((r) => r.type === "offering").length})
                         </TabsTrigger>
                       )}
-                      {results.some((r) => r.type === "other") && (
-                        <TabsTrigger value="other" className="text-xs">
-                          Other ({results.filter((r) => r.type === "other").length})
-                        </TabsTrigger>
-                      )}
                     </TabsList>
                   </div>
 
@@ -236,9 +244,6 @@ export default function Searching() {
                     <SearchResultsList results={filteredResults} onSelect={handleSelect} />
                   </TabsContent>
                   <TabsContent value="offering" className="m-0">
-                    <SearchResultsList results={filteredResults} onSelect={handleSelect} />
-                  </TabsContent>
-                  <TabsContent value="other" className="m-0">
                     <SearchResultsList results={filteredResults} onSelect={handleSelect} />
                   </TabsContent>
                 </Tabs>

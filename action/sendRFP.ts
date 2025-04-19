@@ -39,8 +39,8 @@ export async function sendRfp(formData: unknown) {
     await saveRFPSubmission(data)
 
     const { data: response, error } = await resend.emails.send({
-      from: "noreply@yourdomain.com", // Must be a verified domain in Resend
-      to: "mahmedyk789@gmail.com",
+      from: "noreply@devedge.com", // Must be a verified domain in Resend
+      to: data.email,
       subject: "New RFP Submission",
       html: `
         <h2>New Request for Proposal</h2>

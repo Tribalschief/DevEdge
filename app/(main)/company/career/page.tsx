@@ -1,3 +1,4 @@
+import JoinSection from "@/components/contact/submitcv"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Linkedin, MapPin } from "lucide-react"
@@ -199,6 +200,9 @@ export default function CareerPage() {
             </Link>
           </Button>
         </div>
+      </section>
+      <section className="mb-12">
+         <JoinSection/>
       </section>
     </div>
   )

@@ -1,7 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import ServicesCircle from "./services-circle"
+import { DevEdgeWordCloudSVG } from "./services-circle"
+
 
 export default function ServicesHero() {
   return (
@@ -72,7 +73,7 @@ export default function ServicesHero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}
           >
-            <ServicesCircle />
+            <DevEdgeWordCloudSVG/>
           </motion.div>
         </div>
       </div>

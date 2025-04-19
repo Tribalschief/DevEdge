@@ -13,7 +13,7 @@ const About = () => {
     
   return (
     <>
-    <div className="mx-auto my-20 relative w-full">
+    <div className='min-h-screen mx-auto'>
     <AboutHero/>
     <Extra src={about.src}/>
     <MissionVision/>

@@ -31,10 +31,9 @@ export async function sendContactForm(formData: any) {
 
     // ✅ 2. Send the email if captcha passed
     await resend.emails.send({
-      from: "contact@yourdomain.com",
-      to: "mahmedyk789@gmail.com", // ← your destination email
+      from: "noreply@devedge.com", // Must be a verified domain in Resend
+      to: userData.email,
       subject: "New Contact Form Submission",
-      replyTo: userData.email,
       html: `
         <strong>Name:</strong> ${userData.firstName} ${userData.lastName}<br/>
         <strong>Email:</strong> ${userData.email}<br/>

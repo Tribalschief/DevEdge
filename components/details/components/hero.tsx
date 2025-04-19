@@ -1,5 +1,5 @@
 import Image from "next/image"
-import why from '@/public/why.svg'
+import why from '@/public/Why.svg'
 interface HeroSectionProps {
     title: string
     highlightedText: string

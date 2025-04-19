@@ -120,6 +120,7 @@ import core05 from "@/public/core/core05.png"
 import core06 from "@/public/core/core06.png"
 import bulb from "@/public/bulb.png"
 import CoreValueCard from "./coreValueCard"
+import core from "@/public/core.png"
 
 export default function CoreValues() {
   const { ref: sectionRef, inView } = useInView({
@@ -135,54 +136,37 @@ export default function CoreValues() {
         <div className="absolute bottom-10 right-10 w-80 h-80 bg-indigo-200 rounded-full opacity-20 blur-3xl"></div>
       </div>
 
-      {/* Header */}
-      <div className="relative flex justify-between items-start mb-12">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center shadow-lg"
-        >
-          <span className="text-white text-xl font-bold">CV</span>
-          <span className="sr-only">Logo</span>
-        </motion.div>
-
-        <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="w-20 h-20 relative"
-        >
-          <div className="absolute inset-0 bg-purple-200 rounded-full blur-md opacity-50"></div>
-          <Image
-            src={bulb || "/placeholder.svg"}
-            width={80}
-            height={80}
-            alt="Lightbulb with building icon"
-            className="w-full h-full relative z-10"
-          />
-        </motion.div>
-      </div>
 
       {/* Title and Subtitle */}
-      <div ref={sectionRef} className="relative z-10 mb-16">
+      <div ref={sectionRef} className="relative overflow-hidden py-20 mb-16">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image src={core} alt="Background" fill className="object-cover" priority />
+        {/* Overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4">
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.7 }}
+          className="max-w-3xl mx-auto"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6 bg-gradient-to-r from-purple-800 to-indigo-700 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6 bg-gradient-to-r from-purple-200 to-indigo-200 bg-clip-text text-transparent">
             Our Core Values
           </h1>
 
-          <p className="text-center mb-4 max-w-2xl mx-auto text-purple-700 font-medium text-lg">
+          <p className="text-center mb-6 max-w-2xl mx-auto text-purple-100 font-medium text-lg">
             From cyber resilience to enterprise automation, our values are the edge that drives trust, innovation, and
             impact.
           </p>
 
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-indigo-400 mx-auto rounded-full"></div>
         </motion.div>
       </div>
+    </div>
 
       {/* Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 relative z-10">

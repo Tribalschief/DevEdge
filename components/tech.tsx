@@ -1,34 +1,42 @@
-import React from 'react'
-import Image from "next/image";
-import map from '@/public/map.jpg'
+import React from 'react';
+import Image from "next/image"; // Keep for background map
+import map from '@/public/map.jpg';
+
+// --- SVGs are now imported as components ---
+import A from '@/public/tech/a.svg';
+import B from '@/public/tech/b.svg';
+import C from '@/public/tech/c.svg';
+import D from '@/public/tech/d.svg';
+import E from '@/public/tech/e.svg';
+import F from '@/public/tech/f.svg';
+import G from '@/public/tech/g.svg';
+import H from '@/public/tech/h.svg';
+import K from '@/public/tech/k.svg';
+import L from '@/public/tech/l.svg';
+import M from '@/public/tech/m.svg';
+import N from '@/public/tech/n.svg';    
+import O from '@/public/tech/o.svg';
+import P from '@/public/tech/p.svg';
+import Q from '@/public/tech/q.svg';
+import R from '@/public/tech/r.svg';
+import S from '@/public/tech/s.svg';
+import T from '@/public/tech/t.svg';
+import U from '@/public/tech/u.svg';  
+import V from '@/public/tech/v.svg';
+import X from '@/public/tech/x.svg';
+import Y from '@/public/tech/y.svg';
+
+
 export const Tech = () => {
-  return <ImageGrid/>
-}
+  return <ImageGrid />;
+};
 
 export default function ImageGrid() {
-  const logos = [
-    "react.svg",
-    "nextjs.svg",
-    "tailwind.svg",
-    "nodejs.svg",
-    "typescript.svg",
-    "github.svg",
-    "figma.svg",
-    "vercel.svg",
-    "aws.svg",
-    "docker.svg",
-    "firebase.svg",
-    "redux.svg",
-    "graphql.svg",
-    "html5.svg",
-    "css3.svg",
-    "javascript.svg",
-    "vite.svg",
-    "express.svg",
-    "postgresql.svg",
-    "mongodb.svg",
-    "sanity.svg",
+   // The array now holds React components
+  const Logos = [
+    A, B, C, D, E, F, G, H, K, L, M, N, O, P, Q, R, S, T, U, V, X, Y
   ];
+
 
   return (
     <div className="relative bg-white min-h-screen flex flex-col items-center justify-center px-4 py-16 overflow-hidden">
@@ -36,9 +44,9 @@ export default function ImageGrid() {
       <Image
         src={map}
         alt="world map"
-        width={700}
-        height={700}
-        className="absolute opacity-5 z-0"
+        fill // Use fill for background images if layout allows
+        style={{ objectFit: 'cover' }} // or contain
+        className="absolute opacity-5 z-0" // Lower opacity if needed
       />
 
       {/* Title */}
@@ -47,18 +55,24 @@ export default function ImageGrid() {
       </h2>
 
       {/* Logo Grid */}
-      <div className="grid grid-cols-6 sm:grid-cols-4 md:grid-cols-8 gap-6 z-10">
-        {logos.map((logo, index) => (
+      {/* Adjusted grid columns for better responsiveness potentially */}
+      <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-11 gap-4 z-10 w-full max-w-5xl">
+        {Logos.map((logo, index) => (
           <div
             key={index}
-            className="p-20 sm:w-20 sm:h-20 bg-gray-100 rounded-2xl shadow-md flex items-center justify-center hover:scale-105 transition-transform duration-300"
+            className="p-3 bg-gray-100 bg-opacity-80 rounded-lg shadow-sm flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-300"
           >
-            <Image
-              src={`/icons/${logo}`}
-              alt={logo.replace(".svg", "")}
-              width={30}
-              height={30}
-              className="object-contain"
+            {/* --- Use standard <img> tag --- */}
+            <img
+              // --- IMPORTANT: Check console.log output ---
+              // If logo is already the string path, use: src={logo}
+              // If logo is an object like { src: '...' }, use: src={logo.src}
+              src={logo.src} // MODIFY THIS LINE BASED ON YOUR console.log
+              alt={`Tech logo ${index + 1}`}
+              width={40} // Set desired display width
+              height={40} // Set desired display height
+              className="object-contain" // Ensure aspect ratio is maintained
+              loading="lazy" // Add lazy loading manually if desired
             />
           </div>
         ))}
@@ -66,4 +80,3 @@ export default function ImageGrid() {
     </div>
   );
 }
-

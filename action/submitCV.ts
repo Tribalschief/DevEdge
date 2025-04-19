@@ -47,8 +47,8 @@ export async function submitCV(formData: unknown) {
     }
 
     const { data: response, error: emailError } = await resend.emails.send({
-      from: "careers@yourdomain.com", // Must be a verified domain in Resend
-      to: "mahmedyk789@gmail.com",
+      from: "noreply@devedge.com", // Must be a verified domain in Resend
+      to: data.email,
       subject: "New CV Submission",
       html: `
         <h2>New CV Submission</h2>

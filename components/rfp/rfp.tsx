@@ -281,7 +281,8 @@ export default function RfpForm() {
         </Alert>
       )}
       <div className="relative">
-        <div className="bg-white rounded-lg w-[1000px] -right-[120px] shadow-md p-6 mb-8 absolute z-10">
+      <div className="bg-white rounded-lg max-w-full sm:max-w-2xl lg:max-w-3xl shadow-md p-6 mb-8 mx-auto relative z-10">
+
           <div className="mb-6">
             <h1 className="text-xl font-bold">Submit RFP</h1>
             <h2 className="text-2xl font-bold mt-2">Request for proposal for services</h2>

@@ -43,7 +43,7 @@ export const Navbar = () => {
             <FaAngleDown />
           </span>
         </div>
-        <Link href="/rfp" className="text-lg lg:text-xl font-semibold cursor-pointer">
+        <Link href="/erp" className="text-lg lg:text-xl font-semibold cursor-pointer">
           Our ERP's Software
         </Link>
       </div>

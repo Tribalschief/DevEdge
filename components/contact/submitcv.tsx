@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // app/components/JoinSection.tsx
 export default function JoinSection() {
     return (
@@ -12,7 +14,7 @@ export default function JoinSection() {
               To become a contributor to making Diriyah one of the premier heritage and cultural destinations
             </p>
             <button className="mt-4 px-5 py-2 bg-[#2f5748] text-white rounded hover:bg-[#24493a] transition">
-              Submit your CV
+             <Link href={`/company/cv`}> Submit your CV </Link>
             </button>
           </div>
   
