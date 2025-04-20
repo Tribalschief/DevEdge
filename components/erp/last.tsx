@@ -33,9 +33,9 @@ export default function LastERM() {
             DevEdge ERM
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             {/* Left Column */}
-            <div className="space-y-6">
+            <div className="space-y-6 mt-[72px]">
               <div className="space-y-4">
                 <FeatureItem text="Streamline vehicle bidding, auto-assign winning bids to inventory, and track auction history." />
                 <FeatureItem text="Maintain real-time vehicle records with VIN, specifications, location, and status updates." />
@@ -63,9 +63,9 @@ export default function LastERM() {
             </div>
 
             {/* Right Column - Form */}
-            <div className="mt-[-40px] sm:mt-0">
+            <div className="mb-20">
               <ContactForm />
-            </div>
+              </div>
           </div>
         </div>
       </div>
