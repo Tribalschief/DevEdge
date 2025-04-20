@@ -5,7 +5,7 @@ import rfp from '@/public/rfp.png'
 const ContactHeader = () => {
   return (
     <div className="relative w-full h-36 sm:h-48 md:h-64 lg:h-80 xl:h-96 
-                    my-6 mt-20 sm:my-10 md:my-16 lg:my-20 xl:my-[100px]">
+                    my-6 mt-20 sm:my-10 md:my-16  xl:mt-[120px] lg:mt-[120px] sm:mt-[80px] md:mt-[110px]">
       <div className="absolute inset-0">
         <Image 
           src={rfp} 

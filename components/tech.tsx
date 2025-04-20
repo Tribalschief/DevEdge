@@ -13,7 +13,6 @@ import G from '@/public/tech/g.svg';
 import H from '@/public/tech/h.svg';
 import K from '@/public/tech/k.svg';
 import L from '@/public/tech/l.svg';
-import M from '@/public/tech/m.svg';
 import N from '@/public/tech/n.svg';    
 import O from '@/public/tech/o.svg';
 import P from '@/public/tech/p.svg';
@@ -34,7 +33,7 @@ export const Tech = () => {
 export default function ImageGrid() {
    // The array now holds React components
   const Logos = [
-    A, B, C, D, E, F, G, H, K, L, M, N, O, P, Q, R, S, T, U, V, X, Y
+    A, B, C, D, E, F, G, H, K, L, N, O, P, Q, R, S, T, U, V, X, Y
   ];
 
 

@@ -1,38 +1,40 @@
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "@/public/logoremovebg.png"; // update if needed
 
-// app/components/JoinSection.tsx
-export default function JoinSection() {
-    return (
-      <section className="bg-[#c1e6d6] py-12 px-6 md:px-20">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-          {/* Left Text */}
-          <div className="text-center md:text-left mb-8 md:mb-0">
-            <h2 className="text-2xl md:text-3xl font-semibold text-[#183b2d]">
-              Join the Diriyah Family
-            </h2>
-            <p className="mt-2 text-[#2f5748] max-w-xl">
-              To become a contributor to making Diriyah one of the premier heritage and cultural destinations
-            </p>
-            <button className="mt-4 px-5 py-2 bg-[#2f5748] text-white rounded hover:bg-[#24493a] transition">
-             <Link href={`/company/cv`}> Submit your CV </Link>
+const JoinSection = () => {
+  return (
+    <section className="bg-[#f3d9ff] py-16 px-6 md:px-20">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+        
+        {/* Left Text */}
+        <div className="text-center md:text-left max-w-xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#a219c9]">
+            Join the DevEdge Family
+          </h2>
+          <p className="mt-4 text-[#7c2191] text-base md:text-lg leading-relaxed">
+            Become a contributor to making DevEdge one of the premier heritage and cultural destinations.
+          </p>
+          <Link href="/company/cv" passHref>
+            <button className="mt-6 px-6 py-3 bg-[#6208CA] text-white font-medium rounded-md hover:bg-[#460b5e] transition-all shadow-md hover:shadow-lg">
+              Submit your CV
             </button>
-          </div>
-  
-          {/* Right Icon – Triangle Grid */}
-          <div className="grid grid-cols-4 gap-2 place-items-center">
-            {[...Array(10)].map((_, i) => (
-              <div
-                key={i}
-                className="w-4 h-4"
-                style={{
-                  clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-                  backgroundColor: '#2f5748',
-                }}
-              />
-            ))}
-          </div>
+          </Link>
         </div>
-      </section>
-    );
-  }
-  
+
+        {/* Right Logo/Image */}
+        <div className="flex-shrink-0">
+          <Image
+            src={Logo}
+            alt="DevEdge Logo"
+            width={220}
+            height={220}
+            className="rounded-md shadow-md hover:scale-105 transition-transform duration-300 ease-in-out"
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default JoinSection;

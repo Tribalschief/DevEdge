@@ -24,10 +24,10 @@ export default function Footer() {
           </p>
 
           <div className="flex space-x-6 text-sm">
-            <Link href="/(policies)/privacy" className="hover:underline">
+            <Link href="/privacy" className="hover:underline">
               Privacy Policy
             </Link>
-            <Link href="/(policies)/privacy" className="hover:underline">
+            <Link href="/privacy" className="hover:underline">
               Terms of use
             </Link>
           </div>
@@ -85,44 +85,44 @@ export default function Footer() {
           <h3 className="text-lg font-medium mb-4">Industry Experience</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link href="/industries/banking" className="hover:underline">
+              <div  className="hover:underline">
                 Banking
-              </Link>
+              </div>
             </li>
             <li>
-              <Link href="/industries/government" className="hover:underline">
+              <div className="hover:underline">
                 Government & Public Services
-              </Link>
+              </div>
             </li>
             <li>
-              <Link href="/industries/retail" className="hover:underline">
+              <div className="hover:underline">
                 Retail and Real Estate
-              </Link>
+              </div>
             </li>
             <li>
-              <Link href="/industries/financial" className="hover:underline">
+              <div className="hover:underline">
                 Financial Services
-              </Link>
+              </div>
             </li>
             <li>
-              <Link href="/industries/shipping" className="hover:underline">
+              <div className="hover:underline">
                 Shipping
-              </Link>
+              </div>
             </li>
             <li>
-              <Link href="/industries/education" className="hover:underline">
+              <div className="hover:underline">
                 Education
-              </Link>
+              </div>
             </li>
             <li>
-              <Link href="/industries/hospitality" className="hover:underline">
+              <div className="hover:underline">
                 Hospitality
-              </Link>
+              </div>
             </li>
             <li>
-              <Link href="/industries/healthcare" className="hover:underline">
+              <div className="hover:underline">
                 Health Care
-              </Link>
+              </div>
             </li>
           </ul>
         </div>
@@ -142,17 +142,17 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/careers" className="hover:underline">
+              <Link href="/company/careers" className="hover:underline">
                 Career
               </Link>
             </li>
             <li>
-              <Link href="/leadership" className="hover:underline">
+              <Link href="/company/leadership" className="hover:underline">
                 Leadership
               </Link>
             </li>
             <li>
-              <Link href="/software" className="hover:underline">
+              <Link href="/erp" className="hover:underline">
                 Our Softwares
               </Link>
             </li>

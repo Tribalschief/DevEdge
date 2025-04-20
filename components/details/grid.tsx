@@ -139,8 +139,7 @@ export default function ServicesGrid({ services }: ServicesGridProps) {
   return (
     <div className="relative w-full px-4 py-4">
       {/* Shorter vertical lines on left and right */}
-      <div className="fixed left-0 top-1/4 h-1/2 w-0.5 bg-purple-500 hidden md:block" />
-      <div className="fixed right-0 top-1/4 h-1/2 w-0.5 bg-purple-500 hidden md:block" />
+      
 
       {renderMixedGrid()}
     </div>

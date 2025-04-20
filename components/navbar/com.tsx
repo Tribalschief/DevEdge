@@ -14,29 +14,42 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
+import { FaAngleDown } from "react-icons/fa"
 
 export function Company({title}:{title:string}) {
   const [position, setPosition] = React.useState("bottom")
 
   return (
+    
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div>{title}</div>
+        <div className="flex">{title} <span className="ml-2 mt-2"><FaAngleDown /></span>
+        </div>
+        
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuRadioGroup className="transition duration-100 translate-y-3" value={position} onValueChange={setPosition}>
+        <Link href='/company/about'>
           <DropdownMenuRadioItem value="top">
-            <Link href='/company/about'>About DevEdge</Link>
+            About DevEdge
             </DropdownMenuRadioItem>
+        </Link>
+        <Link href='/company/leadership'>
           <DropdownMenuRadioItem value="top">
-            <Link href='/company/leadership'>Leadership</Link>
+            Leadership
             </DropdownMenuRadioItem>
+            </Link>
+            <Link href='/company/career'>
           <DropdownMenuRadioItem value="top">
-            <Link href='/company/career'>Career</Link></DropdownMenuRadioItem>
+           Career</DropdownMenuRadioItem>
+           </Link>
+           <Link href='/company/cv'>
             <DropdownMenuRadioItem value="top">
-            <Link href='/company/cv'>Submit Cv</Link></DropdownMenuRadioItem>
+            Submit Cv</DropdownMenuRadioItem>
+            </Link>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
+      
     </DropdownMenu>
   )
 }

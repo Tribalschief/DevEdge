@@ -35,6 +35,8 @@ export function ServiceCard({ title, description, backgroundImage }: ServiceCard
       {/* Horizontal line */}
       <div className="w-48 h-0.5 bg-purple-500 mx-auto mt-auto" />
       
+      <div className="fixed left-0 top-1/4 h-1/2 w-0.5 bg-purple-500 hidden md:block" />
+      <div className="fixed right-0 top-1/4 h-1/2 w-0.5 bg-purple-500 hidden md:block" />
     </div>
   )
 }

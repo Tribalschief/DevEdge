@@ -1,6 +1,6 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight, Car, Clock, Package, Users,  Ship, Import, } from "lucide-react"
+import { ArrowRight, Car, Clock, Package, Users,  Globe, Import, Ship, Truck, } from "lucide-react"
 import Link from "next/link"
 
 export default function ERMService() {
@@ -56,7 +56,7 @@ export default function ERMService() {
         <div className="max-w-5xl mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="flex items-center p-4 space-x-3">
             <div className="bg-white rounded-full p-2">
-              <Package className="h-6 w-6 text-gray-900" />
+              <Truck className="h-6 w-6 text-gray-900" />
             </div>
             <div>
               <h3 className="text-sm font-medium">Vehicle Shipping</h3>
@@ -108,7 +108,7 @@ export default function ERMService() {
                 value="vehicle-shipping"
                 className="flex items-center gap-2 py-5 text-base font-medium data-[state=active]:text-purple-700"
               >
-                <Package className="h-16 w-16 sm:h-10 sm:w-10 md:w-16 md:h-16 mr-1" />
+                <Truck className="h-10 w-10 sm:h-10 sm:w-10 md:w-16 md:h-16 mr-1" />
                 <span className="hidden sm:inline">Vehicle Shipping</span>
                 <span className="sm:hidden">Vehicle</span>
               </TabsTrigger>
@@ -116,7 +116,7 @@ export default function ERMService() {
                 value="car-selling"
                 className="flex items-center gap-2 py-5 text-base font-medium data-[state=active]:text-purple-700"
               >
-                <Car className="h-5 w-5 mr-1" />
+                <Car className="h-10 w-10 sm:h-10 sm:w-10 md:w-16 md:h-16 mr-1" />
                 <span className="hidden sm:inline">Car Selling Platform</span>
                 <span className="sm:hidden">Car</span>
               </TabsTrigger>
@@ -124,7 +124,7 @@ export default function ERMService() {
                 value="human-resource"
                 className="flex items-center gap-2 py-5 text-base font-medium data-[state=active]:text-purple-700"
               >
-                <Users className="h-5 w-5 mr-1" />
+                <Users className="h-10 w-10 mr-1sm:h-10 sm:w-10 md:w-16 md:h-16" />
                 <span className="hidden sm:inline">Human Resource</span>
                 <span className="sm:hidden">HR</span>
               </TabsTrigger>
@@ -132,7 +132,7 @@ export default function ERMService() {
                 value="coming-soon"
                 className="flex items-center gap-2 py-5 text-base font-medium data-[state=active]:text-purple-700"
               >
-                <Clock className="h-5 w-5 mr-1" />
+                <Clock className="h-10 w-10 sm:h-10 sm:w-10 md:w-16 md:h-16 mr-1" />
                 <span>Coming Soon</span>
               </TabsTrigger>
             </TabsList>
@@ -152,14 +152,14 @@ export default function ERMService() {
                             value="import"
                             className="flex flex-col items-center w-40 py-4 px-6 rounded-none data-[state=active]:bg-purple-50 data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-purple-600"
                           >
-                            <Import className="h-6 w-6 mb-2 text-purple-600" />
-                            <span className="text-xs">Import</span>
+                            <Import className="h-10 w-10 mb-2 text-purple-600" />
+                            <span className="text-xl">Import</span>
                           </TabsTrigger>
                           <TabsTrigger
                             value="export"
                             className="flex flex-col items-center py-4 w-40  px-6 rounded-none data-[state=active]:bg-purple-50 data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-purple-600"
                           >
-                            <Ship className="h-6 w-6 mb-2 text-purple-600" />
+                            <Globe className="h-10 w-10 mb-2 text-purple-600" />
                             <span className="text-xs">Export</span>
                           </TabsTrigger>
                         </TabsList>
@@ -172,16 +172,12 @@ export default function ERMService() {
                           {serviceCards.map((card, index) => (
                             <Card key={index} className="border border-gray-200 shadow-sm">
                               <CardHeader>
-                                <CardTitle className="text-sm font-medium">{card.title}</CardTitle>
+                                <CardTitle className="text-xl font-medium">{card.title}</CardTitle>
                               </CardHeader>
                               <CardContent>
-                                <p className="text-xs text-gray-600">{card.description}</p>
+                                <p className="text-md text-gray-600">{card.description}</p>
                               </CardContent>
-                              <CardFooter>
-                                <Link href="#" className="text-xs text-purple-700 flex items-center">
-                                  Learn More <ArrowRight className="ml-1 h-3 w-3" />
-                                </Link>
-                              </CardFooter>
+
                             </Card>
                           ))}
                         </div>
@@ -193,16 +189,12 @@ export default function ERMService() {
                           {exportCards.map((card, index) => (
                             <Card key={index} className="border border-gray-200 shadow-sm">
                               <CardHeader>
-                                <CardTitle className="text-sm font-medium">{card.title}</CardTitle>
+                                <CardTitle className="text-xl font-medium">{card.title}</CardTitle>
                               </CardHeader>
                               <CardContent>
-                                <p className="text-xs text-gray-600">{card.description}</p>
+                                <p className="text-md text-gray-600">{card.description}</p>
                               </CardContent>
-                              <CardFooter>
-                                <Link href="#" className="text-xs text-purple-700 flex items-center">
-                                  Learn More <ArrowRight className="ml-1 h-3 w-3" />
-                                </Link>
-                              </CardFooter>
+                              
                             </Card>
                           ))}
                         </div>
@@ -260,45 +252,6 @@ export default function ERMService() {
         </div>
       </section>
 
-      {/* Risk Landscape */}
-      <section className="w-full py-12 px-4 bg-gradient-to-b from-white to-purple-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-xl font-bold text-center mb-8">
-            Gain Insights into Risk Landscape
-            <br />
-            with One-Click Report
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {riskReports.map((report, index) => (
-              <div key={index} className="bg-white p-4 rounded-lg shadow-sm">
-                <h3 className="text-sm font-medium mb-2">{report.title}</h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-xs border-collapse">
-                    <thead className="bg-gray-100">
-                      <tr>
-                        <th className="p-1 border text-left">ID</th>
-                        <th className="p-1 border text-left">Risk</th>
-                        <th className="p-1 border text-left">Level</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[1, 2, 3, 4, 5].map((row) => (
-                        <tr key={row}>
-                          <td className="p-1 border">{row}</td>
-                          <td className="p-1 border">R{index + 1}</td>
-                          <td className="p-1 border">{Math.floor(Math.random() * 5) + 1}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-        </div>
-      </section>
     </main>
   )
 }

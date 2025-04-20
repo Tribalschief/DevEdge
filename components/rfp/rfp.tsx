@@ -294,18 +294,12 @@ export default function RfpForm() {
               Thank you for your interest in our member firm services. Please take a few moments to complete this form.
               Documents can be uploaded if needed to clarify your request. This mailbox only accepts qualified proposal
               requests for our services. All other inquiries should be directed to our{" "}
-              <Link href="#" className="text-blue-600 hover:underline">
+              <Link href="/contact" className="text-blue-600 hover:underline">
                 Contact Us
               </Link>{" "}
               page.
             </p>
-            <p className="mt-2">
-              Resumes and job inquiries should be sent through our{" "}
-              <Link href="#" className="text-blue-600 hover:underline">
-                Careers site
-              </Link>
-              .
-            </p>
+
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -536,11 +530,11 @@ export default function RfpForm() {
                     />
                     <Label htmlFor="terms" className="text-sm font-normal">
                       I have read and agree to the{" "}
-                      <Link href="#" className="text-blue-600 hover:underline">
+                      <Link href="/privacy" className="text-blue-600 hover:underline">
                         Privacy Notice
                       </Link>{" "}
                       and{" "}
-                      <Link href="#" className="text-blue-600 hover:underline">
+                      <Link href="/privacy" className="text-blue-600 hover:underline">
                         Terms of Use
                       </Link>
                     </Label>
@@ -551,7 +545,7 @@ export default function RfpForm() {
                 <div className="mt-6">
                   <Label className="text-sm block mb-2">*Verify you are human</Label>
                   <HCaptcha
-                    sitekey="10000000-ffff-ffff-ffff-000000000001" // Replace with your actual hCaptcha site key
+                    sitekey="41b8bd2e-8c50-4e32-98d8-c5189bb4934c" // Replace with your actual hCaptcha site key
                     onVerify={handleCaptchaVerify}
                     onExpire={handleCaptchaExpire}
                     ref={captchaRef}

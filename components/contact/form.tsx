@@ -13,6 +13,7 @@ import HCaptcha from "@hcaptcha/react-hcaptcha"
 import { useToast } from "@/hooks/use-toast"
 import Cookies from "js-cookie"
 import { CookieConsentDialog } from "../cookies-dialog/consnet-dialog"
+import Link from "next/link"
 
 
 const CONTACT_FORM_COOKIE = "contact_form_data"
@@ -278,7 +279,7 @@ export default function ContactForm() {
 
           <p className="text-sm text-gray-500 mb-6">
             You may unsubscribe from these communications at any time. For more information on how to unsubscribe please
-            review our Privacy Policy.
+            review our <Link href="/privacy" className="text-blue-600 hover:underline">Privacy Policy</Link>.
           </p>
 
           <Button type="submit" className="bg-gray-900 hover:bg-gray-800">

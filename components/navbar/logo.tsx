@@ -5,13 +5,12 @@ import Image from 'next/image'
 
 const Logo = ({ dark }: { dark: boolean }) => {
   return (
-    <div className="relative w-24 sm:w-28 md:w-32 lg:w-36 xl:w-40 h-auto">
+    <div className="relative w-[100px] sm:w-[100px] md:w-[130px] lg:w-36 xl:w-40">
       <Image
         src={dark ? darkLogo : logo}
         alt="Logo"
-        className="w-full h-auto object-contain"
-        sizes="(max-width: 768px) 100px, (max-width: 1200px) 150px, 200px"
-        priority
+        className="w-auto mb-4 md:mb-4 lg:mb-0 h-auto object-contain "
+        
       />
     </div>
   )

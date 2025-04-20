@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export default function CareerPage() {
   return (
-    <div className="container mx-auto px-4 py-12 lg:mt-20">
+    <div className="container mx-auto px-4 py-12  mt-[100px]">
       <header className="mb-12 text-center">
         <h1 className="text-4xl font-bold tracking-tight mb-4">Join Our Team</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
@@ -20,37 +20,7 @@ export default function CareerPage() {
         </Button>
       </header>
 
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8 text-center">Open Positions</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {jobs.map((job) => (
-            <Card key={job.id} className="h-full">
-              <CardHeader>
-                <CardTitle className="flex items-start justify-between">
-                  <span>{job.title}</span>
-                  {job.isRemote && (
-                    <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
-                      Remote
-                    </span>
-                  )}
-                </CardTitle>
-                <CardDescription className="flex items-center">
-                  <MapPin className="mr-1 h-4 w-4" />
-                  {job.location}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">{job.description}</p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline" className="w-full">
-                  View Details
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      </section>
+      
 
       <section className="mb-16">
         <h2 className="text-3xl font-bold mb-8 text-center">Why Work With Us</h2>
@@ -188,7 +158,6 @@ export default function CareerPage() {
           Take the first step toward your next great career opportunity.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg">View All Positions</Button>
           <Button
             variant="outline"
             size="lg"

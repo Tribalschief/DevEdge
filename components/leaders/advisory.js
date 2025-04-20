@@ -1,11 +1,7 @@
 import Image from "next/image"
-import type { Leader } from "./types"
 
-interface LeaderProfileProps {
-  leader: Leader
-}
 
-export const Advisory = ({advisor}:{advisor:Leader}) => {
+export const Advisory = ({advisor}) => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8">
       {/* Header */}
@@ -40,11 +36,11 @@ export const Advisory = ({advisor}:{advisor:Leader}) => {
         </div>
     
         {/* Right Column - Profile Details */}
-        <div className="md:col-span-2 space-y-3 sm:space-y-4">
+        <div className="md:col-span-2  sm:space-y-2">
           {/* Title */}
-          <div className="bg-black text-white p-3 sm:p-4 rounded w-full max-w-[256px]">
-            <h2 className="text-lg font-medium">{advisor.title}</h2>
-            <p className="text-sm">{advisor.company}</p>
+          <div className="bg-black flex flex-col text-white p-2 sm:p-4 rounded  justify-center items-center w-[256px]">
+            <h2 className="text-[12px] font-medium">{advisor.title}</h2>
+            <p className="text-[12px]">{advisor.company}</p>
           </div>
     
           {/* Background */}

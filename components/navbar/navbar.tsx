@@ -25,7 +25,7 @@ export const Navbar = () => {
 
   return (
     <div
-      className={`flex px-4 md:px-8 lg:px-[10rem] justify-between mx-auto min-w-full h-[80px] md:h-[120px] lg:h-[120px] ${scrolled ? "bg-black" : "bg-transparent"} transition-all duration-300 fixed top-0 z-50 items-center`}
+      className={`flex px-4 md:px-8 lg:px-[10rem] justify-between mx-auto min-w-full h-[100px] md:h-[120px] lg:h-[120px] ${scrolled ? "bg-black" : "bg-transparent"} transition-all duration-300 fixed top-0 z-50 items-center`}
     >
       <Link href="/">
       <Logo dark={scrolled} />
@@ -40,12 +40,10 @@ export const Navbar = () => {
         </div>
         <div className="text-lg lg:text-xl font-semibold cursor-pointer flex items-center">
           <Company title="Company" />
-          <span className="ml-2 mt-1">
-            <FaAngleDown />
-          </span>
+          
         </div>
-        <Link href="/erp" className="text-lg lg:text-xl font-semibold cursor-pointer">
-          Our ERP's Software
+        <Link href="/erp" className="text-lg lg:text-xl font-semibold cursor-pointer mr-2">
+          ERP's
         </Link>
       </div>
 
@@ -55,25 +53,31 @@ export const Navbar = () => {
           <Searching />
         </div>
         <div>
+        <Link href={"/rfp"}>
           <Button
             className={`transition-colors duration-300 ${
               scrolled ? "bg-primary hover:bg-primary/90" : "bg-white text-black hover:bg-gray-200"
             }`}
           >
-            <Link href={"/rfp"}>Submit RFP</Link>
+            Submit RFP
           </Button>
+          </Link>
         </div>
         <div className="flex gap-x-2 items-center">
+        <Link href={"/contact"}>
           <span className={`flex items-center ${scrolled ? "text-white" : "text-black"}`}>
             <FaPhone />
           </span>
+          </Link>
+          <Link href={"/contact"}>
           <Button
             className={`transition-colors duration-300 ${
               scrolled ? "bg-primary hover:bg-primary/90" : "bg-white text-black hover:bg-gray-200"
             }`}
           >
-            <Link href={"/contact"}>Contact Us</Link>
+            Contact Us
           </Button>
+          </Link>
         </div>
       </div>
 
@@ -100,9 +104,6 @@ export const Navbar = () => {
               </div>
               <div className="text-xl font-semibold cursor-pointer flex items-center">
                 <Company title="Company" />
-                <span className="ml-2 mt-1">
-                  <FaAngleDown />
-                </span>
               </div>
               <Link
                 href="/erp"
@@ -117,13 +118,17 @@ export const Navbar = () => {
                   <Searching />
                 </div>
                 <div className="flex flex-col gap-4">
+                <Link href={"/rfp"}>
                   <Button className="w-full">
-                    <Link href={"/rfp"}>Submit RFP</Link>
+                    Submit RFP
                   </Button>
+                  </Link>
+                  <Link href={"/contact"}>
                   <Button className="w-full">
                     <FaPhone className="mr-2 h-4 w-4" />
-                    <Link href={"/contact"}>Contact Us</Link>
+                    Contact Us
                   </Button>
+                  </Link>
                 </div>
               </div>
             </div>

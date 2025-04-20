@@ -5,23 +5,29 @@ import { Button } from "@/components/ui/button"
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
-      <div className="container mx-auto px-4 py-8 my-10 max-w-4xl">
-        <Tabs defaultValue="privacy">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger value="privacy">Privacy Notice</TabsTrigger>
-            <TabsTrigger value="terms">Terms of Use</TabsTrigger>
+      <div className="container mx-auto px-4 py-8 my-20 sm:my-16 md:my-20 lg:my-24 max-w-4xl">
+        <Tabs defaultValue="privacy" className="w-full">
+          <TabsList className="grid w-full grid-cols-3  mb-16">
+            <TabsTrigger value="privacy">
+            <span className="block sm:hidden">Privacy</span>
+            <span className="hidden sm:block">Privacy Notice</span>
+              </TabsTrigger>
+            <TabsTrigger value="terms">
+              <span className="block sm:hidden">Terms</span>
+            <span className="hidden sm:block">Terms of Use</span>
+            </TabsTrigger>
             <TabsTrigger value="cookie">Cookies</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="privacy" className="border-t border-gray-300 pt-4">
+          <TabsContent value="privacy" className="md:border-t lg:border-top  border-gray-300 pt-4">
             <PrivacyNotice />
           </TabsContent>
 
-          <TabsContent value="terms" className="border-t border-gray-300 pt-4">
+          <TabsContent value="terms" className="md:border-t lg:border-top  border-gray-300 pt-4">
             <TermsOfUse />
           </TabsContent>
 
-          <TabsContent value="cookie" className="border-t border-gray-300 pt-4">
+          <TabsContent value="cookie" className="md:border-t lg:border-top  border-gray-300 pt-4">
             <CookieNotice />
           </TabsContent>
         </Tabs>
@@ -37,14 +43,9 @@ function PrivacyNotice() {
         <h1 className="text-2xl font-bold text-gray-800">Privacy Notice</h1>
         <p className="text-sm text-gray-600">Last revised: 11/19/24</p>
 
-        <div className="flex space-x-2 mt-4">
-          <SocialIcons />
-        </div>
 
         <div className="mt-4 flex justify-between items-center">
-          <Button variant="outline" className="text-sm">
-            Printer-friendly PDF
-          </Button>
+          
         </div>
       </div>
 
@@ -160,10 +161,6 @@ function TermsOfUse() {
       <div className="border-b border-gray-300 pb-4">
         <h1 className="text-2xl font-bold text-gray-800">Terms of Use</h1>
         <p className="text-sm text-gray-600">Last updated: 23 January 2017</p>
-
-        <div className="flex space-x-2 mt-4">
-          <SocialIcons />
-        </div>
       </div>
 
       <div className="space-y-4">
@@ -214,13 +211,6 @@ function CookieNotice() {
         <h1 className="text-2xl font-bold text-gray-800">Cookie Notice</h1>
         <p className="text-sm text-gray-600">Last revised: February 24th, 2021</p>
 
-        <div className="flex space-x-2 mt-4">
-          <SocialIcons />
-        </div>
-
-        <Button variant="outline" className="text-sm mt-4">
-          Manage cookie preferences
-        </Button>
       </div>
 
       <div className="space-y-4">
@@ -359,80 +349,80 @@ function TableOfContents() {
   )
 }
 
-function SocialIcons() {
-  return (
-    <>
-      <Link href="#" className="w-6 h-6 flex items-center justify-center rounded-full bg-blue-600 text-white">
-        <span className="sr-only">LinkedIn</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-linkedin"
-        >
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-          <rect width="4" height="12" x="2" y="9" />
-          <circle cx="4" cy="4" r="2" />
-        </svg>
-      </Link>
-      <Link href="#" className="w-6 h-6 flex items-center justify-center rounded-full bg-blue-400 text-white">
-        <span className="sr-only">Twitter</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-twitter"
-        >
-          <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-        </svg>
-      </Link>
-      <Link href="#" className="w-6 h-6 flex items-center justify-center rounded-full bg-red-600 text-white">
-        <span className="sr-only">YouTube</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-youtube"
-        >
-          <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
-          <path d="m10 15 5-3-5-3z" />
-        </svg>
-      </Link>
-      <Link href="#" className="w-6 h-6 flex items-center justify-center rounded-full bg-blue-800 text-white">
-        <span className="sr-only">Facebook</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-facebook"
-        >
-          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-        </svg>
-      </Link>
-    </>
-  )
-}
+// function SocialIcons() {
+//   return (
+//     <>
+//       <Link href="#" className="w-6 h-6 flex items-center justify-center rounded-full bg-blue-600 text-white">
+//         <span className="sr-only">LinkedIn</span>
+//         <svg
+//           xmlns="http://www.w3.org/2000/svg"
+//           width="16"
+//           height="16"
+//           viewBox="0 0 24 24"
+//           fill="none"
+//           stroke="currentColor"
+//           strokeWidth="2"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           className="lucide lucide-linkedin"
+//         >
+//           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+//           <rect width="4" height="12" x="2" y="9" />
+//           <circle cx="4" cy="4" r="2" />
+//         </svg>
+//       </Link>
+//       <Link href="#" className="w-6 h-6 flex items-center justify-center rounded-full bg-blue-400 text-white">
+//         <span className="sr-only">Twitter</span>
+//         <svg
+//           xmlns="http://www.w3.org/2000/svg"
+//           width="16"
+//           height="16"
+//           viewBox="0 0 24 24"
+//           fill="none"
+//           stroke="currentColor"
+//           strokeWidth="2"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           className="lucide lucide-twitter"
+//         >
+//           <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+//         </svg>
+//       </Link>
+//       <Link href="#" className="w-6 h-6 flex items-center justify-center rounded-full bg-red-600 text-white">
+//         <span className="sr-only">YouTube</span>
+//         <svg
+//           xmlns="http://www.w3.org/2000/svg"
+//           width="16"
+//           height="16"
+//           viewBox="0 0 24 24"
+//           fill="none"
+//           stroke="currentColor"
+//           strokeWidth="2"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           className="lucide lucide-youtube"
+//         >
+//           <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+//           <path d="m10 15 5-3-5-3z" />
+//         </svg>
+//       </Link>
+//       <Link href="#" className="w-6 h-6 flex items-center justify-center rounded-full bg-blue-800 text-white">
+//         <span className="sr-only">Facebook</span>
+//         <svg
+//           xmlns="http://www.w3.org/2000/svg"
+//           width="16"
+//           height="16"
+//           viewBox="0 0 24 24"
+//           fill="none"
+//           stroke="currentColor"
+//           strokeWidth="2"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           className="lucide lucide-facebook"
+//         >
+//           <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+//         </svg>
+//       </Link>
+//     </>
+//   )
+// }
