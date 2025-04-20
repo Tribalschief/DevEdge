@@ -29,7 +29,7 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative rounded-xl bg-gray-100 p-1 shadow-md">
+      <div className="relative rounded-xl h-full bg-gray-100 p-1 shadow-md">
         {/* Tech pattern overlay */}
         <div className="absolute inset-0 rounded-xl overflow-hidden opacity-5">
           <div className="absolute top-0 left-0 w-full h-full">
@@ -52,7 +52,7 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
 
         <div className="relative rounded-lg bg-white p-6 sm:p-8 flex flex-col items-center text-center h-full transition-all duration-300 group-hover:shadow-md border border-gray-200">
           {/* Card number */}
-          <div className="absolute top-4 right-4 w-8 h-8 rounded-sm bg-gray-100 flex items-center justify-center border-b border-r border-pink-300">
+          <div className="absolute top-4 right-4 w-8 h-8 rounded-sm bg-gray-100 flex items-center justify-center border-b border-r border-[#6208CA]">
             <span className="text-gray-700 font-mono text-sm">{String(index + 1).padStart(2, "0")}</span>
           </div>
 
@@ -61,17 +61,17 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
             className="relative z-10 mb-6"
             animate={isHovered ? { scale: [1, 1.05, 1], transition: { repeat: 0, duration: 0.4 } } : {}}
           >
-            <div className="bg-pink-100 rounded-lg p-3 shadow-sm border border-pink-200">
+            <div className="bg-purple-100 rounded-lg p-3 shadow-sm border border-[#6208CA]">
               <div className="bg-white rounded-md p-4 flex items-center justify-center text-purple-700 border border-gray-100">
                 {icon}
               </div>
             </div>
 
             {/* Technical corner accents */}
-            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-pink-400"></div>
-            <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-pink-400"></div>
-            <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-pink-400"></div>
-            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-pink-400"></div>
+            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#6208CA]"></div>
+            <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#6208CA]"></div>
+            <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#6208CA]"></div>
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#6208CA]"></div>
           </motion.div>
 
           {/* Content */}
@@ -79,16 +79,16 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
             {title}
           </h3>
 
-          <div className="w-16 h-0.5 bg-pink-300 mb-4 transition-all duration-300 group-hover:w-24"></div>
+          <div className="w-16 h-0.5 bg-[#6208CA] mb-4 transition-all duration-300 group-hover:w-24"></div>
 
           <p className="relative z-10 text-base sm:text-lg text-gray-600">{description}</p>
 
           {/* Technical bottom border */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-200 via-purple-200 to-pink-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#6208CA] via-purple-200 to-[#6208CA] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
           {/* Technical corner elements */}
-          <div className="absolute bottom-0 left-0 w-4 h-4 border-l border-b border-pink-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <div className="absolute bottom-0 right-0 w-4 h-4 border-r border-b border-pink-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute bottom-0 left-0 w-4 h-4 border-l border-b border-[#6208CA] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute bottom-0 right-0 w-4 h-4 border-r border-b border-[#6208CA] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
       </div>
     </motion.div>
@@ -281,9 +281,9 @@ export default function FeatureGrid() {
           </p>
 
           <div className="flex items-center justify-center mt-8 space-x-1">
-            <div className="w-2 h-2 bg-pink-300"></div>
-            <div className="w-12 h-0.5 bg-pink-300"></div>
-            <div className="w-2 h-2 bg-pink-300"></div>
+            <div className="w-2 h-2 bg-[#6208CA]"></div>
+            <div className="w-12 h-0.5 bg-[#6208CA]"></div>
+            <div className="w-2 h-2 bg-[#6208CA]"></div>
           </div>
         </motion.div>
 

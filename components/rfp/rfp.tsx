@@ -268,7 +268,7 @@ export default function RfpForm() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className=" mx-auto ">
       <CookieConsentDialog />
 
       {formStatus === "error" && (
@@ -280,8 +280,8 @@ export default function RfpForm() {
           </AlertDescription>
         </Alert>
       )}
-      <div className="relative">
-      <div className="bg-white rounded-lg max-w-full sm:max-w-2xl lg:max-w-3xl shadow-md p-6 mb-8 mx-auto relative z-10">
+      <div className="relative ">
+      <div className="bg-white rounded-lg max-w-full sm:max-w-2xl lg:max-w-5xl shadow-md p-6 mb-8 mx-auto relative z-10">
 
           <div className="mb-6">
             <h1 className="text-xl font-bold">Submit RFP</h1>

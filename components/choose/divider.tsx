@@ -10,10 +10,10 @@ export const Divider = ({image }:{image:any}) => {
 />
         <div className="absolute inset-0 flex items-center justify-center text-white">
             <div className='flex flex-col text-center justify-center items-center mb-40'>
-            <h1 className=' text-3xl lg:text-4xl mt-64  font-bold'>
+            <h1 className=' text-3xl lg:text-5xl mt-64  font-bold'>
             <h1>Why Choose <span className='text-purple-700 '>DevEdge Consulting</span></h1>
             </h1>
-            <h2 className='text-md text-center lg:text-3xl sm:justify-center mt-10 mx-4 font-semibold'>
+            <h2 className='text-md text-center lg:text-2xl sm:justify-center mt-10 mx-4 md:mx-[80px] lg:mx-72 font-semibold'>
             We don’t just consult — we commit. DevEdge is your partner in strengthening defenses, elevating audit integrity, and engineering secure, resilient systems that stand up to real-world threats.
             </h2>
             </div>

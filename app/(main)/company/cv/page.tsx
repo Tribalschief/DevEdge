@@ -6,7 +6,7 @@ import { useState, useRef, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { ChevronLeft, Upload, ChevronDown, X, Mail, Check } from "lucide-react"
+import { ChevronLeft, Upload, ChevronDown, X, Mail, Check, Link } from "lucide-react"
 import Cookies from "js-cookie"
 import { useToast } from "@/hooks/use-toast"
 
@@ -277,13 +277,14 @@ export default function CVSubmissionForm() {
   }
 
   return (
-    <div className=" mt-24 ml-4 mx-8 sm:py-10">
+    <div className=" mt-24 mx-auto px-8 lg:px-auto">
       <CookieConsentDialog />
-
+      <Link href="/">
       <button className="flex items-center text-[#6208CA] mb-8 font-medium">
         <ChevronLeft className="h-5 w-5" />
         Back
       </button>
+      </Link>
 
       <div className="h-0.5 w-64 bg-[#6208CA] mb-10"></div>
 
@@ -496,10 +497,10 @@ export default function CVSubmissionForm() {
                 onChange={handleFileChange}
               />
               <label htmlFor="cv-upload" className="cursor-pointer flex flex-col items-center">
-                <Upload className="h-6 w-6 text-[#0D8A6A] mb-2" />
-                <p className="text-[#0D8A6A] font-medium mb-2">Upload a file</p>
+                <Upload className="h-6 w-6 text-[#6208CA] mb-2" />
+                <p className="text-[#6208CA] font-medium mb-2">Upload a file</p>
                 <p className="text-sm text-gray-600">
-                  Drag and drop or <span className="text-[#0D8A6A] font-medium">Browse file</span>
+                  Drag and drop or <span className="text-[#6208CA] font-medium">Browse file</span>
                 </p>
               </label>
             </div>
@@ -516,11 +517,11 @@ export default function CVSubmissionForm() {
               />
               <label htmlFor="terms" className="text-sm">
                 I acknowledge that I have read and understand the{" "}
-                <a href="#" className="text-[#0D8A6A] underline">
+                <a href="#" className="text-[#3c5bc0] underline">
                   Terms and Conditions
                 </a>{" "}
                 and{" "}
-                <a href="#" className="text-[#0D8A6A] underline">
+                <a href="#" className="text-[#3c5bc0] underline">
                   Privacy Notice
                 </a>
                 . <span className="text-red-500">*</span>
@@ -545,11 +546,11 @@ export default function CVSubmissionForm() {
 
             <p className="text-sm text-gray-500 mt-4">
               This site is protected by reCAPTCHA and the Google{" "}
-              <a href="#" className="text-[#0D8A6A]">
+              <a href="#" className="text-[#3c5bc0]">
                 Privacy Policy
               </a>{" "}
               and{" "}
-              <a href="#" className="text-[#0D8A6A]">
+              <a href="#" className="text-[#3c5bc0]">
                 Terms of Service
               </a>{" "}
               apply.

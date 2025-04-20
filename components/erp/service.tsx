@@ -53,7 +53,7 @@ export default function ERMService() {
 
       {/* Services */}
       <section className="w-full bg-gray-900 text-white py-8 px-4">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="max-w-5xl mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="flex items-center p-4 space-x-3">
             <div className="bg-white rounded-full p-2">
               <Package className="h-6 w-6 text-gray-900" />
@@ -97,18 +97,18 @@ export default function ERMService() {
       </section>
 
       {/* Customizable Modules with Service Tabs */}
-      <section className="w-full py-12 px-4">
-        <div className="w-full mx-10 sm:mx-auto text-center">
+      <section className="w-full py-12 px-auto ">
+        <div className="w-full sm:mx-auto text-center">
           <h2 className="text-xl font-bold mb-2">Experience Customizable Modules</h2>
           <p className="text-gray-600 mb-8">with Dynamic Workflows</p>
 
           <Tabs defaultValue="vehicle-shipping" className="w-full ">
-            <TabsList className="grid w-full grid-cols-4 mb-6 h-auto bg-purple-600 text-white">
+            <TabsList className="grid w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-6 h-auto bg-purple-600 text-white">
               <TabsTrigger
                 value="vehicle-shipping"
                 className="flex items-center gap-2 py-5 text-base font-medium data-[state=active]:text-purple-700"
               >
-                <Package className="h-5 w-5 mr-1" />
+                <Package className="h-16 w-16 sm:h-10 sm:w-10 md:w-16 md:h-16 mr-1" />
                 <span className="hidden sm:inline">Vehicle Shipping</span>
                 <span className="sm:hidden">Vehicle</span>
               </TabsTrigger>

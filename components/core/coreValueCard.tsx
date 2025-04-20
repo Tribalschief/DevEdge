@@ -95,7 +95,7 @@ export default function CoreValueCard({ icon, title, description, index }: CoreV
 
   return (
     <motion.div
-      className="relative bg-white/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+      className="relative bg-white/80 h-full backdrop-blur-sm rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
       whileHover={{ y: -5 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

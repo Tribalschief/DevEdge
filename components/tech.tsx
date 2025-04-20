@@ -39,7 +39,7 @@ export default function ImageGrid() {
 
 
   return (
-    <div className="relative bg-white min-h-screen flex flex-col items-center justify-center px-4 py-16 overflow-hidden">
+    <div className="relative bg-slate-900 min-h-screen flex flex-col items-center justify-center px-4 py-16 overflow-hidden">
       {/* Background World Map */}
       <Image
         src={map}
@@ -50,7 +50,7 @@ export default function ImageGrid() {
       />
 
       {/* Title */}
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center z-10 mb-10">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl text-white font-bold text-center z-10 mb-10">
         Technologies That <span className="text-purple-600">Power</span> Our Solutions
       </h2>
 

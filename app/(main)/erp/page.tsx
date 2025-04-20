@@ -6,12 +6,12 @@ import React from 'react'
 
 const ERM = () => {
   return (
-    <>
+    <main className="min-h-screen ">
     <HeroERP/>
     <SolutionsShowcase/>
     <ERMService/>
     <LastERM/>
-    </>
+    </main>
   )
 }
 
