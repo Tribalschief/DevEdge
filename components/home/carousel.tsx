@@ -107,7 +107,7 @@ export default function HeroCarousel() {
 
   return (
     <div
-      className="relative w-full lg:h-[700px] min-h-screen px-auto mt-20 lg:mt-[160px] sm:mt-auto overflow-hidden"
+      className="relative w-full lg:h-[700px] min-h-screen px-auto mt-24 lg:mt-[132px]  sm:mt-24 md:mt-[120px] overflow-hidden bg-white"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       ref={constraintsRef}

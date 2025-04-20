@@ -13,7 +13,7 @@ export function ServiceCard({ title, description, backgroundImage }: ServiceCard
       <div className="relative h-48 w-full rounded-2xl overflow-hidden mb-4">
         {/* Background image with overlay */}
         <div className="absolute inset-0">
-          <Image src={backgroundImage || "/placeholder.svg"} alt={title} fill className="object-cover" />
+          <Image src={backgroundImage || "/placeholder.svg"} alt={title} fill className="object-cover black/70" />
           
         </div>
 
@@ -34,6 +34,7 @@ export function ServiceCard({ title, description, backgroundImage }: ServiceCard
 
       {/* Horizontal line */}
       <div className="w-48 h-0.5 bg-purple-500 mx-auto mt-auto" />
+      
     </div>
   )
 }

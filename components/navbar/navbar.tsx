@@ -25,7 +25,7 @@ export const Navbar = () => {
 
   return (
     <div
-      className={`flex px-4 md:px-8 lg:px-[10rem] justify-between mx-auto min-w-full h-[80px] md:h-[100px] ${scrolled ? "bg-black" : "bg-transparent"} transition-all duration-300 fixed top-0 z-50 items-center`}
+      className={`flex px-4 md:px-8 lg:px-[10rem] justify-between mx-auto min-w-full h-[80px] md:h-[120px] lg:h-[120px] ${scrolled ? "bg-black" : "bg-transparent"} transition-all duration-300 fixed top-0 z-50 items-center`}
     >
       <Link href="/">
       <Logo dark={scrolled} />

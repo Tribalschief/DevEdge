@@ -6,7 +6,7 @@ import { DevEdgeWordCloudSVG } from "./services-circle"
 export default function ServicesHero() {
   return (
     <section className="bg-white w-full h-full flex items-center justify-center py-16 lg:py-0 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden">
-      <div className="container mx-auto max-w-7xl">
+      <div className="container mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div
             className="space-y-4 md:space-y-6"
@@ -24,7 +24,7 @@ export default function ServicesHero() {
                 Our Services
               </motion.h1>
               <motion.h2
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-black"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}

@@ -3,14 +3,16 @@ import logo from '@/public/logoremovebg.png'
 import darkLogo from '@/public/whitelogo.png'
 import Image from 'next/image'
 
-const Logo = ({dark}:{dark:boolean}) => {
+const Logo = ({ dark }: { dark: boolean }) => {
   return (
-    <div className="text-xl font-bold">
-      {dark ? (
-        <Image src={darkLogo} alt="Logo" width={100} height={100} />
-      ) : (
-        <Image src={logo} alt="Logo" width={100} height={100} />
-      )}
+    <div className="relative w-24 sm:w-28 md:w-32 lg:w-36 xl:w-40 h-auto">
+      <Image
+        src={dark ? darkLogo : logo}
+        alt="Logo"
+        className="w-full h-auto object-contain"
+        sizes="(max-width: 768px) 100px, (max-width: 1200px) 150px, 200px"
+        priority
+      />
     </div>
   )
 }
