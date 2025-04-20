@@ -95,7 +95,7 @@ export default function SolutionsShowcase() {
             className={`absolute inset-0 transition-all duration-700 flex items-center justify-center ${
               index === activeIndex ? "opacity-100 transform-none" : "opacity-0 -translate-y-4"
             }`}
-          >
+          > 
             {solution.title}
           </span>
         ))}
@@ -128,7 +128,7 @@ export default function SolutionsShowcase() {
                   className={`font-medium text-base sm:text-lg transition-colors duration-300 ${
                     idx === activeIndex ? "text-white" : "text-white/70"
                   }`}
-                >
+                  onClick={() => setActiveIndex(idx)} >
                   {solution.title}
                 </h3>
 
