@@ -640,7 +640,7 @@ export default function CVSubmissionForm() {
           <div className="mt-8">
             <button
               type="submit"
-              className="bg-[#7FBFB0] text-white px-6 py-3 rounded hover:bg-[#6AAFA0] transition-colors"
+              className="bg-[#6208CA] text-white px-6 py-3 rounded hover:bg-[#3c0f6e] transition-colors"
             >
               Submit Request
             </button>
