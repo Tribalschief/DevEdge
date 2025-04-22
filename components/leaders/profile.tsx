@@ -19,7 +19,7 @@ export default function LeaderProfile({ leader }: LeaderProfileProps) {
           {/* Profile Image */}
           <div className="bg-gray-200 p-2">
             <Image
-              src={leader.imageSrc || "/placeholder.svg"}
+              src={leader.pic.src || "/placeholder.svg"}
               alt={leader.name}
               width={300}
               height={300}
@@ -49,13 +49,21 @@ export default function LeaderProfile({ leader }: LeaderProfileProps) {
         </div>
 
         {/* Right Column - Profile Details */}
-        <div className="md:col-span-2 space-y-4 mt-4 md:mt-0">
+        <div className="md:col-span-2 space-y-4 mt-4 md:mt-0"> 
+          <div className="flex  gap-x-2">
           {/* Title */}
           <div className="bg-black w-full max-w-[256px] py-2 sm:py-3 text-center flex flex-col justify-center text-white p-3 sm:p-4 rounded">
             <h2 className="text-base sm:text-lg font-medium">{leader.title}</h2>
             <p className="text-xs sm:text-sm">{leader.company}</p>
           </div>
-
+          
+          { leader.title2 && leader.company2 &&
+            <div className="bg-black w-full max-w-[256px] py-2 sm:py-3 text-center flex flex-col justify-center text-white p-3 sm:p-4 rounded">
+              <h2 className="text-base sm:text-lg font-medium">{leader.title2}</h2>
+              <p className="text-xs sm:text-sm">{leader.company2}</p>
+            </div>
+          }
+          </div>
           {/* Background */}
           <div>
             <h3 className="font-bold text-base sm:text-lg">Background:</h3>

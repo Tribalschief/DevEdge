@@ -33,7 +33,7 @@
     "**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
-, "components/leaders/advisory.js"  ],
+, "components/leaders/advisory.js", "components/core/coredivider.js"  ],
   "exclude": [
     "node_modules"
   ]

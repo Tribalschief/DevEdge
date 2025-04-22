@@ -1,6 +1,6 @@
 
 "use client"
-import Image from "next/image"
+
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 
@@ -10,9 +10,8 @@ import core03 from "@/public/core/core03.png"
 import core04 from "@/public/core/core04.png"
 import core05 from "@/public/core/core05.png"
 import core06 from "@/public/core/core06.png"
-import bulb from "@/public/bulb.png"
 import CoreValueCard from "./coreValueCard"
-import core from "@/public/core.png"
+
 
 export default function CoreValues() {
   const { ref: sectionRef, inView } = useInView({
@@ -22,40 +21,6 @@ export default function CoreValues() {
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-purple-100 to-indigo-50 py-6 md:p-10 lg:p-16 rounded-2xl shadow-lg">
-   
-
-
-      {/* Title and Subtitle */}
-      <div ref={sectionRef} className="relative overflow-hidden py-20 mb-16">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Image src={core} alt="Background" fill className="object-cover" priority />
-        {/* Overlay to ensure text readability */}
-        <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4">
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.7 }}
-          className="max-w-3xl mx-auto"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6 bg-gradient-to-r from-purple-100 to-indigo-100 bg-clip-text text-transparent">
-            Our Core Values
-          </h1>
-
-          <p className="text-center mb-6 max-w-2xl mx-auto text-purple-100 font-medium text-lg">
-            From cyber resilience to enterprise automation, our values are the edge that drives trust, innovation, and
-            impact.
-          </p>
-
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-[#6208CA] mx-auto rounded-full"></div>
-        </motion.div>
-      </div>
-    </div>
-
       {/* Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 relative z-10">
         {[

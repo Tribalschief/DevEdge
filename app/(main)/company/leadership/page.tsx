@@ -3,14 +3,18 @@ import React from 'react'
 import LeadershipSection from "@/components/leaders/section"
 import type { Leader } from "@/components/leaders/types"
 import { Advisory } from '@/components/leaders/advisory'
-
+import a from '@/public/leaders/a.jpg'
+import b from '@/public/leaders/b.jpg'
 export default function LeadershipPage() {
   // Sample data - in a real app, this would come from an API or CMS
   const leaders: Leader[] = [
-    {
+    { 
+      pic:a,
       name: "Zabeeh Ullah Abid",
-      title: "Founder & CEO",
-      company: "DevEdge Consulting",
+      title: "Founder & CEO   ",
+      company: "DevEdge Consulting ",
+      title2: "Founder & CEO",
+      company2: "Galaxy Star Technologies",
       imageSrc: "/placeholder.svg?height=300&width=300",
       background: [
         "Zabeeh Ullah Abid is the Founder and CEO of DevEdge Consulting, a visionary leader with over 12 years of experience in enterprise architecture, cybersecurity, digital transformation, and intelligent systems development. Throughout his career, he has worked with leading organizations across the Middle East, helping them navigate complex business challenges through strategic technology solutions.",
@@ -102,6 +106,7 @@ export default function LeadershipPage() {
       ],
     },
     {
+        pic:b,
         name: "Zakwan Hussain",
         title: "CEO DevEdge",
         company: "DevEdge Consulting",

@@ -170,9 +170,9 @@ export default function CareerPage() {
           </Button>
         </div>
       </section>
-      <section className="mb-12">
+      <div className="mb-12">
          <JoinSection/>
-      </section>
+      </div>
     </div>
   )
 }
