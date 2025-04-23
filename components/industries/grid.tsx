@@ -1,9 +1,9 @@
 "use client"
 
 import type React from "react"
-import CoreValues from '@/components/core/coreValue'
+  import { CoreValues } from '@/components/core/try'
 import { Divider } from '@/components/choose/divider'
-import FeatureGrid from '@/components/choose/grid'
+
 import divider from '@/public/divider.jpg'
 import {
   Building2,
@@ -21,7 +21,8 @@ import {
   Hammer,
   UtensilsCrossed,
 } from "lucide-react"
-
+import { CoreDivider } from "../core/coredivider"
+import core from "@/public/core.png"
 interface IndustryCardProps {
   title: string
   icon: React.ReactNode
@@ -90,6 +91,7 @@ export default function IndustryGrid() {
         <div className="hidden lg:block lg:col-span-1"></div>
       </div>
     </div>
+    <CoreDivider core={core}/>
     <CoreValues/>
     <Divider image={divider}/>   
     </div>

@@ -8,6 +8,7 @@ import IndustriesSection from '@/components/industries/ind'
 import IndustriesGrid from '@/components/industries/grid'
 import FeatureGrid from '@/components/choose/grid'
 import { AboutHero } from '@/components/about'
+import { Try } from '@/components/choose/try/choose'
 
 const About = () => {
     
@@ -19,7 +20,7 @@ const About = () => {
     <MissionVision/>
     <IndustriesSection/>
     <IndustriesGrid/>
-    <FeatureGrid/>
+    <Try/>
     </main>
     
     

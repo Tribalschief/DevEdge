@@ -201,7 +201,7 @@ function GlobalExpertiseCard({ icon, title, description, index }: CoreValueCardP
         <h2 className="text-center text-lg sm:text-xl md:text-2xl lg:text-[28px] font-bold text-gray-900 mb-2">{title}</h2>
 
         {/* Description */}
-      <p className="text-center text-[12px] sm:text-[12px] md:text-[14px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] 3xl:text-[16px] mt-10 font-medium text-[#585675]">{description}</p>
+      <p className="text-center text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[16px] 2xl:text-[16px] 3xl:text-[16px] mt-10 font-medium text-[#585675]">{description}</p>
 
         {/* Animated bottom border */}
         <motion.div
@@ -261,8 +261,9 @@ function GlobalExpertise() {
   ]
 
   return (
-    <div ref={ref} className="relative p-6 md:p-10 lg:p-16 rounded-2xl">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-8 md:gap-10">
+    <div ref={ref} className="relative p-6 md:p-10 lg:p-16 rounded-2xl flex justify-center items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-8 md:gap-10">
+        
         {expertiseData.map((item, index) => (
           <motion.div
             key={index}
@@ -273,6 +274,7 @@ function GlobalExpertise() {
             <GlobalExpertiseCard icon={item.icon.src} title={item.title} description={item.description} index={index + 1} />
           </motion.div>
         ))}
+        
       </div>
     </div>
   )
