@@ -1,16 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logoremovebg.png"; // update if needed
-
-
-
-/*******  7df78896-73fd-41bf-8c8f-ff40e4fca421  *******/const JoinSection = () => {
+const JoinSection = () => {
   return (
-    <section className="bg-[#f0d1ff] w-max py-16  ">
+    <section className="bg-[#ecc7ff] w-full py-16 px-6 md:px-20">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
         
         {/* Left Text */}
- */
         <div className="text-center md:text-left max-w-xl">
           <h2 className="text-3xl md:text-4xl font-bold text-[#a219c9]">
             Join the DevEdge Family
