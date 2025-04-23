@@ -7,7 +7,7 @@ import divider from '@/public/divider.jpg'
 import FeatureGrid from "@/components/choose/grid";
 import {CoreValues} from "@/components/core/try";
 import { Tech } from "@/components/tech";
-import  FAQ  from "@/components/FAQ";
+import  FAQSection  from "@/components/FAQ";
 import HeroCarousel from "@/components/home/carousel";
 import core from "@/public/core.png"
 import { CoreDivider } from "@/components/core/coredivider";
@@ -23,6 +23,7 @@ export default function Home() {
       <CoreDivider core={core}/>
       <CoreValues/>
       <Tech />
+      <FAQSection/>
     </div>
   );
 }

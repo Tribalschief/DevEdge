@@ -19,139 +19,136 @@ const fadeInUp = {
   }),
 }
 
+const coreValues = [
+  {
+    icon: core01,
+    index:0,
+    title: 'Security by Design',
+    description:
+      'We embed cybersecurity and risk management into every solution —from ERP systems to cloud infrastructure—ensuring our clients operate with security and compliance in an evolving threat landscape.',
+    iconAlt: 'Security icon',
+  },
+  {
+    icon: core02,
+    index:1,
+    title: 'Intelligence in Action',
+    description:
+      "We combine data, analytics, and automation to deliver smarter decisions and measurable results. Whether it's AI-driven insights or precision analytics, we turn intelligence into strategic advantage.",
+    iconAlt: 'Intelligence icon',
+  },
+  {
+    icon: core03,
+    index:2,
+    title: 'Customized, Not Standardized',
+    description:
+      'Every client is unique—and so are our solutions. Whether it\'s setting up a GRC framework or designing a multi-cloud strategy, we tailor every engagement to your size, sector, and vision.',
+    iconAlt: 'Customization icon',
+  },
+  {
+    icon: core04,
+    index:3,
+    title: 'Innovation with Purpose',
+    description:
+      'From intelligent automation to next-gen cloud architecture, we innovate with one goal: to solve real business problems and unlock long-term value for your organization.',
+    iconAlt: 'Innovation icon',
+  },
+  {
+    icon: core05,
+    index:4,
+    title: 'Results Matter Most',
+    description:
+      "From strategy to execution, our focus is outcomes. We measure success by the risks we've reduced, the operations we've optimized, and the confidence we've built in your business.",
+    iconAlt: 'Results icon',
+  },
+  {
+    icon: core06,
+    index:5,
+    title: 'Technical Depth, Real-World Defense',
+    description:
+      'We go beyond checklists. Our cybersecurity experts simulate real-world attacks, uncover deep vulnerabilities, and implement technical controls that actually work—because cybersecurity requires hands-on expertise, not surface-level audits.',
+    iconAlt: 'Technical depth icon',
+  },
+]
+
 export  function CoreValues() {
-  const [isHovered, setIsHovered] = useState(false)
-    const { ref, inView } = useInView({
-      threshold: 0.1,
-      triggerOnce: true,
-    })
-  const coreValues = [
-    {
-      icon: core01,
-      index:0,
-      title: 'Security by Design',
-      description:
-        'We embed cybersecurity and risk management into every solution —from ERP systems to cloud infrastructure—ensuring our clients operate with security and compliance in an evolving threat landscape.',
-      iconAlt: 'Security icon',
-    },
-    {
-      icon: core02,
-      index:1,
-      title: 'Intelligence in Action',
-      description:
-        "We combine data, analytics, and automation to deliver smarter decisions and measurable results. Whether it's AI-driven insights or precision analytics, we turn intelligence into strategic advantage.",
-      iconAlt: 'Intelligence icon',
-    },
-    {
-      icon: core03,
-      index:2,
-      title: 'Customized, Not Standardized',
-      description:
-        'Every client is unique—and so are our solutions. Whether it\'s setting up a GRC framework or designing a multi-cloud strategy, we tailor every engagement to your size, sector, and vision.',
-      iconAlt: 'Customization icon',
-    },
-    {
-      icon: core04,
-      index:3,
-      title: 'Innovation with Purpose',
-      description:
-        'From intelligent automation to next-gen cloud architecture, we innovate with one goal: to solve real business problems and unlock long-term value for your organization.',
-      iconAlt: 'Innovation icon',
-    },
-    {
-      icon: core05,
-      index:4,
-      title: 'Results Matter Most',
-      description:
-        "From strategy to execution, our focus is outcomes. We measure success by the risks we've reduced, the operations we've optimized, and the confidence we've built in your business.",
-      iconAlt: 'Results icon',
-    },
-    {
-      icon: core06,
-      index:5,
-      title: 'Technical Depth, Real-World Defense',
-      description:
-        'We go beyond checklists. Our cybersecurity experts simulate real-world attacks, uncover deep vulnerabilities, and implement technical controls that actually work—because cybersecurity requires hands-on expertise, not surface-level audits.',
-      iconAlt: 'Technical depth icon',
-    },
-  ]
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
   return (
     <motion.div
-  className="bg-purple-100 p-6 sm:p-10 md:p-16 lg:p-20 min-h-screen flex justify-center rounded-lg w-full mx-auto"
-  ref={ref}
-  initial={{ opacity: 0, y: 20 }}
-  animate={inView ? { opacity: 1, y: 0 } : {}}
-  transition={{ duration: 0.5, delay: 0.3 }}
->
-  {/* Core Values Grid */}
-  <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
-    {coreValues.map((value, i) => (
-      <motion.div
-        key={i}
-        variants={fadeInUp}
-        custom={i + 3}
-        className="flex gap-4 w-full relative"
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        whileHover={{ y: -5 }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {/* Icon */}
-        <div className="flex-shrink-0">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
+      className="bg-purple-100 p-6 sm:p-10 md:p-16 lg:p-20 min-h-screen flex justify-center rounded-lg w-full mx-auto"
+      ref={ref}
+    >
+      {/* Core Values Grid */}
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
+        {coreValues.map((value, i) => (
+          <motion.div
+            key={i}
+            variants={fadeInUp}
+            custom={i + 3}
+            className="flex gap-4 w-full relative"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            whileHover={{ y: -5 }}
+            onMouseEnter={() => setHoveredIndex(i)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            {/* Icon */}
+            <div className="flex-shrink-0">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
+                <motion.div
+                  className="flex justify-center mb-4"
+                  animate={
+                    hoveredIndex === i
+                      ? {
+                          y: [0, -5, 0],
+                          transition: { repeat: Infinity, duration: 2 },
+                        }
+                      : {}
+                  }
+                >
+                  <motion.div
+                    className="flex items-center justify-center"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Image
+                      src={value.icon.src}
+                      width={56}
+                      height={56}
+                      alt={value.iconAlt}
+                      className="w-full h-full object-contain"
+                    />
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Vertical Divider */}
+            <div className="w-px bg-purple-300 mx-1 sm:mx-2"></div>
+
+            {/* Content */}
+            <div className="flex-1">
+              <h2 className="text-lg sm:text-xl md:text-2xl text-[#061f33] font-bold mb-2">
+                {value.title}
+              </h2>
+              <p className="text-sm sm:text-base text-[#5b5675]">{value.description}</p>
+            </div>
+
+            {/* Animated Line */}
             <motion.div
-              className="flex justify-center mb-4"
-              animate={
-                isHovered
-                  ? {
-                      y: [0, -5, 0],
-                      transition: { repeat: Infinity, duration: 2 },
-                    }
-                  : {}
-              }
-            >
-              <motion.div
-                className="flex items-center justify-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Image
-                  src={value.icon.src}
-                  width={56}
-                  height={56}
-                  alt={value.iconAlt}
-                  className="w-full h-full object-contain"
-                />
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Vertical Divider */}
-        <div className="w-px bg-purple-300 mx-1 sm:mx-2"></div>
-
-        {/* Content */}
-        <div className="flex-1">
-          <h2 className="text-lg sm:text-xl md:text-2xl text-[#061f33] font-bold mb-2">
-            {value.title}
-          </h2>
-          <p className="text-sm sm:text-base text-[#5b5675]">{value.description}</p>
-        </div>
-
-        {/* Animated Line */}
-        <motion.div
-          className="w-full h-1 bg-gradient-to-r from-purple-400 to-indigo-400 absolute bottom-0 left-0"
-          initial={{ scaleX: 0, originX: 0 }}
-          animate={isHovered ? { scaleX: 1 } : { scaleX: 0 }}
-          transition={{ duration: 0.3 }}
-        />
-      </motion.div>
-    ))}
-  </div>
-</motion.div>
-
-  )
+              className="w-full h-1 bg-gradient-to-r from-purple-400 to-indigo-400 absolute bottom-0 left-0"
+              initial={{ scaleX: 0, originX: 0 }}
+              animate={hoveredIndex === i ? { scaleX: 1 } : { scaleX: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
 }
