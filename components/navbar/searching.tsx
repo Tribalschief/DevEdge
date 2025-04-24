@@ -87,7 +87,7 @@ export default function Searching() {
         _id: item._id,
         _type: item._type,
         title: item.title,
-        path: `/offerings/${item.slug?.current}`,
+        path: `/services/${item.slug?.current}`,
         slug: item.slug,
         overview: item.overview,
         description: item.overview || "",

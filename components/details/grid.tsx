@@ -11,21 +11,28 @@ type RegularService = {
   backgroundImage: any
 }
 
+interface ImageSrc {
+  asset: {
+    url: string;
+  };
+}
+
 type BigServiceType = {
   type: "big"
   title: string
   description: string
   coverageItems: string[]
-  imageSrc: string
+  imageSrc: ImageSrc;
 }
 
 export type ServiceItem = RegularService | BigServiceType
 
 interface ServicesGridProps {
   services?: ServiceItem[]
+  title: string
 }
 
-export default function ServicesGrid({ services }: ServicesGridProps) {
+export default function ServicesGrid({ services , title }: ServicesGridProps) {
   // Handle case when services is undefined
   const safeServices = services || []
 
@@ -36,49 +43,45 @@ export default function ServicesGrid({ services }: ServicesGridProps) {
 
   // Function to render grid sections with proper centering for last row
   const renderGridSection = (items: RegularService[], startIndex: number) => {
-    if (!items || items.length === 0) return null
-
-    const itemsPerRow = 3 // Number of columns in desktop view
-    const remainder = items.length % itemsPerRow
-    const lastRowItems = remainder === 0 ? itemsPerRow : remainder
-
+    if (!items || items.length === 0) return null;
+  
+    const itemsPerRow = 3; // Number of columns in desktop view
+    const remainder = items.length % itemsPerRow;
+    const lastRowItems = remainder === 0 ? itemsPerRow : remainder;
+  
     return items.map((service, index) => {
       // Provide default values for service properties
-      const title = service.title || "Service Title"
-      const description = service.description || "No description available"
-      const backgroundImage = service.backgroundImage.asset.url || "/placeholder.svg"
-
-      const isInLastRow = Math.floor(index / itemsPerRow) === Math.floor((items.length - 1) / itemsPerRow)
-      const needsCentering = lastRowItems < itemsPerRow && isInLastRow
-
+      const title = service.title || "Service Title";
+      const description = service.description || "No description available";
+      const backgroundImage = service.backgroundImage?.asset?.url || "/placeholder.svg";
+  
+      const isInLastRow = Math.floor(index / itemsPerRow) === Math.floor((items.length - 1) / itemsPerRow);
+      const needsCentering = lastRowItems < itemsPerRow && isInLastRow;
+  
       // Apply special classes for the last row if it's not full
-      let wrapperClasses = ""
-
+      let wrapperClasses = "md:col-span-1";
+  
       if (needsCentering) {
-        // If there's only 1 item in the last row, center it across all 3 columns
         if (lastRowItems === 1) {
-          wrapperClasses = "md:col-span-3 flex justify-center"
-        }
-        // If there are 2 items in the last row, make them span columns 1-2 and 2-3
-        else if (lastRowItems === 2) {
-          // First item in last row
+          // Center the single item across all columns
+          wrapperClasses = "md:col-span-3 flex justify-center";
+        } else if (lastRowItems === 2) {
+          // Center the two items across the available columns
           if (index === items.length - 2) {
-            wrapperClasses = "md:col-start-1 md:col-end-3 flex justify-end"
-          }
-          // Second item in last row
-          else if (index === items.length - 1) {
-            wrapperClasses = "md:col-start-2 md:col-end-4 flex justify-start"
+            wrapperClasses = "md:col-start-1 md:col-end-2 flex justify-center";
+          } else if (index === items.length - 1) {
+            wrapperClasses = "md:col-start-2 md:col-end-3 flex justify-center";
           }
         }
       }
-
+  
       return (
         <div key={`regular-${startIndex + index}`} className={wrapperClasses}>
           <ServiceCard title={title} description={description} backgroundImage={backgroundImage} />
         </div>
-      )
-    })
-  }
+      );
+    });
+  };
 
   // Render the mixed grid with big services interspersed
   const renderMixedGrid = () => {
@@ -113,8 +116,8 @@ export default function ServicesGrid({ services }: ServicesGridProps) {
         const title = service.title || "Service Title"
         const description = service.description || "No description available"
         const coverageItems = service.coverageItems || []
-        const imageSrc = service.imageSrc || "/placeholder.svg"
-
+        const imageSrc = service.imageSrc.asset.url || "/placeholder.svg"
+        console.log("imageSrc", imageSrc)
         // Render the big service
         gridSections.push(
           <div key={`big-service-${index}`} className="mb-12">
@@ -137,11 +140,14 @@ export default function ServicesGrid({ services }: ServicesGridProps) {
   }
 
   return (
-    <div className="relative w-full px-4 py-4">
+    <> 
+    <h2 className="text-3xl font-bold text-center mt-8 text-[#0e0f0c]">DevEdge {title} Offerings</h2>
+    <div className="relative w-full mx-auto max-w-[1600px] px-4 md:px-8 py-12 md:py-24">
       {/* Shorter vertical lines on left and right */}
       
-
+      
       {renderMixedGrid()}
     </div>
+    </>
   )
 }

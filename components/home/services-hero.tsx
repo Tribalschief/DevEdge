@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 import { DevEdgeWordCloudSVG } from "./services-circle"
+import Image from "next/image"
+import data from "@/public/data.jpeg"
 
 export default function ServicesHero() {
   return (
@@ -78,7 +80,7 @@ export default function ServicesHero() {
             transition={{ duration: 0.7 }}
           >
             <div className="w-full max-w-md sm:max-w-lg">
-              <DevEdgeWordCloudSVG />
+              <Image src = {data} alt="DevEdge Word Cloud" width={600} height={600} />
             </div>
           </motion.div>
         </div>

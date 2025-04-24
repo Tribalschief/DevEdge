@@ -1,8 +1,8 @@
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "./live";
 
-export const getServiceBySlug = async (slug:string) => {
-    const Product_By_Slug_Query = defineQuery(`
+export const getServiceBySlug = async (slug: string) => {
+  const Product_By_Slug_Query = defineQuery(`
   *[_type == "offeringCategory" && slug.current == $slug][0] {
     title,
     overview,
@@ -12,7 +12,7 @@ export const getServiceBySlug = async (slug:string) => {
         url
       }
     },
-    features{
+    features {
       heading,
       highlightedText,
       headingDescription,
@@ -30,28 +30,54 @@ export const getServiceBySlug = async (slug:string) => {
         },
         text,
       }
-
     },
     offering[] {
-      type,
-      title,
-      description,
-      coverageItems,
-      backgroundImage {
-        asset -> {
-          url
+        ...,
+        _type == "offeringItem" => {
+          type,
+          title,
+          description,
+          backgroundImage {
+            asset -> { url }
+          },
+          imageSrc {
+            asset -> { url }
+          },
+          coverageItems
+        },
+        _type == "titleBlock" => {
+          title
         }
-      }
-    }
+      },
+      secondaryOffering[] {
+        ...,
+        _type == "offeringItem" => {
+          type,
+          title,
+          description,
+          backgroundImage {
+            asset -> { url }
+          },
+          imageSrc {
+            asset -> { url }
+          },
+          coverageItems
+        },
+        _type == "sectionTitle" => {
+          title
+        }
+      },
+    
   }
-`)
-        try {
-            const product = await sanityFetch({
-                query: Product_By_Slug_Query,
-                params: { slug },
-            })
-            return product.data || null
-        } catch (error) {
-            console.error("Error fetching products",error)
-        }
-}
+`);
+  try {
+    const product = await sanityFetch({
+      query: Product_By_Slug_Query,
+      params: { slug },
+    });
+    return product.data || null;
+  } catch (error) {
+    console.error("Error fetching service by slug:", error);
+    return null;
+  }
+};

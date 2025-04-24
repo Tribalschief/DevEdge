@@ -8,7 +8,7 @@ interface HeroSectionProps {
   
   export function HeroSection({ title, highlightedText, description }: HeroSectionProps) {
     return (
-      <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+      <div className="flex flex-col justify-center items-center md:flex-row  gap-8">
         <div className="max-w-2xl">
           <h1 className="text-3xl md:text-4xl text-center font-bold mb-4">
             {title} <span className="text-purple-600">{highlightedText}</span>

@@ -5,6 +5,7 @@ import ServicesGrid from "@/components/details/grid"
 import { AboutDetails } from "@/components/details/about"
 import { getServiceBySlug } from "@/sanity/lib/getOffering"
 import Image from 'next/image';
+import title from '@/public/title.png';
 type RegularService = {
   type: "regular"
   title: string
@@ -58,19 +59,19 @@ const serviceItems = service.offering.map((offering: Offering) => {
     } as RegularService;
   }
 });
- console.log(service.features.features);
+ 
   return (
     <>
-    <div className="min-h-screen">
+    <div className="min-h-screen ">
 
       <DetailedHeader image={service.image.asset.url} title={service.title} />
       <Overview overview={service.overview} />
       <div className="mt-8">
       { (service.services && service.services.length > 0) && <MiniService services={service.services} />}
-        <h2 className="text-3xl font-bold text-center mt-8 text-[#0e0f0c]">DevEdge {service.title} Offerings</h2>
+        
         
       </div>
-      <ServicesGrid services={serviceItems} />
+      <ServicesGrid services={serviceItems} title={service.title} />
     </div>
     
     {

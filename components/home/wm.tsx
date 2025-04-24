@@ -186,7 +186,7 @@ const GlobeMap = () => {
       {/* UAE */}
       <div className="absolute top-[50%] left-[71%] text-xs">
         <div className="bg-white w-[40px] h-[1px] mb-[20px] rotate-[65deg]" />
-        <div className="bg-white text-black px-2 py-1 ml-4 rounded shadow">UAE</div>
+        <div className="bg-white text-black px-2 py-1 ml-4 rounded shadow">United Arab Emirates</div>
       </div>
   
       {/* Pakistan */}

@@ -8,8 +8,8 @@ interface FeatureItemProps {
 export function FeatureItem({ iconSrc, text }: FeatureItemProps) {
   return (
     <div className="flex gap-4 items-start">
-      <div className="bg-purple-100 p-2 rounded-full">
-        <Image src={iconSrc || "/placeholder.svg"} alt="Icon" width={8} height={8} className="w-32 h-32" />
+      <div className="p-2 rounded-full">
+        <Image src={iconSrc || "/placeholder.svg"} alt="Icon" width={80} height={80}  />
       </div>
       <div>
         <p className="font-semibold text-sm">{text}</p>

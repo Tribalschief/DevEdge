@@ -14,10 +14,16 @@ export const offeringCategory = defineType({
         maxLength: 96,
       },
     }),
+
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
+    }),
+    defineField({
+      name: 'icon',
+      title: 'Icon',
+      type: 'image',
     }),
     defineField({
       name: 'image',
@@ -63,26 +69,35 @@ export const offeringCategory = defineType({
       of: [
         defineField({
           type: 'object',
-          name: 'offeringItem',
+          name: 'titleBlock',
+          title: 'Section Title',
           fields: [
-            defineField({
-              name: 'type',
-              title: 'Type',
-              type: 'string',
-              options: {
-                list: ['regular', 'big'],
-              },
-            }),
             defineField({
               name: 'title',
               title: 'Title',
               type: 'string',
             }),
+          ],
+          preview: {
+            select: { title: 'title' },
+            prepare({ title }) {
+              return { title: `Section Title: ${title}` };
+            },
+          },
+        }),
+        defineField({
+          type: 'object',
+          name: 'offeringItem',
+          title: 'Offering Item',
+          fields: [
             defineField({
-              name: 'description',
-              title: 'Description',
-              type: 'text',
+              name: 'type',
+              title: 'Type',
+              type: 'string',
+              options: { list: ['regular', 'big'] },
             }),
+            defineField({ name: 'title', title: 'Title', type: 'string' }),
+            defineField({ name: 'description', title: 'Description', type: 'text' }),
             defineField({
               name: 'backgroundImage',
               title: 'Background Image',
@@ -93,19 +108,83 @@ export const offeringCategory = defineType({
               name: 'imageSrc',
               title: 'Image (for Big type)',
               type: 'image',
-              hidden: ({ parent }) => parent?.type === 'big',
+              hidden: ({ parent }) => parent?.type !== 'big',
             }),
             defineField({
               name: 'coverageItems',
               title: 'Coverage Items (for Big type)',
               type: 'array',
               of: [{ type: 'string' }],
-              hidden: ({ parent }) => parent?.type === 'big',
+              hidden: ({ parent }) => parent?.type !== 'big',
             }),
           ],
         }),
       ],
     }),
+    
+    defineField({
+      name: 'secondaryOffering',
+      title: 'Secondary Offerings',
+      type: 'array',
+      of: [
+        defineField({
+          type: 'object',
+          name: 'sectionTitle',
+          title: 'Section Title',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+            }),
+          ],
+          preview: {
+            select: { title: 'title' },
+            prepare({ title }) {
+              return { title: `Section Title: ${title}` };
+            },
+          },
+        }),
+        defineField({
+          type: 'object',
+          name: 'offeringItem',
+          title: 'Offering Item',
+          fields: [
+            defineField({
+              name: 'type',
+              title: 'Type',
+              type: 'string',
+              options: {
+                list: ['regular', 'big'],
+              },
+            }),
+            defineField({ name: 'title', title: 'Title', type: 'string' }),
+            defineField({ name: 'description', title: 'Description', type: 'text' }),
+            defineField({
+              name: 'backgroundImage',
+              title: 'Background Image',
+              type: 'image',
+              hidden: ({ parent }) => parent?.type === 'big',
+            }),
+            defineField({
+              name: 'imageSrc',
+              title: 'Image (for Big type)',
+              type: 'image',
+              hidden: ({ parent }) => parent?.type !== 'big',
+            }),
+            defineField({
+              name: 'coverageItems',
+              title: 'Coverage Items (for Big type)',
+              type: 'array',
+              of: [{ type: 'string' }],
+              hidden: ({ parent }) => parent?.type !== 'big',
+            }),
+          ],
+        }),
+      ],
+    }),
+    
+    
     defineField({
       name: 'features',
       title: 'Features Section',
