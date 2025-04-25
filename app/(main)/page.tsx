@@ -1,6 +1,6 @@
 import { Divider } from "@/components/choose/divider";
 
-import { Intro } from "@/components/home/service/title";
+import TaglineBar from "@/components/home/service/title";
 import Main from "@/components/service/main";
 ;import title from '@/public/title.png'
 import divider from '@/public/divider.jpg'
@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div className="min-h-screen h-full">
       <HeroCarousel />
-      <Intro image={title} title="Services" />
+      <TaglineBar  />
       <Main/>
       <Divider image={divider}/>
       <Try/>

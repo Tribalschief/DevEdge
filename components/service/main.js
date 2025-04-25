@@ -71,7 +71,7 @@ export default async function Main() {
   return (
     <ServiceSection title="What We Do" highlight="We" columns={{ sm: 1, md: 2, lg: 3 }} gap="small" centered={true}>
       {services.map((service, index) => (
-        <ServiceCard key={index} icon={service.icon.asset.url} title={service.title} overview={service.overview} slug={service.slug}/>
+        <ServiceCard key={index} icon={service.icon.asset.url} title={service.title} overview={service.overview} index={index} slug={service.slug}/>
       ))}
     </ServiceSection>
   )

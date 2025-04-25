@@ -11,7 +11,8 @@ export default function LastERM() {
         <div className="max-w-3xl mx-auto space-y-4">
           <h1 className="text-3xl sm:text-4xl font-semibold">Take the Next Step</h1>
           <p className="text-sm sm:text-base opacity-80 max-w-xl mx-auto">
-            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+          All Your Operations,
+          One Powerful Platform
           </p>
           <div className="pt-4">
             <Button variant="outline" className="bg-white text-black hover:bg-gray-100 rounded-full px-6">

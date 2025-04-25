@@ -1,37 +1,29 @@
 import React from 'react'
-import logo from '@/public/whitelogo.png'
 import Image from 'next/image'
-export const Intro = ({image, title}:{image:any, title?:string}) => {
+import logo from '@/public/CRBP.png'
+
+const TaglineBar = () => {
   return (
-    <div className="relative w-full h-auto">
-      {/* Background Image */}
+    <div className="w-full bg-[#6208CA] text-white flex flex-col md:flex-row items-center  justify-between px-4 py-2 md:px-10 md:py-3 lg:px-20 lg:py-4">
+      {/* Tagline - full width on mobile, proportional on larger screens */}
+      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold text-center sm:text-left mb-2 md:mb-1">
+        Elite Services, Tailored for You
+      </h2>
+      
+      {/* Company name and logo */}
+      <div className='flex items-center gap-x-1 md:gap-x-2'>
       <Image
-        src={image}
-        alt="service"
-        width={1200}
-        height={600}
-        className="object-cover w-full h-full"
-      />
-
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/70 z-10" />
-
-      {/* Text & Logo Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-20">
-        <h1 className="text-white text-4xl md:text-5xl lg:text-7xl lg:mt-4 md:mt-16 font-bold text-center px-4">
-          {title}
-        </h1>
-
-        <div className="absolute sm:top-0 md:top-5 lg:top-10 right-2 md:right-[30px] lg:right-[50px]">
-          <Image
-            src={logo}
-            alt="logo"
-            width={120}
-            height={120}
-            className="w-16 h-16 md:w-32 md:h-32 lg:w-60 lg:h-60"
-          />
-        </div>
+          src={logo}
+          alt="DevEdge logo"
+          width={100}
+          height={50}
+          className="h-auto w-auto max-h-12 sm:max-h-16 md:max-h-20 lg:max-h-24"
+        />
+        <h2 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold">DevEdge  Consulting</h2>
+        
       </div>
     </div>
   )
 }
+
+export default TaglineBar

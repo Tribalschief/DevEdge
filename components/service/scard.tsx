@@ -13,6 +13,7 @@ interface ServiceCardProps {
   className?: string
   iconClassName?: string
   slug: string
+  index: number // Added index prop
 }
 
 export function ServiceCard({
@@ -22,6 +23,7 @@ export function ServiceCard({
   className = "",
   iconClassName = "",
   slug,
+  index, // Destructure the index prop
 }: ServiceCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
@@ -43,16 +45,19 @@ export function ServiceCard({
       onMouseLeave={() => setIsHovered(false)}
       transition={{ duration: 0.5 }}
     >
-      {/* Icon */}
-      <motion.div
-        className={cn("mb-4 text-black", iconClassName)}
-        whileHover={{
-          y: [0, -4, 0],
-          transition: { repeat: Infinity, duration: 2 },
-        }}
-      >
-        <img src={icon!} alt="Icon" width={80} height={80} />
-      </motion.div>
+      {/* Icon with Index */}
+      <div className="flex items-center mb-4">
+        <motion.div
+          className={cn("text-black", iconClassName)}
+          whileHover={{
+            y: [0, -4, 0],
+            transition: { repeat: Infinity, duration: 2 },
+          }}
+        >
+          <img src={icon!} alt="Icon" width={80} height={80} />
+        </motion.div>
+        <span className="ml-2 text-lg font-semibold">{index + 1}</span>
+      </div>
 
       <h3 className="text-lg font-semibold mb-2">{title}</h3>
       <p className="text-sm text-gray-600 mb-4 flex-grow">

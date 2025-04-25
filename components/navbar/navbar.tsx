@@ -1,22 +1,21 @@
 "use client"
+
 import { useEffect, useState } from "react"
 import Logo from "./logo"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { FaPhone, FaAngleDown, FaBars } from "react-icons/fa"
+import { FaPhone, FaBars } from "react-icons/fa"
 import { Services } from "./service"
 import { Company } from "./com"
-
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Searching from "./searching"
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 100) // change this threshold as needed
+      setScrolled(window.scrollY > 100)
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -25,115 +24,101 @@ export const Navbar = () => {
 
   return (
     <div
-      className={`flex px-4 md:px-8 lg:px-[10rem] justify-between mx-auto min-w-full h-[100px] md:h-[120px] lg:h-[120px] ${scrolled ? "bg-black" : "bg-transparent"} transition-all duration-300 fixed top-0 z-50 items-center`}
+      className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
+        scrolled ? "bg-black shadow-md" : "bg-white"
+      }`}
     >
-      <Link href="/">
-      <Logo dark={scrolled} />
-      </Link>
-      {/* Desktop Navigation */}
-      <div className={`hidden md:flex items-center gap-x-6 lg:gap-x-10 ${scrolled ? "text-gray-50" : "text-gray-950"}`}>
-        <Link href="/" className="text-lg lg:text-xl font-semibold cursor-pointer">
-          Home
+      <div className="flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 xl:px-36 h-[100px] md:h-[120px] lg:h-[120px]">
+        {/* Logo */}
+        <Link href="/">
+          <Logo dark={scrolled} />
         </Link>
-        <div className="text-lg lg:text-xl font-semibold cursor-pointer">
-          <Services heading="Services" />
-        </div>
-        <div className="text-lg lg:text-xl font-semibold cursor-pointer flex items-center">
-          <Company title="Company" />
-          
-        </div>
-        <Link href="/erp" className="text-lg lg:text-xl font-semibold cursor-pointer mr-2">
-          ERP's
-        </Link>
-      </div>
 
-      {/* Desktop Action Buttons */}
-      <div className="hidden md:flex items-center gap-x-4">
-        <div className="text-xl font-semibold">
+        {/* Desktop Nav */}
+        <div className={`hidden md:flex items-center bg-red-100 gap-x-4 lg:gap-x-10 xl:gap-x-16 ${scrolled ? "text-gray-50" : "text-gray-900"}`}>
+          <Link href="/" className="text-base xl:text-xl lg:text-lg font-medium hover:opacity-80">
+            Home
+          </Link>
+          <div className="text-base xl:text-xl lg:text-lg font-medium">
+            <Services heading="Services" />
+          </div>
+          <div className="text-base xl:text-xl lg:text-lg font-medium">
+            <Company title="Company" />
+          </div>
+          <Link href="/erp" className="text-base lg:text-lg xl:text-xl font-medium">
+            ERP's
+          </Link>
+        </div>
+
+        {/* Desktop Actions */}
+        <div className="hidden md:flex items-center gap-x-3 lg:gap-x-5">
           <Searching />
-        </div>
-        <div>
-        <Link href={"/rfp"}>
-          <Button
-            className={`transition-colors duration-300 ${
-              scrolled ? "bg-primary hover:bg-primary/90" : "bg-white text-black hover:bg-gray-200"
-            }`}
-          >
-            Submit RFP
-          </Button>
-          </Link>
-        </div>
-        <div className="flex gap-x-2 items-center">
-        <Link href={"/contact"}>
-          <span className={`flex items-center ${scrolled ? "text-white" : "text-black"}`}>
-            <FaPhone />
-          </span>
-          </Link>
-          <Link href={"/contact"}>
-          <Button
-            className={`transition-colors duration-300 ${
-              scrolled ? "bg-primary hover:bg-primary/90" : "bg-white text-black hover:bg-gray-200"
-            }`}
-          >
-            Contact Us
-          </Button>
-          </Link>
-        </div>
-      </div>
-
-      {/* Mobile Menu Button */}
-      <div className="md:hidden">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className={scrolled ? "text-white" : "text-black"}>
-              <FaBars className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
+          <Link href="/rfp">
+            <Button
+              className={`transition-colors duration-300 ${
+                scrolled ? "bg-primary hover:bg-primary/90 text-white" : "bg-white text-black hover:bg-gray-200"
+              }`}
+            >
+              Submit RFP
             </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-            <div className="flex flex-col gap-6 py-6">
-              <Link
-                href="/"
-                className="text-xl font-semibold cursor-pointer"
-                onClick={() => setIsMobileMenuOpen(false)}
+          </Link>
+          <Link href="/contact">
+            <div className="flex items-center gap-x-2">
+              <FaPhone className={scrolled ? "text-white" : "text-black"} />
+              <Button
+                className={`transition-colors duration-300 ${
+                  scrolled ? "bg-primary hover:bg-primary/90 text-white" : "bg-white text-black hover:bg-gray-200"
+                }`}
               >
-                Home
-              </Link>
-              <div className="text-xl font-semibold cursor-pointer">
-                <Services heading="Services" />
-              </div>
-              <div className="text-xl font-semibold cursor-pointer flex items-center">
-                <Company title="Company" />
-              </div>
-              <Link
-                href="/erp"
-                className="text-xl font-semibold cursor-pointer"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Our ERP's Software
-              </Link>
-
-              <div className="pt-4">
-                <div className="mb-4">
-                  <Searching />
-                </div>
-                <div className="flex flex-col gap-4">
-                <Link href={"/rfp"}>
-                  <Button className="w-full">
-                    Submit RFP
-                  </Button>
-                  </Link>
-                  <Link href={"/contact"}>
-                  <Button className="w-full">
-                    <FaPhone className="mr-2 h-4 w-4" />
-                    Contact Us
-                  </Button>
-                  </Link>
-                </div>
-              </div>
+                Contact Us
+              </Button>
             </div>
-          </SheetContent>
-        </Sheet>
+          </Link>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className={scrolled ? "text-white" : "text-black"}>
+                <FaBars className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px] z-[60]">
+              <div className="flex flex-col gap-6 pt-6">
+                <Link href="/" className="text-lg font-semibold" onClick={() => setScrolled(false)}>
+                  Home
+                </Link>
+                <div className="text-lg font-semibold">
+                  <Services heading="Services" />
+                </div>
+                <div className="text-lg font-semibold">
+                  <Company title="Company" />
+                </div>
+                <Link href="/erp" className="text-lg font-semibold">
+                  Our ERP's
+                </Link>
+
+                <div className="pt-6">
+                  <div className="mb-4">
+                    <Searching />
+                  </div>
+                  <div className="flex flex-col gap-4">
+                    <Link href="/rfp">
+                      <Button className="w-full">Submit RFP</Button>
+                    </Link>
+                    <Link href="/contact">
+                      <Button className="w-full flex items-center justify-center gap-2">
+                        <FaPhone />
+                        Contact Us
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </div>
   )

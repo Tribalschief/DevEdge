@@ -27,10 +27,11 @@ const faqs = [
       `Absolutely. We help businesses set up, transform, or co-source internal audit departments, design risk-based audit plans, and implement digital audit tools aligning with IIA standards and local regulations.`,
   },
   {
-    question: 'What makes your cybersecurity approach unique?',
+    question: 'Do you provide support with regulatory compliance and risk controls',
     answer:
-      `We combine technical depth (OSCP, CISSP-certified professionals) with business-aligned strategies, ensuring protection that fits your industry, risk profile, and compliance needs not just generic IT fixes.`,
-  },{
+      `Yes. Our GRC experts help you design frameworks, assess third-party risks, implement IT controls, and meet compliance requirements for standards like ISO, NCA, and local data protection laws (PDPL, DIFC, etc.).`,
+  },
+  {
     question: 'Do you provide support with regulatory compliance and risk controls?',
     answer:
       `Yes. Our GRC experts help you design frameworks, assess third-party risks, implement IT controls, and meet compliance requirements for standards like ISO, NCA, and local data protection laws (PDPL, DIFC, etc.).`,

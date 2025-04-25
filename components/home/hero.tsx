@@ -5,9 +5,9 @@ import WorldMap from "./wm"
 
 export const GlobalExpertiseHero = () => {
   return (
-    <section className="bg-[#f3edf8] w-full h-full flex items-center justify-center px-4  md:px-8  py-16 lg:py-0 overflow-hidden">
+    <section className="bg-[#f3edf8] w-full h-full flex items-center justify-items-start px-4  md:px-8  sm:py-16  lg:py-0 overflow-hidden">
       <div className="container mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4 items-center">
           <motion.div
             className="space-y-4 md:space-y-6"
             initial={{ opacity: 0, x: -50 }}

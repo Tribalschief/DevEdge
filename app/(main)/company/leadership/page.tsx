@@ -13,7 +13,7 @@ export default function LeadershipPage() {
       name: "Zabeeh Ullah Abid",
       title: "Founder & CEO   ",
       company: "DevEdge Consulting ",
-      title2: "Founder & CEO",
+      title2: "CTO",
       company2: "Galaxy Star Technologies",
       imageSrc: "/placeholder.svg?height=300&width=300",
       background: [
@@ -108,7 +108,7 @@ export default function LeadershipPage() {
     {
         pic:b,
         name: "Zakwan Hussain",
-        title: "CEO DevEdge",
+        title: "CO & CTO ",
         company: "DevEdge Consulting",
         imageSrc: "/placeholder.svg?height=300&width=300",
         background: [
@@ -179,19 +179,21 @@ export default function LeadershipPage() {
   ]
   const advisor= [
     {
-      name: "Muhammad Ghazali",
-        title: "CEO DevEdge",
-        company: "Managing Partner",
+      name: "Muhammad Shafi",
+        title: "Board Member & Strategic Advisor",
+        title2:" Founder & CEO",
+        company: "DevEdge Consulting ",
+        company2: "Galaxy World Wide Shipping",
         imageSrc: "/placeholder.svg?height=300&width=300",
         background: [
-          "Muhammad Ghazali is the CEO, Transviti and Managing Partner, FAMCO Associates, who has successfully led and delivered numerous engagements on software development, ERP implementation, business continuity, information security & risk, dashboard and analytics solutions etc. He is an active member of P@SHA (Pakistan Software Houses Association) and active aspirant for growth and enablement of technology innovation through development of Technology Parks in Pakistan. His experience spans across industry sectors including government, banking and financial, oil and gas, retail, telecom, insurance, manufacturing, construction, trading and services. He possesses more than 22 years of cross-functional experience in delivering optimal values in high growth environments across wide range IT products and services. He has worked in Pakistan and the Middle East in leading consulting firms and software companies. He is a certified trainer and subject matter expert of Business Continuity Management. He has been awarded 'BCI Merit Award' during the BCI Global Awards held on November 2014 at London, UK for a 'significant contribution' to BCI. He was also recognized as the 'Highly Recommended Consultant of the year for 2013' at the BCI Global Awards in London."
+          "Muhammad Shafi is a respected industry leader with over 20 years of experience in shipping, logistics, and digital automation. He is the Founder and CEO of Galaxy World Wide Shipping, a UAE-based international logistics firm with a strong operational footprint across the UAE, Germany, Afghanistan, Ajman, and other regions. Under his leadership, Galaxy has grown into a globally recognized name in vehicle export, freight forwarding, and logistics technology. Since 2023, Muhammad has also served as a Board Member and Strategic Advisor to DevEdge Consulting, bringing his vast operational knowledge and entrepreneurial insight to help shape DevEdge’s logistics, automation, and technology strategy. Renowned for bridging the gap between traditional logistics and modern digital ecosystems, Muhammad has led the design and rollout of vehicle shipping ERP systems, car selling platforms, and AI-driven logistics automation tools that serve as the backbone of many cross-border operations today. His dual leadership roles allow him to contribute to innovation and digital transformation across the broader supply chain and consulting landscape, positioning him as a trusted advisor to enterprises aiming to modernize and scale with confidence."
         ],
     }
   ]
 
   return (
     <main className="container mx-auto py-8">
-        <div className="w-full mt-10">
+        <div className="w-full mt-10 lg:mt-20">
         <h1 className="text-4xl font-bold text-center py-6 text-black">Our Leaders</h1>
       </div>
       <LeadershipSection leaders={leaders} />

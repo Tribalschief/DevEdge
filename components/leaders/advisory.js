@@ -38,11 +38,20 @@ export const Advisory = ({advisor}) => {
         {/* Right Column - Profile Details */}
         <div className="md:col-span-2  sm:space-y-2">
           {/* Title */}
-          <div className="bg-black flex flex-col text-white p-2 sm:p-4 rounded  justify-center items-center w-[256px]">
-            <h2 className="text-[12px] font-medium">{advisor.title}</h2>
-            <p className="text-[12px]">{advisor.company}</p>
+          <div className="flex  gap-x-2">
+          {/* Title */}
+          <div className="bg-black w-full max-w-lg py-2 sm:py-3 text-center flex flex-col justify-center text-white p-3 sm:p-4 rounded">
+            <h2 className="text-base sm:text-lg font-medium">{advisor.title}</h2>
+            <p className="text-xs sm:text-sm">{advisor.company}</p>
           </div>
-    
+          
+          
+            <div className="bg-black w-full max-w-[256px] py-2 sm:py-3 text-center flex flex-col justify-center text-white p-3 sm:p-4 rounded">
+              <h2 className="text-base sm:text-lg font-medium">{advisor.title2}</h2>
+              <p className="text-xs sm:text-sm">{advisor.company2}</p>
+            </div>
+          
+          </div>
           {/* Background */}
           <div>
             <h3 className="font-bold">Background :</h3>

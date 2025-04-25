@@ -52,49 +52,7 @@ export default function ERMService() {
       </section>
 
       {/* Services */}
-      <section className="w-full bg-gray-900 text-white py-8 px-4">
-        <div className="max-w-5xl mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="flex items-center p-4 space-x-3">
-            <div className="bg-white rounded-full p-2">
-              <Truck className="h-6 w-6 text-gray-900" />
-            </div>
-            <div>
-              <h3 className="text-sm font-medium">Vehicle Shipping</h3>
-              <p className="text-xs text-gray-300">Import/ Export/ ERP</p>
-            </div>
-          </div>
-
-          <div className="flex items-center p-4 space-x-3">
-            <div className="bg-white rounded-full p-2">
-              <Car className="h-6 w-6 text-gray-900" />
-            </div>
-            <div>
-              <h3 className="text-sm font-medium">Car Selling Platform</h3>
-              <p className="text-xs text-gray-300">as a Service</p>
-            </div>
-          </div>
-
-          <div className="flex items-center p-4 space-x-3">
-            <div className="bg-white rounded-full p-2">
-              <Users className="h-6 w-6 text-gray-900" />
-            </div>
-            <div>
-              <h3 className="text-sm font-medium">Human Resource</h3>
-              <p className="text-xs text-gray-300">Management Solution</p>
-            </div>
-          </div>
-
-          <div className="flex items-center p-4 space-x-3">
-            <div className="bg-white rounded-full p-2">
-              <Clock className="h-6 w-6 text-gray-900" />
-            </div>
-            <div>
-              <h3 className="text-sm font-medium">coming soon</h3>
-              <p className="text-xs text-gray-300">&nbsp;</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Customizable Modules with Service Tabs */}
       <section className="w-full py-12 px-auto ">
@@ -103,39 +61,62 @@ export default function ERMService() {
           <p className="text-gray-600 mb-8">with Dynamic Workflows</p>
 
           <Tabs defaultValue="vehicle-shipping" className="w-full ">
-            <TabsList className="grid w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-6 h-auto bg-purple-600 text-white">
-              <TabsTrigger
-                value="vehicle-shipping"
-                className="flex items-center gap-2 py-5 text-base font-medium data-[state=active]:text-purple-700"
-              >
-                <Truck className="h-10 w-10 sm:h-10 sm:w-10 md:w-16 md:h-16 mr-1" />
-                <span className="hidden sm:inline">Vehicle Shipping</span>
-                <span className="sm:hidden">Vehicle</span>
-              </TabsTrigger>
-              <TabsTrigger
-                value="car-selling"
-                className="flex items-center gap-2 py-5 text-base font-medium data-[state=active]:text-purple-700"
-              >
-                <Car className="h-10 w-10 sm:h-10 sm:w-10 md:w-16 md:h-16 mr-1" />
-                <span className="hidden sm:inline">Car Selling Platform</span>
-                <span className="sm:hidden">Car</span>
-              </TabsTrigger>
-              <TabsTrigger
-                value="human-resource"
-                className="flex items-center gap-2 py-5 text-base font-medium data-[state=active]:text-purple-700"
-              >
-                <Users className="h-10 w-10 mr-1sm:h-10 sm:w-10 md:w-16 md:h-16" />
-                <span className="hidden sm:inline">Human Resource</span>
-                <span className="sm:hidden">HR</span>
-              </TabsTrigger>
-              <TabsTrigger
-                value="coming-soon"
-                className="flex items-center gap-2 py-5 text-base font-medium data-[state=active]:text-purple-700"
-              >
-                <Clock className="h-10 w-10 sm:h-10 sm:w-10 md:w-16 md:h-16 mr-1" />
-                <span>Coming Soon</span>
-              </TabsTrigger>
-            </TabsList>
+          <TabsList className="w-full bg-gray-900 text-white py-16 px-4">
+  <div className="max-w-5xl mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <TabsTrigger
+      value="vehicle-shipping"
+      className="flex items-center  p-4 space-x-3 cursor-pointer  hover:text-purple-700 "
+    >
+      <div className="bg-white rounded-full p-2">
+        <Truck className="h-6 w-6 text-gray-900" />
+      </div>
+      <div>
+        <h3 className="text-sm font-medium">Vehicle Shipping</h3>
+        <p className="text-xs text-purple-500">Import/ Export/ ERP</p>
+      </div>
+    </TabsTrigger>
+
+    <TabsTrigger
+      value="car-selling"
+      className="flex items-center p-4 space-x-3 cursor-pointer hover:text-purple-700"
+    >
+      <div className="bg-white rounded-full p-2">
+        <Car className="h-6 w-6 text-gray-900" />
+      </div>
+      <div>
+        <h3 className="text-sm font-medium">Car Selling Platform</h3>
+        <p className="text-xs text-purple-500">as a Service</p>
+      </div>
+    </TabsTrigger>
+
+    <TabsTrigger
+      value="human-resource"
+      className="flex items-center p-4 space-x-3 cursor-pointer hover:text-purple-700"
+    >
+      <div className="bg-white rounded-full p-2">
+        <Users className="h-6 w-6 text-gray-900" />
+      </div>
+      <div>
+        <h3 className="text-sm font-medium">Human Resource</h3>
+        <p className="text-xs text-purple-500">Management Solution</p>
+      </div>
+    </TabsTrigger>
+
+    <TabsTrigger
+      value="coming-soon"
+      className="flex items-center p-4 space-x-3 cursor-pointer hover:text-purple-700"
+    >
+      <div className="bg-white rounded-full p-2">
+        <Clock className="h-6 w-6 text-gray-900" />
+      </div>
+      <div>
+        <h3 className="text-sm font-medium">Coming Soon</h3>
+        <p className="text-xs text-purple-500">&nbsp;</p>
+      </div>
+    </TabsTrigger>
+  </div>
+</TabsList>
+
 
             {/* Vehicle Shipping Content */}
             <TabsContent value="vehicle-shipping">
@@ -352,10 +333,4 @@ const exportCards = [
   },
 ]
 
-const riskReports = [
-  { title: "Control Risk Report" },
-  { title: "Comprehensive Risk Report" },
-  { title: "Enterprise Risk Summary" },
-  { title: "Departmental Risk Summary" },
-]
 
