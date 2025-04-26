@@ -114,7 +114,7 @@ export const Navbar = () => {
         className="text-lg font-semibold flex items-center gap-x-2"
       >
         Services
-        <span className="mt-1">{companyOpen ? <FaAngleUp /> : <FaAngleDown />}</span>
+        <span className="mt-1">{servicesOpen ? <FaAngleUp /> : <FaAngleDown />}</span>
       </button>
       
       {servicesOpen && Array.isArray(services) || (
