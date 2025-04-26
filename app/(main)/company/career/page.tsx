@@ -3,23 +3,15 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Linkedin, MapPin } from "lucide-react"
 import Link from "next/link"
-
+import { DividerWithButton } from "./_components/divider"
+import career from '@/public/carrer.png'
 export default function CareerPage() {
   return (
+    <main className="min-h-screen xl:mt-[120px] mt-24 h-full">
+    <DividerWithButton image={career} />
     <div className="container mx-auto px-4 py-12  mt-[100px]">
-      <header className="mb-12 text-center">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Join Our Team</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
-          We're looking for passionate individuals to help us build the future of technology.
-        </p>
-        <Button className="bg-[#0077B5] hover:bg-[#0077B5]/90" size="lg">
-          <Linkedin className="mr-2 h-5 w-5" />
-          <Link href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
-            Connect on LinkedIn
-          </Link>
-        </Button>
-      </header>
-
+      
+      
       
 
       <section className="mb-16">
@@ -153,78 +145,16 @@ export default function CareerPage() {
       </section>
 
       <section className="text-center mb-12">
-        <h2 className="text-3xl font-bold mb-6">Ready to Apply?</h2>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-          Take the first step toward your next great career opportunity.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            variant="outline"
-            size="lg"
-            className="bg-[#0077B5] text-white hover:bg-[#0077B5]/90 hover:text-white"
-          >
-            <Linkedin className="mr-2 h-5 w-5" />
-            <Link href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
-              Connect on LinkedIn
-            </Link>
-          </Button>
-        </div>
+      <ConsultingBenefits/>
       </section>
       <div className="mb-12">
          <JoinSection/>
       </div>
     </div>
+    </main>
   )
 }
 
-// Sample data
-const jobs = [
-  {
-    id: 1,
-    title: "Senior Frontend Developer",
-    location: "San Francisco, CA",
-    isRemote: true,
-    description:
-      "We're looking for an experienced frontend developer to help build our next-generation web applications using React and TypeScript.",
-  },
-  {
-    id: 2,
-    title: "Backend Engineer",
-    location: "New York, NY",
-    isRemote: true,
-    description:
-      "Join our backend team to design and implement scalable APIs and services using Node.js and PostgreSQL.",
-  },
-  {
-    id: 3,
-    title: "Product Designer",
-    location: "Austin, TX",
-    isRemote: false,
-    description:
-      "Help shape our product experience by creating intuitive and beautiful user interfaces and experiences.",
-  },
-  {
-    id: 4,
-    title: "DevOps Engineer",
-    location: "Seattle, WA",
-    isRemote: true,
-    description: "Build and maintain our cloud infrastructure, CI/CD pipelines, and deployment processes.",
-  },
-  {
-    id: 5,
-    title: "Marketing Manager",
-    location: "Chicago, IL",
-    isRemote: false,
-    description: "Lead our marketing efforts to reach new customers and grow our brand presence in the market.",
-  },
-  {
-    id: 6,
-    title: "Customer Success Specialist",
-    location: "Boston, MA",
-    isRemote: true,
-    description: "Work directly with our customers to ensure they're successful with our products and services.",
-  },
-]
 
 const hiringSteps = [
   {
@@ -250,3 +180,114 @@ const hiringSteps = [
     description: "We'll make a decision and extend an offer to the selected candidate.",
   },
 ]
+
+ function ConsultingBenefits() {
+  return (
+    <main className="mt-20 sm:mt-24 lg:mt-32 px-4 sm:px-6 lg:px-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Left Section */}
+        <div className="bg-white rounded-2xl p-8 shadow-md flex flex-col justify-center w-full">
+          <div className="flex flex-col sm:flex-row items-start gap-5 w-full">
+            <div className="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-full flex-shrink-0">
+              {/* Icon */}
+              <svg
+                className="w-7 h-7 text-white"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v4H3V4z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 10H3v10a1 1 0 001 1h16a1 1 0 001-1V10z"
+                />
+              </svg>
+            </div>
+            <div className="w-full">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3 leading-snug">
+                A Culture of Curiosity, Integrity & Impact
+              </h2>
+              <hr className="border-t-2 border-gray-200 my-4 w-full" />
+              <p className="text-gray-600 text-base leading-relaxed">
+                At DevEdge Consulting, we don’t just hire talent — we invest in it. 
+                Join a team where innovation meets impact, where you're empowered 
+                to lead, learn, and leave a mark.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Section */}
+        <div className="flex flex-col gap-8 w-full">
+          {/* Box 1 */}
+          <div className="bg-white rounded-2xl p-8 shadow-md w-full">
+            <div className="flex flex-col sm:flex-row items-start gap-5 w-full">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-full flex-shrink-0">
+                {/* Icon */}
+                <svg
+                  className="w-7 h-7 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v4H3V4z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 10H3v10a1 1 0 001 1h16a1 1 0 001-1V10z"
+                  />
+                </svg>
+              </div>
+              <div className="w-full">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-snug">
+                  Diverse Industry Exposure
+                </h3>
+                <hr className="border-t-2 border-gray-200 my-4 w-full" />
+                <p className="text-gray-600 text-base leading-relaxed">
+                  Consultants work with clients across various industries, gaining broad 
+                  knowledge, experience, and problem-solving skills that accelerate career growth.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Box 2 */}
+          <div className="bg-white rounded-2xl p-8 shadow-md w-full">
+            <div className="flex flex-col sm:flex-row items-start gap-5 w-full">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-full flex-shrink-0">
+                {/* Icon */}
+                <svg
+                  className="w-7 h-7 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v4H3V4z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 10H3v10a1 1 0 001 1h16a1 1 0 001-1V10z"
+                  />
+                </svg>
+              </div>
+              <div className="w-full">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-snug">
+                  High Earning Potential
+                </h3>
+                <hr className="border-t-2 border-gray-200 my-4 w-full" />
+                <p className="text-gray-600 text-base leading-relaxed">
+                  Consulting roles often offer competitive salaries, performance-based 
+                  bonuses, and opportunities for rapid financial growth.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}

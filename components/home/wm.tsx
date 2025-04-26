@@ -68,7 +68,6 @@
 
 // export default WorldMap
 
-'use client'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import map1 from '@/public/home/map.svg'
@@ -97,7 +96,7 @@ const WM = () => {
   if (!isMounted) return null
 
   return (
-    <section className="relative w-full flex justify-center items-center py-12 sm:py-16 md:py-24 lg:py-32">
+    <section className="relative w-full flex justify-center items-center py-12 sm:py-16 md:py-24 lg:py-32 overflow-visible">
       <div className="relative z-10">
         <Earthmap width={dimensions.width} height={dimensions.height} />
       </div>
@@ -118,15 +117,17 @@ const Earthmap = ({ width, height }: { width: number; height: number }) => {
   }, [])
 
   return (
-    <Image
-      src={showMap1 ? map1 : map2}
-      alt="Earth Map"
-      width={width}
-      height={height}
-      priority
-      unoptimized
-      className="mx-auto"
-    />
+    <div className="w-full flex justify-center overflow-visible">
+      <Image
+        src={showMap1 ? map1 : map2}
+        alt="Earth Map"
+        width={width}
+        height={height}
+        priority
+        unoptimized
+        className="max-w-full h-auto"
+      />
+    </div>
   )
 }
 
@@ -145,7 +146,7 @@ const GlobeMap = () => {
           : screenWidth < 400
           ? screenWidth - 40
           : screenWidth / 2
-      const height = width // keep circular
+      const height = width
       const newScale = width / baseWidth
 
       setDimensions({ width, height })
@@ -170,6 +171,7 @@ const GlobeMap = () => {
           height={dimensions.height}
           className="w-full h-auto"
         />
+
         {/* Labels */}
         <div
           className="absolute top-0 left-0 origin-top-left"
@@ -208,6 +210,6 @@ const GlobeMap = () => {
   )
 }
 
-
 export default WM
+
 

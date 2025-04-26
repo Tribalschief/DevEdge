@@ -6,6 +6,8 @@ import Footer from "@/components/footer";
 import { CookieConsentProvider } from "@/context/cookies-context";
 import { CookieConsentDialog } from "@/components/cookies-dialog/consnet-dialog";
 import { CookieScriptLoader } from "@/components/cookies-dialog/script-loader";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 
 export const metadata: Metadata = {
@@ -129,7 +131,9 @@ export default function RootLayout({
       <body>
         <Navbar/>
         <CookieConsentProvider>
+          <Suspense fallback={<Loading/>}>
           {children}
+          </Suspense>
           <CookieConsentDialog />
           <CookieScriptLoader googleAnalyticsId={process.env.GOOGLE_ID}/>
         </CookieConsentProvider>

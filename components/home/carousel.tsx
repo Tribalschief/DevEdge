@@ -2,35 +2,38 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from "react"
-import Vision2030Hero from "./vision"
-import GlobalExpertiseHero from "./hero"
-import ServicesHero from "./services-hero"
 import { motion, AnimatePresence, type PanInfo, useAnimation } from "framer-motion"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import HeroSection from "./hero"
+import VisionSection from "./vision"
+import ServicesSection from "./services-hero"
 
 const slides = [
-  { id: 0, component:  <ServicesHero /> },
-  { id: 1, component: <Vision2030Hero /> },
-  { id: 2, component: <GlobalExpertiseHero /> },
+  { id: 0, component: <ServicesSection /> },
+  { id: 1, component: <VisionSection /> },
+  { id: 2, component: <HeroSection /> },
 ]
 
-export default function HeroCarousel() {
+export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [direction, setDirection] = useState(0)
-  const controls = useAnimation()
+  
   const constraintsRef = useRef(null)
   const [width, setWidth] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
+  const isMobile = useMediaQuery("(max-width: 768px)")
+  const isTablet = useMediaQuery("(max-width: 1024px)")
 
   // Update width on resize for responsive behavior
   useEffect(() => {
-    const updateWidth = () => {
+    const updateDimensions = () => {
       setWidth(window.innerWidth)
     }
 
-    updateWidth()
-    window.addEventListener("resize", updateWidth)
-    return () => window.removeEventListener("resize", updateWidth)
+    updateDimensions()
+    window.addEventListener("resize", updateDimensions)
+    return () => window.removeEventListener("resize", updateDimensions)
   }, [])
 
   const nextSlide = useCallback(() => {
@@ -80,7 +83,7 @@ export default function HeroCarousel() {
     setIsAutoPlaying(true)
 
     // Determine if we should change slides based on drag distance
-    const threshold = width * 0.15 // 15% of screen width
+    const threshold = width * (isMobile ? 0.1 : 0.15) // Adjust threshold for mobile
 
     if (info.offset.x < -threshold) {
       nextSlide()
@@ -100,14 +103,15 @@ export default function HeroCarousel() {
       opacity: 1,
     },
     exit: (direction: number) => ({
-      x: direction > 0 ? -width : width,
+      x: direction < 0 ? width : -width,
       opacity: 0,
     }),
   }
 
   return (
     <div
-      className="relative w-full  lg:h-[600px] min-h-screen px-auto mt-24   lg:mt-8 xl:mt-0 sm:mt-24 md:mt-[120px] overflow-hidden bg-white"
+      className="relative w-full overflow-hidden"
+      style={{ minHeight: "100vh" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       ref={constraintsRef}
@@ -124,71 +128,47 @@ export default function HeroCarousel() {
             x: { type: "spring", stiffness: 300, damping: 30 },
             opacity: { duration: 0.2 },
           }}
+          className="w-full"
           drag="x"
           dragConstraints={constraintsRef}
           dragElastic={0.1}
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
-          className="w-full h-full cursor-grab active:cursor-grabbing"
+          dragDirectionLock
         >
           {slides[currentSlide].component}
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation arrows - added for better UX */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 rounded-full p-2 z-10 backdrop-blur-sm hidden sm:block"
-        aria-label="Previous slide"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="m15 18-6-6 6-6" />
-        </svg>
-      </button>
-
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 rounded-full p-2 z-10 backdrop-blur-sm hidden sm:block"
-        aria-label="Next slide"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="m9 18 6-6-6-6" />
-        </svg>
-      </button>
-
-      {/* Dots navigation */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
-        {slides.map((_, index) => (
+      {/* Navigation controls */}
+      <div className="fixed bottom-6 left-1/2 flex -translate-x-1/2 space-x-4 z-10">
+        {slides.map((slide, index) => (
           <button
-            key={index}
+            key={slide.id}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentSlide === index ? "bg-purple-600 scale-110" : "bg-gray-300 hover:bg-gray-400"
+            className={`h-3 w-3 rounded-full transition-all ${
+              currentSlide === index ? "bg-white scale-125" : "bg-gray-400"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
+
+      {/* Arrow navigation */}
+      <button
+        className="fixed left-4 top-1/2 -translate-y-1/2 bg-black/30 p-2 rounded-full text-white z-10 hover:bg-black/50 transition-colors"
+        onClick={prevSlide}
+        aria-label="Previous slide"
+      >
+        ←
+      </button>
+      <button
+        className="fixed right-4 top-1/2 -translate-y-1/2 bg-black/30 p-2 rounded-full text-white z-10 hover:bg-black/50 transition-colors"
+        onClick={nextSlide}
+        aria-label="Next slide"
+      >
+        →
+      </button>
     </div>
   )
 }

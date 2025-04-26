@@ -1,6 +1,10 @@
 // // 'use client'
-
+"use client";
 import { useState } from "react"
+import Link from "next/link";
+import Image from "next/image";
+import Logo from "@/public/logoremovebg.png";
+import cv from "@/public/CV.png"
 
 // import { getServiceForHome } from "@/sanity/lib/getoverview"
 
@@ -88,76 +92,76 @@ We also offer a customized HR management solution that includes modules for onbo
 ]
 
 
-export default function ABC() {
-  // const [openIndex, setOpenIndex] = useState<number | null>(0)
+// export default function ABC() {
+//   // const [openIndex, setOpenIndex] = useState<number | null>(0)
 
-  // const toggle = (index: number) =>
-  //   setOpenIndex(openIndex === index ? null : index)
+//   // const toggle = (index: number) =>
+//   //   setOpenIndex(openIndex === index ? null : index)
 
-  return (
-    // <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    //   <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-10">
-    //     <span className="text-black">Frequently Ask </span>
-    //     <span className="text-purple-600 block">Questions</span>
-    //   </h2>
+//   return (
+//     // <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+//     //   <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-10">
+//     //     <span className="text-black">Frequently Ask </span>
+//     //     <span className="text-purple-600 block">Questions</span>
+//     //   </h2>
 
-    //   <div className="space-y-5">
-    //     {faqs.map((faq, i) => {
-    //       const isOpen = openIndex === i
-    //       return (
-    //         <motion.div
-    //           key={i}
-    //           layout
-    //           initial={{ borderRadius: 12 }}
-    //           className="bg-white shadow-sm rounded-md border overflow-hidden"
-    //         >
-    //           <div className="flex justify-between items-start sm:items-center">
-    //             <div className="p-4 pr-2 w-full">
-    //               <p className="font-semibold text-base sm:text-lg">
-    //                 {String(i + 1).padStart(2, '0')} {faq.question}
-    //               </p>
+//     //   <div className="space-y-5">
+//     //     {faqs.map((faq, i) => {
+//     //       const isOpen = openIndex === i
+//     //       return (
+//     //         <motion.div
+//     //           key={i}
+//     //           layout
+//     //           initial={{ borderRadius: 12 }}
+//     //           className="bg-white shadow-sm rounded-md border overflow-hidden"
+//     //         >
+//     //           <div className="flex justify-between items-start sm:items-center">
+//     //             <div className="p-4 pr-2 w-full">
+//     //               <p className="font-semibold text-base sm:text-lg">
+//     //                 {String(i + 1).padStart(2, '0')} {faq.question}
+//     //               </p>
 
-    //               <AnimatePresence>
-    //                 {isOpen && (
-    //                   <motion.div
-    //                     initial={{ opacity: 0, height: 0 }}
-    //                     animate={{ opacity: 1, height: 'auto' }}
-    //                     exit={{ opacity: 0, height: 0 }}
-    //                     transition={{ duration: 0.3 }}
-    //                     className="overflow-hidden mt-2 text-gray-600 text-sm sm:text-base"
-    //                   >
-    //                     {faq.answer}
-    //                   </motion.div>
-    //                 )}
-    //               </AnimatePresence>
-    //             </div>
+//     //               <AnimatePresence>
+//     //                 {isOpen && (
+//     //                   <motion.div
+//     //                     initial={{ opacity: 0, height: 0 }}
+//     //                     animate={{ opacity: 1, height: 'auto' }}
+//     //                     exit={{ opacity: 0, height: 0 }}
+//     //                     transition={{ duration: 0.3 }}
+//     //                     className="overflow-hidden mt-2 text-gray-600 text-sm sm:text-base"
+//     //                   >
+//     //                     {faq.answer}
+//     //                   </motion.div>
+//     //                 )}
+//     //               </AnimatePresence>
+//     //             </div>
 
-    //             {/* Toggle Button */}
-    //             <motion.button
-    //               onClick={() => toggle(i)}
-    //               animate={{
-    //                 rotate: isOpen ? 180 : 0,
-    //               }}
-    //               transition={{ type: 'spring', stiffness: 300 }}
-    //               className={`w-12 sm:w-16 h-12 sm:h-16 flex items-center justify-center font-bold text-xl sm:text-2xl transition-colors duration-300 ${
-    //                 isOpen
-    //                   ? 'bg-purple-700 text-white'
-    //                   : 'bg-gray-300 text-black'
-    //               }`}
-    //             >
-    //               {isOpen ? '−' : '+'}
-    //             </motion.button>
-    //           </div>
-    //         </motion.div>
-    //       )
-    //     })}
-    //   </div>
-    // </div>
-    <div>
-      Heloo
-    </div>
-  )
-}
+//     //             {/* Toggle Button */}
+//     //             <motion.button
+//     //               onClick={() => toggle(i)}
+//     //               animate={{
+//     //                 rotate: isOpen ? 180 : 0,
+//     //               }}
+//     //               transition={{ type: 'spring', stiffness: 300 }}
+//     //               className={`w-12 sm:w-16 h-12 sm:h-16 flex items-center justify-center font-bold text-xl sm:text-2xl transition-colors duration-300 ${
+//     //                 isOpen
+//     //                   ? 'bg-purple-700 text-white'
+//     //                   : 'bg-gray-300 text-black'
+//     //               }`}
+//     //             >
+//     //               {isOpen ? '−' : '+'}
+//     //             </motion.button>
+//     //           </div>
+//     //         </motion.div>
+//     //       )
+//     //     })}
+//     //   </div>
+//     // </div>
+//     <div>
+//       Heloo
+//     </div>
+//   )
+// }
 
 //  const Test = async () => {
 //   const data = await getServiceForHome()
@@ -182,3 +186,130 @@ export default function ABC() {
 // }
 
 // export default Test
+
+
+
+
+
+
+ // Update path if needed
+
+
+// Replace with your background path
+ 
+
+ 
+export default function ConsultingBenefits() {
+  return (
+    <main className="mt-20 sm:mt-24 lg:mt-32 px-4 sm:px-6 lg:px-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Left Section */}
+        <div className="bg-white rounded-2xl p-8 shadow-md flex flex-col justify-center w-full">
+          <div className="flex flex-col sm:flex-row items-start gap-5 w-full">
+            <div className="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-full flex-shrink-0">
+              {/* Icon */}
+              <svg
+                className="w-7 h-7 text-white"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v4H3V4z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 10H3v10a1 1 0 001 1h16a1 1 0 001-1V10z"
+                />
+              </svg>
+            </div>
+            <div className="w-full">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3 leading-snug">
+                A Culture of Curiosity, Integrity & Impact
+              </h2>
+              <hr className="border-t-2 border-gray-200 my-4 w-full" />
+              <p className="text-gray-600 text-base leading-relaxed">
+                At DevEdge Consulting, we don’t just hire talent — we invest in it. 
+                Join a team where innovation meets impact, where you're empowered 
+                to lead, learn, and leave a mark.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Section */}
+        <div className="flex flex-col gap-8 w-full">
+          {/* Box 1 */}
+          <div className="bg-white rounded-2xl p-8 shadow-md w-full">
+            <div className="flex flex-col sm:flex-row items-start gap-5 w-full">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-full flex-shrink-0">
+                {/* Icon */}
+                <svg
+                  className="w-7 h-7 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v4H3V4z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 10H3v10a1 1 0 001 1h16a1 1 0 001-1V10z"
+                  />
+                </svg>
+              </div>
+              <div className="w-full">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-snug">
+                  Diverse Industry Exposure
+                </h3>
+                <hr className="border-t-2 border-gray-200 my-4 w-full" />
+                <p className="text-gray-600 text-base leading-relaxed">
+                  Consultants work with clients across various industries, gaining broad 
+                  knowledge, experience, and problem-solving skills that accelerate career growth.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Box 2 */}
+          <div className="bg-white rounded-2xl p-8 shadow-md w-full">
+            <div className="flex flex-col sm:flex-row items-start gap-5 w-full">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-full flex-shrink-0">
+                {/* Icon */}
+                <svg
+                  className="w-7 h-7 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v4H3V4z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 10H3v10a1 1 0 001 1h16a1 1 0 001-1V10z"
+                  />
+                </svg>
+              </div>
+              <div className="w-full">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-snug">
+                  High Earning Potential
+                </h3>
+                <hr className="border-t-2 border-gray-200 my-4 w-full" />
+                <p className="text-gray-600 text-base leading-relaxed">
+                  Consulting roles often offer competitive salaries, performance-based 
+                  bonuses, and opportunities for rapid financial growth.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+
+ 
+ 

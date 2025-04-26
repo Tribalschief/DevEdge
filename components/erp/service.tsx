@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowRight, Car, Clock, Package, Users,  Globe, Import, Ship, Truck, } from "lucide-react"
 import Link from "next/link"
+import { ERPFAQSection } from "./faq"
 
 export default function ERMService() {
   return (
@@ -184,6 +185,7 @@ export default function ERMService() {
                   </div>
                 </CardContent>
               </Card>
+              <ERPFAQSection faqs={importExportFaqs} />
             </TabsContent>
 
             {/* Car Selling Platform Content */}
@@ -199,6 +201,7 @@ export default function ERMService() {
                   </div>
                 </CardContent>
               </Card>
+              <ERPFAQSection faqs={carSellingFaqs} />
             </TabsContent>
 
             {/* Human Resource Content */}
@@ -214,6 +217,7 @@ export default function ERMService() {
                   </div>
                 </CardContent>
               </Card>
+              <ERPFAQSection faqs={hrmsFaqs} />
             </TabsContent>
 
             {/* Coming Soon Content */}
@@ -334,3 +338,61 @@ const exportCards = [
 ]
 
 
+const importExportFaqs = [
+  {
+    question: 'What is a Vehicle Shipping ERP and how can it help my business?',
+    answer:
+      'Our Vehicle Shipping ERP is an all-in-one system for managing vehicle imports/exports. It includes tools for auction tracking, inventory control, document automation (like BOLs and customs forms), financial integration, and real-time shipment tracking ensuring smoother operations and compliance.',
+  },
+  {
+    question: 'Can your ERP handle both import and export operations?',
+    answer:
+      'Yes. Our system has dedicated modules for both import and export including customer records, shipping container management, auction ID tracking, VCC generation, customs compliance, and financial processing.',
+  },
+  {
+    question: 'How does your solution improve container and shipping management?',
+    answer:
+      'It optimizes space utilization, tracks vehicle loading/unloading, provides container status updates, and ensures all export documentation (e.g., commercial invoices, certificates) is accurately generated and monitored.',
+  },
+  {
+    question: 'Is the system scalable if I expand to more ports or branches?',
+    answer:
+      'Absolutely. Our ERP is cloud-based and modular, allowing you to scale across multiple warehouses, ports, or countries with unified visibility.',
+  },
+]
+
+const carSellingFaqs = [
+  {
+    question: 'What is the Car Selling Platform you offer?',
+    answer:
+      'It’s a digital cloud platform for showcasing vehicles, managing buyer-seller interactions, processing secure payments, and tracking vehicle availability. It supports dealers and private sellers alike.',
+  },
+  {
+    question: 'Can I manage private listings and dealership inventory in one platform?',
+    answer:
+      'Yes. We provide portals for both dealer management and private sellers, with centralized control over listings, specs, media uploads, and real-time availability.',
+  },
+  {
+    question: 'Do you support payment and escrow integrations?',
+    answer:
+      'Yes. Our platform integrates with secure payment gateways and can support escrow models to ensure safe buyer-seller transactions.',
+  },
+]
+
+ const hrmsFaqs = [
+  {
+    question: 'What does your HR management solution include?',
+    answer:
+      'Our HRMS covers onboarding, attendance, payroll, tax compliance, performance reviews, internal job posting, and compliance reporting all in one intuitive platform.',
+  },
+  {
+    question: 'Is your HR system suitable for large organizations with multiple departments?',
+    answer:
+      'Yes. It’s designed for scalability, with role-based access, department-wise tracking, and advanced analytics dashboards.',
+  },
+  {
+    question: 'Can I automate payroll and manage leaves with your system?',
+    answer:
+      'Definitely. Our HRMS includes automated payroll processing, leave request workflows, tax calculations, and payslip generation.',
+  },
+]

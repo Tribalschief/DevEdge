@@ -67,7 +67,7 @@ export default async function Main() {
   //   },
   // ]
   const services = await getServiceForHome()
-  console.log(services)
+ 
   return (
     <ServiceSection title="What We Do" highlight="We" columns={{ sm: 1, md: 2, lg: 3 }} gap="small" centered={true}>
       {services.map((service, index) => (

@@ -89,16 +89,9 @@ export default function SolutionsShowcase() {
     {/* Heading with dynamic text */}
     <div className="text-center mb-10 sm:mb-12">
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 relative overflow-hidden h-[3rem] sm:h-[3.5rem]">
-        {solutions.map((solution, index) => (
-          <span
-            key={index}
-            className={`absolute inset-0 transition-all duration-700 flex items-center justify-center ${
-              index === activeIndex ? "opacity-100 transform-none" : "opacity-0 -translate-y-4"
-            }`}
-          > 
-            {solution.title}
-          </span>
-        ))}
+        
+            All in One Solution
+         
       </h2>
       <div className="h-0.5 w-40 sm:w-64 md:w-96 bg-white mx-auto"></div>
       <ProgressIndicator />

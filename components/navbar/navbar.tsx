@@ -1,18 +1,36 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Logo from "./logo"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { FaPhone, FaBars } from "react-icons/fa"
+import { FaPhone, FaBars, FaAngleUp, FaAngleDown } from "react-icons/fa"
 import { Services } from "./service"
 import { Company } from "./com"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Searching from "./searching"
+import { getService } from "@/sanity/lib/getLinks"
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
-
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
+  
+    const [services, setServices] = React.useState<{ title: string | null; slug: string | null }[]>([])
+  React.useEffect(() => {
+      async function fetchServices() {
+        try {
+          const fetchedServices = await getService()
+          const filteredServices = fetchedServices.filter((service) => service.title !== null && service.slug !== null)
+          setServices(filteredServices)
+        } catch (error) {
+          console.error("Error fetching services:", error)
+          setServices([])
+        }
+      }
+  
+      fetchServices()
+    }, [])
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 100)
@@ -35,7 +53,7 @@ export const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className={`hidden md:flex items-center bg-red-100 gap-x-4 lg:gap-x-10 xl:gap-x-16 ${scrolled ? "text-gray-50" : "text-gray-900"}`}>
+        <div className={`hidden md:flex items-center gap-x-4 lg:gap-x-10 xl:gap-x-16 ${scrolled ? "text-gray-50" : "text-gray-900"}`}>
           <Link href="/" className="text-base xl:text-xl lg:text-lg font-medium hover:opacity-80">
             Home
           </Link>
@@ -90,10 +108,44 @@ export const Navbar = () => {
                   Home
                 </Link>
                 <div className="text-lg font-semibold">
-                  <Services heading="Services" />
+                <div className="flex flex-col">
+      <button
+        onClick={() => setServicesOpen(!servicesOpen)}
+        className="text-lg font-semibold flex items-center gap-x-2"
+      >
+        Services
+        <span className="mt-1">{companyOpen ? <FaAngleUp /> : <FaAngleDown />}</span>
+      </button>
+      
+      {servicesOpen && Array.isArray(services) || (
+        <div className="flex flex-col pl-4 mt-2 gap-2">
+          {services.map((service) => (
+            <Link key={service.slug} href={`/services/${service.slug}`} className="text-base font-normal">
+              {service.title}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
                 </div>
                 <div className="text-lg font-semibold">
-                  <Company title="Company" />
+                <div className="flex flex-col">
+      <button
+        onClick={() => setCompanyOpen(!companyOpen)}
+        className="text-lg font-semibold flex items-center gap-x-2 "
+      >
+        Company
+        <span className="mt-1">{companyOpen ? <FaAngleUp /> : <FaAngleDown />}</span>
+      </button>
+      {companyOpen && (
+        <div className="flex flex-col pl-4 mt-2 gap-2">
+          <Link href="/company/about" className="text-base font-normal">About DevEdge</Link>
+          <Link href="/company/leadership" className="text-base font-normal">Leadership</Link>
+          <Link href="/company/career" className="text-base font-normal">Career</Link>
+          <Link href="/company/cv" className="text-base font-normal">Submit CV</Link>
+        </div>
+      )}
+    </div>
                 </div>
                 <Link href="/erp" className="text-lg font-semibold">
                   Our ERP's
