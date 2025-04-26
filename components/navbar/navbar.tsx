@@ -10,18 +10,19 @@ import { Company } from "./com"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Searching from "./searching"
 import { getService } from "@/sanity/lib/getLinks"
-
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image"
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
   
-    const [services, setServices] = React.useState<{ title: string | null; slug: string | null }[]>([])
+    const [services, setServices] = React.useState<{ title: string | null; slug: string | null; icon: any }[]>([])
   React.useEffect(() => {
       async function fetchServices() {
         try {
           const fetchedServices = await getService()
-          const filteredServices = fetchedServices.filter((service) => service.title !== null && service.slug !== null)
+          const filteredServices = fetchedServices.filter((service:any) => service.title !== null && service.slug !== null)
           setServices(filteredServices)
         } catch (error) {
           console.error("Error fetching services:", error)
@@ -109,43 +110,130 @@ export const Navbar = () => {
                 </Link>
                 <div className="text-lg font-semibold">
                 <div className="flex flex-col">
-      <button
-        onClick={() => setServicesOpen(!servicesOpen)}
-        className="text-lg font-semibold flex items-center gap-x-2"
+  <button
+    onClick={() => setServicesOpen(!servicesOpen)}
+    className="text-lg font-semibold flex items-center gap-x-2"
+  >
+    Services
+    <motion.span
+      className="mt-1"
+      animate={{ rotate: servicesOpen ? 180 : 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <FaAngleDown />
+    </motion.span>
+  </button>
+
+  <AnimatePresence>
+    {servicesOpen && Array.isArray(services) && (
+      <motion.div
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: "auto", opacity: 1 }}
+        exit={{ height: 0, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="overflow-hidden"
       >
-        Services
-        <span className="mt-1">{servicesOpen ? <FaAngleUp /> : <FaAngleDown />}</span>
-      </button>
-      
-      {servicesOpen && Array.isArray(services) || (
         <div className="flex flex-col pl-4 mt-2 gap-2">
-          {services.map((service) => (
-            <Link key={service.slug} href={`/services/${service.slug}`} className="text-base font-normal">
-              {service.title}
-            </Link>
+          {services.map((service, i) => (
+            <motion.div
+              key={service.slug}
+              variants={{
+                hidden: { opacity: 0, y: -5 },
+                visible: (i: number) => ({
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: i * 0.1 }
+                })
+              }}
+              initial="hidden"
+              animate="visible"
+              custom={i}
+            >
+              <Link href={`/services/${service.slug}`} className="text-base flex font-normal gap-x-2 hover:text-[#6208CA]">
+              <Image src={service.icon.asset.url} alt={"title"} width={20} height={20} className="h-4 w-4 rounded-full mt-1" /> {service.title} 
+              </Link>
+            </motion.div>
           ))}
         </div>
-      )}
-    </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</div>
                 </div>
                 <div className="text-lg font-semibold">
                 <div className="flex flex-col">
-      <button
-        onClick={() => setCompanyOpen(!companyOpen)}
-        className="text-lg font-semibold flex items-center gap-x-2 "
+  <button
+    onClick={() => setCompanyOpen(!companyOpen)}
+    className="text-lg font-semibold flex items-center gap-x-2"
+  >
+    Company
+    <motion.span 
+      className="mt-1"
+      animate={{ rotate: companyOpen ? 180 : 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <FaAngleDown />
+    </motion.span>
+  </button>
+  <AnimatePresence>
+    {companyOpen && (
+      <motion.div
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: "auto", opacity: 1 }}
+        exit={{ height: 0, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="overflow-hidden"
       >
-        Company
-        <span className="mt-1">{companyOpen ? <FaAngleUp /> : <FaAngleDown />}</span>
-      </button>
-      {companyOpen && (
         <div className="flex flex-col pl-4 mt-2 gap-2">
-          <Link href="/company/about" className="text-base font-normal">About DevEdge</Link>
-          <Link href="/company/leadership" className="text-base font-normal">Leadership</Link>
-          <Link href="/company/career" className="text-base font-normal">Career</Link>
-          <Link href="/company/cv" className="text-base font-normal">Submit CV</Link>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: -5 },
+              visible: i => ({ opacity: 1, y: 0, transition: { delay: i * 0.1 } })
+            }}
+            initial="hidden"
+            animate="visible"
+            custom={0}
+          >
+            <Link href="/company/about" className="text-base font-normal">About DevEdge</Link>
+          </motion.div>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: -5 },
+              visible: i => ({ opacity: 1, y: 0, transition: { delay: i * 0.1 } })
+            }}
+            initial="hidden"
+            animate="visible"
+            custom={1}
+          >
+            <Link href="/company/leadership" className="text-base font-normal">Leadership</Link>
+          </motion.div>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: -5 },
+              visible: i => ({ opacity: 1, y: 0, transition: { delay: i * 0.1 } })
+            }}
+            initial="hidden"
+            animate="visible"
+            custom={2}
+          >
+            <Link href="/company/career" className="text-base font-normal">Career</Link>
+          </motion.div>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: -5 },
+              visible: i => ({ opacity: 1, y: 0, transition: { delay: i * 0.1 } })
+            }}
+            initial="hidden"
+            animate="visible"
+            custom={3}
+          >
+            <Link href="/company/cv" className="text-base font-normal">Submit CV</Link>
+          </motion.div>
         </div>
-      )}
-    </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</div>
                 </div>
                 <Link href="/erp" className="text-lg font-semibold">
                   Our ERP's

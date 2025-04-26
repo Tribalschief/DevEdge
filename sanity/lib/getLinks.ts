@@ -5,7 +5,12 @@ export const getService = async () => {
     const Product_By_Slug_Query = defineQuery(`
     *[_type == "offeringCategory" ] {
       title,
-      "slug": slug.current
+      "slug": slug.current,
+      icon{
+    asset -> {
+      url
+    }
+  }
     }
   `)
         try {
