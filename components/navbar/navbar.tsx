@@ -22,7 +22,7 @@ export const Navbar = () => {
       async function fetchServices() {
         try {
           const fetchedServices = await getService()
-          const filteredServices = fetchedServices.filter((service:any) => service.title !== null && service.slug !== null)
+          const filteredServices = fetchedServices.filter((service) => service.title !== null && service.slug !== null && service.icon !== null)
           setServices(filteredServices)
         } catch (error) {
           console.error("Error fetching services:", error)
