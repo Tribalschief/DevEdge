@@ -4,7 +4,7 @@ import { client } from "./client";
 
 export const getServiceForHome = async () => {
     const Product_By_Slug_Query = defineQuery(`
-      *[_type == "offeringCategory" ] {
+      *[_type == "offeringCategory" ] | order(_updatedAt desc) {
   title,
   overview,
   "slug":slug.current,

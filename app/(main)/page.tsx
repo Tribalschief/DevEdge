@@ -9,7 +9,7 @@ import {CoreValues} from "@/components/core/try";
 import { Tech } from "@/components/tech";
 import  FAQSection  from "@/components/FAQ";
 import HeroCarousel from "@/components/home/carousel";
-import core from "@/public/core.png"
+import core from "@/public/core.jpeg"
 import { CoreDivider } from "@/components/core/coredivider";
 import { Try } from "@/components/choose/try/choose";
 export default function Home() {

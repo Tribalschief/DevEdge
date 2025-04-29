@@ -26,11 +26,6 @@ export const offeringCategory = defineType({
       type: 'image',
     }),
     defineField({
-      name: 'id',
-      title: 'ID',
-      type: 'number',
-    }),
-    defineField({
       name: 'image',
       title: 'Main Image',
       type: 'image',

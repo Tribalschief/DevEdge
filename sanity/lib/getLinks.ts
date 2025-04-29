@@ -5,6 +5,7 @@ export const getService = async () => {
     const Product_By_Slug_Query = defineQuery(`
     *[_type == "offeringCategory" ] | order(_updatedAt desc) {
       title,
+    
       "slug": slug.current,
       icon{
     asset -> {

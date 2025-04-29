@@ -13,9 +13,9 @@ import {
 import { getService } from "@/sanity/lib/getLinks"
 import Link from "next/link"
 
-export function Services({ heading }: { heading: string }) {
+export function Services({ heading }) {
   const [selectedService, setSelectedService] = React.useState("")
-  const [services, setServices] = React.useState<{ title: string | null; slug: string | null }[]>([])
+  const [services, setServices] = React.useState([])
 
   React.useEffect(() => {
     async function fetchServices() {

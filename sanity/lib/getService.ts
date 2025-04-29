@@ -24,6 +24,7 @@ export async function getServiceBySearch(searchQuery: string) {
   )] | order(_updatedAt desc) {
     _id,
     _type,
+    
     title,
     slug,
     overview

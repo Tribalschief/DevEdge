@@ -44,7 +44,7 @@ interface ServicePageProps {
 export default async function ServicePage({ params }: any) {
   const {slug} = await params;
   const service = await getServiceBySlug(slug); // Fetch data on the server
-
+  console.log(service)
   // Handle case where service is not found
   if (!service) {
     notFound(); // Triggers Next.js 404 page
