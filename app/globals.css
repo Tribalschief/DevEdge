@@ -6,6 +6,14 @@ html,
 body {
   max-height: 100vw;
 }
+.gradient-border-purple-cyan {
+  border: 1px solid; /* thickness */
+  border-image: linear-gradient(180deg, #6A0DAD, #00E0FF) 1;
+  
+  /* optional, for rounded borders */
+}
+
+/* In your global CSS file (e.g., globals.css) */
 
 @layer base {
   :root {

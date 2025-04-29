@@ -21,13 +21,13 @@ export async function getServiceBySearch(searchQuery: string) {
     title match $query + "*" || 
     overview match $query || 
     services[].name match $query
-  )] {
+  )] | order(_updatedAt desc) {
     _id,
     _type,
     title,
     slug,
     overview
-  }`
+  } `
 
 const searchParam = searchQuery.toLowerCase()
 return client.fetch(query, { searchParam })

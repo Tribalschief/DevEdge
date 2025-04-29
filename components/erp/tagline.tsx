@@ -61,7 +61,9 @@ const LogoCarousel = () => {
   }, [controls, isHovered, logos.length, duration]);
 
   return (
-    <div className="w-full overflow-hidden bg-transparent py-4">
+    <div className="w-full bg-white py-10">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-center mb-8">Trusted By</h2>
+    <div className="max-w-sm sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto overflow-hidden bg-transparent py-4">
       <div 
         className="relative"
         onMouseEnter={() => setIsHovered(true)}
@@ -88,6 +90,7 @@ const LogoCarousel = () => {
           ))}
         </motion.div>
       </div>
+    </div>
     </div>
   );
 };

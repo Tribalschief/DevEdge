@@ -1,86 +1,131 @@
+
 import { DetailedHeader } from "@/components/details/header"
 import { Overview } from "@/components/details/overview"
-import { MiniService } from "@/components/details/miniservice"
-import ServicesGrid from "@/components/details/grid"
+
 import { AboutDetails } from "@/components/details/about"
 import { getServiceBySlug } from "@/sanity/lib/getOffering"
-import Image from 'next/image';
-import title from '@/public/title.png';
-type RegularService = {
-  type: "regular"
-  title: string
-  description: string
-  backgroundImage: string
+
+import { CardGrid } from "@/components/details/new/newGrid"
+import { NewServicesList } from "@/components/details/new/NewSL"
+
+import { notFound } from "next/navigation"
+import WM from "./_components/wm"
+// type RegularService = {
+//   type: "regular"
+//   title: string
+//   description: string
+//   backgroundImage: string
+// }
+
+// type BigServiceType = {
+//   type: "big"
+//   title: string
+//   description: string
+//   coverageItems: string[]
+//   imageSrc: string
+// }
+
+
+
+// type Offering = {
+//   type: string;
+//   title: string;
+//   description: string;
+//   coverageItems?: string[];
+//   imageSrc?: string;
+//   backgroundImage?: any;
+// }
+interface ServicePageProps {
+  params: {
+    slug: string;
+  };
 }
 
-type BigServiceType = {
-  type: "big"
-  title: string
-  description: string
-  coverageItems: string[]
-  imageSrc: string
-}
+export default async function ServicePage({ params }: any) {
+  const {slug} = await params;
+  const service = await getServiceBySlug(slug); // Fetch data on the server
 
-
-
-type Offering = {
-  type: string;
-  title: string;
-  description: string;
-  coverageItems?: string[];
-  imageSrc?: string;
-  backgroundImage?: any;
-}
-
-
-export default async function ServicePage({ params }: {params: any}){
-  const { slug } = await params;
-const service = await getServiceBySlug(slug); // already filtered by slug
-
-if (!service) {
-  return <div>Service not found</div>;
-}
-
-const serviceItems = service.offering.map((offering: Offering) => {
-  if (offering.type === 'big') {
-    return {
-      type: 'big',
-      title: offering.title,
-      description: offering.description,
-      coverageItems: offering.coverageItems,
-      imageSrc: offering.imageSrc,
-    } as BigServiceType;
-  } else {
-    return {
-      type: 'regular',
-      title: offering.title,
-      description: offering.description,
-      backgroundImage: offering.backgroundImage,
-    } as RegularService;
+  // Handle case where service is not found
+  if (!service) {
+    notFound(); // Triggers Next.js 404 page
   }
-});
- 
+
+  // No more useState, useEffect, loading, error states needed here for the main data fetch
+
   return (
     <>
-    <div className="min-h-screen ">
+      {/* Wrap in a fragment or a single root element */}
+      <div className="min-h-screen">
+        {/* Pass fetched data as props */}
+        <DetailedHeader
+          // Ensure asset and url exist before accessing
+          image={service.image?.asset?.url}
+          title={service.title}
+        />
 
-      <DetailedHeader image={service.image.asset.url} title={service.title} />
-      <Overview overview={service.overview} />
-      <div className="mt-8">
-      { (service.services && service.services.length > 0) && <MiniService services={service.services} />}
-        
-        
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Left column */}
+          {/* Added 'relative' here so the absolutely positioned WM inside it is positioned correctly */}
+          <div className="relative flex flex-col  lg:w-3/4"> {/* Adjust bg color or remove */}
+            <Overview overview={service.overview} />
+
+            {/* Render the WM Client Component */}
+            {/* Wrap WM for positioning and styling */}
+            {/* This div places WM behind other content (-z-10) and makes it non-interactive */}
+             <div className="absolute inset-0 flex top-20 items-center justify-center -z-10 opacity-10 pointer-events-none overflow-hidden">
+              <WM />
+             </div>
+
+            {/* Ensure content below WM has a positive z-index or is positioned later */}
+            <div className="mx-auto mt-8 relative z-[1]"> {/* Adjust z-index as needed */}
+              <CardGrid services={service.offering} title={service.title} />
+            </div>
+          </div>
+
+          {/* Right column */}
+          <div className="lg:w-1/4 "> {/* Adjust bg color or remove */}
+            <NewServicesList /> {/* Assuming this fetches its own data or receives static props */}
+          </div>
+        </div>
       </div>
-      <ServicesGrid services={serviceItems} title={service.title} />
-    </div>
-    
-    {
-  (service.features && service.features.features.length > 0) && <AboutDetails imageAlt={service.features.imageAlt} imageSrc={service.features.imageSrc.asset.url} features={service.features.features} />
-}
     </>
-  )
+  );
 }
+  
+      {/* <div className="mt-8">
+      { (service.services && service.services.length > 0) && <MiniService services={service.services} />}
+       
+      
 
+
+<div className="relative w-full mx-auto   py-12 md:py-24">
+      {/* Main content container */}
+// const serviceItems = service.offering.map((offering: Offering) => {
+//   if (offering.type === 'big') {
+//     return {
+//       type: 'big',
+//       title: offering.title,
+//       description: offering.description,
+//       coverageItems: offering.coverageItems,
+//       imageSrc: offering.imageSrc,
+//     } as BigServiceType;
+//   } else {
+//     return {
+//       type: 'regular',
+//       title: offering.title,
+//       description: offering.description,
+//       backgroundImage: offering.backgroundImage,
+//     } as RegularService;
+//   }
+// });
+ 
+// {/* </div>
+//       <ServicesGrid services={serviceItems} title={service.title} /> */}
+//       </div>
+//       */}
+//      {/* {
+//    (service.features && service.features.features.length > 0) && <AboutDetails imageAlt={service.features.imageAlt} imageSrc={service.features.imageSrc.asset.url} features={service.features.features} />
+//  } */}
 
 // const images = [
 //   {

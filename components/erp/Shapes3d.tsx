@@ -78,34 +78,34 @@ const ResponsiveLayout = () => {
       <>
         <ResponsiveShape
           position={topLeft}
-          color="#ff6b6b"
-          shape="sphere"
-          size={[0.5, 32, 32]} // smaller size
-          distortFactor={0.3}
+          color="#6208CA"
+          shape="box"
+          size={[0.5, 0.5, 0.5]} // smaller size
+          distortFactor={0.2}
           speed={1.2}
         />
         <ResponsiveShape 
           position={topRight}
-          color="#4ecdc4"
+          color="#6208CA"
           shape="box"
           size={[0.5, 0.5, 0.5]}
-          distortFactor={0.5}
+          distortFactor={0.2}
           speed={0.8}
         />
         <ResponsiveShape 
           position={bottomLeft}
-          color="#ffbe0b"
-          shape="torus"
-          size={[0.4, 0.15, 16, 100]}
+          color="#6208CA"
+          shape="box"
+          size={[0.5, 0.5, 0.5]}
           distortFactor={0.2}
           speed={1.5}
         />
         <ResponsiveShape 
           position={bottomRight}
-          color="#8a2be2"
-          shape="octahedron"
-          size={[0.5]}
-          distortFactor={0.6}
+          color="#6208CA"
+          shape="box"
+          size={[0.5, 0.5, 0.5]}
+          distortFactor={0.2}
           speed={1}
         />
       </>

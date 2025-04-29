@@ -3,7 +3,7 @@ import { client } from "./client";
 
 export const getService = async () => {
     const Product_By_Slug_Query = defineQuery(`
-    *[_type == "offeringCategory" ] {
+    *[_type == "offeringCategory" ] | order(_updatedAt desc) {
       title,
       "slug": slug.current,
       icon{
@@ -11,7 +11,7 @@ export const getService = async () => {
       url
     }
   }
-    }
+    } 
   `)
         try {
             const services = await client.fetch(Product_By_Slug_Query)

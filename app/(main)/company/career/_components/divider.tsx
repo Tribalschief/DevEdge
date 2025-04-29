@@ -36,7 +36,7 @@ export const DividerWithButton = ({ image }: { image: any }) => {
           <div className="mt-6 sm:mt-8">
             <Button className="bg-[#0077B5] hover:bg-[#0077B5]/90" size="lg">
               <Linkedin className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-              <Link href="[https://linkedin.com/in/yourprofile]" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.linkedin.com/company/devedge-consulting" target="_blank" rel="noopener noreferrer">
                 Connect on LinkedIn
               </Link>
             </Button>

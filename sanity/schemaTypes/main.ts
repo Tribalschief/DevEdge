@@ -26,6 +26,11 @@ export const offeringCategory = defineType({
       type: 'image',
     }),
     defineField({
+      name: 'id',
+      title: 'ID',
+      type: 'number',
+    }),
+    defineField({
       name: 'image',
       title: 'Main Image',
       type: 'image',
@@ -38,30 +43,30 @@ export const offeringCategory = defineType({
       title: 'Overview',
       type: 'text',
     }),
-    defineField({
-      name: 'services',
-      title: 'Services',
-      type: 'array',
-      of: [
-        defineField({
-          type: 'object',
-          name: 'service',
-          fields: [
-            defineField({
-              name: 'image',
-              title: 'Image',
-              type: 'image',
-              options: { hotspot: true },
-            }),
-            defineField({
-              name: 'name',
-              title: 'Service Name',
-              type: 'string',
-            }),
-          ],
-        }),
-      ],
-    }),
+    // defineField({
+    //   name: 'services',
+    //   title: 'Services',
+    //   type: 'array',
+    //   of: [
+    //     defineField({
+    //       type: 'object',
+    //       name: 'service',
+    //       fields: [
+    //         defineField({
+    //           name: 'image',
+    //           title: 'Image',
+    //           type: 'image',
+    //           options: { hotspot: true },
+    //         }),
+    //         defineField({
+    //           name: 'name',
+    //           title: 'Service Name',
+    //           type: 'string',
+    //         }),
+    //       ],
+    //     }),
+    //   ],
+    // }),
     defineField({
       name: 'offering',
       title: 'Offerings',
@@ -99,8 +104,8 @@ export const offeringCategory = defineType({
             defineField({ name: 'title', title: 'Title', type: 'string' }),
             defineField({ name: 'description', title: 'Description', type: 'text' }),
             defineField({
-              name: 'backgroundImage',
-              title: 'Background Image',
+              name: 'backgroundIcon',
+              title: 'Service Icon (for Regular type)',
               type: 'image',
               hidden: ({ parent }) => parent?.type === 'big',
             }),
@@ -185,63 +190,63 @@ export const offeringCategory = defineType({
     }),
     
     
-    defineField({
-      name: 'features',
-      title: 'Features Section',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'heading',
-          title: 'Heading',
-          type: 'string',
-        }),
-        defineField({
-          name: 'highlightedText',
-          title: 'Highlighted Text',
-          type: 'string',
-        }),
-        defineField({
-          name: 'headingDescription',
-          title: 'Heading Description',
-          type: 'text',
-        }),
-        defineField({
-          name: 'imageSrc',
-          title: 'Image',
-          type: 'image',
-          options: { hotspot: true },
-        }),
-        defineField({
-          name: 'imageAlt',
-          title: 'Image Alt Text',
-          type: 'string',
-        }),
-        defineField({
-          name: 'features',
-          title: 'Features List',
-          type: 'array',
-          of: [
-            defineField({
-              type: 'object',
-              name: 'featureItem',
-              fields: [
-                defineField({
-                  name: 'iconSrc',
-                  title: 'Icon URL',
-                  type: 'image',
-                  description: 'Paste the relative or absolute path to the icon.',
-                }),
-                defineField({
-                  name: 'text',
-                  title: 'Text',
-                  type: 'string',
-                }),
-              ],
-            }),
-          ],
-        }),
-      ],
-    }),
+    // defineField({
+    //   name: 'features',
+    //   title: 'Features Section',
+    //   type: 'object',
+    //   fields: [
+    //     defineField({
+    //       name: 'heading',
+    //       title: 'Heading',
+    //       type: 'string',
+    //     }),
+    //     defineField({
+    //       name: 'highlightedText',
+    //       title: 'Highlighted Text',
+    //       type: 'string',
+    //     }),
+    //     defineField({
+    //       name: 'headingDescription',
+    //       title: 'Heading Description',
+    //       type: 'text',
+    //     }),
+    //     defineField({
+    //       name: 'imageSrc',
+    //       title: 'Image',
+    //       type: 'image',
+    //       options: { hotspot: true },
+    //     }),
+    //     defineField({
+    //       name: 'imageAlt',
+    //       title: 'Image Alt Text',
+    //       type: 'string',
+    //     }),
+    //     defineField({
+    //       name: 'features',
+    //       title: 'Features List',
+    //       type: 'array',
+    //       of: [
+    //         defineField({
+    //           type: 'object',
+    //           name: 'featureItem',
+    //           fields: [
+    //             defineField({
+    //               name: 'iconSrc',
+    //               title: 'Icon URL',
+    //               type: 'image',
+    //               description: 'Paste the relative or absolute path to the icon.',
+    //             }),
+    //             defineField({
+    //               name: 'text',
+    //               title: 'Text',
+    //               type: 'string',
+    //             }),
+    //           ],
+    //         }),
+    //       ],
+    //     }),
+    //   ],
+    // }),
     
   ],
 });

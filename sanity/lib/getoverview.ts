@@ -13,7 +13,7 @@ export const getServiceForHome = async () => {
       url
     }
   }
-}
+} 
     `)
         try {
                     const services = await client.fetch(Product_By_Slug_Query)

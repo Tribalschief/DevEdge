@@ -67,7 +67,7 @@
 // }
 
 // export default WorldMap
-
+'use client'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import map1 from '@/public/home/map.svg'

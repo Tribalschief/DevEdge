@@ -12,12 +12,13 @@ import Searching from "./searching"
 import { getService } from "@/sanity/lib/getLinks"
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image"
+
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
   
-    const [services, setServices] = React.useState<{ title: string | null; slug: string | null; icon: any }[]>([])
+    const [services, setServices] = React.useState([])
   React.useEffect(() => {
       async function fetchServices() {
         try {
@@ -139,7 +140,7 @@ export const Navbar = () => {
               key={service.slug}
               variants={{
                 hidden: { opacity: 0, y: -5 },
-                visible: (i: number) => ({
+                visible: (i) => ({
                   opacity: 1,
                   y: 0,
                   transition: { delay: i * 0.1 }

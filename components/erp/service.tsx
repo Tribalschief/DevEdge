@@ -62,61 +62,63 @@ export default function ERMService() {
           <p className="text-gray-600 mb-8">with Dynamic Workflows</p>
 
           <Tabs defaultValue="vehicle-shipping" className="w-full ">
-          <TabsList className="w-full bg-gray-900 text-white py-16 px-4">
-  <div className="max-w-5xl mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <TabsList className="w-full h-full bg-gray-900 text-white py-16 px-4">
+  <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-6">
     <TabsTrigger
       value="vehicle-shipping"
-      className="flex items-center  p-4 space-x-3 cursor-pointer  hover:text-purple-700 "
+      className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
     >
-      <div className="bg-white rounded-full p-2">
+      <div className="bg-white rounded-full p-3">
         <Truck className="h-6 w-6 text-gray-900" />
       </div>
       <div>
-        <h3 className="text-sm font-medium">Vehicle Shipping</h3>
-        <p className="text-xs text-purple-500">Import/ Export/ ERP</p>
+        <h3 className="text-base font-semibold">Vehicle Shipping</h3>
+        <p className="text-xs text-purple-400">Import/ Export/ ERP</p>
       </div>
     </TabsTrigger>
 
     <TabsTrigger
       value="car-selling"
-      className="flex items-center p-4 space-x-3 cursor-pointer hover:text-purple-700"
+      className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
     >
-      <div className="bg-white rounded-full p-2">
+      <div className="bg-white rounded-full p-3">
         <Car className="h-6 w-6 text-gray-900" />
       </div>
       <div>
-        <h3 className="text-sm font-medium">Car Selling Platform</h3>
-        <p className="text-xs text-purple-500">as a Service</p>
+        <h3 className="text-base font-semibold">Car Selling Platform</h3>
+        <p className="text-xs text-purple-400">as a Service</p>
       </div>
     </TabsTrigger>
 
     <TabsTrigger
       value="human-resource"
-      className="flex items-center p-4 space-x-3 cursor-pointer hover:text-purple-700"
+      className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
     >
-      <div className="bg-white rounded-full p-2">
+      <div className="bg-white rounded-full p-3">
         <Users className="h-6 w-6 text-gray-900" />
       </div>
       <div>
-        <h3 className="text-sm font-medium">Human Resource</h3>
-        <p className="text-xs text-purple-500">Management Solution</p>
+        <h3 className="text-base font-semibold">Human Resource</h3>
+        <p className="text-xs text-purple-400">Management Solution</p>
       </div>
     </TabsTrigger>
 
     <TabsTrigger
       value="coming-soon"
-      className="flex items-center p-4 space-x-3 cursor-pointer hover:text-purple-700"
+      className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
     >
-      <div className="bg-white rounded-full p-2">
+      <div className="bg-white rounded-full p-3">
         <Clock className="h-6 w-6 text-gray-900" />
       </div>
       <div>
-        <h3 className="text-sm font-medium">Coming Soon</h3>
-        <p className="text-xs text-purple-500">&nbsp;</p>
+        <h3 className="text-base font-semibold">Coming Soon</h3>
+        <p className="text-xs text-purple-400">&nbsp;</p>
       </div>
     </TabsTrigger>
   </div>
 </TabsList>
+
+
 
 
             {/* Vehicle Shipping Content */}
@@ -185,7 +187,7 @@ export default function ERMService() {
                   </div>
                 </CardContent>
               </Card>
-              <ERPFAQSection faqs={importExportFaqs} />
+              
             </TabsContent>
 
             {/* Car Selling Platform Content */}
@@ -201,7 +203,7 @@ export default function ERMService() {
                   </div>
                 </CardContent>
               </Card>
-              <ERPFAQSection faqs={carSellingFaqs} />
+              
             </TabsContent>
 
             {/* Human Resource Content */}
@@ -217,7 +219,7 @@ export default function ERMService() {
                   </div>
                 </CardContent>
               </Card>
-              <ERPFAQSection faqs={hrmsFaqs} />
+              
             </TabsContent>
 
             {/* Coming Soon Content */}
@@ -237,6 +239,38 @@ export default function ERMService() {
         </div>
       </section>
 
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+  <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 sm:mb-10">
+    <span className="text-black">Frequently Asked </span>
+    <span className="text-purple-600 block">Questions</span>
+  </h2>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+    {/* Import/Export Section */}
+    <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
+      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
+        Import / Export
+      </h3>
+      <ERPFAQSection faqs={importExportFaqs} />
+    </div>
+    
+    {/* Car Selling Platform Section */}
+    <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
+      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
+        Car Selling Platform
+      </h3>
+      <ERPFAQSection faqs={carSellingFaqs} />
+    </div>
+    
+    {/* HRMS Section */}
+    <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
+      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
+        HRMS
+      </h3>
+      <ERPFAQSection faqs={hrmsFaqs} />
+    </div>
+  </div>
+</section>
     </main>
   )
 }
@@ -396,3 +430,4 @@ const carSellingFaqs = [
       'Definitely. Our HRMS includes automated payroll processing, leave request workflows, tax calculations, and payslip generation.',
   },
 ]
+//<ERPFAQSection faqs={importExportFaqs} /> <ERPFAQSection faqs={carSellingFaqs} /> <ERPFAQSection faqs={hrmsFaqs} />

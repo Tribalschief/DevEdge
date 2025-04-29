@@ -117,7 +117,7 @@ export default function ServicesGrid({ services , title }: ServicesGridProps) {
         const description = service.description || "No description available"
         const coverageItems = service.coverageItems || []
         const imageSrc = service.imageSrc.asset.url || "/placeholder.svg"
-        console.log("imageSrc", imageSrc)
+        // console.log("imageSrc", imageSrc)
         // Render the big service
         gridSections.push(
           <div key={`big-service-${index}`} className="mb-12">
