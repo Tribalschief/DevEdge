@@ -77,7 +77,7 @@ export default async function ServicePage({ params }: any) {
              </div>
 
             {/* Ensure content below WM has a positive z-index or is positioned later */}
-            <div className="mx-auto mt-8 relative z-[1]"> {/* Adjust z-index as needed */}
+            <div className="mt-8 relative z-[1]"> {/* Adjust z-index as needed */}
               <CardGrid services={service.offering} title={service.title} />
             </div>
           </div>

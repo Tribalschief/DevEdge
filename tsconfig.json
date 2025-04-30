@@ -33,7 +33,7 @@
     "**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
-, "components/leaders/advisory.js", "components/core/coredivider.js", "components/service/main.js", "components/navbar/navbar.js", "components/details/new/newGrid.js"  ],
+, "components/leaders/advisory.js", "components/core/coredivider.js", "components/service/main.js", "components/navbar/navbar.js", "components/details/new/newGrid.js", "components/navbar/service.js"  ],
   "exclude": [
     "node_modules"
   ]

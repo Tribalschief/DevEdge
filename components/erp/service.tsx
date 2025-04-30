@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowRight, Car, Clock, Package, Users,  Globe, Import, Ship, Truck, } from "lucide-react"
 import Link from "next/link"
 import { ERPFAQSection } from "./faq"
+import { FaShieldAlt } from "react-icons/fa"
 
 export default function ERMService() {
   return (
@@ -63,7 +64,7 @@ export default function ERMService() {
 
           <Tabs defaultValue="vehicle-shipping" className="w-full ">
           <TabsList className="w-full h-full bg-gray-900 text-white py-16 px-4">
-  <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-6">
+  <div className="max-w-full mx-auto flex flex-wrap justify-center gap-6">
     <TabsTrigger
       value="vehicle-shipping"
       className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
@@ -76,7 +77,18 @@ export default function ERMService() {
         <p className="text-xs text-purple-400">Import/ Export/ ERP</p>
       </div>
     </TabsTrigger>
-
+    <TabsTrigger
+      value="Cybersecurity Risk Management Platform"
+      className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
+    >
+      <div className="bg-white rounded-full p-3">
+        <FaShieldAlt  className="h-6 w-6 text-gray-900" />
+      </div>
+      <div>
+        <h3 className="text-base font-semibold">Cybersecurity  </h3>
+        <p className="text-xs text-purple-400">Risk Management Platform </p>
+      </div>
+    </TabsTrigger>
     <TabsTrigger
       value="car-selling"
       className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
@@ -161,7 +173,7 @@ export default function ERMService() {
                               <CardContent>
                                 <p className="text-md text-gray-600">{card.description}</p>
                               </CardContent>
-
+                              
                             </Card>
                           ))}
                         </div>
@@ -186,10 +198,55 @@ export default function ERMService() {
                     </Tabs>
                   </div>
                 </CardContent>
+                <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
+      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
+        Import / Export
+      </h3>
+      <ERPFAQSection faqs={importExportFaqs} />
+    </div>
               </Card>
               
             </TabsContent>
+            
+            {/* Cyber Security Content */}
+            <TabsContent value="Cybersecurity Risk Management Platform">
+              <Card className="border border-gray-200 ">
+                <CardHeader>
+                  <CardTitle>Cybersecurity Risk Management Platform</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  
+                     
 
+                      {/* Import Tab Content */}
+                      <TabsContent value="Cybersecurity Risk Management Platform" className="mt-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {cyberRiskCards.map((card, index) => (
+                            <Card key={index} className="border border-gray-200 shadow-sm">
+                              <CardHeader>
+                                <CardTitle className="text-xl font-medium">{card.title}</CardTitle>
+                              </CardHeader>
+                              <CardContent>
+                                <p className="text-md text-gray-600">{card.description}</p>
+                              </CardContent>
+
+                            </Card>
+                          ))}
+                        </div>
+                      </TabsContent>
+
+                     
+                  
+                </CardContent>
+                
+              </Card>
+              <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
+      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
+        Cyber Risk Management Platform
+      </h3>
+      <ERPFAQSection faqs={cyberRiskFaqs} />
+    </div>
+            </TabsContent>
             {/* Car Selling Platform Content */}
             <TabsContent value="car-selling">
               <Card className="border border-gray-200">
@@ -202,6 +259,12 @@ export default function ERMService() {
                     <p className="text-gray-600">Coming Soon</p>
                   </div>
                 </CardContent>
+                <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
+      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
+        Car Selling Platform
+      </h3>
+      <ERPFAQSection faqs={carSellingFaqs} />
+    </div>
               </Card>
               
             </TabsContent>
@@ -219,7 +282,12 @@ export default function ERMService() {
                   </div>
                 </CardContent>
               </Card>
-              
+              <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
+      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
+        HRMS
+      </h3>
+      <ERPFAQSection faqs={hrmsFaqs} />
+    </div>
             </TabsContent>
 
             {/* Coming Soon Content */}
@@ -239,38 +307,7 @@ export default function ERMService() {
         </div>
       </section>
 
-      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-  <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 sm:mb-10">
-    <span className="text-black">Frequently Asked </span>
-    <span className="text-purple-600 block">Questions</span>
-  </h2>
-  
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-    {/* Import/Export Section */}
-    <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
-      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
-        Import / Export
-      </h3>
-      <ERPFAQSection faqs={importExportFaqs} />
-    </div>
-    
-    {/* Car Selling Platform Section */}
-    <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
-      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
-        Car Selling Platform
-      </h3>
-      <ERPFAQSection faqs={carSellingFaqs} />
-    </div>
-    
-    {/* HRMS Section */}
-    <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
-      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
-        HRMS
-      </h3>
-      <ERPFAQSection faqs={hrmsFaqs} />
-    </div>
-  </div>
-</section>
+      
     </main>
   )
 }
@@ -322,6 +359,35 @@ const serviceCards = [
       "This module ensures the company's financial stability and structure by enabling precise currency control and financial management.",
   },
 ]
+
+const cyberRiskFaqs = [
+  {
+    question: 'What is a Cyber Risk Management Tool (CRMT)?',
+    answer:
+      'A CRMT is a platform that helps organizations identify, assess, monitor, and remediate cyber risks. It centralizes risk data, integrates threat intelligence, and supports compliance with frameworks like ISO 27001 and NIST.',
+  },
+  {
+    question: 'Does this solution support both technical and non-technical risk assessments?',
+    answer:
+      'Yes. The tool covers non-technical domains like Governance, Risk Management, and Third-party Risk, as well as technical areas such as OS, Network, Database, Middleware, IAM, and Vulnerability Management.',
+  },
+  {
+    question: 'Can the tool integrate with existing vulnerability scanners and SIEM solutions?',
+    answer:
+      'Absolutely. The tool supports integration with popular scanners and SIEM platforms, enabling real-time alerting, ticket creation, and automated remediation tracking.',
+  },
+  {
+    question: 'What deployment options are available—cloud, hybrid, or on-prem?',
+    answer:
+      'The platform is flexible and can be deployed as a cloud-based, hybrid, or on-premises solution, depending on the organization’s preferences and regulatory requirements.',
+  },
+  {
+    question: 'How does the solution support exception and risk acceptance workflows?',
+    answer:
+      'It includes built-in governance workflows for exception handling, including risk acceptance, escalation, approvals, and periodic reviews, ensuring alignment with risk appetite.',
+  },
+];
+
 
 const exportCards = [
   {
@@ -393,7 +459,54 @@ const importExportFaqs = [
     answer:
       'Absolutely. Our ERP is cloud-based and modular, allowing you to scale across multiple warehouses, ports, or countries with unified visibility.',
   },
-]
+  {
+    question: 'Do you offer customization for ERP solutions?',
+    answer:
+      'Yes. All our systems are modular and customizable. Whether you need localized workflows, multi-currency support, or language adjustments, we tailor solutions to fit your business.',
+  },
+  {
+    question: 'How is your ERP different from global platforms like ODOO, SAP or Oracle?',
+    answer:
+      'DevEdge ERP is cost-effective, quick to deploy, and highly adaptable to your specific industry and regional compliance needs without the heavy licensing burden of global ERPs.',
+  },
+  {
+    question: 'What industries are your ERP solutions suitable for?',
+    answer:
+      `Our ERP solutions are highly versatile and designed to serve a wide range of industries. They are ideal for:
+• Logistics & Shipping
+• Auto Trading & Dealerships
+• Human Resources
+• Government Services
+• Asset & Inventory Management
+
+In addition, we provide customized ERP solutions tailored to the unique needs of industries including, but not limited to:
+• Hospitality
+• Investment & Financial Services
+• Retail & Real Estate
+• Healthcare
+• Industrial & Manufacturing
+• Power & Utilities
+• Shipping & Logistics
+• Consumer Markets
+
+Whether you're managing operations in a single sector or across multiple domains, our ERP systems are built for flexibility, compliance, and scalable growth.`,
+  },
+  {
+    question: 'Can you integrate your ERP with my existing systems?',
+    answer:
+      'Yes. We offer seamless API integrations with CRMs, finance tools, warehouse systems, and legacy applications.',
+  },
+  {
+    question: 'Do you offer cloud-based deployment and support multi-location businesses?',
+    answer:
+      'Yes, our ERP is cloud-native, supports hybrid cloud environments, and allows centralized control across multiple locations.',
+  },
+  {
+    question: 'Do you provide mobile and web applications for your ERP and platform solutions?',
+    answer:
+      'Yes, we offer dedicated mobile apps for Android and iOS, as well as responsive web applications for all our ERP modules, car selling platforms, and HR solutions. These apps ensure that your team can access, manage, and monitor operations anytime, anywhere whether it\'s tracking vehicle shipments, managing HR tasks, or accessing dashboards on the go.',
+  },
+];
 
 const carSellingFaqs = [
   {
@@ -431,3 +544,56 @@ const carSellingFaqs = [
   },
 ]
 //<ERPFAQSection faqs={importExportFaqs} /> <ERPFAQSection faqs={carSellingFaqs} /> <ERPFAQSection faqs={hrmsFaqs} />
+
+const cyberRiskCards = [
+  {
+    title: "Cyber Risk Register & Lifecycle Management",
+    description:
+      "Centralized module to identify, log, assess, and track cyber risks across various domains—network, OS, IAM, and third-party. Supports categorization by inherent and residual risk, with linkage to business units and enterprise risk statements. Enables risk updates, ownership assignments, and historical tracking for audits and reviews.",
+  },
+  {
+    title: "Risk Scoring & Impact Analysis Engine",
+    description:
+      "Automates risk scoring using internal data and external threat feeds, factoring in likelihood, impact, and breach probability. Includes customizable scoring models aligned with regulatory and industry frameworks (e.g., NIST, ISO 27005). Provides visual scoring trends and risk heatmaps for informed decision-making.",
+  },
+  {
+    title: "Vulnerability & Threat Management",
+    description:
+      "Integrates with vulnerability scanners and threat intelligence feeds to detect, log, and track exposures across IT assets. Supports ticket creation for remediation actions, and maps vulnerabilities to specific risks and business areas. Allows evidence attachments, timelines, and closure validation to maintain audit readiness.",
+  },
+  {
+    title: "Compliance & ISMS Support (ISO/IEC 27001 & 31000 Ready)",
+    description:
+      "Helps map controls to ISO 27001, NIST CSF, or organization-specific policies, and track non-compliance and remediation. Identified gaps are logged, assigned, and monitored in real-time through dashboards and auto-notifications. Enables audit trail generation and evidence management for internal and external audits.",
+  },
+  {
+    title: "Exception Management & Risk Acceptance Workflow",
+    description:
+      "Automates governance workflows for exceptions, including multi-level approvals, justifications, and sign-off tracking. Ensures that accepted risks are documented, reviewed periodically, and revisited based on changes in threat landscape. Helps enforce risk appetite thresholds and escalation rules.",
+  },
+  {
+    title: "Real-Time Dashboards & Analytics Reporting",
+    description:
+      "Offers interactive dashboards showing risk trends, domain-level metrics, open issues, and remediation progress. Generates multiple report types—Summary, Issues, and Detailed—exportable in various formats for stakeholders. Supports scheduled reporting, risk scoring breakdowns, and drill-down capability for granular insights.",
+  },
+  {
+    title: "Third-Party Risk Management (TPRM)",
+    description:
+      "Tracks and evaluates cybersecurity posture of vendors and partners with questionnaires, scoring, and ongoing monitoring. Supports supplier onboarding risk assessments, SLA tracking, and third-party breach notifications. Helps reduce supply chain risks and ensure vendor compliance with security policies.",
+  },
+  {
+    title: "Attack Surface Monitoring (Emerging Trend)",
+    description:
+      "Continuously scans and maps all exposed digital assets (internal/external) to detect misconfigurations or shadow IT. Leverages external threat intelligence and passive scanning to identify high-risk entry points. Helps prioritize remediation and close attack vectors before they can be exploited.",
+  },
+  {
+    title: "AI-Driven Threat Intelligence & Risk Prediction (Emerging Trend)",
+    description:
+      "Uses AI/ML models to analyze behavioral patterns and predict potential future threats or exploit paths. Provides early warning indicators and suggested mitigation actions based on trend data and anomaly detection. Enhances proactive defense by shifting from reactive to predictive cyber risk management.",
+  },
+  {
+    title: "Integrated Evidence Repository",
+    description:
+      "A centralized, searchable storage for all documentation, remediation evidence, policies, and risk treatment actions. Ensures traceability, version control, and audit-readiness with role-based access and tagging features. Supports linking of evidence to specific risks, assessments, or compliance obligations.",
+  },
+];

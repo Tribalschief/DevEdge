@@ -18,7 +18,11 @@ export  function ERPFAQSection({ faqs }: { faqs: FAQ[] }) {
   return (
     
       
-
+<section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+  <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 sm:mb-10">
+    <span className="text-black">Frequently Asked </span>
+    <span className="text-purple-600 block">Questions</span>
+  </h2>
       <div className="space-y-5">
         {faqs.map((faq, i) => {
           const isOpen = openIndex === i
@@ -65,5 +69,6 @@ export  function ERPFAQSection({ faqs }: { faqs: FAQ[] }) {
           )
         })}
       </div>
+      </section>
   )
 }

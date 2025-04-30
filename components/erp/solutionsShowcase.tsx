@@ -22,6 +22,18 @@ export default function SolutionsShowcase() {
     },
     {
       id: 2,
+      title: "Cybersecurity Risk Management Platform",
+      features: [
+        "End-to-End Cyber Risk Lifecycle Management: Covers identification, assessment, monitoring, and remediation of cyber risks",
+        "Centralized Risk Register: Unified platform for documenting and managing risks across multiple categories (network, OS, third-party, etc.).",
+        "Real-Time Dashboards & Reporting: Generate summary, issue-based, and detailed reports with visual dashboards",
+        "Compliance & ISMS Support: Aligns with ISO/IEC 27001 & 31000 and supports centralized tracking of compliance gaps.",
+        "Exception & Governance Management: Includes workflows for risk acceptance, sign-offs, and escalation processes.",
+        "Vulnerability & Threat Management Integration: Supports capturing findings from risk assessments and integrates with scanners and SIEM.",
+      ],
+    },
+    {
+      id: 3,
       title: "Car Selling Platform",
       features: [
         "Showcase vehicles with detailed specifications and high-quality images",
@@ -33,7 +45,7 @@ export default function SolutionsShowcase() {
       ],
     },
     {
-      id: 3,
+      id: 4,
       title: "Human Resource Management Solution",
       features: [
         "Streamline employee onboarding and documentation processes",
