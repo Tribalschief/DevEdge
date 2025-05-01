@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Linkedin } from "lucide-react"
 import logo from "../public/whitelogo.png"
+import { Services } from "./navbar/service"
 
 export default function Footer() {
   return (
@@ -22,7 +23,7 @@ export default function Footer() {
           </div>
 
           <p className="text-sm text-gray-300">
-            DevEdge Consulting works with organizations across Pakistan, UAE, USA and Europe to help them achieve
+            DevEdge Consulting works with organizations across Pakistan, UAE, KSA and Europe to help them achieve
             operational excellence, manage risks, and embrace digital transformation with confidence.
           </p>
 
@@ -135,9 +136,9 @@ export default function Footer() {
           <h3 className="text-lg font-medium mb-4">Find Us</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link href="/playground" className="hover:underline">
-                Our Playground
-              </Link>
+              
+                
+                 <Services heading="Our Playground" />
             </li>
             <li>
               <Link href="/about" className="hover:underline">

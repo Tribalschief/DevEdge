@@ -47,9 +47,9 @@ export const DetailedHeader = ({
           
           </div>
           {/* Bottom Buttons */}
-          <div className="flex gap-4 flex-col sm:flex-row  sm:gap-x-8 md:gap-x-10 lg:gap-x-16 xl:gap-x-20 2xl:gap-x-24 mx-20 items-center mt-12   md:mt-12 xl:mt-16 2xl:mt-20 ">
+          <div className="flex gap-4 flex-col sm:flex-row  sm:gap-x-8 md:gap-x-10 lg:gap-x-16 xl:gap-x-16 2xl:gap-x-16 mx-20 items-center mt-12   md:mt-12 xl:mt-16 2xl:mt-20 ">
             <Link href="/rfp">
-              <Button className="text-sm sm:text-base">Submit Your RFP</Button>
+              <Button variant="outline" className="text-sm sm:text-base"  >Submit Your RFP</Button>
             </Link>
             <Link href="/contact">
               <Button variant="outline" className="text-sm sm:text-base text-black border-white hover:bg-white">

@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react"
 import Logo from "./logo"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { FaPhone, FaBars, FaAngleUp, FaAngleDown } from "react-icons/fa"
+import {  FaBars, FaAngleUp, FaAngleDown, FaPhoneAlt } from "react-icons/fa"
+import { FaPhone } from "react-icons/fa6";
 import { Services } from "./service"
 import { Company } from "./com"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -60,19 +61,20 @@ export const Navbar = () => {
             Home
           </Link>
           <div className="text-base xl:text-xl lg:text-lg font-medium">
-            <Services heading="Services" />
+            <Services heading="Playground" />
           </div>
+          <Link href="/about" className="text-base xl:text-xl lg:text-lg font-medium hover:opacity-80">
+            About 
+          </Link>
           <div className="text-base xl:text-xl lg:text-lg font-medium">
             <Company title="Company" />
           </div>
           <Link href="/erp" className="text-base lg:text-lg xl:text-xl font-medium">
-            ERP's
+            Software
           </Link>
-        </div>
-
-        {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-x-3 lg:gap-x-5">
           <Searching />
+          <div className="hidden md:flex items-center gap-x-3 lg:gap-x-5">
+          
           <Link href="/rfp">
             <Button
               className={`transition-colors duration-300 ${
@@ -95,6 +97,10 @@ export const Navbar = () => {
             </div>
           </Link>
         </div>
+        </div>
+
+        {/* Desktop Actions */}
+        
 
         {/* Mobile Menu */}
         <div className="md:hidden">
@@ -109,13 +115,17 @@ export const Navbar = () => {
                 <Link href="/" className="text-lg font-semibold" onClick={() => setScrolled(false)}>
                   Home
                 </Link>
+                <Link href="/about" className="text-base xl:text-xl lg:text-lg font-medium hover:opacity-80">
+            About Us
+          </Link>
                 <div className="text-lg font-semibold">
                 <div className="flex flex-col">
+                
   <button
     onClick={() => setServicesOpen(!servicesOpen)}
     className="text-lg font-semibold flex items-center gap-x-2"
   >
-    Services
+    Our Playground
     <motion.span
       className="mt-1"
       animate={{ rotate: servicesOpen ? 180 : 0 }}
@@ -237,7 +247,7 @@ export const Navbar = () => {
 </div>
                 </div>
                 <Link href="/erp" className="text-lg font-semibold">
-                  Our ERP's
+                  Our Solutions
                 </Link>
 
                 <div className="pt-6">
@@ -250,7 +260,9 @@ export const Navbar = () => {
                     </Link>
                     <Link href="/contact">
                       <Button className="w-full flex items-center justify-center gap-2">
-                        <FaPhone />
+                        
+                      <FaPhone />
+                        
                         Contact Us
                       </Button>
                     </Link>

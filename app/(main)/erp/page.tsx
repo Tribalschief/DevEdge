@@ -3,6 +3,7 @@ import LastERM from '@/components/erp/last'
 import ERMService from '@/components/erp/service'
 import SolutionsShowcase from '@/components/erp/solutionsShowcase'
 import LogoCarousel from '@/components/erp/tagline'
+import { Tech } from '@/components/tech'
 import React from 'react'
 
 const ERM = () => {
@@ -13,8 +14,9 @@ const ERM = () => {
     <SolutionsShowcase/>
     <LogoCarousel/>
     <ERMService/>
-    
+    <Tech/>
     <LastERM/>
+
     </main>
   )
 }

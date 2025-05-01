@@ -1,94 +1,85 @@
+'use client'
+
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import cn from 'classnames';
+
 interface IndustryCardProps {
     title: string
     backgroundIcon: any
-   
     description: string
-    
-    number: number
-  }
-import Image from 'next/image';
-//   export const IndustryCard = ({ title, icon, number, description }: IndustryCardProps) => {
-//     return (
-//       <div className="relative p-[2px] bg-opacity- rounded-lg bg-[linear-gradient(180deg,#6A0DAD,#00E0FF)] h-full w-full max-w-sm mx-auto">
-//         {/* Floating Icon */}
-//         <div className="absolute z-10 lg:-top-4  sm:-top-8 left-1/2 transform -translate-x-1/2 ">
-//           <div className="bg-white p-12 sm:p-4 rounded-full border-2 shadow-md" 
-//                style={{ borderColor: "linear-gradient(90deg,#6A0DAD,#00E0FF)" }}>
-//             {icon}
-//           </div>
-//         </div>
-        
-//         {/* Inner white card */}
-//         <div className="bg-white h-full  rounded-lg pt-8 sm:pt-10 pb-4 sm:pb-6 px-4 sm:px-6 text-center relative overflow-hidden">
-//           {/* Number at top-right */}
-//           <span className="absolute top-1 left-2 text-xl sm:text-2xl font-bold text-gray-700">
-//             {number}
-//           </span>
-  
-//           {/* Title */}
-//           <h3 className="text-xs sm:text-sm font-bold text-purple-700 uppercase mb-1 sm:mb-2 leading-tight">
-//             {title}
-//           </h3>
-  
-//           {/* Description */}
-//           <p className="text-gray-600 text-xs leading-relaxed">
-//             {description}
-//           </p>
-//         </div>
-//       </div>
-//     );
-//   };
+    number: number | string
+}
 
-import React from 'react'; // Make sure to import React if not already
+export const IndustryCard = ({ number, title, description, backgroundIcon }: IndustryCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
 
-// Example Icon component (replace with your actual icon)
-
-
-export const IndustryCard = ({ number, title, description, backgroundIcon }:IndustryCardProps) => {
   return (
-    <div className="relative p-[2px]  rounded-lg new-border  h-full w-full max-w-sm mx-auto shadow-lg">
-    <div className=''>
-        {/* Floating Icon structure (using simple white bg/border as per image reference) */}
-        <div className="absolute z-10 -top-5 md:-top-6 left-1/2 transform -translate-x-1/2">
-             <div className="bg-white p-3 sm:p-4 rounded-full border border-gray-200 shadow-md">
-                 <Image
-                             src={backgroundIcon || '/placeholder.svg'}
-                             alt={title}
-                             fill
-                             className="object-cover brightness-[0.6]" // dark overlay effect
-                           />
-             </div>
+    // --- Outer Motion Container (Animation & Icon Positioning Context) ---
+    // NO overflow-hidden, NO padding, NO border class here
+    <motion.div
+      className="relative h-full w-full max-w-sm mx-auto" // Keep relative for positioning context
+      initial={{ opacity: 0.8, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -5 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 15 }}
+    >
+      {/* --- Floating Icon (Positioned relative to the outer div) --- */}
+      <div className="absolute z-20 -top-5 md:-top-6 left-1/2 transform -translate-x-1/2">
+        <div className="relative bg-white p-3 sm:p-4 rounded-full border border-gray-200 shadow-md w-14 h-14 sm:w-16 sm:h-16 overflow-hidden">
+          <Image
+            src={backgroundIcon || '/placeholder.svg'}
+            alt={`${title} icon`}
+            layout="fill"
+            objectFit="cover"
+            className="brightness-[0.85]"
+          />
         </div>
+      </div>
 
-        {/* Inner Card Content Area */}
+      {/* --- Inner Container (Handles Border, Background, Content, Clipping for Underline) --- */}
+      <div
+        className={cn(
+          "relative h-full w-full rounded-lg shadow-lg overflow-hidden", // Needs relative, rounded, shadow, and crucially overflow-hidden
+          "p-[2px] gradient-border-purple-cyan" // Apply padding and border effect HERE
+        )}
+      >
+        {/* Actual Content Background and Text */}
         <div
-          // ** CRITICAL CHANGE HERE **
-          // Use RGBA for background: white (255,255,255) with 10% opacity (0.1)
-          // This makes ONLY the background transparent, not the text content.
-          className="bg-white bg-opacity-10
-                     h-full w-full 
+          className="bg-white bg-opacity-10 // Semi-transparent background
+                     h-full w-full
+                     rounded-lg // Rounded to match parent's visible shape after padding
                      pt-10 pb-4 sm:pb-6 px-4 sm:px-6
-                     text-center relative overflow-hidden"
+                     text-center relative" // No overflow-hidden needed here unless content itself overflows
         >
-            {/* Number at top-left */}
-            {/* Text color MUST contrast with the background *behind* the card */}
-            <span className="absolute top-2 left-3 text-lg sm:text-xl font-bold  drop-shadow-sm"> {/* Changed to white */}
-                {number}.
-            </span>
+          {/* Number at top-left */}
+          <span className="absolute top-2 left-3 text-lg sm:text-xl font-bold text-black drop-shadow-sm">
+            {number}.
+          </span>
 
-            {/* Title */}
-            {/* Text color MUST contrast */}
-            <h3 className="text-sm sm:text-base font-semibold text-[#6A28ca] uppercase mb-2 leading-tight drop-shadow-sm"> {/* Changed to light purple */}
-                {title}
-            </h3>
+          {/* Title */}
+          <h3 className="text-sm sm:text-base font-semibold text-[#A174E4] uppercase mb-2 leading-tight drop-shadow-sm">
+            {title}
+          </h3>
 
-            {/* Description */}
-            {/* Text color MUST contrast */}
-            <p className=" text-xs sm:text-sm leading-relaxed drop-shadow-sm"> {/* Changed to light gray */}
-                {description}
-            </p>
+          {/* Description */}
+          <p className="text-gray-200 text-xs sm:text-sm leading-relaxed drop-shadow-sm">
+            {description}
+          </p>
         </div>
-        </div>
-    </div>
-  );;
+
+        {/* --- Animated Underline Bar --- */}
+        {/* Positioned relative to the Inner Container which has overflow-hidden */}
+        <motion.div
+          className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400"
+          initial={{ scaleX: 0, originX: 0 }}
+          animate={isHovered ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        />
+      </div>
+    </motion.div>
+  );
 };

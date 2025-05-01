@@ -1,11 +1,47 @@
+'use client'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowRight, Car, Clock, Package, Users,  Globe, Import, Ship, Truck, } from "lucide-react"
 import Link from "next/link"
 import { ERPFAQSection } from "./faq"
 import { FaShieldAlt } from "react-icons/fa"
+import { motion } from "framer-motion"
 
 export default function ERMService() {
+  const InlineHoverCard = ({ title, description }: { title: string; description: string; }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    return (
+      <motion.div
+        className="relative flex flex-col p-6 rounded-lg shadow-md border border-gray-200 bg-white transition-all overflow-hidden h-full" // Combined styles
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)" }} // Lift and enhance shadow
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        transition={{ duration: 0.3 }}
+      >
+        {/* --- Content mirroring the original Card structure --- */}
+        {/* CardHeader equivalent */}
+        <div className="mb-4"> {/* Added spacing */}
+           <h3 className="text-xl font-medium text-center">{title}</h3> {/* Mimic CardTitle */}
+        </div>
+        {/* CardContent equivalent */}
+        <div className="flex-grow"> {/* Use flex-grow to push bottom bar */}
+            <p className="text-md text-gray-600 text-center">{description}</p> {/* Mimic CardContent paragraph */}
+        </div>
+        {/* --- End of content --- */}
+
+        {/* Bottom Animated Bar (from your target example) */}
+        <motion.div
+          className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-indigo-400"
+          initial={{ scaleX: 0, originX: 0 }}
+          animate={isHovered ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.3 }}
+        />
+      </motion.div>
+    );
+  }
   return (
     <main className="flex min-h-screen flex-col items-center">
       {/* Hero Section */}
@@ -59,251 +95,243 @@ export default function ERMService() {
       {/* Customizable Modules with Service Tabs */}
       <section className="w-full py-12 px-auto ">
         <div className="w-full sm:mx-auto text-center">
-          <h2 className="text-xl font-bold mb-2">Experience Customizable Modules</h2>
-          <p className="text-gray-600 mb-8">with Dynamic Workflows</p>
+          
 
-          <Tabs defaultValue="vehicle-shipping" className="w-full ">
-          <TabsList className="w-full h-full bg-gray-900 text-white py-16 px-4">
-  <div className="max-w-full mx-auto flex flex-wrap justify-center gap-6">
-    <TabsTrigger
-      value="vehicle-shipping"
-      className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
-    >
-      <div className="bg-white rounded-full p-3">
-        <Truck className="h-6 w-6 text-gray-900" />
-      </div>
-      <div>
-        <h3 className="text-base font-semibold">Vehicle Shipping</h3>
-        <p className="text-xs text-purple-400">Import/ Export/ ERP</p>
-      </div>
-    </TabsTrigger>
-    <TabsTrigger
-      value="Cybersecurity Risk Management Platform"
-      className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
-    >
-      <div className="bg-white rounded-full p-3">
-        <FaShieldAlt  className="h-6 w-6 text-gray-900" />
-      </div>
-      <div>
-        <h3 className="text-base font-semibold">Cybersecurity  </h3>
-        <p className="text-xs text-purple-400">Risk Management Platform </p>
-      </div>
-    </TabsTrigger>
-    <TabsTrigger
-      value="car-selling"
-      className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
-    >
-      <div className="bg-white rounded-full p-3">
-        <Car className="h-6 w-6 text-gray-900" />
-      </div>
-      <div>
-        <h3 className="text-base font-semibold">Car Selling Platform</h3>
-        <p className="text-xs text-purple-400">as a Service</p>
-      </div>
-    </TabsTrigger>
-
-    <TabsTrigger
-      value="human-resource"
-      className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
-    >
-      <div className="bg-white rounded-full p-3">
-        <Users className="h-6 w-6 text-gray-900" />
-      </div>
-      <div>
-        <h3 className="text-base font-semibold">Human Resource</h3>
-        <p className="text-xs text-purple-400">Management Solution</p>
-      </div>
-    </TabsTrigger>
-
-    <TabsTrigger
-      value="coming-soon"
-      className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:text-purple-500 transition-all"
-    >
-      <div className="bg-white rounded-full p-3">
-        <Clock className="h-6 w-6 text-gray-900" />
-      </div>
-      <div>
-        <h3 className="text-base font-semibold">Coming Soon</h3>
-        <p className="text-xs text-purple-400">&nbsp;</p>
-      </div>
-    </TabsTrigger>
-  </div>
-</TabsList>
-
-
-
-
-            {/* Vehicle Shipping Content */}
-            <TabsContent value="vehicle-shipping">
-              <Card className="border border-gray-200 ">
-                <CardHeader>
-                  <CardTitle>Vehicle Shipping</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="w-full overflow-x-auto pb-4">
-                    <Tabs defaultValue="import" className="w-full">
-                      <div className="min-w-max">
-                        <TabsList className="flex h-auto p-0 bg-transparent">
-                          <TabsTrigger
+          <Tabs defaultValue="vehicle-shipping" className="w-full">
+          
+      {/* Your TabsList (remains the same) */}
+      <TabsList className="w-full h-full bg-gray-900 text-white py-16 px-4">
+         {/* ... your TabsTrigger elements ... */}
+         <div className="max-w-full mx-auto flex flex-wrap justify-center gap-6">
+          <TabsTrigger
+            value="vehicle-shipping"
+            // Add data-state styling if needed for active tab look
+            className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:bg-gray-700 text-gray-300 hover:text-purple-400 data-[state=active]:bg-purple-900 data-[state=active]:text-white transition-all"
+          >
+            <div className="bg-white rounded-full p-3">
+              <Truck className="h-6 w-6 text-gray-900" />
+            </div>
+            <div>
+              <h3 className="text-base font-semibold">Vehicle Shipping</h3>
+              <p className="text-xs text-purple-400">Import/ Export/ ERP</p>
+            </div>
+          </TabsTrigger>
+          <TabsTrigger
+            value="Cybersecurity Risk Management Platform"
+            className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:bg-gray-700 text-gray-300 hover:text-purple-400 data-[state=active]:bg-purple-900 data-[state=active]:text-white transition-all"
+          >
+            <div className="bg-white rounded-full p-3">
+              <FaShieldAlt className="h-6 w-6 text-gray-900" />
+            </div>
+            <div>
+              <h3 className="text-base font-semibold">Cybersecurity </h3>
+              <p className="text-xs text-purple-400">Risk Management Platform </p>
+            </div>
+          </TabsTrigger>
+          <TabsTrigger
+            value="car-selling"
+            className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:bg-gray-700 text-gray-300 hover:text-purple-400 data-[state=active]:bg-purple-900 data-[state=active]:text-white transition-all"
+          >
+            <div className="bg-white rounded-full p-3">
+              <Car className="h-6 w-6 text-gray-900" />
+            </div>
+            <div>
+              <h3 className="text-base font-semibold">Car Selling Platform</h3>
+              <p className="text-xs text-purple-400">as a Service</p>
+            </div>
+          </TabsTrigger>
+          <TabsTrigger
+            value="human-resource"
+            className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:bg-gray-700 text-gray-300 hover:text-purple-400 data-[state=active]:bg-purple-900 data-[state=active]:text-white transition-all"
+          >
+            <div className="bg-white rounded-full p-3">
+              <Users className="h-6 w-6 text-gray-900" />
+            </div>
+            <div>
+              <h3 className="text-base font-semibold">Human Resource</h3>
+              <p className="text-xs text-purple-400">Management Solution</p>
+            </div>
+          </TabsTrigger>
+          <TabsTrigger
+            value="coming-soon"
+            className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:bg-gray-700 text-gray-300 hover:text-purple-400 data-[state=active]:bg-purple-900 data-[state=active]:text-white transition-all"
+          >
+            <div className="bg-white rounded-full p-3">
+              <Clock className="h-6 w-6 text-gray-900" />
+            </div>
+            <div>
+              <h3 className="text-base font-semibold">Coming Soon</h3>
+              <p className="text-xs text-purple-400"> </p>
+            </div>
+          </TabsTrigger>
+        </div>
+      </TabsList>
+      
+      {/* ====== Vehicle Shipping Content ====== */}
+      <TabsContent value="vehicle-shipping" className="pt-6">
+        <Card className="border border-gray-200 shadow-lg rounded-lg overflow-hidden">
+           <CardHeader className="bg-gray-50 border-b border-gray-200">
+            <CardTitle className="text-2xl font-semibold text-gray-800">Vehicle Shipping Services</CardTitle>
+          </CardHeader>
+          <h2 className="text-xl font-bold mt-4 mb-2">Experience Customizable Modules</h2>
+          <p className="text-gray-600 mb-2">with Dynamic Workflows</p>
+          <CardContent className="p-0">
+            <div className="w-full overflow-x-auto">
+              <Tabs defaultValue="import" className="w-full">
+                {/* Import/Export TabsList */}
+                <div className="border-b border-gray-200">
+                     <TabsList className="flex h-auto p-0 bg-transparent px-6">
+                       {/* ... Import/Export TabsTrigger ... */}
+                       <TabsTrigger
                             value="import"
-                            className="flex flex-col items-center w-40 py-4 px-6 rounded-none data-[state=active]:bg-purple-50 data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-purple-600"
-                          >
-                            <Import className="h-10 w-10 mb-2 text-purple-600" />
-                            <span className="text-xl">Import</span>
-                          </TabsTrigger>
-                          <TabsTrigger
+                            className="flex flex-col items-center w-auto min-w-[120px] sm:min-w-[160px] py-4 px-4 sm:px-6 rounded-none data-[state=active]:bg-purple-50 data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-purple-600 text-gray-600 data-[state=active]:text-purple-700 font-medium"
+                        >
+                            <Import className="h-8 w-8 sm:h-10 sm:w-10 mb-2 text-purple-600" />
+                            <span className="text-base sm:text-lg md:text-xl">Import</span>
+                        </TabsTrigger>
+                        <TabsTrigger
                             value="export"
-                            className="flex flex-col items-center py-4 w-40  px-6 rounded-none data-[state=active]:bg-purple-50 data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-purple-600"
-                          >
-                            <Globe className="h-10 w-10 mb-2 text-purple-600" />
-                            <span className="text-xs">Export</span>
-                          </TabsTrigger>
-                        </TabsList>
-                      </div>
-                      <div className="h-px w-full bg-gray-200 mt-0"></div>
+                            className="flex flex-col items-center w-auto min-w-[120px] sm:min-w-[160px] py-4 px-4 sm:px-6 rounded-none data-[state=active]:bg-purple-50 data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-purple-600 text-gray-600 data-[state=active]:text-purple-700 font-medium"
+                        >
+                            <Globe className="h-8 w-8 sm:h-10 sm:w-10 mb-2 text-purple-600" />
+                            <span className="text-base sm:text-lg md:text-xl">Export</span>
+                        </TabsTrigger>
+                    </TabsList>
+                </div>
 
-                      {/* Import Tab Content */}
-                      <TabsContent value="import" className="mt-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {serviceCards.map((card, index) => (
-                            <Card key={index} className="border border-gray-200 shadow-sm">
-                              <CardHeader>
-                                <CardTitle className="text-xl font-medium">{card.title}</CardTitle>
-                              </CardHeader>
-                              <CardContent>
-                                <p className="text-md text-gray-600">{card.description}</p>
-                              </CardContent>
-                              
-                            </Card>
-                          ))}
-                        </div>
-                      </TabsContent>
-
-                      {/* Export Tab Content */}
-                      <TabsContent value="export" className="mt-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {exportCards.map((card, index) => (
-                            <Card key={index} className="border border-gray-200 shadow-sm">
-                              <CardHeader>
-                                <CardTitle className="text-xl font-medium">{card.title}</CardTitle>
-                              </CardHeader>
-                              <CardContent>
-                                <p className="text-md text-gray-600">{card.description}</p>
-                              </CardContent>
-                              
-                            </Card>
-                          ))}
-                        </div>
-                      </TabsContent>
-                    </Tabs>
+                {/* ====== Import Tab Content - USE INLINE HOVER CARD ====== */}
+                <TabsContent value="import" className="mt-0 p-6 bg-white">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {serviceCards.map((card, index) => (
+                      // *** USE THE INLINE HOVER CARD COMPONENT ***
+                      <InlineHoverCard
+                        key={`import-${index}`}
+                        title={card.title}
+                        description={card.description}
+                      />
+                    ))}
                   </div>
-                </CardContent>
-                <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
-      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
-        Import / Export
-      </h3>
-      <ERPFAQSection faqs={importExportFaqs} />
-    </div>
-              </Card>
-              
-            </TabsContent>
-            
-            {/* Cyber Security Content */}
-            <TabsContent value="Cybersecurity Risk Management Platform">
-              <Card className="border border-gray-200 ">
-                <CardHeader>
-                  <CardTitle>Cybersecurity Risk Management Platform</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  
-                     
+                </TabsContent>
 
-                      {/* Import Tab Content */}
-                      <TabsContent value="Cybersecurity Risk Management Platform" className="mt-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {cyberRiskCards.map((card, index) => (
-                            <Card key={index} className="border border-gray-200 shadow-sm">
-                              <CardHeader>
-                                <CardTitle className="text-xl font-medium">{card.title}</CardTitle>
-                              </CardHeader>
-                              <CardContent>
-                                <p className="text-md text-gray-600">{card.description}</p>
-                              </CardContent>
-
-                            </Card>
-                          ))}
-                        </div>
-                      </TabsContent>
-
-                     
-                  
-                </CardContent>
-                
-              </Card>
-              <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
-      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
-        Cyber Risk Management Platform
-      </h3>
-      <ERPFAQSection faqs={cyberRiskFaqs} />
-    </div>
-            </TabsContent>
-            {/* Car Selling Platform Content */}
-            <TabsContent value="car-selling">
-              <Card className="border border-gray-200">
-                <CardHeader>
-                  <CardTitle>Car Selling Platform</CardTitle>
-                  <p className="text-sm text-gray-600">as a Service</p>
-                </CardHeader>
-                <CardContent>
-                  <div className="p-8 text-center">
-                    <p className="text-gray-600">Coming Soon</p>
+                {/* ====== Export Tab Content - USE INLINE HOVER CARD ====== */}
+                <TabsContent value="export" className="mt-0 p-6 bg-white">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {exportCards.map((card, index) => (
+                       // *** USE THE INLINE HOVER CARD COMPONENT ***
+                       <InlineHoverCard
+                        key={`export-${index}`}
+                        title={card.title}
+                        description={card.description}
+                      />
+                    ))}
                   </div>
-                </CardContent>
-                <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
-      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
-        Car Selling Platform
-      </h3>
-      <ERPFAQSection faqs={carSellingFaqs} />
-    </div>
-              </Card>
-              
-            </TabsContent>
+                </TabsContent>
+              </Tabs>
+            </div>
+          </CardContent>
+          {/* FAQ Section */}
+           <div className="bg-gray-100 p-5 sm:p-6 border-t border-gray-200">
+            <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
+              Vehicle Import / Export FAQs
+            </h3>
+            <ERPFAQSection faqs={importExportFaqs} />
+          </div>
+        </Card>
+      </TabsContent>
 
-            {/* Human Resource Content */}
-            <TabsContent value="human-resource">
-              <Card className="border border-gray-200">
-                <CardHeader>
-                  <CardTitle>Human Resource</CardTitle>
-                  <p className="text-sm text-gray-600">Management Solution</p>
-                </CardHeader>
-                <CardContent>
-                  <div className="p-8 text-center">
-                    <p className="text-gray-600">Coming Soon</p>
-                  </div>
-                </CardContent>
-              </Card>
-              <div className="bg-white rounded-lg shadow-md p-5 sm:p-6">
-      <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
-        HRMS
-      </h3>
-      <ERPFAQSection faqs={hrmsFaqs} />
-    </div>
-            </TabsContent>
+      {/* ====== Cyber Security Content ====== */}
+      <TabsContent value="Cybersecurity Risk Management Platform" className="pt-6">
+        <Card className="border border-gray-200 shadow-lg rounded-lg overflow-hidden">
+          <CardHeader className="bg-gray-50 border-b border-gray-200">
+            <CardTitle className="text-2xl font-semibold text-gray-800">Cybersecurity Risk Management Platform</CardTitle>
+          </CardHeader>
+          <h2 className="text-xl font-bold mt-4 mb-2">Experience Customizable Modules</h2>
+          <p className="text-gray-600 mb-2">with Dynamic Workflows</p>
+          <CardContent className="p-6">
+             {/* ====== USE INLINE HOVER CARD ====== */}
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {cyberRiskCards.map((card, index) => (
+                 // *** USE THE INLINE HOVER CARD COMPONENT ***
+                 <InlineHoverCard
+                    key={`cyber-${index}`}
+                    title={card.title}
+                    description={card.description}
+                  />
+              ))}
+            </div>
+          </CardContent>
+           {/* FAQ Section */}
+           <div className="bg-gray-100 p-5 sm:p-6 border-t border-gray-200">
+            <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
+              Cyber Risk Management FAQs
+            </h3>
+            <ERPFAQSection faqs={cyberRiskFaqs} />
+          </div>
+        </Card>
+      </TabsContent>
 
-            {/* Coming Soon Content */}
-            <TabsContent value="coming-soon">
-              <Card className="border border-gray-200">
-                <CardHeader>
-                  <CardTitle>Coming Soon</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="p-8 text-center">
-                    <p className="text-gray-600">New features will be available soon</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+      {/* ====== Car Selling Platform Content (Remains the Same) ====== */}
+      <TabsContent value="car-selling" className="pt-6">
+           <Card className="border border-gray-200 shadow-lg rounded-lg overflow-hidden">
+             {/* ... CardHeader ... */}
+             <CardHeader className="bg-gray-50 border-b border-gray-200">
+               <CardTitle className="text-2xl font-semibold text-gray-800">Car Selling Platform</CardTitle>
+               <p className="text-sm text-gray-600">as a Service</p>
+             </CardHeader>
+             <CardContent className="p-6">
+               <div className="py-12 text-center">
+                 <p className="text-lg text-gray-500 italic">Content Coming Soon...</p>
+               </div>
+             </CardContent>
+             {/* FAQ Section */}
+             <div className="bg-gray-100 p-5 sm:p-6 border-t border-gray-200">
+               <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
+                 Car Selling FAQs
+               </h3>
+               <ERPFAQSection faqs={carSellingFaqs} />
+             </div>
+           </Card>
+         </TabsContent>
+
+
+      {/* ====== Human Resource Content (Remains the Same) ====== */}
+      <TabsContent value="human-resource" className="pt-6">
+           <Card className="border border-gray-200 shadow-lg rounded-lg overflow-hidden">
+             {/* ... CardHeader ... */}
+              <CardHeader className="bg-gray-50 border-b border-gray-200">
+               <CardTitle className="text-2xl font-semibold text-gray-800">Human Resource Management</CardTitle>
+               <p className="text-sm text-gray-600">Solution</p>
+             </CardHeader>
+             <CardContent className="p-6">
+               <div className="py-12 text-center">
+                 <p className="text-lg text-gray-500 italic">Content Coming Soon...</p>
+               </div>
+             </CardContent>
+             {/* FAQ Section */}
+             <div className="bg-gray-100 p-5 sm:p-6 border-t border-gray-200">
+               <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-4">
+                 HRMS FAQs
+               </h3>
+               <ERPFAQSection faqs={hrmsFaqs} />
+             </div>
+           </Card>
+         </TabsContent>
+
+      {/* ====== Coming Soon Content (Remains the Same) ====== */}
+      <TabsContent value="coming-soon" className="pt-6">
+         <Card className="border border-gray-200 shadow-lg rounded-lg overflow-hidden">
+           {/* ... CardHeader ... */}
+            <CardHeader className="bg-gray-50 border-b border-gray-200">
+             <CardTitle className="text-2xl font-semibold text-gray-800">More Services Coming Soon</CardTitle>
+           </CardHeader>
+           <CardContent className="p-6">
+             <div className="py-12 text-center">
+               <p className="text-lg text-gray-500 italic">Stay tuned for exciting new platforms!</p>
+             </div>
+           </CardContent>
+         </Card>
+       </TabsContent>
+    </Tabs>
         </div>
       </section>
 
@@ -590,10 +618,5 @@ const cyberRiskCards = [
     title: "AI-Driven Threat Intelligence & Risk Prediction (Emerging Trend)",
     description:
       "Uses AI/ML models to analyze behavioral patterns and predict potential future threats or exploit paths. Provides early warning indicators and suggested mitigation actions based on trend data and anomaly detection. Enhances proactive defense by shifting from reactive to predictive cyber risk management.",
-  },
-  {
-    title: "Integrated Evidence Repository",
-    description:
-      "A centralized, searchable storage for all documentation, remediation evidence, policies, and risk treatment actions. Ensures traceability, version control, and audit-readiness with role-based access and tagging features. Supports linking of evidence to specific risks, assessments, or compliance obligations.",
   },
 ];

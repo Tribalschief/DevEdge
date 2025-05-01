@@ -30,12 +30,8 @@ const faqs = [
     question: 'Do you provide support with regulatory compliance and risk controls',
     answer:
       `Yes. Our GRC experts help you design frameworks, assess third-party risks, implement IT controls, and meet compliance requirements for standards like ISO, NCA, and local data protection laws (PDPL, DIFC, etc.).`,
-  },
-  {
-    question: 'Do you provide support with regulatory compliance and risk controls?',
-    answer:
-      `Yes. Our GRC experts help you design frameworks, assess third-party risks, implement IT controls, and meet compliance requirements for standards like ISO, NCA, and local data protection laws (PDPL, DIFC, etc.).`,
-  },{
+  }
+  ,{
     question: 'What is your approach to multi-cloud solutions?',
     answer:
       `We design, implement, and manage multi-cloud environments using AWS, Azure, Google Cloud, or hybrid models. Our focus is on cost optimization, security, and business continuity, ensuring your cloud infrastructure aligns with your goals.`,

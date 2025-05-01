@@ -1,5 +1,5 @@
 "use client";
-import { CalendarIcon, Mail, MapPin } from "lucide-react";
+import { CalendarIcon, Heading, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactForm from "../contact/form";
 
@@ -31,26 +31,39 @@ export default function LastERM() {
             <br />
             to Your Questions Related to
             <br />
-            DevEdge ERM
+            DevEdge ERP
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             {/* Left Column */}
             <div className="space-y-6 mt-[72px]">
               <div className="space-y-4">
-                <FeatureItem text="Streamline vehicle bidding, auto-assign winning bids to inventory, and track auction history." />
-                <FeatureItem text="Maintain real-time vehicle records with VIN, specifications, location, and status updates." />
-                <FeatureItem text="Optimize container assignments, fleet routes, and overall shipping logistics." />
-                <FeatureItem text="Developed on modern technology stack for enhanced efficiency and scalability." />
-                <FeatureItem text="Manage shipping schedules, generate Bills of Lading (BOLs), and monitor international deliveries." />
-                <FeatureItem text="Ensure compliance with UAE import regulations and accelerate customs clearance." />
-              </div>
+              <FeatureItem 
+  heading="✅ Proven ERP for Vehicle Logistics" 
+  text="Streamlines import/export, fleet tracking, and customs compliance." 
+/>
+<FeatureItem 
+  heading="🔐 Enterprise-Grade Security" 
+  text="Includes built-in cybersecurity and risk management." 
+/>
+<FeatureItem 
+  heading="⚙️ Modular & Scalable Platform" 
+  text="Start with what you need expand to HR, sales, or compliance anytime." 
+/>
+<FeatureItem 
+  heading="🌍 Trusted Across Middle East & Beyond" 
+  text="Supporting operations in multiple branches and international shipping." 
+/>
+<FeatureItem 
+  heading="👨‍💼 Industry Expertise You Can Rely On" 
+  text="Built by logistics and tech professionals for real-world challenges." 
+/></div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <ContactCard
                   icon={<Mail className="w-5 h-5 text-gray-600" />}
                   title="Email"
-                  lines={["hr@devedgeconsulting.com"]}
+                  lines={["contact@devedgeconsulting.com"]}
                 />
                 <ContactCard
                   icon={<MapPin className="w-5 h-5 text-gray-600" />}
@@ -58,6 +71,10 @@ export default function LastERM() {
                   lines={[
                     "Al Ruqa Al Hamra - Near Souk Al Haraj",
                     "Sharjah | United Arab Emirates",
+                     "Suit no. 805, Park Avenue Building. ",
+                     "Sharah-e-faisal | Karachi, Pakistan",
+                     "Alia Plaza, Thumamah Road at the Cross Roads with Abi Baker ",
+                     "Al-Siddiq Road | Riyadh, Kingdom of Saudi Arabia"
                   ]}
                 />
               </div>
@@ -75,11 +92,11 @@ export default function LastERM() {
 }
 
 // Feature Item Component
-function FeatureItem({ text }: { text: string }) {
+function FeatureItem({ heading,text }: {heading:string , text: string }) {
   return (
-    <div className="flex items-start gap-x-2">
+    <div className="flex flex-col items-start gap-x-2">
       <div className="mt-1">
-        <div className="w-3 h-3 rounded-full bg-purple-800"></div>
+        <div className="mt-4 text-xl font-bold text-[#3f3f3f]">{heading}</div>
       </div>
       <p className="text-sm sm:text-base">{text}</p>
     </div>

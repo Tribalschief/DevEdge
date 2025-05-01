@@ -4,7 +4,7 @@ import { Resend } from "resend"
 import { saveContactFormSubmission } from "@/lib/supabase"
 
 const resend = new Resend(process.env.RESEND_API!)
-console.log(process.env.RESEND_API)
+
 
 export async function sendContactForm(formData: any) {
   const { captchaToken, ...userData } = formData
