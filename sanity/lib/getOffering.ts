@@ -37,13 +37,11 @@ export const getServiceBySlug = async (slug: string) => {
           type,
           title,
           description,
-          backgroundIcon {
-            asset -> { url }
-          },
-          imageSrc {
-            asset -> { url }
-          },
-          coverageItems
+          backgroundIcon{
+          asset -> {
+            url
+          }
+        }
         },
         _type == "titleBlock" => {
           title

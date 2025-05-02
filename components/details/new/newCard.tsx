@@ -10,6 +10,7 @@ interface IndustryCardProps {
     backgroundIcon: any
     description: string
     number: number | string
+    
 }
 
 export const IndustryCard = ({ number, title, description, backgroundIcon }: IndustryCardProps) => {
@@ -30,12 +31,10 @@ export const IndustryCard = ({ number, title, description, backgroundIcon }: Ind
       {/* --- Floating Icon (Positioned relative to the outer div) --- */}
       <div className="absolute z-20 -top-5 md:-top-6 left-1/2 transform -translate-x-1/2">
         <div className="relative bg-white p-3 sm:p-4 rounded-full border border-gray-200 shadow-md w-14 h-14 sm:w-16 sm:h-16 overflow-hidden">
-          <Image
-            src={backgroundIcon || '/placeholder.svg'}
-            alt={`${title} icon`}
-            layout="fill"
-            objectFit="cover"
-            className="brightness-[0.85]"
+        <img
+            src={backgroundIcon} // Use the variable with fallback
+            alt={`${title} icon`} // Add meaningful alt text
+            
           />
         </div>
       </div>
@@ -66,7 +65,7 @@ export const IndustryCard = ({ number, title, description, backgroundIcon }: Ind
           </h3>
 
           {/* Description */}
-          <p className="text-gray-200 text-xs sm:text-sm leading-relaxed drop-shadow-sm">
+          <p className="text-gray-800 text-xs sm:text-sm leading-relaxed drop-shadow-sm">
             {description}
           </p>
         </div>
