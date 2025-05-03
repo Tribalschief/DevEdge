@@ -12,7 +12,7 @@ export const CardGrid = ({services , title}:{services: any, title: string}) => {
     <div className="py-8 md:py-12 max-w-7xl mt-10 sm:mt-16  mx-4 sm:ml-6 md:ml-10 lg:mx-auto lg:ml-16 xl:ml-24 2xl:ml-32">
       <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
         {services.map((service:any, index:number) => {
-          console.log('Background icon:', service.backgroundIcon?.asset?.url || 'No icon available');
+          
           return (
           
           <div 

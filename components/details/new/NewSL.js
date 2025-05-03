@@ -25,7 +25,7 @@ export function NewServicesList() {
       }, [])
   return (
      
-      <div className="relative flex flex-col items-center mt-16 sm:mt-12 mb-16  justify-center">
+      <div className="relative flex flex-col items-center mt-16 xl:mt-56 sm:mt-12 mb-16  justify-center">
         {/* Heading */}
         <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-center tracking-widest text-purple-700">
           OUR SERVICES

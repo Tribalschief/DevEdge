@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { getService } from "@/sanity/lib/getLinks"
 import Link from "next/link"
+import { FaAngleDown } from "react-icons/fa"
 
 export function Services({ heading }) {
   const [selectedService, setSelectedService] = React.useState("")
@@ -35,7 +36,7 @@ export function Services({ heading }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="cursor-pointer">{heading}</div>
+        <div className="cursor-pointer flex items-center gap-x-2">{heading}<span className="mt-1"><FaAngleDown /></span> </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>Our Playgrounds</DropdownMenuLabel>
@@ -46,9 +47,9 @@ export function Services({ heading }) {
           onValueChange={setSelectedService}
         >
           {Array.isArray(services) &&
-            services.map((service) => (
-              <DropdownMenuRadioItem key={service.slug} value={service.slug?.toString() ?? ''}>
-               <Link href={`/services/${service.slug}`}> {service.title} </Link>
+            services.map((service , index) => (
+              <DropdownMenuRadioItem key={index} value={service.slug?.toString() ?? ''}>
+               <Link href={`/services/${service.slug}`} className="w-full   py-1 hover:bg-muted/50 focus:bg-muted/50 focus:outline-none transition-colors rounded-md"><span className="mr-2 "> {index + 1}</span> {service.title} </Link>
               </DropdownMenuRadioItem>
             ))}
         </DropdownMenuRadioGroup>

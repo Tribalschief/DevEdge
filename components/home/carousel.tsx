@@ -147,7 +147,7 @@ export default function Carousel() {
             key={slide.id}
             onClick={() => goToSlide(index)}
             className={`h-3 w-3 rounded-full transition-all ${
-              currentSlide === index ? "bg-white scale-125" : "bg-gray-400"
+              currentSlide === index ? "bg-[#6208CA] scale-125" : "bg-gray-400"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -155,20 +155,7 @@ export default function Carousel() {
       </div>
 
       {/* Arrow navigation */}
-      <button
-        className="fixed left-4 top-1/2 -translate-y-1/2 bg-black/30 p-2 rounded-full text-white z-10 hover:bg-black/50 transition-colors"
-        onClick={prevSlide}
-        aria-label="Previous slide"
-      >
-        ←
-      </button>
-      <button
-        className="fixed right-4 top-1/2 -translate-y-1/2 bg-black/30 p-2 rounded-full text-white z-10 hover:bg-black/50 transition-colors"
-        onClick={nextSlide}
-        aria-label="Next slide"
-      >
-        →
-      </button>
+      
     </div>
   )
 }

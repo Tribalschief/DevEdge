@@ -7,7 +7,7 @@ import cn from 'classnames';
 
 interface IndustryCardProps {
     title: string
-    backgroundIcon: any
+    backgroundIcon: string
     description: string
     number: number | string
     
@@ -15,7 +15,7 @@ interface IndustryCardProps {
 
 export const IndustryCard = ({ number, title, description, backgroundIcon }: IndustryCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
-
+ console.log(typeof(backgroundIcon))
   return (
     // --- Outer Motion Container (Animation & Icon Positioning Context) ---
     // NO overflow-hidden, NO padding, NO border class here
@@ -29,15 +29,28 @@ export const IndustryCard = ({ number, title, description, backgroundIcon }: Ind
       transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 15 }}
     >
       {/* --- Floating Icon (Positioned relative to the outer div) --- */}
-      <div className="absolute z-20 -top-5 md:-top-6 left-1/2 transform -translate-x-1/2">
-        <div className="relative bg-white p-3 sm:p-4 rounded-full border border-gray-200 shadow-md w-14 h-14 sm:w-16 sm:h-16 overflow-hidden">
-        <img
-            src={backgroundIcon} // Use the variable with fallback
-            alt={`${title} icon`} // Add meaningful alt text
-            
-          />
-        </div>
+      <div className="absolute z-20 -top-8 sm:-top-9 md:-top-10 left-1/2 transform -translate-x-1/2">
+  <div className="relative bg-white rounded-full border border-gray-200 shadow-lg 
+                 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20
+                 flex items-center justify-center
+                 overflow-hidden
+                 transition-all duration-300 hover:shadow-xl">
+    {backgroundIcon ? (
+      <img
+        src={backgroundIcon}
+        alt={`${title || 'Feature'} icon`}
+        className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain"
+        loading="lazy"
+      />
+    ) : (
+      <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gray-100 rounded-full flex items-center justify-center">
+        <span className="text-gray-400 text-xl">
+          {title ? title.charAt(0).toUpperCase() : '?'}
+        </span>
       </div>
+    )}
+  </div>
+</div>
 
       {/* --- Inner Container (Handles Border, Background, Content, Clipping for Underline) --- */}
       <div

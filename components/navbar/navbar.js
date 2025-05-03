@@ -5,10 +5,10 @@ import Logo from "./logo"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {  FaBars, FaAngleUp, FaAngleDown, FaPhoneAlt } from "react-icons/fa"
-import { FaPhone } from "react-icons/fa6";
+import { FaPhone, FaWpforms } from "react-icons/fa6";
 import { Services } from "./service"
 import { Company } from "./com"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Searching from "./searching"
 import { getService } from "@/sanity/lib/getLinks"
 import { motion, AnimatePresence } from "framer-motion";
@@ -51,7 +51,7 @@ export const Navbar = () => {
     >
       <div className="flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 xl:px-36 h-[100px] md:h-[120px] lg:h-[120px]">
         {/* Logo */}
-        <Link href="/">
+        <Link href="/" className="">
           <Logo dark={scrolled} />
         </Link>
 
@@ -81,26 +81,23 @@ export const Navbar = () => {
                 scrolled ? "bg-primary hover:bg-primary/90 text-white" : "bg-white text-black hover:bg-gray-200"
               }`}
             >
-              Submit RFP
+              <FaWpforms className={scrolled ? "text-white" : "text-black"} /> Submit RFP
             </Button>
           </Link>
           <Link href="/contact">
             <div className="flex items-center gap-x-2">
-              <FaPhone className={scrolled ? "text-white" : "text-black"} />
+              
               <Button
                 className={`transition-colors duration-300 ${
                   scrolled ? "bg-primary hover:bg-primary/90 text-white" : "bg-white text-black hover:bg-gray-200"
                 }`}
               >
-                Contact Us
+                <FaPhone className={scrolled ? "text-white" : "text-black"} /> Contact Us
               </Button>
             </div>
           </Link>
         </div>
         </div>
-
-        {/* Desktop Actions */}
-        
 
         {/* Mobile Menu */}
         <div className="md:hidden">
@@ -112,20 +109,24 @@ export const Navbar = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px] z-[60]">
               <div className="flex flex-col gap-6 pt-6">
+               <SheetClose asChild> 
                 <Link href="/" className="text-lg font-semibold" onClick={() => setScrolled(false)}>
                   Home
                 </Link>
+                </SheetClose>
+                <SheetClose asChild>
                 <Link href="/about" className="text-base xl:text-xl lg:text-lg font-medium hover:opacity-80">
             About Us
           </Link>
+          </SheetClose>
                 <div className="text-lg font-semibold">
                 <div className="flex flex-col">
-                
+                <SheetClose asChild>
   <button
     onClick={() => setServicesOpen(!servicesOpen)}
     className="text-lg font-semibold flex items-center gap-x-2"
   >
-    Our Playground
+    Our Playground 
     <motion.span
       className="mt-1"
       animate={{ rotate: servicesOpen ? 180 : 0 }}
@@ -134,6 +135,7 @@ export const Navbar = () => {
       <FaAngleDown />
     </motion.span>
   </button>
+  </SheetClose>
 
   <AnimatePresence>
     {servicesOpen && Array.isArray(services) && (
@@ -160,9 +162,11 @@ export const Navbar = () => {
               animate="visible"
               custom={i}
             >
+              <SheetClose asChild>
               <Link href={`/services/${service.slug}`} className="text-base flex font-normal gap-x-2 hover:text-[#6208CA]">
               <Image src={service.icon.asset.url} alt={"title"} width={20} height={20} className="h-4 w-4 rounded-full mt-1" /> {service.title} 
               </Link>
+              </SheetClose>
             </motion.div>
           ))}
         </div>
@@ -246,18 +250,22 @@ export const Navbar = () => {
   </AnimatePresence>
 </div>
                 </div>
+                <SheetClose asChild>
                 <Link href="/erp" className="text-lg font-semibold">
                   Our Solutions
                 </Link>
-
+                </SheetClose>
                 <div className="pt-6">
                   <div className="mb-4">
                     <Searching />
                   </div>
                   <div className="flex flex-col gap-4">
+                    <SheetClose asChild>
                     <Link href="/rfp">
                       <Button className="w-full">Submit RFP</Button>
                     </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
                     <Link href="/contact">
                       <Button className="w-full flex items-center justify-center gap-2">
                         
@@ -266,6 +274,7 @@ export const Navbar = () => {
                         Contact Us
                       </Button>
                     </Link>
+                    </SheetClose>
                   </div>
                 </div>
               </div>

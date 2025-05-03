@@ -68,7 +68,7 @@ export default function ContactForm() {
   }, [formData])
 
   const handleVerify = () => {
-    console.log("Verified")
+    
     toast({
       title: "Captcha Verified",
       description: "Thank you for verifying you're human!",
