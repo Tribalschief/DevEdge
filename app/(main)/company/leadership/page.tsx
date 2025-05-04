@@ -108,7 +108,7 @@ export default function LeadershipPage() {
     {
         pic:b,
         name: "Zakwan Hussain",
-        title: "CO & CTO ",
+        title: "C0-Founder & CTO ",
         company: "DevEdge Consulting",
         imageSrc: "/placeholder.svg?height=300&width=300",
         background: [
