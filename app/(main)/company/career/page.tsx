@@ -1,9 +1,5 @@
 'use client'
 import JoinSection from "@/components/contact/submitcv"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Linkedin, MapPin } from "lucide-react"
-import Link from "next/link"
 import { DividerWithButton } from "./_components/divider"
 import career from '@/public/carrer.png'
 import { cn } from "@/lib/utils";

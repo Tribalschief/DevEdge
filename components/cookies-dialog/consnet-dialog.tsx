@@ -90,7 +90,7 @@ export function CookieConsentDialog() {
                 <p className="text-gray-700">
                   Essential cookies are always active as they are necessary for the website to function properly.
                 </p>
-                <Link href="/cookie-policy" className="text-blue-600 hover:underline inline-flex items-center mt-1">
+                <Link href="/cookies" className="text-blue-600 hover:underline inline-flex items-center mt-1">
                   Learn more about our cookies
                   <ChevronRight className="h-3 w-3 ml-1" />
                 </Link>

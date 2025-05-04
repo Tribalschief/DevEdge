@@ -9,7 +9,7 @@ import { useState } from "react"
 interface ServiceCardProps {
   icon: string
   title: string
-  overview: string
+  shortTagline: string
   className?: string
   iconClassName?: string
   slug: string
@@ -19,7 +19,7 @@ interface ServiceCardProps {
 export function ServiceCard({
   icon,
   title,
-  overview,
+  shortTagline,
   className = "",
   iconClassName = "",
   slug,
@@ -27,10 +27,6 @@ export function ServiceCard({
 }: ServiceCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
-  function truncateText(text: string, maxLength: number) {
-    if (text.length <= maxLength) return text;
-    return text.slice(0, maxLength) + '...';
-  }
 
   return (
     <motion.div
@@ -61,7 +57,7 @@ export function ServiceCard({
 
       <h3 className="text-lg font-semibold mb-2">{title}</h3>
       <p className="text-sm text-gray-600 mb-4 flex-grow">
-        {truncateText(overview, 80)}
+      {shortTagline}
       </p>
 
       <Link href={`/services/${slug}`}>

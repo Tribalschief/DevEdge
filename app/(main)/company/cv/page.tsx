@@ -646,12 +646,12 @@ export default function CVSubmissionForm() {
             </button>
 
             <p className="text-sm text-gray-500 mt-4">
-              This site is protected by reCAPTCHA and the Google{" "}
+              This site is protected by hCAPTCHA and the Google{" "}
               <Link href="/privacy" className="text-[#3c5bc0]">
                 Privacy Policy
               </Link>{" "}
               and{" "}
-              <Link href="/privacy" className="text-[#3c5bc0]">
+              <Link href="/terms" className="text-[#3c5bc0]">
                 Terms of Service
               </Link>{" "}
               apply.

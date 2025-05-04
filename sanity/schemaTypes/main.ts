@@ -26,12 +26,22 @@ export const offeringCategory = defineType({
       type: 'image',
     }),
     defineField({
+      name: 'shortTagline',
+      title: 'ShortTagline',
+      type: 'string',
+    }),
+    defineField({
       name: 'image',
       title: 'Main Image',
       type: 'image',
       options: {
         hotspot: true,
       },
+    }),
+    defineField({
+      name: 'tagline',
+      title: 'Tagline',
+      type: 'string',
     }),
     defineField({
       name: 'overview',

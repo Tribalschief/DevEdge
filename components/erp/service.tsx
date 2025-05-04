@@ -319,11 +319,10 @@ export default function ERMService() {
              <div className="py-12 text-center">
                <p className="text-lg text-gray-500 italic">Stay tuned for exciting new platforms!</p>
                <p className="text-lg text-gray-500 italic">Enjoy such services as</p>
-               <p className="text-lg text-gray-500 italic">• HRMS</p>
-               <p className="text-lg text-gray-500 italic">• Car Selling</p>
-               <p className="text-lg text-gray-500 italic">• Cyber Risk</p>
                <p className="text-lg text-gray-500 italic">• Vehicle Shipping</p>
-
+               <p className="text-lg text-gray-500 italic">• Cyber Risk</p>
+               <p className="text-lg text-gray-500 italic">• Car Selling</p>
+               <p className="text-lg text-gray-500 italic">• HRMS</p>
              </div>
            </CardContent>
          </Card>

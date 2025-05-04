@@ -32,120 +32,7 @@ export const Try = () =>{
   )
 }
 
-// function CoreValueCard({ icon, title, description, index }: CoreValueCardProps) {
-//   const [isHovered, setIsHovered] = useState(false)
 
-//   return (
-//     <div className="relative">
-//       <div className="absolute top-2 left-2 w-full h-full rounded-2xl bg-purple-700"></div>
-//       <motion.div
-//         className="relative bg-purple-100 backdrop-blur-sm overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
-//         whileHover={{ y: -5 }}
-//         onMouseEnter={() => setIsHovered(true)}
-//         onMouseLeave={() => setIsHovered(false)}
-//       >
-//         <div className="p-6 md:p-8">
-//           <div className="flex flex-col items-center mb-6">
-//             <motion.div
-//               className="relative w-16 h-16 mb-4"
-//               animate={
-//                 isHovered ? { y: [0, -5, 0], transition: { repeat: Number.POSITIVE_INFINITY, duration: 2 } } : {}
-//               }
-//             >
-//               <div className="absolute inset-0 bg-purple-200 rounded-full blur-md opacity-50 transform scale-90"></div>
-//               <div className="relative z-10 w-full h-full flex items-center justify-center">
-//                 <Image
-//                   src={icon || "/placeholder.svg"}
-//                   width={64}
-//                   height={64}
-//                   alt={`${title} icon`}
-//                   className="w-full h-full object-contain"
-//                 />
-//               </div>
-//             </motion.div>
-
-//             <h2 className="text-[#061F33] text-center font-bold text-xl md:text-2xl leading-tight mb-3">{title}</h2>
-
-//             <div className="w-12 h-1 bg-gradient-to-r from-purple-400 to-indigo-400 rounded-full"></div>
-//           </div>
-
-//           <p className="text-[#5B5675] text-center text-base md:text-lg leading-relaxed">{description}</p>
-
-//           <motion.div
-//             className="w-full h-1 bg-gradient-to-r from-purple-400 to-indigo-400 absolute bottom-0 left-0"
-//             initial={{ scaleX: 0, originX: 0 }}
-//             animate={isHovered ? { scaleX: 1 } : { scaleX: 0 }}
-//             transition={{ duration: 0.3 }}
-//           />
-//         </div>
-//       </motion.div>
-//     </div>
-//   )
-// }
-
-// function CoreValues() {
-//   const { ref, inView } = useInView({
-//     threshold: 0.1,
-//     triggerOnce: true,
-//   })
-
-//   const coreValues = [
-//     {
-//       icon: "/icons/core01.svg",
-//       title: "Security by Design",
-//       description:
-//         "We embed cybersecurity and risk management into every solution — from ERP systems to cloud infrastructure — ensuring our clients operate safely, securely, and compliantly in an evolving threat landscape.",
-//     },
-//     {
-//       icon: "/icons/core02.svg",
-//       title: "Intelligence in Action",
-//       description:
-//         "We combine data, analytics, and automation to deliver smarter decisions and measurable results. Whether it's AI-driven insights or precision analytics, we turn intelligence into strategic advantage.",
-//     },
-//     {
-//       icon: "/icons/core03.svg",
-//       title: "Customized, Not Standardized",
-//       description:
-//         "Every client is unique—and so are our solutions. Whether it's setting up a GRC framework or designing a multi-cloud strategy, we tailor every engagement to your size, sector, and vision.",
-//     },
-//     {
-//       icon: "/icons/core04.svg",
-//       title: "Innovation with Purpose",
-//       description:
-//         "From intelligent automation to next-gen cloud architecture, we innovate with one goal: to solve real business problems and unlock long-term value for your organization.",
-//     },
-//     {
-//       icon: "/icons/core05.svg",
-//       title: "Results Matter Most",
-//       description:
-//         "From strategy to execution, our focus is outcomes. We measure success by the risks we've reduced, the operations we've optimized, and the confidence we've built in your business.",
-//     },
-//     {
-//       icon: "/icons/core06.svg",
-//       title: "Technical Depth, Real-World Defense",
-//       description:
-//         "We go beyond checklists. Our cybersecurity experts simulate real-world attacks, uncover deep vulnerabilities, and implement technical controls that actually work — because real protection requires hands-on expertise, not surface-level audits.",
-//     },
-//   ]
-
-//   return (
-//     <div ref={ref} className="relative p-6 md:p-10 lg:p-32 rounded-2xl shadow-lg">
-//       {/* Grid */}
-//       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 relative z-10">
-//         {coreValues.map((value, index) => (
-//           <motion.div
-//             key={index}
-//             initial={{ y: 50, opacity: 0 }}
-//             animate={inView ? { y: 0, opacity: 1 } : {}}
-//             transition={{ duration: 0.5, delay: 0.1 * index }}
-//           >
-//             <CoreValueCard icon={value.icon} title={value.title} description={value.description} index={index + 1} />
-//           </motion.div>
-//         ))}
-//       </div>
-//     </div>
-//   )
-// }
 
 interface CoreValueCardProps {
   icon: string
@@ -279,3 +166,118 @@ function GlobalExpertise() {
     </div>
   )
 }
+
+// function CoreValueCard({ icon, title, description, index }: CoreValueCardProps) {
+//   const [isHovered, setIsHovered] = useState(false)
+
+//   return (
+//     <div className="relative">
+//       <div className="absolute top-2 left-2 w-full h-full rounded-2xl bg-purple-700"></div>
+//       <motion.div
+//         className="relative bg-purple-100 backdrop-blur-sm overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
+//         whileHover={{ y: -5 }}
+//         onMouseEnter={() => setIsHovered(true)}
+//         onMouseLeave={() => setIsHovered(false)}
+//       >
+//         <div className="p-6 md:p-8">
+//           <div className="flex flex-col items-center mb-6">
+//             <motion.div
+//               className="relative w-16 h-16 mb-4"
+//               animate={
+//                 isHovered ? { y: [0, -5, 0], transition: { repeat: Number.POSITIVE_INFINITY, duration: 2 } } : {}
+//               }
+//             >
+//               <div className="absolute inset-0 bg-purple-200 rounded-full blur-md opacity-50 transform scale-90"></div>
+//               <div className="relative z-10 w-full h-full flex items-center justify-center">
+//                 <Image
+//                   src={icon || "/placeholder.svg"}
+//                   width={64}
+//                   height={64}
+//                   alt={`${title} icon`}
+//                   className="w-full h-full object-contain"
+//                 />
+//               </div>
+//             </motion.div>
+
+//             <h2 className="text-[#061F33] text-center font-bold text-xl md:text-2xl leading-tight mb-3">{title}</h2>
+
+//             <div className="w-12 h-1 bg-gradient-to-r from-purple-400 to-indigo-400 rounded-full"></div>
+//           </div>
+
+//           <p className="text-[#5B5675] text-center text-base md:text-lg leading-relaxed">{description}</p>
+
+//           <motion.div
+//             className="w-full h-1 bg-gradient-to-r from-purple-400 to-indigo-400 absolute bottom-0 left-0"
+//             initial={{ scaleX: 0, originX: 0 }}
+//             animate={isHovered ? { scaleX: 1 } : { scaleX: 0 }}
+//             transition={{ duration: 0.3 }}
+//           />
+//         </div>
+//       </motion.div>
+//     </div>
+//   )
+// }
+
+// function CoreValues() {
+//   const { ref, inView } = useInView({
+//     threshold: 0.1,
+//     triggerOnce: true,
+//   })
+
+//   const coreValues = [
+//     {
+//       icon: "/icons/core01.svg",
+//       title: "Security by Design",
+//       description:
+//         "We embed cybersecurity and risk management into every solution — from ERP systems to cloud infrastructure — ensuring our clients operate safely, securely, and compliantly in an evolving threat landscape.",
+//     },
+//     {
+//       icon: "/icons/core02.svg",
+//       title: "Intelligence in Action",
+//       description:
+//         "We combine data, analytics, and automation to deliver smarter decisions and measurable results. Whether it's AI-driven insights or precision analytics, we turn intelligence into strategic advantage.",
+//     },
+//     {
+//       icon: "/icons/core03.svg",
+//       title: "Customized, Not Standardized",
+//       description:
+//         "Every client is unique—and so are our solutions. Whether it's setting up a GRC framework or designing a multi-cloud strategy, we tailor every engagement to your size, sector, and vision.",
+//     },
+//     {
+//       icon: "/icons/core04.svg",
+//       title: "Innovation with Purpose",
+//       description:
+//         "From intelligent automation to next-gen cloud architecture, we innovate with one goal: to solve real business problems and unlock long-term value for your organization.",
+//     },
+//     {
+//       icon: "/icons/core05.svg",
+//       title: "Results Matter Most",
+//       description:
+//         "From strategy to execution, our focus is outcomes. We measure success by the risks we've reduced, the operations we've optimized, and the confidence we've built in your business.",
+//     },
+//     {
+//       icon: "/icons/core06.svg",
+//       title: "Technical Depth, Real-World Defense",
+//       description:
+//         "We go beyond checklists. Our cybersecurity experts simulate real-world attacks, uncover deep vulnerabilities, and implement technical controls that actually work — because real protection requires hands-on expertise, not surface-level audits.",
+//     },
+//   ]
+
+//   return (
+//     <div ref={ref} className="relative p-6 md:p-10 lg:p-32 rounded-2xl shadow-lg">
+//       {/* Grid */}
+//       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 relative z-10">
+//         {coreValues.map((value, index) => (
+//           <motion.div
+//             key={index}
+//             initial={{ y: 50, opacity: 0 }}
+//             animate={inView ? { y: 0, opacity: 1 } : {}}
+//             transition={{ duration: 0.5, delay: 0.1 * index }}
+//           >
+//             <CoreValueCard icon={value.icon} title={value.title} description={value.description} index={index + 1} />
+//           </motion.div>
+//         ))}
+//       </div>
+//     </div>
+//   )
+// }

@@ -534,7 +534,7 @@ export default function RfpForm() {
                         Privacy Notice
                       </Link>{" "}
                       and{" "}
-                      <Link href="/privacy" className="text-blue-600 hover:underline">
+                      <Link href="/terms" className="text-blue-600 hover:underline">
                         Terms of Use
                       </Link>
                     </Label>

@@ -4,7 +4,19 @@ import { ServiceCard } from "@/components/service/scard"
 import { getServiceForHome } from "@/sanity/lib/getoverview"
 
 export default async function Main() {
-  // const services = [
+  
+  const services = await getServiceForHome()
+ 
+  return (
+    <ServiceSection title="What We Do" highlight="We" columns={{ sm: 2, md: 2, lg: 3 }} gap="small" centered={true}>
+      {services.map((service, index) => (
+        <ServiceCard key={index} icon={service.icon.asset.url} title={service.title} overview={service.shortTagline} index={index} slug={service.slug}/>
+      ))}
+    </ServiceSection>
+  )
+}
+
+// const services = [
   //   {
   //     icon: <FileText size={40} />,
   //     title: "Internal Audit",
@@ -66,13 +78,3 @@ export default async function Main() {
   //     description: "Driving digital transformation through streamlined workflows",
   //   },
   // ]
-  const services = await getServiceForHome()
- 
-  return (
-    <ServiceSection title="What We Do" highlight="We" columns={{ sm: 1, md: 2, lg: 3 }} gap="small" centered={true}>
-      {services.map((service, index) => (
-        <ServiceCard key={index} icon={service.icon.asset.url} title={service.title} overview={service.overview} index={index} slug={service.slug}/>
-      ))}
-    </ServiceSection>
-  )
-}

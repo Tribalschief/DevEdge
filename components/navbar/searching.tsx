@@ -180,14 +180,14 @@ export default function Searching() {
   const filteredResults = activeTab === "all" ? results : results.filter((result) => result.type === activeTab)
 
   return (
-    <div className="relative w-fixed w-[100px] sm:w-[100px] md:w-[130px] lg:w-36 xl:w-full mx-auto" ref={searchRef}>
+    <div className="relative w-full mx-auto" ref={searchRef}>
       <div className="relative">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           ref={inputRef}
           type="search"
           placeholder="Search offerings and pages..."
-          className="w-full pl-8 pr-10"
+          className="w-full pl-8 pr-10 h-9 md:h-10"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => {
@@ -208,7 +208,7 @@ export default function Searching() {
       </div>
 
       {isOpen && (
-        <Card className="absolute top-full mt-1 w-full z-50 max-h-[80vh] overflow-auto shadow-lg">
+        <Card className="absolute top-full mt-1 w-full z-50 max-h-[60vh] lg:max-h-[70vh] overflow-auto shadow-lg">
           <CardContent className="p-0">
             {query.length < 2 ? (
               <div className="p-4 text-center text-sm text-muted-foreground">Type at least 2 characters to search</div>
