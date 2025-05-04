@@ -55,11 +55,11 @@ export const Advisory = ({advisor}) => {
           {/* Background */}
           <div>
             <h3 className="font-bold">Background :</h3>
-            {advisor.background.map((paragraph, index) => (
-              <p key={index} className="text-sm sm:text-base mt-2 w-full">
-                {paragraph}
-              </p>
-            ))}
+            {advisor.background?.map((paragraph, index) => (
+  <p key={index} className="text-sm sm:text-base mt-2 w-full text-justify">
+    {paragraph}
+  </p>
+))}
           </div>
         </div>
       </div>

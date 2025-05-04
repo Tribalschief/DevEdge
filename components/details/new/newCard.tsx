@@ -15,7 +15,7 @@ interface IndustryCardProps {
 
 export const IndustryCard = ({ number, title, description, backgroundIcon }: IndustryCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
- console.log(typeof(backgroundIcon))
+ 
   return (
     // --- Outer Motion Container (Animation & Icon Positioning Context) ---
     // NO overflow-hidden, NO padding, NO border class here

@@ -170,11 +170,8 @@ export default function ERMService() {
       {/* ====== Vehicle Shipping Content ====== */}
       <TabsContent value="vehicle-shipping" className="pt-6">
         <Card className="border border-gray-200 shadow-lg rounded-lg overflow-hidden">
-           <CardHeader className="bg-gray-50 border-b border-gray-200">
-            <CardTitle className="text-2xl font-semibold text-gray-800">Vehicle Shipping Services</CardTitle>
-          </CardHeader>
           <h2 className="text-xl font-bold mt-4 mb-2">Experience Customizable Modules</h2>
-          <p className="text-gray-600 mb-2">with Dynamic Workflows</p>
+          <p className="text-gray-600 mb-2">with Dynamic Vehicle Shipping Services</p>
           <CardContent className="p-0">
             <div className="w-full overflow-x-auto">
               <Tabs defaultValue="import" className="w-full">
@@ -242,11 +239,8 @@ export default function ERMService() {
       {/* ====== Cyber Security Content ====== */}
       <TabsContent value="Cybersecurity Risk Management Platform" className="pt-6">
         <Card className="border border-gray-200 shadow-lg rounded-lg overflow-hidden">
-          <CardHeader className="bg-gray-50 border-b border-gray-200">
-            <CardTitle className="text-2xl font-semibold text-gray-800">Cybersecurity Risk Management Platform</CardTitle>
-          </CardHeader>
           <h2 className="text-xl font-bold mt-4 mb-2">Experience Customizable Modules</h2>
-          <p className="text-gray-600 mb-2">with Dynamic Workflows</p>
+          <p className="text-gray-600 mb-2">with Dynamic Cybersecurity Risk Management Platform</p>
           <CardContent className="p-6">
              {/* ====== USE INLINE HOVER CARD ====== */}
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -274,10 +268,8 @@ export default function ERMService() {
       <TabsContent value="car-selling" className="pt-6">
            <Card className="border border-gray-200 shadow-lg rounded-lg overflow-hidden">
              {/* ... CardHeader ... */}
-             <CardHeader className="bg-gray-50 border-b border-gray-200">
-               <CardTitle className="text-2xl font-semibold text-gray-800">Car Selling Platform</CardTitle>
-               <p className="text-sm text-gray-600">as a Service</p>
-             </CardHeader>
+             <h2 className="text-xl font-bold mt-4 mb-2">Experience Customizable Modules</h2>
+          <p className="text-gray-600 mb-2">with Dynamic Car Selling Platform as a Service </p>
              <CardContent className="p-6">
                <div className="py-12 text-center">
                  <p className="text-lg text-gray-500 italic">Content Coming Soon...</p>
@@ -298,10 +290,9 @@ export default function ERMService() {
       <TabsContent value="human-resource" className="pt-6">
            <Card className="border border-gray-200 shadow-lg rounded-lg overflow-hidden">
              {/* ... CardHeader ... */}
-              <CardHeader className="bg-gray-50 border-b border-gray-200">
-               <CardTitle className="text-2xl font-semibold text-gray-800">Human Resource Management</CardTitle>
-               <p className="text-sm text-gray-600">Solution</p>
-             </CardHeader>
+              
+             <h2 className="text-xl font-bold mt-4 mb-2">Experience Customizable Modules</h2>
+          <p className="text-gray-600 mb-2">with Dynamic Human Resource Management Solution </p>
              <CardContent className="p-6">
                <div className="py-12 text-center">
                  <p className="text-lg text-gray-500 italic">Content Coming Soon...</p>
@@ -327,6 +318,12 @@ export default function ERMService() {
            <CardContent className="p-6">
              <div className="py-12 text-center">
                <p className="text-lg text-gray-500 italic">Stay tuned for exciting new platforms!</p>
+               <p className="text-lg text-gray-500 italic">Enjoy such services as</p>
+               <p className="text-lg text-gray-500 italic">• HRMS</p>
+               <p className="text-lg text-gray-500 italic">• Car Selling</p>
+               <p className="text-lg text-gray-500 italic">• Cyber Risk</p>
+               <p className="text-lg text-gray-500 italic">• Vehicle Shipping</p>
+
              </div>
            </CardContent>
          </Card>

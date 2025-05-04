@@ -36,7 +36,7 @@ export const DetailedHeader = ({
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/60  flex flex-col   p-4 sm:p-6 lg:p-10">
           {/* Top Row: Back button and Title */}
-          <div className="absolute top-20 left-10 right-0 fl">
+          <div className="absolute top-40 left-10 right-0 fl">
           <div className="flex items-center gap-10 text-white">
             <Link href="/" className="rounded-full border border-white hover:border-purple w-10 h-10 flex items-center justify-center hover:text-purple-400">
               <ArrowLeft className="h-6 w-6" />
@@ -49,10 +49,10 @@ export const DetailedHeader = ({
           {/* Bottom Buttons */}
           <div className="flex gap-4 flex-col sm:flex-row  sm:gap-x-8 md:gap-x-10 lg:gap-x-16 xl:gap-x-16 2xl:gap-x-16 mx-20 items-center mt-12   md:mt-12 xl:mt-16 2xl:mt-20 ">
             <Link href="/rfp">
-              <Button variant="outline" className="text-sm sm:text-base"  >Submit Your RFP</Button>
+              <Button variant="outline" className="text-sm sm:text-base hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-110"  >Submit Your RFP</Button>
             </Link>
             <Link href="/contact">
-              <Button variant="outline" className="text-sm sm:text-base text-black border-white hover:bg-white">
+              <Button variant="outline" className="text-sm sm:text-base text-black border-white hover:bg-white hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-110">
                 Contact Us
               </Button>
             </Link>
