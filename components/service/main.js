@@ -2,16 +2,24 @@ import { ServiceSection } from "@/components/service/service"
 import { ServiceCard } from "@/components/service/scard"
 
 import { getServiceForHome } from "@/sanity/lib/getoverview"
-
+// function customLog(message) {
+//   if (typeof console !== "undefined" && console.log) {
+//     console.log(message);
+//   }
+// }
 export default async function Main() {
   
   const services = await getServiceForHome()
+  customLog("Test log outside of map");
  
   return (
     <ServiceSection title="What We Do" highlight="We" columns={{ sm: 2, md: 2, lg: 3 }} gap="small" centered={true}>
-      {services.map((service, index) => (
-        <ServiceCard key={index} icon={service.icon.asset.url} title={service.title} overview={service.shortTagline} index={index} slug={service.slug}/>
-      ))}
+      {services.map((service, index) => {
+        // customLog("Service tagline: " + service.shortTagline);
+        return (
+          <ServiceCard key={index} icon={service.icon.asset.url} title={service.title} shortTagline={service.shortTagline} index={index} slug={service.slug}/>
+        );
+      })}
     </ServiceSection>
   )
 }

@@ -6,7 +6,7 @@ export const getServiceForHome = async () => {
     const Product_By_Slug_Query = defineQuery(`
       *[_type == "offeringCategory" ] | order(_updatedAt desc) {
   title,
-  shortTsagline,
+  shortTagline,
   "slug":slug.current,
   icon{
     asset -> {

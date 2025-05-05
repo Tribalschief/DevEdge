@@ -82,7 +82,7 @@ export const Navbar = () => {
 
         {/* Desktop Nav */}
         <div
-          className={`hidden md:flex items-center md:gap-x-1 lg:gap-x-2 xl:gap-x-4 2xl:gap-x-8 ${scrolled ? "text-gray-50" : "text-gray-900"}`}
+          className={`hidden md:flex items-center justify-center md:gap-x-1 lg:gap-x-2 xl:gap-x-4 2xl:gap-x-8 ${scrolled ? "text-gray-50" : "text-gray-900"}`}
         >
           <NavLink href="/" className="text-sm md:text-sm lg:text-base xl:text-lg font-medium">
             Home

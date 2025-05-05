@@ -25,7 +25,7 @@ export function NewServicesList() {
   }, [])
 
   return (
-    <div className="relative flex flex-col items-center mt-24 xl:mt-64 sm:mt-16 mb-16 justify-center">
+    <div className="relative flex flex-col items-center mt-24 xl:mt-80 sm:mt-16 mb-16 justify-center">
       {/* Heading */}
       <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-center tracking-widest text-purple-700">
         OUR SERVICES
@@ -52,10 +52,12 @@ export function NewServicesList() {
                 initial="hidden"
                 animate="visible"
                 custom={i}
-              >
+              > 
+              
                 <Link href={`/services/${service.slug}`} className="text-xl font-normal hover:text-[#6208CA] block">
-                  <div className="inline">
-                    {service.title}
+                
+                  <div className="gap-x-3">
+                  {i + 1}  {service.title}
                     <span className="inline-block ml-3 scale-125 ">«</span>
                   </div>
                 </Link>
