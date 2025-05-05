@@ -11,16 +11,16 @@ export default function HeroSection() {
   return (
     <section
       className="
-      bg-[#f3edf8] w-full
-      pt-[100px] md:pt-[120px]  // offset for navbar height
-      pb-16 md:pb-24
-      min-h-screen
+      bg-[rgb(243,237,248)] w-full
+      mt-[100px] md:mt-[120px]
+      sm:pb-4 md:pb-8 pb-10
+       h-full
       flex items-center justify-center
       px-4 sm:px-6 md:px-8 lg:px-12
       overflow-y-auto
     "
     >
-      <div className="container mx-auto w-full">
+      <div className="container mx-auto h-full w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4 items-center">
           {/* Left Side */}
           <motion.div

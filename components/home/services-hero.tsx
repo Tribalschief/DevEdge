@@ -13,7 +13,7 @@ export default function ServicesSection() {
   const isTablet = useMediaQuery("(max-width: 1024px)")
 
   return (
-    <section className="bg-white w-full min-h-screen flex items-center justify-center pt-[100px] md:pt-[120px] pb-16 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-12 overflow-y-auto">
+    <section className="bg-white w-full h-full flex items-center justify-center pt-[100px] md:pt-[120px] pb-16 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-12 overflow-y-auto">
       <div className="container mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div

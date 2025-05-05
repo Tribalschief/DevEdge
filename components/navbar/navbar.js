@@ -74,7 +74,7 @@ export const Navbar = () => {
         scrolled ? "bg-black shadow-md" : "bg-white"
       }`}
     >
-      <div className="flex items-center lg:justify-between px-4 sm:px-5 md:px-6 lg:px-8 xl:px-16 2xl:px-32 h-[80px] md:h-[100px] lg:h-[110px]">
+      <div className="flex items-center justify-between px-4 sm:px-5 md:px-6 lg:px-8 xl:px-16 2xl:px-32 h-[80px] md:h-[100px] lg:h-[110px]">
         {/* Logo */}
         <div className="lg:flex-none">
           <Link href="/" className="">
@@ -85,38 +85,38 @@ export const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex lg:flex-1 lg:justify-center">
           <div
-            className={`flex items-center justify-center md:gap-x-1 lg:gap-x-2 xl:gap-x-4 2xl:gap-x-8 ${
+            className={`flex items-center justify-center whitespace-nowrap md:gap-x-1 lg:gap-x-1.5 xl:gap-x-3 2xl:gap-x-6 ${
               scrolled ? "text-gray-50" : "text-gray-900"
             }`}
           >
-            <NavLink href="/" className="text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium">
+            <NavLink href="/" className="text-sm lg:text-sm xl:text-base font-medium">
               Home
             </NavLink>
-            <div className="text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium">
+            <div className="text-sm lg:text-sm xl:text-base font-medium">
               <Services heading="Our Playground" />
             </div>
-            <NavLink href="/about" className="text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium">
+            <NavLink href="/about" className="text-sm lg:text-sm xl:text-base font-medium">
               About Us
             </NavLink>
-            <div className="text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium">
+            <div className="text-sm lg:text-sm xl:text-base font-medium">
               <Company title="Company" />
             </div>
-            <NavLink href="/erp" className="text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium">
-              <span className="hidden lg:inline">Our ERP Software</span>
-              <span className="lg:hidden">ERP</span>
+            <NavLink href="/erp" className="text-sm lg:text-sm xl:text-base font-medium">
+              <span className="hidden xl:inline">Our ERP Software</span>
+              <span className="xl:hidden">ERP Software</span>
             </NavLink>
-            <div className="w-auto md:w-[120px] lg:w-[200px] xl:w-[300px] 2xl:w-[400px]">
+            <div className="w-auto md:w-[80px] lg:w-[100px] xl:w-[200px] 2xl:w-[300px]">
               <Searching />
             </div>
-            <div className="hidden md:flex items-center md:gap-x-1 lg:gap-x-2 xl:gap-x-3 2xl:gap-x-4">
+            <div className="hidden md:flex items-center md:gap-x-1 lg:gap-x-2">
               <Link href="/rfp">
                 <Button
                   size="sm"
-                  className={`transition-colors duration-300 md:text-xs lg:text-sm xl:text-base ${
+                  className={`transition-colors duration-300 md:text-xs lg:text-xs xl:text-sm ${
                     scrolled ? "bg-primary hover:bg-primary/90 text-white" : "bg-white text-black hover:bg-gray-200"
                   }`}
                 >
-                  <FaWpforms className={`${scrolled ? "text-white" : "text-black"} md:mr-1 lg:mr-2`} />
+                  <FaWpforms className={`${scrolled ? "text-white" : "text-black"} md:mr-1 lg:mr-1`} />
                   <span className="hidden md:inline-block">Submit RFP</span>
                   <span className="md:hidden">RFP</span>
                 </Button>
@@ -124,11 +124,11 @@ export const Navbar = () => {
               <Link href="/contact">
                 <Button
                   size="sm"
-                  className={`transition-colors duration-300 md:text-xs lg:text-sm xl:text-base ${
+                  className={`transition-colors duration-300 md:text-xs lg:text-xs xl:text-sm ${
                     scrolled ? "bg-primary hover:bg-primary/90 text-white" : "bg-white text-black hover:bg-gray-200"
                   }`}
                 >
-                  <FaPhone className={`${scrolled ? "text-white" : "text-black"} md:mr-1 lg:mr-2`} />
+                  <FaPhone className={`${scrolled ? "text-white" : "text-black"} md:mr-1 lg:mr-1`} />
                   <span className="hidden md:inline-block">Contact Us</span>
                   <span className="md:hidden">Contact</span>
                 </Button>
@@ -138,7 +138,7 @@ export const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden lg:flex-none">
+        <div className="md:hidden ">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className={scrolled ? "text-white" : "text-black"}>

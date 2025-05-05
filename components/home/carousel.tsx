@@ -111,7 +111,7 @@ export default function Carousel() {
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{ minHeight: "100vh" }}
+      
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       ref={constraintsRef}
@@ -141,7 +141,7 @@ export default function Carousel() {
       </AnimatePresence>
 
       {/* Navigation controls */}
-      <div className="fixed bottom-6 left-1/2 flex -translate-x-1/2 space-x-4 z-10">
+      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 space-x-4 z-10">
         {slides.map((slide, index) => (
           <button
             key={slide.id}
