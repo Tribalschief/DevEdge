@@ -367,7 +367,7 @@ export default function CVSubmissionForm() {
   }
 
   return (
-    <div className="max-w-4xl mt-24 mx-auto px-8 lg:px-auto">
+    <div className="max-w-4xl mt-32 md:24 mx-auto px-8 lg:px-auto">
       <CookieConsentDialog />
       <Link href="/">
       <button className="flex items-center text-[#6208ca] mb-8 font-medium hover:text-[#5007a3] transition-colors">

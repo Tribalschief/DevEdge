@@ -36,7 +36,7 @@ export const DetailedHeader = ({
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/60  flex flex-col   p-4 sm:p-6 lg:p-10">
           {/* Top Row: Back button and Title */}
-          <div className="absolute top-40 left-10 right-0 fl">
+          <div className="absolute lg:top-40 left-10 right-0 top-10 ">
           <div className="flex items-center gap-10 text-white">
             <Link href="/" className="rounded-full border border-white hover:border-purple w-10 h-10 flex items-center justify-center hover:text-purple-400">
               <ArrowLeft className="h-6 w-6" />

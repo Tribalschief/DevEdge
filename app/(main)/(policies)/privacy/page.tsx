@@ -40,7 +40,7 @@ function PrivacyNotice() {
     <div className="space-y-6">
       <div className="border-b border-gray-300 pb-4">
         <h1 className="text-2xl font-bold text-gray-800">Privacy Notice</h1>
-        <p className="text-sm text-gray-600">Last revised: October 26, 2023</p>
+        <p className="text-sm text-gray-600">Last revised: January 23, 2023</p>
         {/* Optional: Add logo or other elements here if needed */}
          <div className="mt-4 flex justify-between items-center">
           {/* Content for the flex container if needed, e.g., version number */}
@@ -53,7 +53,7 @@ function PrivacyNotice() {
         <section id="introduction">
           <h2 className="text-xl font-semibold text-gray-800 mb-3">1. Introduction</h2>
           <p className="mb-4">
-            Dev Edge (also referred to below as "we", "us" and "our") is committed to protecting your privacy. We operate as a consulting firm with a presence in the Kingdom of Saudi Arabia (KSA), the United Arab Emirates (UAE), and Pakistan.
+            DevEdge-Consulting (also referred to below as "we", "us" and "our") is committed to protecting your privacy. We operate as a consulting firm with a presence in the Kingdom of Saudi Arabia (KSA), the United Arab Emirates (UAE), and Pakistan.
           </p>
           <p className="mb-4">
             This Privacy Notice explains how we collect, use, disclose, and safeguard your information when you visit our website (e.g., www.devedge.consulting) (the "Website"), use our mobile applications (if any) ("Mobile Apps"), or interact with us through other communications like newsletters or offline events that reference this Notice ("Communications"). By using the Website or Mobile Apps, or continuing to receive Communications, you agree to the collection and use of information in accordance with this Privacy Notice.

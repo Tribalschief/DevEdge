@@ -1,10 +1,12 @@
 import React from 'react'
 import { IndustryCard } from './newCard'
+import WM from '@/app/(main)/services/[slug]/_components/wm'
 
 export const CardGrid = ({services , title}:{services: any, title: string}) => {
   
   return (
-    <>
+    <main className='relative overflow-hidden flex flex-col items-center justify-center'>
+ 
     <h2 className="px-4 ml-4 sm:ml-6 md:ml-10 lg:ml-16 xl:ml-24 2xl:ml-32 text-2xl sm:text-3xl font-bold lg:mt-4 text-[#0e0f0c]">
       DevEdge {title} Services Offerings
     </h2>
@@ -30,6 +32,7 @@ export const CardGrid = ({services , title}:{services: any, title: string}) => {
         )})}
       </div>
     </div>
-  </>
+  </main>
 )
 }
+

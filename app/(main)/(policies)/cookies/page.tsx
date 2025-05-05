@@ -29,7 +29,7 @@ function CookieNotice() {
     <div className="space-y-6">
       <div className="border-b border-gray-300 pb-4">
         <h1 className="text-2xl font-bold text-gray-800">Cookie Notice</h1>
-        <p className="text-sm text-gray-600">Last revised: October 26, 2023</p>
+        <p className="text-sm text-gray-600">Last revised: January 25, 2025</p>
       </div>
 
       <div className="space-y-4 text-gray-700 leading-relaxed">
@@ -85,7 +85,7 @@ function CookieNotice() {
 
         <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">6. Contact Us</h2>
         <p>
-          If you have any questions about our use of cookies, please refer to our <Link href="/privacy-notice#contact-information" className="text-blue-600 hover:underline">Privacy Notice</Link> for contact details or email us at <a href="mailto:privacy@devedge.consulting" className="text-blue-600 hover:underline">privacy@devedge.consulting</a>.
+          If you have any questions about our use of cookies, please refer to our <Link href="/privacy" className="text-blue-600 hover:underline">Privacy Notice</Link> for contact details or email us at <a href="mailto:privacy@devedge.consulting" className="text-blue-600 hover:underline">privacy@devedge.consulting</a>.
         </p>
       </div>
     </div>

@@ -6,7 +6,7 @@ import Ov from "@/public/OV.png"
 
 export default function MissionVision() {
   const missionContent =
-    "DevEdge Consulting’s mission is to help businesses thrive by delivering " +
+    "DevEdge Consulting's mission is to help businesses thrive by delivering " +
     "intelligent, tailored, and practical solutions that solve real challenges. We " +
     "combine deep expertise with innovative thinking and unwavering " +
     "execution to drive results that matter—improving efficiency, strengthening " +
@@ -18,17 +18,19 @@ export default function MissionVision() {
     "smart automation, robust risk management, and future-ready technologies."
 
   return (
-    <div className="w-full px-4 py-8 sm:px-6 sm:py-10 md:px-8 lg:px-20">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 md:gap-x-12 lg:gap-x-20 items-center">
+    <div className="w-full px-4 py-8 sm:px-6 sm:py-10 md:px-8 lg:px-20 xl:px-24 2xl:px-32">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 md:gap-x-12 lg:gap-x-16 xl:gap-x-24 items-center max-w-7xl mx-auto">
         {/* Text Section */}
-        <div className="space-y-10 text-center md:text-left order-2 md:order-1">
+        <div className="space-y-10 md:space-y-12 lg:space-y-16 text-center md:text-left order-2 md:order-1">
           <ContentSection title="Our Mission" icon={Om.src} content={missionContent} />
           <ContentSection title="Our Vision" icon={Ov.src} content={visionContent} />
         </div>
 
         {/* Image Section */}
-        <div className="flex justify-center order-1 md:order-2">
-          <CImage image={vision.src} />
+        <div className="flex justify-center md:justify-end order-1 md:order-2">
+          <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
+            <CImage image={vision.src} />
+          </div>
         </div>
       </div>
     </div>

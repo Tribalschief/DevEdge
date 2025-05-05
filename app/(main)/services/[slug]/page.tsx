@@ -72,13 +72,16 @@ export default async function ServicePage({ params }: any) {
             {/* Render the WM Client Component */}
             {/* Wrap WM for positioning and styling */}
             {/* This div places WM behind other content (-z-10) and makes it non-interactive */}
-             <div className="absolute inset-0 flex top-20 items-center justify-center -z-10 opacity-10 pointer-events-none overflow-hidden">
-              <WM />
-             </div>
+             
 
             {/* Ensure content below WM has a positive z-index or is positioned later */}
             <div className="mt-8 relative z-[1]"> {/* Adjust z-index as needed */}
+              <div className="absolute inset-0 flex top-20 items-center justify-center -z-10 opacity-10 pointer-events-none overflow-hidden">
+              <WM />
+             </div>
+             <div className="flex items-center justify-center overflow-hidden">
               <CardGrid services={service.offering} title={service.title} />
+              </div>
             </div>
           </div>
 

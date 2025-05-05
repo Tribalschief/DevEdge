@@ -44,15 +44,15 @@ function TermsOfUse() {
     <div className="space-y-6">
       <div className="border-b border-gray-300 pb-4">
         <h1 className="text-2xl font-bold text-gray-800">Terms of Use</h1>
-        <p className="text-sm text-gray-600">Last updated: October 26, 2023</p>
+        <p className="text-sm text-gray-600">Last updated: january 26, 2025</p>
       </div>
 
       <div className="space-y-4 text-gray-700 leading-relaxed">
         <p>
-          Welcome to the Dev Edge website (e.g., www.devedge.consulting). These Terms of Use ("Terms") govern your access to and use of the website, including any content, functionality, and services offered on or through the website (collectively, the "Website"). The Website is owned and operated by Dev Edge and its affiliated entities operating in the Kingdom of Saudi Arabia (KSA), the United Arab Emirates (UAE), and Pakistan (collectively, "Dev Edge", "we", "us", or "our").
+          Welcome to the DevEdge Consulting website (e.g., www.devedgeconsulting). These Terms of Use ("Terms") govern your access to and use of the website, including any content, functionality, and services offered on or through the website (collectively, the "Website"). The Website is owned and operated by Dev Edge and its affiliated entities operating in the Kingdom of Saudi Arabia (KSA), the United Arab Emirates (UAE), and Pakistan (collectively, "Dev Edge", "we", "us", or "our").
         </p>
         <p>
-          <strong>Please read these Terms carefully before you start to use the Website. By accessing or using the Website, you acknowledge that you have read, understood, and agree to be bound by these Terms and our <Link href="/privacy-notice" className="text-blue-600 hover:underline">Privacy Notice</Link>. If you do not agree to these Terms or the Privacy Notice, you must not access or use the Website.</strong>
+          <strong>Please read these Terms carefully before you start to use the Website. By accessing or using the Website, you acknowledge that you have read, understood, and agree to be bound by these Terms and our <Link href="/privacy" className="text-blue-600 hover:underline">Privacy Notice</Link>. If you do not agree to these Terms or the Privacy Notice, you must not access or use the Website.</strong>
         </p>
         <p>
           We reserve the right to modify these Terms at any time in our sole discretion. All changes are effective immediately when we post them. Your continued use of the Website following the posting of revised Terms means that you accept and agree to the changes.

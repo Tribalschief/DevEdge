@@ -74,9 +74,9 @@ export const Navbar = () => {
         scrolled ? "bg-black shadow-md" : "bg-white"
       }`}
     >
-      <div className="flex items-center justify-between px-4 sm:px-5 md:px-6 lg:px-8 xl:px-16 2xl:px-32 h-[80px] md:h-[100px] lg:h-[110px]">
-        {/* Logo */}
-        <div className="lg:flex-none">
+      <div className="flex items-center justify-between px-4 sm:px-5 md:px-6 lg:px-8 xl:px-16 2xl:px-32 h-[60px] sm:h-[70px] md:h-[90px] lg:h-[100px] xl:h-[110px]">
+        {/* Logo - Scale down on smaller screens */}
+        <div className="lg:flex-none scale-75 sm:scale-90 md:scale-95 lg:scale-100">
           <Link href="/" className="">
             <Logo dark={scrolled} />
           </Link>
@@ -137,11 +137,15 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <div className="md:hidden ">
+        {/* Mobile Menu - Scale down button on smaller screens */}
+        <div className="md:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className={scrolled ? "text-white" : "text-black"}>
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`${scrolled ? "text-white" : "text-black"} scale-75 sm:scale-90`}
+              >
                 <FaBars className="h-5 w-5" />
               </Button>
             </SheetTrigger>
