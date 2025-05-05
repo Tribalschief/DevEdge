@@ -38,7 +38,7 @@ export default function ImageGrid() {
 
 
   return (
-    <div className="relative bg-slate-900 min-h-screen flex flex-col items-center justify-center px-4 py-16 overflow-hidden">
+    <div className="relative bg-slate-900 h-full flex flex-col items-center justify-center px-4 py-16 overflow-hidden">
       {/* Background World Map */}
       <Image
         src={map}

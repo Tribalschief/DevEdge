@@ -74,65 +74,71 @@ export const Navbar = () => {
         scrolled ? "bg-black shadow-md" : "bg-white"
       }`}
     >
-      <div className="flex items-center justify-between px-4 sm:px-5 md:px-6 lg:px-8 xl:px-16 2xl:px-32 h-[80px] md:h-[100px] lg:h-[110px]">
+      <div className="flex items-center lg:justify-between px-4 sm:px-5 md:px-6 lg:px-8 xl:px-16 2xl:px-32 h-[80px] md:h-[100px] lg:h-[110px]">
         {/* Logo */}
-        <Link href="/" className="">
-          <Logo dark={scrolled} />
-        </Link>
+        <div className="lg:flex-none">
+          <Link href="/" className="">
+            <Logo dark={scrolled} />
+          </Link>
+        </div>
 
         {/* Desktop Nav */}
-        <div
-          className={`hidden md:flex items-center justify-center md:gap-x-1 lg:gap-x-2 xl:gap-x-4 2xl:gap-x-8 ${scrolled ? "text-gray-50" : "text-gray-900"}`}
-        >
-          <NavLink href="/" className="text-sm md:text-sm lg:text-base xl:text-lg font-medium">
-            Home
-          </NavLink>
-          <div className="text-sm md:text-sm lg:text-base xl:text-lg font-medium">
-            <Services heading="Our Playground" />
-          </div>
-          <NavLink href="/about" className="text-sm md:text-sm lg:text-base xl:text-lg font-medium">
-            About Us
-          </NavLink>
-          <div className="text-sm md:text-sm lg:text-base xl:text-lg font-medium">
-            <Company title="Company" />
-          </div>
-          <NavLink href="/erp" className="text-sm md:text-sm lg:text-base xl:text-lg font-medium">
-            <span className="hidden lg:inline">Our ERP Software</span>
-            <span className="lg:hidden">ERP</span>
-          </NavLink>
-          <div className="w-auto md:w-[120px] lg:w-[200px] xl:w-[300px] 2xl:w-[400px]">
-            <Searching />
-          </div>
-          <div className="hidden md:flex items-center md:gap-x-1 lg:gap-x-2 xl:gap-x-3 2xl:gap-x-4">
-            <Link href="/rfp">
-              <Button
-                size="sm"
-                className={`transition-colors duration-300 md:text-xs lg:text-sm ${
-                  scrolled ? "bg-primary hover:bg-primary/90 text-white" : "bg-white text-black hover:bg-gray-200"
-                }`}
-              >
-                <FaWpforms className={`${scrolled ? "text-white" : "text-black"} md:mr-1 lg:mr-2`} />
-                <span className="hidden md:inline-block">Submit RFP</span>
-                <span className="md:hidden">RFP</span>
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button
-                size="sm"
-                className={`transition-colors duration-300 md:text-xs lg:text-sm ${
-                  scrolled ? "bg-primary hover:bg-primary/90 text-white" : "bg-white text-black hover:bg-gray-200"
-                }`}
-              >
-                <FaPhone className={`${scrolled ? "text-white" : "text-black"} md:mr-1 lg:mr-2`} />
-                <span className="hidden md:inline-block">Contact Us</span>
-                <span className="md:hidden">Contact</span>
-              </Button>
-            </Link>
+        <div className="hidden md:flex lg:flex-1 lg:justify-center">
+          <div
+            className={`flex items-center justify-center md:gap-x-1 lg:gap-x-2 xl:gap-x-4 2xl:gap-x-8 ${
+              scrolled ? "text-gray-50" : "text-gray-900"
+            }`}
+          >
+            <NavLink href="/" className="text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium">
+              Home
+            </NavLink>
+            <div className="text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium">
+              <Services heading="Our Playground" />
+            </div>
+            <NavLink href="/about" className="text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium">
+              About Us
+            </NavLink>
+            <div className="text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium">
+              <Company title="Company" />
+            </div>
+            <NavLink href="/erp" className="text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium">
+              <span className="hidden lg:inline">Our ERP Software</span>
+              <span className="lg:hidden">ERP</span>
+            </NavLink>
+            <div className="w-auto md:w-[120px] lg:w-[200px] xl:w-[300px] 2xl:w-[400px]">
+              <Searching />
+            </div>
+            <div className="hidden md:flex items-center md:gap-x-1 lg:gap-x-2 xl:gap-x-3 2xl:gap-x-4">
+              <Link href="/rfp">
+                <Button
+                  size="sm"
+                  className={`transition-colors duration-300 md:text-xs lg:text-sm xl:text-base ${
+                    scrolled ? "bg-primary hover:bg-primary/90 text-white" : "bg-white text-black hover:bg-gray-200"
+                  }`}
+                >
+                  <FaWpforms className={`${scrolled ? "text-white" : "text-black"} md:mr-1 lg:mr-2`} />
+                  <span className="hidden md:inline-block">Submit RFP</span>
+                  <span className="md:hidden">RFP</span>
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button
+                  size="sm"
+                  className={`transition-colors duration-300 md:text-xs lg:text-sm xl:text-base ${
+                    scrolled ? "bg-primary hover:bg-primary/90 text-white" : "bg-white text-black hover:bg-gray-200"
+                  }`}
+                >
+                  <FaPhone className={`${scrolled ? "text-white" : "text-black"} md:mr-1 lg:mr-2`} />
+                  <span className="hidden md:inline-block">Contact Us</span>
+                  <span className="md:hidden">Contact</span>
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden">
+        <div className="md:hidden lg:flex-none">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className={scrolled ? "text-white" : "text-black"}>
@@ -271,7 +277,6 @@ export const Navbar = () => {
                         >
                           <div className="flex flex-col pl-4 mt-2 gap-2">
                             {[
-                              
                               { path: "/company/leadership", title: "Leadership" },
                               { path: "/company/career", title: "Career" },
                               { path: "/company/cv", title: "Submit CV" },

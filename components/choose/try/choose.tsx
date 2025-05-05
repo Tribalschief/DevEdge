@@ -22,7 +22,7 @@ import core06 from "@/public/why/Lerning.svg"
 import React, { useState } from 'react'
 export const Try = () =>{
   return (
-    <main className="min-h-screen p-4 md:p-8">
+    <main className="h-full p-4 md:p-8 ">
 
 
     <section>

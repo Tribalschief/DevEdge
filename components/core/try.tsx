@@ -79,7 +79,7 @@ export  function CoreValues() {
 
   return (
     <motion.div
-      className="bg-purple-100 p-6 sm:p-10 md:p-16 lg:p-20 min-h-screen flex justify-center rounded-lg w-full mx-auto"
+      className="bg-purple-100 p-6 sm:p-10 md:p-16 lg:p-20 sm:min-h-screen   flex justify-center rounded-lg w-full mx-auto "
       ref={ref}
     >
       {/* Core Values Grid */}

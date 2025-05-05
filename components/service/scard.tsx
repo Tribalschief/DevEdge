@@ -65,7 +65,7 @@ export function ServiceCard({
           whileHover={{ scale: 1.05 }}
           className="text-sm border border-gray-300 rounded-full px-6 py-1 hover:bg-gray-50 transition-colors"
         >
-          Learn More
+          Full Details
         </motion.button>
       </Link>
 
