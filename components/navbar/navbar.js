@@ -58,7 +58,7 @@ export const Navbar = () => {
     const active = isActive(href)
 
     if (active) {
-      return <span className={cn(className, "cursor-default opacity-70")}>{children}</span>
+      return <span className={cn(className, "cursor-default text-[#6208ac] border-b-2 border-[#6208ac]")}>{children}</span>
     }
 
     return (
