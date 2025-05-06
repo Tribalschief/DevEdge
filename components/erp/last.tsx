@@ -4,6 +4,12 @@ import { Button } from "@/components/ui/button";
 import ContactForm from "../contact/form";
 
 export default function LastERM() {
+  const scrollToSection = () => {
+    const element = document.getElementById('target-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
@@ -15,7 +21,7 @@ export default function LastERM() {
           One Powerful Platform
           </p>
           <div className="pt-4">
-            <Button variant="outline" className="bg-white text-black hover:bg-gray-100 rounded-full px-6">
+            <Button id="target-section" variant="outline" className="bg-white text-black hover:bg-gray-100 rounded-full px-6">
               <CalendarIcon className="w-4 h-4 mr-2" />
               Book a Live Demo
             </Button>
