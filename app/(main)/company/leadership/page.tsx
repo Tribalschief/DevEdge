@@ -14,7 +14,7 @@ export default function LeadershipPage() {
       title: "Founder & CEO   ",
       company: "DevEdge Consulting ",
       title2: "CTO",
-      company2: "Galaxy Star Technologies",
+      company2: "Galaxy World-wide Shipping",
       imageSrc: "/placeholder.svg?height=300&width=300",
       background: [
         "Zabeeh Ullah Abid is the Founder and CEO of DevEdge Consulting, a visionary leader with over 12 years of experience in enterprise architecture, cybersecurity, digital transformation, and intelligent systems development. Throughout his career, he has worked with leading organizations across the Middle East, helping them navigate complex business challenges through strategic technology solutions.",
@@ -24,16 +24,13 @@ export default function LeadershipPage() {
       education: [
         { title: "BSc Computer Science" },
         { title: "Certified Cloud Security Professional (CCSP)" },
-        { title: "CISSP" },
         { title: "The Open Group Certified (regarding Risk and Security)" },
-        { title: "Azure Administrator" },
         { title: "AWS Cloud Practitioner" },
         { title: "Blockchain Essentials" },
         { title: "Certified Hacking Forensic Investigator (CHFI)" },
         { title: "Microsoft Certified Technology Specialist (MCTS)" },
-        { title: "ITIL v3 Foundation" },
         { title: "TOGAF Certified" },
-        { title: "Cybersecurity Assessment Expert" },
+        
       ],
       industries: [
         { name: "Industry Experience" },
@@ -108,7 +105,7 @@ export default function LeadershipPage() {
     {
         pic:b,
         name: "Zakwan Hussain",
-        title: "C0-Founder & CTO ",
+        title: "Co-Founder & CTO ",
         company: "DevEdge Consulting",
         imageSrc: "/placeholder.svg?height=300&width=300",
         background: [

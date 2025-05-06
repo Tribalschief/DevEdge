@@ -1,5 +1,8 @@
 "use client"
-
+import carSelling from "@/public/secondsection/sec/CarSellingPlatform.jpg"
+import cyber from "@/public/secondsection/sec/CybersecurityRiskManagementPlatform.jpg"
+import hr from "@/public/secondsection/sec/HRM.jpg"
+import vehicle from "@/public/secondsection/sec/vehicleshippingservices.jpg"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 
@@ -96,113 +99,112 @@ export default function SolutionsShowcase() {
   }
 
   return (
-    <div className="w-full bg-black text-white min-h-screen flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
-  <div className="max-w-7xl w-full">
-    {/* Heading with dynamic text */}
-    <div className="text-center mb-10 sm:mb-12">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 relative overflow-hidden h-[3rem] sm:h-[3.5rem]">
-        
+    <div className="w-full bg-black text-white h-full my-12 lg:my-24 flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl w-full">
+        {/* Heading with dynamic text */}
+        <div className="text-center mb-10 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 relative overflow-hidden h-[3rem] sm:h-[3.5rem]">
             All in One Solution
-         
-      </h2>
-      <div className="h-0.5 w-40 sm:w-64 md:w-96 bg-white mx-auto"></div>
-      <ProgressIndicator />
-    </div>
+          </h2>
+          <div className="h-0.5 w-40 sm:w-64 md:w-96 bg-white mx-auto"></div>
+          <ProgressIndicator />
+        </div>
 
-    {/* Content grid */}
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-      {/* Left column - Solution cards */}
-      <div className="space-y-4">
-        {solutions.map((solution, idx) => (
-          <div
-            key={solution.id}
-            className={`bg-white bg-opacity-10 rounded-xl p-4 sm:p-5 backdrop-blur-sm transition-all duration-500 ${
-              idx === activeIndex ? "ring-2 ring-white ring-opacity-50 scale-[1.02]" : ""
-            }`}
-          >
-            <div className="flex items-start gap-3">
+        {/* Content grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+          {/* Left column - Solution cards */}
+          <div className="space-y-4">
+            {solutions.map((solution, idx) => (
               <div
-                className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5 transition-colors duration-300 ${
-                  idx === activeIndex ? "bg-white text-black" : "bg-white/50 text-black"
+                key={solution.id}
+                className={`bg-white bg-opacity-10 rounded-xl p-4 sm:p-5 backdrop-blur-sm transition-all duration-500 ${
+                  idx === activeIndex ? "ring-2 ring-white ring-opacity-50 scale-[1.02]" : ""
                 }`}
               >
-                <span className="font-bold text-sm">{solution.id}</span>
-              </div>
-              <div className="w-full">
-                <h3
-                  className={`font-medium text-base sm:text-lg transition-colors duration-300 ${
-                    idx === activeIndex ? "text-white" : "text-white/70"
-                  }`}
-                  onClick={() => setActiveIndex(idx)} >
-                  {solution.title}
-                </h3>
-
-                {/* Features list */}
-                <ul
-                  className={`mt-2 space-y-1 text-sm transition-all duration-500 ${
-                    idx === activeIndex ? "max-h-96 opacity-100 text-gray-300" : "max-h-0 opacity-0 overflow-hidden"
-                  }`}
-                >
-                  {solution.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-xs mt-1">{index + 1}.</span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Right column - Image showcase */}
-      <div className="rounded-xl overflow-hidden relative aspect-[16/9]">
-        <div className="relative w-full h-full">
-          {[...Array(3)].map((_, i) => (
-            <Image
-              key={i}
-              src={`/placeholder.svg?height=400&width=600`}
-              alt={`Solution visualization ${i + 1}`}
-              width={600}
-              height={400}
-              className="absolute inset-0 w-full h-full object-cover opacity-0"
-              onLoad={handleImageLoad}
-            />
-          ))}
-
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-            <div className="text-center px-4 py-6 sm:px-6">
-              <p className="text-lg sm:text-xl font-medium mb-4">{solutions[activeIndex].title}</p>
-
-              {/* Feature highlights */}
-              <div className="text-sm text-left max-w-md mx-auto space-y-2">
-                {solutions[activeIndex].features.slice(0, 3).map((feature, idx) => (
-                  <div key={idx} className="flex items-center gap-2 opacity-90">
-                    <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0"></div>
-                    <p>{feature}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Image Load Progress */}
-              <div className="flex justify-center mt-4 space-x-1">
-                {[1, 2, 3].map((n) => (
-                  <span
-                    key={n}
-                    className={`w-2 h-2 rounded-full ${
-                      loadedImages >= n ? "bg-white" : "bg-gray-500"
+                <div className="flex items-start gap-3">
+                  <div
+                    className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5 transition-colors duration-300 ${
+                      idx === activeIndex ? "bg-white text-black" : "bg-white/50 text-black"
                     }`}
-                  ></span>
-                ))}
+                  >
+                    <span className="font-bold text-sm">{solution.id}</span>
+                  </div>
+                  <div className="w-full">
+                    <h3
+                      className={`font-medium text-base sm:text-lg transition-colors duration-300 ${
+                        idx === activeIndex ? "text-white" : "text-white/70"
+                      }`}
+                      onClick={() => setActiveIndex(idx)}
+                    >
+                      {solution.title}
+                    </h3>
+
+                    {/* Features list */}
+                    <ul
+                      className={`mt-2 space-y-1 text-sm transition-all duration-500 ${
+                        idx === activeIndex ? "max-h-96 opacity-100 text-gray-300" : "max-h-0 opacity-0 overflow-hidden"
+                      }`}
+                    >
+                      {solution.features.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <span className="text-xs mt-1">{index + 1}.</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
+            ))}
+          </div>
+
+          {/* Right column - Image showcase */}
+          <div className="rounded-xl overflow-hidden relative aspect-[16/9]">
+            <div className="relative w-full h-full">
+              {[vehicle, cyber, carSelling, hr].map((image, i) => (
+                <Image
+                  key={i}
+                  src={image.src || "/placeholder.svg"}
+                  alt={`Solution visualization ${i + 1}`}
+                  width={600}
+                  height={400}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                    i === activeIndex ? "opacity-100" : "opacity-0"
+                  }`}
+                  onLoad={handleImageLoad}
+                />
+              ))}
+
+              
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-
   )
 }
+{/* <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+<div className="text-center px-4 py-6 sm:px-6">
+  <p className="text-lg sm:text-xl font-medium mb-4">{solutions[activeIndex].title}</p>
+
+  {/* Feature highlights */}
+  // <div className="text-sm text-left max-w-md mx-auto space-y-2">
+  //   {solutions[activeIndex].features.slice(0, 3).map((feature, idx) => (
+  //     <div key={idx} className="flex items-center gap-2 opacity-90">
+  //       <div className="w-1.5 h-1.5 rounded-full bg-white flex-shrink-0"></div>
+  //       <p>{feature}</p>
+  //     </div>
+  //   ))}
+  // </div>
+
+//   {/* Image Load Progress */}
+//   <div className="flex justify-center mt-4 space-x-1">
+//     {[1, 2, 3].map((n) => (
+//       <span
+//         key={n}
+//         className={`w-2 h-2 rounded-full ${loadedImages >= n ? "bg-white" : "bg-gray-500"}`}
+//       ></span>
+//     ))}
+//   </div>
+// </div>
+// </div> */}

@@ -59,7 +59,7 @@ function PrivacyNotice() {
             This Privacy Notice explains how we collect, use, disclose, and safeguard your information when you visit our website (e.g., www.devedge.consulting) (the "Website"), use our mobile applications (if any) ("Mobile Apps"), or interact with us through other communications like newsletters or offline events that reference this Notice ("Communications"). By using the Website or Mobile Apps, or continuing to receive Communications, you agree to the collection and use of information in accordance with this Privacy Notice.
           </p>
            <p className="mb-4">
-            Our Website may contain links to other websites or services not operated or controlled by Dev Edge ("Third-Party Sites"). The information practices of those Third-Party Sites are not covered by this Privacy Notice. We encourage you to review the privacy policies of any Third-Party Sites you visit.
+            Our Website may contain links to other websites or services not operated or controlled by DevEdge ("Third-Party Sites"). The information practices of those Third-Party Sites are not covered by this Privacy Notice. We encourage you to review the privacy policies of any Third-Party Sites you visit.
           </p>
         </section>
 
@@ -110,7 +110,7 @@ function PrivacyNotice() {
            <p className="mb-4">We do not sell your personal information. We may share your information in the following circumstances:</p>
            <ul className="list-disc list-inside mb-4 pl-4 space-y-1">
              <li><strong>With Service Providers:</strong> We may share information with third-party vendors and service providers who perform services on our behalf (e.g., hosting, email delivery, analytics, payment processing, event management). These providers are typically obligated to protect your information.</li>
-             <li><strong>Within Dev Edge:</strong> Information may be shared among our entities in KSA, UAE, and Pakistan as necessary for operational, administrative, or service delivery purposes.</li>
+             <li><strong>Within DevEdge:</strong> Information may be shared among our entities in KSA, UAE, and Pakistan as necessary for operational, administrative, or service delivery purposes.</li>
              <li><strong>For Legal Reasons:</strong> We may disclose information if required by law, subpoena, or other legal process, or if we believe in good faith that disclosure is necessary to protect our rights, protect your safety or the safety of others, investigate fraud, or respond to a government request.</li>
              <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, reorganization, bankruptcy, or sale of all or a portion of our assets, your information may be transferred as part of that transaction.</li>
              <li><strong>With Your Consent:</strong> We may share your information for other purposes with your explicit consent.</li>
@@ -148,7 +148,7 @@ function PrivacyNotice() {
         <section id="international-transfers">
           <h2 className="text-xl font-semibold text-gray-800 mb-3">7. International Transfers</h2>
           <p className="mb-4">
-            As Dev Edge operates in KSA, UAE, and Pakistan, your personal information may be processed and stored in any of these countries, or in other locations where our service providers operate. Data protection laws in these countries may differ. We will take appropriate steps to ensure that transfers of personal information are in accordance with applicable law and are adequately protected.
+            As DevEdge operates in KSA, UAE, and Pakistan, your personal information may be processed and stored in any of these countries, or in other locations where our service providers operate. Data protection laws in these countries may differ. We will take appropriate steps to ensure that transfers of personal information are in accordance with applicable law and are adequately protected.
           </p>
         </section>
 
@@ -166,7 +166,7 @@ function PrivacyNotice() {
           </p>
           <p className="mb-1">Email: <a href="mailto:privacy@devedge.consulting" className="text-blue-600 hover:underline">privacy@devedge.consulting</a></p>
           {/* Add physical address or phone if appropriate */}
-          <p>Address: [Placeholder: Dev Edge Regional HQ Address, e.g., Dubai, UAE]</p>
+          <p>Address: [Placeholder: DevEdge Regional HQ Address, e.g., Dubai, UAE]</p>
         </section>
       </div>
     </div>

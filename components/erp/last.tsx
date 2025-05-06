@@ -81,7 +81,7 @@ export default function LastERM() {
             </div>
 
             {/* Right Column - Form */}
-            <div className="mb-20">
+            <div className="mb-20" id="target-section">
               <ContactForm />
               </div>
           </div>

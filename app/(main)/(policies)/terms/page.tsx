@@ -49,7 +49,7 @@ function TermsOfUse() {
 
       <div className="space-y-4 text-gray-700 leading-relaxed">
         <p>
-          Welcome to the DevEdge Consulting website (e.g., www.devedgeconsulting). These Terms of Use ("Terms") govern your access to and use of the website, including any content, functionality, and services offered on or through the website (collectively, the "Website"). The Website is owned and operated by Dev Edge and its affiliated entities operating in the Kingdom of Saudi Arabia (KSA), the United Arab Emirates (UAE), and Pakistan (collectively, "Dev Edge", "we", "us", or "our").
+          Welcome to the DevEdge Consulting website (e.g., www.devedgeconsulting). These Terms of Use ("Terms") govern your access to and use of the website, including any content, functionality, and services offered on or through the website (collectively, the "Website"). The Website is owned and operated by DevEdge and its affiliated entities operating in the Kingdom of Saudi Arabia (KSA), the United Arab Emirates (UAE), and Pakistan (collectively, "DevEdge", "we", "us", or "our").
         </p>
         <p>
           <strong>Please read these Terms carefully before you start to use the Website. By accessing or using the Website, you acknowledge that you have read, understood, and agree to be bound by these Terms and our <Link href="/privacy" className="text-blue-600 hover:underline">Privacy Notice</Link>. If you do not agree to these Terms or the Privacy Notice, you must not access or use the Website.</strong>
@@ -68,10 +68,10 @@ function TermsOfUse() {
 
         <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">2. Intellectual Property Rights</h2>
         <p>
-          The Website and its entire Content, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof) are owned by Dev Edge, its licensors, or other providers of such material and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.
+          The Website and its entire Content, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof) are owned by DevEdge, its licensors, or other providers of such material and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.
         </p>
         <p>
-          You must not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Website, except as generally and ordinarily permitted through the Website according to these Terms. The Dev Edge name, logo, and all related names, logos, product and service names, designs, and slogans are trademarks of Dev Edge or its affiliates or licensors. You must not use such marks without the prior written permission of Dev Edge.
+          You must not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Website, except as generally and ordinarily permitted through the Website according to these Terms. The DevEdge name, logo, and all related names, logos, product and service names, designs, and slogans are trademarks of DevEdge or its affiliates or licensors. You must not use such marks without the prior written permission of DevEdge.
         </p>
 
         <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">3. User Conduct</h2>
@@ -79,27 +79,27 @@ function TermsOfUse() {
          <ul className="list-disc list-inside mb-4 pl-4 space-y-1">
           <li>In any way that violates any applicable federal, state, local, or international law or regulation (including, without limitation, any laws regarding the export of data or software to and from KSA, UAE, Pakistan or other countries).</li>
           <li>To transmit, or procure the sending of, any advertising or promotional material without our prior written consent, including any "junk mail," "chain letter," "spam," or any other similar solicitation.</li>
-          <li>To impersonate or attempt to impersonate Dev Edge, a Dev Edge employee, another user, or any other person or entity.</li>
-          <li>To engage in any other conduct that restricts or inhibits anyone's use or enjoyment of the Website, or which, as determined by us, may harm Dev Edge or users of the Website or expose them to liability.</li>
+          <li>To impersonate or attempt to impersonate DevEdge, a DevEdge employee, another user, or any other person or entity.</li>
+          <li>To engage in any other conduct that restricts or inhibits anyone's use or enjoyment of the Website, or which, as determined by us, may harm DevEdge or users of the Website or expose them to liability.</li>
            <li>To introduce any viruses, trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.</li>
            <li>To attempt to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Website, the server on which the Website is stored, or any server, computer, or database connected to the Website.</li>
         </ul>
 
          <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">4. Disclaimers</h2>
          <p>
-           THE WEBSITE AND ITS CONTENT ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. NEITHER DEV EDGE NOR ANY PERSON ASSOCIATED WITH DEV EDGE MAKES ANY WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY, OR AVAILABILITY OF THE WEBSITE OR ITS CONTENT.
+           THE WEBSITE AND ITS CONTENT ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. NEITHER DEVEDGE NOR ANY PERSON ASSOCIATED WITH DEVEDGE MAKES ANY WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY, OR AVAILABILITY OF THE WEBSITE OR ITS CONTENT.
          </p>
          <p>
-           WITHOUT LIMITING THE FOREGOING, NEITHER DEV EDGE NOR ANYONE ASSOCIATED WITH DEV EDGE REPRESENTS OR WARRANTS THAT THE WEBSITE OR ITS CONTENT WILL BE ACCURATE, RELIABLE, ERROR-FREE, OR UNINTERRUPTED, THAT DEFECTS WILL BE CORRECTED, THAT OUR SITE OR THE SERVER THAT MAKES IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS, OR THAT THE WEBSITE OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE WILL OTHERWISE MEET YOUR NEEDS OR EXPECTATIONS.
+           WITHOUT LIMITING THE FOREGOING, NEITHER DEVEDGE NOR ANYONE ASSOCIATED WITH DEVEDGE REPRESENTS OR WARRANTS THAT THE WEBSITE OR ITS CONTENT WILL BE ACCURATE, RELIABLE, ERROR-FREE, OR UNINTERRUPTED, THAT DEFECTS WILL BE CORRECTED, THAT OUR SITE OR THE SERVER THAT MAKES IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS, OR THAT THE WEBSITE OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE WILL OTHERWISE MEET YOUR NEEDS OR EXPECTATIONS.
          </p>
           <p>
-           TO THE FULLEST EXTENT PROVIDED BY LAW, DEV EDGE HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, AND FITNESS FOR PARTICULAR PURPOSE.
+           TO THE FULLEST EXTENT PROVIDED BY LAW, DEVEDGE HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, AND FITNESS FOR PARTICULAR PURPOSE.
          </p>
 
 
         <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">5. Limitation of Liability</h2>
          <p>
-           TO THE FULLEST EXTENT PROVIDED BY LAW, IN NO EVENT WILL DEV EDGE, ITS AFFILIATES, OR THEIR LICENSORS, SERVICE PROVIDERS, EMPLOYEES, AGENTS, OFFICERS, OR DIRECTORS BE LIABLE FOR DAMAGES OF ANY KIND, UNDER ANY LEGAL THEORY, ARISING OUT OF OR IN CONNECTION WITH YOUR USE, OR INABILITY TO USE, THE WEBSITE, ANY WEBSITES LINKED TO IT, ANY CONTENT ON THE WEBSITE OR SUCH OTHER WEBSITES, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO, PERSONAL INJURY, PAIN AND SUFFERING, EMOTIONAL DISTRESS, LOSS OF REVENUE, LOSS OF PROFITS, LOSS OF BUSINESS OR ANTICIPATED SAVINGS, LOSS OF USE, LOSS OF GOODWILL, LOSS OF DATA, AND WHETHER CAUSED BY TORT (INCLUDING NEGLIGENCE), BREACH OF CONTRACT, OR OTHERWISE, EVEN IF FORESEEABLE.
+           TO THE FULLEST EXTENT PROVIDED BY LAW, IN NO EVENT WILL DEVEDGE, ITS AFFILIATES, OR THEIR LICENSORS, SERVICE PROVIDERS, EMPLOYEES, AGENTS, OFFICERS, OR DIRECTORS BE LIABLE FOR DAMAGES OF ANY KIND, UNDER ANY LEGAL THEORY, ARISING OUT OF OR IN CONNECTION WITH YOUR USE, OR INABILITY TO USE, THE WEBSITE, ANY WEBSITES LINKED TO IT, ANY CONTENT ON THE WEBSITE OR SUCH OTHER WEBSITES, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO, PERSONAL INJURY, PAIN AND SUFFERING, EMOTIONAL DISTRESS, LOSS OF REVENUE, LOSS OF PROFITS, LOSS OF BUSINESS OR ANTICIPATED SAVINGS, LOSS OF USE, LOSS OF GOODWILL, LOSS OF DATA, AND WHETHER CAUSED BY TORT (INCLUDING NEGLIGENCE), BREACH OF CONTRACT, OR OTHERWISE, EVEN IF FORESEEABLE.
          </p>
 
         <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">6. Governing Law and Jurisdiction</h2>
@@ -113,7 +113,7 @@ function TermsOfUse() {
 
          <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">7. Entire Agreement</h2>
          <p>
-          These Terms of Use and our Privacy Notice constitute the sole and entire agreement between you and Dev Edge regarding the Website and supersede all prior and contemporaneous understandings, agreements, representations, and warranties, both written and oral, regarding the Website.
+          These Terms of Use and our Privacy Notice constitute the sole and entire agreement between you and DevEdge regarding the Website and supersede all prior and contemporaneous understandings, agreements, representations, and warranties, both written and oral, regarding the Website.
          </p>
 
          <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">8. Contact Information</h2>

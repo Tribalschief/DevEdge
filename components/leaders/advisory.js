@@ -5,7 +5,7 @@ export const Advisory = ({advisor}) => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8">
       {/* Header */}
-      <div className="w-full mt-4 sm:mt-10">
+      <div className="w-full mt-1 sm:mt-10">
         <h1 className="text-3xl sm:text-4xl font-bold text-center py-4 sm:py-6 text-black">Our Advisor</h1>
       </div>
     

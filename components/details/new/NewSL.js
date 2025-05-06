@@ -56,10 +56,11 @@ export function NewServicesList() {
               
                 <Link href={`/services/${service.slug}`} className="text-xl font-normal hover:text-[#6208CA] block">
                 
-                  <div className="gap-x-3">
-                  {i + 1}  {service.title}
-                    <span className="inline-block ml-3 scale-125 ">«</span>
-                  </div>
+                <div className="gap-x-3">
+  {i + 1}
+  <span style={{ fontSize: '1.25em' }}>.</span> {service.title}
+  <span className="inline-block ml-3 scale-125">«</span>
+</div>
                 </Link>
               </motion.div>
             ))}

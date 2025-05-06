@@ -34,7 +34,7 @@ function CookieNotice() {
 
       <div className="space-y-4 text-gray-700 leading-relaxed">
         <p>
-          This Cookie Notice explains how Dev Edge ("we", "us", "our") uses cookies and similar tracking technologies on our website (e.g., www.devedge.consulting) (the "Website"). This notice should be read alongside our <Link href="/privacy-notice" className="text-blue-600 hover:underline">Privacy Notice</Link>, which provides more detail on how we process personal information.
+          This Cookie Notice explains how DevEdge ("we", "us", "our") uses cookies and similar tracking technologies on our website (e.g., www.devedge.consulting) (the "Website"). This notice should be read alongside our <Link href="/privacy-notice" className="text-blue-600 hover:underline">Privacy Notice</Link>, which provides more detail on how we process personal information.
         </p>
 
         <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">1. What are Cookies?</h2>
@@ -51,7 +51,7 @@ function CookieNotice() {
           <li><strong>Strictly Necessary Cookies:</strong> Essential for you to browse the Website and use its features, such as accessing secure areas. The Website cannot function properly without these cookies.</li>
           <li><strong>Performance and Analytics Cookies:</strong> Collect information about how you use our Website, like which pages you visit most often, and if you get error messages. This helps us improve how the Website works. We may use third-party analytics tools (e.g., Google Analytics) for this purpose.</li>
           <li><strong>Functionality Cookies:</strong> Allow the Website to remember choices you make (like your user name, language, or the region you are in) and provide enhanced, more personal features.</li>
-          <li><strong>Targeting or Advertising Cookies (If Applicable):</strong> These cookies may be set through our site by us or advertising partners. They may be used to build a profile of your interests and show you relevant adverts on other sites. They do not store directly personal information but are based on uniquely identifying your browser and internet device. (Note: Mention this only if Dev Edge actually uses advertising cookies).</li>
+          <li><strong>Targeting or Advertising Cookies (If Applicable):</strong> These cookies may be set through our site by us or advertising partners. They may be used to build a profile of your interests and show you relevant adverts on other sites. They do not store directly personal information but are based on uniquely identifying your browser and internet device. (Note: Mention this only if DevEdge actually uses advertising cookies).</li>
         </ul>
 
         <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">3. Third-Party Cookies</h2>
