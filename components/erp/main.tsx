@@ -11,6 +11,10 @@ import { Button } from "../ui/button"
 export default function Solutions() {
 
   const [carouselIndex, setCarouselIndex] = useState(0)
+  const [loadedImages, setLoadedImages] = useState(0)
+  const handleImageLoad = () => {
+    setLoadedImages((prev) => prev + 1)
+  }
   const scrollToSection = () => {
     const element = document.getElementById('target-section');
     if (element) {
@@ -64,9 +68,10 @@ export default function Solutions() {
                 <Image
                   src={vehicle || "/placeholder.svg"}
                   alt="Vehicle Shipping Services"
-                  fill
-                  priority
-                  className="object-contain"
+                  className="object-fill"
+                    
+                  onLoad={handleImageLoad}
+                  sizes="(max-width: 1024px) 100vw, 60vw"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 w-full">
                   <h3 className="text-white text-xl font-bold">Vehicle Shipping Services</h3>
@@ -78,9 +83,10 @@ export default function Solutions() {
                 <Image
                   src={cyber || "/placeholder.svg"}
                   alt="Cybersecurity Risk Management"
-                  fill
-                  className="object-contain"
-                />
+                  className="object-fill"
+                    
+                    onLoad={handleImageLoad}
+                    sizes="(max-width: 1024px) 100vw, 60vw"/>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 w-full">
                   <h3 className="text-white text-xl font-bold">Cybersecurity Risk Management</h3>
                 </div>
@@ -91,8 +97,10 @@ export default function Solutions() {
                 <Image
                   src={carSelling || "/placeholder.svg"}
                   alt="Car Selling Platform"
-                  fill
-                  className="object-contain"
+                  className="object-fill"
+                    
+                    onLoad={handleImageLoad}
+                    sizes="(max-width: 1024px) 100vw, 60vw"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 w-full">
                   <h3 className="text-white text-xl font-bold">Car Selling Platform</h3>
@@ -101,7 +109,11 @@ export default function Solutions() {
 
               {/* Slide 4 */}
               <div className="min-w-full h-full relative bg-gray-100">
-                <Image src={hr || "/placeholder.svg"} alt="Human Resource Management" fill className="object-contain" />
+                <Image src={hr || "/placeholder.svg"} alt="Human Resource Management" fill
+                    className="object-fill"
+                    
+                    onLoad={handleImageLoad}
+                    sizes="(max-width: 1024px) 100vw, 60vw"/>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 w-full">
                   <h3 className="text-white text-xl font-bold">Human Resource Management</h3>
                 </div>
