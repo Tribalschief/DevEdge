@@ -9,7 +9,7 @@ import { Button } from "../ui/button"
 
 
 export default function Solutions() {
-  console.log("Solutions")
+
   const [carouselIndex, setCarouselIndex] = useState(0)
   const scrollToSection = () => {
     const element = document.getElementById('target-section');
