@@ -69,7 +69,7 @@ export default function Solutions() {
                   src={vehicle || "/placeholder.svg"}
                   alt="Vehicle Shipping Services"
                   className="object-fill"
-                    
+                  fill
                   onLoad={handleImageLoad}
                   sizes="(max-width: 1024px) 100vw, 60vw"
                 />
@@ -84,7 +84,7 @@ export default function Solutions() {
                   src={cyber || "/placeholder.svg"}
                   alt="Cybersecurity Risk Management"
                   className="object-fill"
-                    
+                  fill
                     onLoad={handleImageLoad}
                     sizes="(max-width: 1024px) 100vw, 60vw"/>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 w-full">
@@ -97,6 +97,7 @@ export default function Solutions() {
                 <Image
                   src={carSelling || "/placeholder.svg"}
                   alt="Car Selling Platform"
+                  fill
                   className="object-fill"
                     
                     onLoad={handleImageLoad}
