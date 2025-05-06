@@ -29,7 +29,7 @@ export default function LeadershipPage() {
         { title: "Blockchain Essentials" },
         { title: "Certified Hacking Forensic Investigator (CHFI)" },
         { title: "Microsoft Certified Technology Specialist (MCTS)" },
-        { title: "TOGAF Certified" },
+        
         
       ],
       industries: [

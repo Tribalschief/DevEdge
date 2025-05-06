@@ -153,14 +153,14 @@ export default function ERMService() {
             </div>
           </TabsTrigger>
           <TabsTrigger
-            value="coming-soon"
+            value="Under Development"
             className="flex w-[250px] items-center p-4 space-x-4 bg-gray-800 rounded-lg hover:bg-gray-700 text-gray-300 hover:text-purple-400 data-[state=active]:bg-purple-900 data-[state=active]:text-white transition-all"
           >
             <div className="bg-white rounded-full p-3">
               <Clock className="h-6 w-6 text-gray-900" />
             </div>
             <div>
-              <h3 className="text-base font-semibold">Coming Soon</h3>
+              <h3 className="text-base font-semibold">Under Development</h3>
               <p className="text-xs text-purple-400"> </p>
             </div>
           </TabsTrigger>
@@ -309,16 +309,16 @@ export default function ERMService() {
          </TabsContent>
 
       {/* ====== Coming Soon Content (Remains the Same) ====== */}
-      <TabsContent value="coming-soon" className="pt-6">
+      <TabsContent value="Under Development" className="pt-6">
          <Card className="border border-gray-200 shadow-lg rounded-lg overflow-hidden">
            {/* ... CardHeader ... */}
             <CardHeader className="bg-gray-50 border-b border-gray-200">
-             <CardTitle className="text-2xl font-semibold text-gray-800">More Services Coming Soon</CardTitle>
+             <CardTitle className="text-2xl font-semibold text-gray-800">More Services Under Development</CardTitle>
            </CardHeader>
            <CardContent className="p-6">
              <div className="py-12 text-center">
                <p className="text-lg text-gray-500 italic">Stay tuned for exciting new platforms!</p>
-               <p className="text-lg text-gray-500 italic">Enjoy such services as</p>
+               
                <p className="text-lg text-gray-500 italic">• Cyber Risk Management Platform</p>
                <p className="text-lg text-gray-500 italic">• Car Selling Platform</p>
                <p className="text-lg text-gray-500 italic">• Human Resource Management Solution</p>

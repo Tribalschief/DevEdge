@@ -65,18 +65,34 @@ export default function LastERM() {
                   title="Email"
                   lines={["contact@devedgeconsulting.com"]}
                 />
+                <div className="space-y-2">
                 <ContactCard
                   icon={<MapPin className="w-5 h-5 text-gray-600" />}
                   title="Location"
                   lines={[
                     "Al Ruqa Al Hamra - Near Souk Al Haraj",
                     "Sharjah | United Arab Emirates",
-                     "Suit no. 805, Park Avenue Building. ",
-                     "Sharah-e-faisal | Karachi, Pakistan",
-                     "Alia Plaza, Thumamah Road at the Cross Roads with Abi Baker ",
-                     "Al-Siddiq Road | Riyadh, Kingdom of Saudi Arabia"
+                     
                   ]}
+                  
                 />
+                <ContactCard
+                  icon={<MapPin className="w-5 h-5 text-gray-600" />}
+                  title="Location"
+                  lines={[
+                    "Suit no. 805, Park Avenue Building. ",
+                     "Sharah-e-faisal | Karachi, Pakistan",
+                     
+                  ]}/>
+                  <ContactCard
+                  icon={<MapPin className="w-5 h-5 text-gray-600" />}
+                  title="Location"
+                  lines={[
+                    "Alia Plaza, Thumamah Road at the Cross Roads with Abi Baker ",
+                     "Al-Siddiq Road | Riyadh, Kingdom of Saudi Arabia",
+                     
+                  ]}/>
+                  </div>
               </div>
             </div>
 
@@ -129,3 +145,6 @@ function ContactCard({
     </div>
   );
 }
+
+
+                     

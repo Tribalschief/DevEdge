@@ -40,7 +40,7 @@ function PrivacyNotice() {
     <div className="space-y-6">
       <div className="border-b border-gray-300 pb-4">
         <h1 className="text-2xl font-bold text-gray-800">Privacy Notice</h1>
-        <p className="text-sm text-gray-600">Last revised: January 23, 2023</p>
+        <p className="text-sm text-gray-600">Last revised: January 23, 2025</p>
         {/* Optional: Add logo or other elements here if needed */}
          <div className="mt-4 flex justify-between items-center">
           {/* Content for the flex container if needed, e.g., version number */}
