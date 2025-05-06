@@ -129,7 +129,7 @@ export default function SolutionsShowcase() {
                     src={solution.image || "/placeholder.svg"}
                     alt={solution.title}
                     fill
-                    className="object-cover"
+                    className="object-fill"
                     priority={idx === 0}
                     onLoad={handleImageLoad}
                     sizes="(max-width: 1024px) 100vw, 60vw"

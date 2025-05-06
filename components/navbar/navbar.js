@@ -58,7 +58,7 @@ export const Navbar = () => {
     const active = isActive(href)
 
     if (active) {
-      return <span className={cn(className, "cursor-default text-[#6208ac] border-b-2 border-[#6208ac]")}>{children}</span>
+      return <span className={cn(className, "cursor-default border-b-2 border-[#6208ac]")}>{children}</span>
     }
 
     return (
@@ -89,19 +89,19 @@ export const Navbar = () => {
               scrolled ? "text-gray-50" : "text-gray-900"
             }`}
           >
-            <NavLink href="/" className="text-sm lg:text-sm xl:text-base font-medium">
+            <NavLink href="/" className="text-sm lg:text-sm xl:text-base font-medium ">
               Home
             </NavLink>
             <div className="text-sm lg:text-sm xl:text-base font-medium">
               <Services heading="Our Playground" />
             </div>
-            <NavLink href="/about" className="text-sm lg:text-sm xl:text-base font-medium">
+            <NavLink href="/about" className="text-sm lg:text-sm xl:text-base font-medium hover:border-[#6208ac] hover:border-b-2 transition-all duration-200">
               About Us
             </NavLink>
             <div className="text-sm lg:text-sm xl:text-base font-medium">
               <Company title="Company" />
             </div>
-            <NavLink href="/erp" className="text-sm lg:text-sm xl:text-base font-medium">
+            <NavLink href="/erp" className="text-sm lg:text-sm xl:text-base font-medium hover:border-[#6208ac] hover:border-b-2 transition-all duration-200">
               <span className="hidden xl:inline">Our ERP Software</span>
               <span className="xl:hidden">ERP Software</span>
             </NavLink>

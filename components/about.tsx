@@ -9,15 +9,11 @@ export const AboutHero = () => {
           relative 
           mt-10 sm:mt-16 md:mt-20 lg:mt-28 xl:mt-32
           
-          // --- Responsive Aspect Ratios ---
-          // Default (Mobile First): Still reasonably tall
-          aspect-video // (16:9 ≈ 1.78:1) - Keep this for smaller screens
-
+          
           // Large screens: Make it noticeably wider/shorter
-          lg:aspect-[5/2] // (2.5:1) - Wider than 2:1 used previously
+          lg:aspect-[9/2] // (2.5:1) - Wider than 2:1 used previously
 
-          // Extra Large screens: Make it even wider/shorter
-          xl:aspect-[3/1] // (3:1) - Wider than 5:2 used previously
+          
         "
       >
         <Image

@@ -10,6 +10,7 @@ import { Suspense } from "react";
 import Loading from "./loading";
 
 
+
 export const metadata: Metadata = {
   // --- Core Metadata ---
   title: {
@@ -138,6 +139,7 @@ export default function RootLayout({
           <CookieScriptLoader googleAnalyticsId={process.env.GOOGLE_ID}/>
         </CookieConsentProvider>
         <Footer/>
+        
       </body>
     </html>
   );

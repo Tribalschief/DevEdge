@@ -5,6 +5,7 @@ import { Linkedin } from "lucide-react"
 import logo from "../public/whitelogo.png"
 import { Services } from "./navbar/service"
 import { useState } from "react"
+import { CopyWrite } from "./copywrite"
 
 export default function Footer() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -38,7 +39,7 @@ export default function Footer() {
             <Link href="/privacy" className="hover:underline">
               Privacy Policy
             </Link>
-            <Link href="/privacy" className="hover:underline">
+            <Link href="/terms" className="hover:underline">
               Terms of use
             </Link>
           </div>
@@ -201,6 +202,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
+      <CopyWrite/>
     </footer>
   )
 }

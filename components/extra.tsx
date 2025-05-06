@@ -33,7 +33,7 @@ export function Extra({ src }: { src: string }) {
             <p
               className="
                 text-gray-700 leading-relaxed max-w-xl
-                text-[clamp(0.875rem,calc(0.8rem+0.5vw+0.25vh),1.125rem)]
+                text-[clamp(0.875rem,calc(0.8rem+0.5vw+0.25vh),1.125rem)] text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium mt-1 sm:mt-2 md:mt-3 lg:mt-4 drop-shadow-lg
               "
             >
               We are more than just advisors — we are solution architects. We
@@ -45,7 +45,7 @@ export function Extra({ src }: { src: string }) {
             <p
               className="
                 text-gray-700 leading-relaxed max-w-xl
-                text-[clamp(0.875rem,calc(0.8rem+0.5vw+0.25vh),1.125rem)] 
+                text-[clamp(0.875rem,calc(0.8rem+0.5vw+0.25vh),1.125rem)]  text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium mt-1 sm:mt-2 md:mt-3 lg:mt-4 drop-shadow-lg
               "
             >
               Whether you're modernizing processes, strengthening governance,

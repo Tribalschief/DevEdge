@@ -83,7 +83,7 @@ function PrivacyNotice() {
             If you use our Mobile Apps (where applicable), we or our service providers might also collect device-related information such as device model, operating system, unique device identifier, IP address, mobile carrier, general location, and app usage patterns. Specific data collection will depend on the app's functionality.
           </p>
           <p className="mb-4">
-            We may also automatically collect certain information when you visit our Website, such as your IP address, browser type, operating system, referring URLs, pages viewed, and dates/times of visits, often using cookies and similar technologies (see our <Link href="/cookie-notice" className="text-blue-600 hover:underline">Cookie Notice</Link> for details).
+            We may also automatically collect certain information when you visit our Website, such as your IP address, browser type, operating system, referring URLs, pages viewed, and dates/times of visits, often using cookies and similar technologies (see our <Link href="/cookies" className="text-blue-600 hover:underline">Cookie Notice</Link> for details).
           </p>
            <p className="mb-4">
              We generally do not seek to collect sensitive personal information (e.g., data related to race, religion, health, political opinions, detailed financial account information unless necessary for service payment, or biometric data) unless required by law or with your explicit consent for a specific purpose.
@@ -164,9 +164,10 @@ function PrivacyNotice() {
           <p className="mb-4">
             If you have any questions, concerns, or requests regarding this Privacy Notice or our privacy practices, please contact us at:
           </p>
-          <p className="mb-1">Email: <a href="mailto:privacy@devedge.consulting" className="text-blue-600 hover:underline">privacy@devedge.consulting</a></p>
+          <p className="mb-1">Email: <a href="mailto:contact@devedgeconsulting.com" className="text-blue-600 hover:underline">contact@devedgeconsulting.coms</a></p>
           {/* Add physical address or phone if appropriate */}
-          <p>Address: [Placeholder: DevEdge Regional HQ Address, e.g., Dubai, UAE]</p>
+          <p>Address: Al Ruqa Al Hamra - Near Souk Al Haraj
+          Sharjah</p>
         </section>
       </div>
     </div>

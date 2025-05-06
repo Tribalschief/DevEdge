@@ -20,8 +20,8 @@ export default function LastERM() {
           All Your Operations,
           One Powerful Platform
           </p>
-          <div className="pt-4">
-            <Button id="target-section" variant="outline" className="bg-white text-black hover:bg-gray-100 rounded-full px-6">
+          <div className="pt-4" id="target-section">
+            <Button  variant="outline" className="bg-white text-black hover:bg-gray-100 rounded-full px-6">
               <CalendarIcon className="w-4 h-4 mr-2" />
               Book a Live Demo
             </Button>
@@ -74,7 +74,7 @@ export default function LastERM() {
                 <div className="space-y-2">
                 <ContactCard
                   icon={<MapPin className="w-5 h-5 text-gray-600" />}
-                  title="Location"
+                  title="Location Branch 1"
                   lines={[
                     "Al Ruqa Al Hamra - Near Souk Al Haraj",
                     "Sharjah | United Arab Emirates",
@@ -84,7 +84,7 @@ export default function LastERM() {
                 />
                 <ContactCard
                   icon={<MapPin className="w-5 h-5 text-gray-600" />}
-                  title="Location"
+                  title="Location Branch 2"
                   lines={[
                     "Suit no. 805, Park Avenue Building. ",
                      "Sharah-e-faisal | Karachi, Pakistan",
@@ -92,7 +92,7 @@ export default function LastERM() {
                   ]}/>
                   <ContactCard
                   icon={<MapPin className="w-5 h-5 text-gray-600" />}
-                  title="Location"
+                  title="Location Branch 3"
                   lines={[
                     "Alia Plaza, Thumamah Road at the Cross Roads with Abi Baker ",
                      "Al-Siddiq Road | Riyadh, Kingdom of Saudi Arabia",
