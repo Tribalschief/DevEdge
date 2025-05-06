@@ -21,9 +21,16 @@ export const Navbar = () => {
   const [servicesOpen, setServicesOpen] = useState(false)
   const [companyOpen, setCompanyOpen] = useState(false)
   const pathname = usePathname()
-
+  const [isClient, setIsClient] = useState(false)
   const [services, setServices] = React.useState([])
-  React.useEffect(() => {
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isClient) return
+
     async function fetchServices() {
       try {
         const fetchedServices = await getService()
@@ -38,7 +45,8 @@ export const Navbar = () => {
     }
 
     fetchServices()
-  }, [])
+  }, [isClient])
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 100)
@@ -47,6 +55,10 @@ export const Navbar = () => {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  if (!isClient) {
+    return null
+  }
 
   // Check if a link is active
   const isActive = (path) => {
@@ -89,19 +101,28 @@ export const Navbar = () => {
               scrolled ? "text-gray-50" : "text-gray-900"
             }`}
           >
-            <NavLink href="/" className="text-sm lg:text-sm xl:text-base font-medium ">
+            <NavLink
+              href="/"
+              className="text-sm lg:text-sm xl:text-base font-medium  hover:border-[#6208ac] hover:border-b-2 transition-all duration-200"
+            >
               Home
             </NavLink>
             <div className="text-sm lg:text-sm xl:text-base font-medium">
               <Services heading="Our Playground" />
             </div>
-            <NavLink href="/about" className="text-sm lg:text-sm xl:text-base font-medium hover:border-[#6208ac] hover:border-b-2 transition-all duration-200">
+            <NavLink
+              href="/about"
+              className="text-sm lg:text-sm xl:text-base font-medium hover:border-[#6208ac] hover:border-b-2 transition-all duration-200"
+            >
               About Us
             </NavLink>
             <div className="text-sm lg:text-sm xl:text-base font-medium">
               <Company title="Company" />
             </div>
-            <NavLink href="/erp" className="text-sm lg:text-sm xl:text-base font-medium hover:border-[#6208ac] hover:border-b-2 transition-all duration-200">
+            <NavLink
+              href="/erp"
+              className="text-sm lg:text-sm xl:text-base font-medium hover:border-[#6208ac] hover:border-b-2 transition-all duration-200"
+            >
               <span className="hidden xl:inline">Our ERP Software</span>
               <span className="xl:hidden">ERP Software</span>
             </NavLink>

@@ -68,7 +68,7 @@ function GlobalExpertiseCard({ icon, title, description, index }: CoreValueCardP
               alt={`${title} icon`}
               width={80}
               height={80}
-              className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:w-14 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain"
+              className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14  md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain"
             />
           </motion.div>
         </motion.div>
