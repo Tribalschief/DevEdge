@@ -1,10 +1,17 @@
+'use client'
 import Image from "next/image"
 import Link from "next/link"
 import { Linkedin } from "lucide-react"
 import logo from "../public/whitelogo.png"
 import { Services } from "./navbar/service"
+import { useState } from "react"
 
 export default function Footer() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded);
+  }
   return (
     <footer className="bg-black text-white py-12 px-6">
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -41,47 +48,68 @@ export default function Footer() {
         <div className="text-center md:text-left">
           <h3 className="text-lg font-medium mb-4">Our Playground</h3>
           <ul className="space-y-2 text-sm">
-            <li>
-              <Link href="/services/internal-audit" className="hover:underline">
-                Internal Audit
-              </Link>
-            </li>
-            <li>
-              <Link href="/services/cybersecurity" className="hover:underline">
-                Cybersecurity Services
-              </Link>
-            </li>
-            <li>
-              <Link href="/services/multi-cloud" className="hover:underline">
-                Multi-Cloud
-              </Link>
-            </li>
-            <li>
-              <Link href="/services/enterprise-systems" className="hover:underline">
-                Intelligent Enterprise Systems
-              </Link>
-            </li>
-            <li>
-              <Link href="/services/digital-transformation" className="hover:underline">
-                Digital Transformation
-              </Link>
-            </li>
-            <li>
-              <Link href="/services/technology-consulting" className="hover:underline">
-                Technology Consulting & GRC
-              </Link>
-            </li>
-            <li>
-              <Link href="/services/data-management" className="hover:underline">
-                Precision Data Management
-              </Link>
-            </li>
-            <li>
-              <Link href="/services" className="hover:underline">
-                Many More ...
-              </Link>
-            </li>
-          </ul>
+      <li>
+        <Link href="/services/internal-audit" className="hover:underline">
+          Internal Audit
+        </Link>
+      </li>
+      <li>
+        <Link href="/services/cybersecurity" className="hover:underline">
+          Cybersecurity Services
+        </Link>
+      </li>
+      <li>
+        <Link href="/services/multi-cloud-services" className="hover:underline">
+          Multi-Cloud
+        </Link>
+      </li>
+      <li>
+        <Link href="/services/intelligent-enterprise-and-application-development-systems" className="hover:underline">
+          Intelligent Enterprise Systems
+        </Link>
+      </li>
+      <li>
+        <Link href="/services/digital-transformation-and-business-automation" className="hover:underline">
+          Digital Transformation
+        </Link>
+      </li>
+      <li>
+        <Link href="/services/technology-consulting-and-grc-governance-risk-and-compliance" className="hover:underline">
+          Technology Consulting & GRC
+        </Link>
+      </li>
+      <li>
+        <Link href="/services/precision-data-management-and-privacy-services" className="hover:underline">
+          Precision Data Management
+        </Link>
+      </li>
+      {isExpanded && (
+        <>
+          {/* Add more items here */}
+          <li>
+            <Link href="/services/integrated-accounting-and-financial-advisory-services" className="hover:underline">
+            Integrated Accounting & Financial Advisory Service
+            </Link>
+          </li>
+          <li>
+            <Link href="/services/risk-management-and-human-capital-advisory" className="hover:underline">
+            Risk Management & Human Capital Advisory
+            </Link>
+          </li>
+          <li>
+            <Link href="/services//fixed-asset-management" className="hover:underline">
+            Fixed Asset Management
+            </Link>
+          </li>
+          {/* Add more items as required */}
+        </>
+      )}
+      <li>
+        <button onClick={handleToggle} className="hover:underline text-blue-500">
+          {isExpanded ? 'Show Less' : 'Many More ...'}
+        </button>
+      </li>
+    </ul>
         </div>
 
         {/* Industry Experience Column */}
