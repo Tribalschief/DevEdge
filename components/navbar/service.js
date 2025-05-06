@@ -63,10 +63,13 @@ export function Services({ heading }) {
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <div
-            className={`cursor-pointer flex items-center gap-x-1 pb-1 ${
-              isHovered ? "border-b-2 border-[#6208ac]" : ""
-            } transition-all duration-200`}
+            className={`cursor-pointer flex items-center gap-x-1 `}
           >
+            <span className={`${
+              isHovered ? "border-b-2 border-[#6208ac]" : ""
+            } transition-all duration-200`}>
+
+            </span>
             {heading}
             <span className="mt-1">
               <FaAngleDown className="h-3 w-3 md:h-3 md:w-3 lg:h-4 lg:w-4" />

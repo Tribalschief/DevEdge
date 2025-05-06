@@ -123,8 +123,8 @@ export const Navbar = () => {
               href="/erp"
               className="text-sm lg:text-sm xl:text-base font-medium hover:border-[#6208ac] hover:border-b-2 transition-all duration-200"
             >
-              <span className="hidden xl:inline">Our ERP Software</span>
-              <span className="xl:hidden">ERP Software</span>
+              <span className="hidden xl:inline">Our Solution</span>
+              <span className="xl:hidden">Solution</span>
             </NavLink>
             <div className="w-auto md:w-[80px] lg:w-[100px] xl:w-[200px] 2xl:w-[300px]">
               <Searching />
