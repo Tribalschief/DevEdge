@@ -10,8 +10,8 @@ import type { StaticImageData } from "next/image"
 
 
 const Hello = () => {
-    return(<main className="min-h-screen p-4 md:p-8 relative overflow-hidden flex flex-col items-center justify-center">
-    <h1> WHY CHOOSE DEVEDGE CONSULTING FOR INTERNAL AUDIT </h1> 
+    return(<main className="min-h-screen mt-24 p-4 md:p-8 relative overflow-hidden flex flex-col items-center justify-center">
+    <h1 className="text-center text-2xl font-bold"> WHY CHOOSE DEVEDGE CONSULTING FOR INTERNAL AUDIT </h1> 
 
 
     </main>)

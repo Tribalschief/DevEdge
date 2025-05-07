@@ -42,7 +42,7 @@ export default function Footer() {
             <Link href="/terms" className="hover:underline">
               Terms of use
             </Link>
-            <Link href="/Cookies" className="hover:underline">
+            <Link href="/cookies" className="hover:underline">
               Cookie Policy</Link>
           </div>
         </div>
