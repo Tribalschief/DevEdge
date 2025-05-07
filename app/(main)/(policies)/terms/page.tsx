@@ -118,7 +118,7 @@ function TermsOfUse() {
 
          <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">8. Contact Information</h2>
          <p>
-           If you have any questions about these Terms of Use, please contact us at: <a href="mailto:legal@devedge.consulting" className="text-blue-600 hover:underline">legal@devedge.consulting</a>.
+           If you have any questions about these Terms of Use, please contact us at: <a href="mailto:contact@devedgeconsulting.com" className="text-blue-600 hover:underline">contact@devedgeconsulting.com</a>.
            {/* Use a different email than privacy if appropriate */}
          </p>
       </div>
