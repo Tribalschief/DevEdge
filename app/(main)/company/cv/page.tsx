@@ -1,74 +1,88 @@
 "use client"
 
-import type React from "react"
-
-import { useState, useRef, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { ChevronLeft, Upload, ChevronDown, X, Mail, Check, AlertCircle } from "lucide-react"
+import { ChevronLeft, Mail, Check, AlertCircle, Loader2 } from "lucide-react"
 import Cookies from "js-cookie"
 import { useToast } from "@/hooks/use-toast"
-
-import { SubmitHandler } from 'react-hook-form';
-// First, import the submitCV function
-import { submitCV } from "@/action/submitCV"
-import type { FieldValues } from 'react-hook-form';
-import { CookieConsentDialog } from "@/components/cookies-dialog/consnet-dialog"
 import Link from "next/link"
+import { submitCV } from "@/action/submitCV"
+import { CookieConsentDialog } from "@/components/cookies-dialog/consnet-dialog"
+// import { EnvChecker } from "@/components/env-checker"
+import { FileUpload } from "@/components/file-upload"
+import { CountryCodeSelector } from "@/components/country-code-selector"
+import HCaptcha from "@hcaptcha/react-hcaptcha"
 
-interface EmailSubmission {
-  email: string
-  timestamp: number
-  jobType: string
-}
-
-// Country codes data
-const countryCodes = [
-  { code: "+966", country: "Saudi Arabia", flag: "🇸🇦" },
-  { code: "+351", country: "Portugal", flag: "🇵🇹" },
-  { code: "+970", country: "Palestine", flag: "🇵🇸" },
-  { code: "+1", country: "Puerto Rico", flag: "🇵🇷" },
-  { code: "+508", country: "France", flag: "🇫🇷" },
-  { code: "+48", country: "Poland", flag: "🇵🇱" },
-  { code: "+92", country: "Pakistan", flag: "🇵🇰" },
-  { code: "+63", country: "Philippines", flag: "🇵🇭" },
-  { code: "+675", country: "Papua New Guinea", flag: "🇵🇬" },
-  { code: "+689", country: "French Polynesia", flag: "🇵🇫" },
-  { code: "+51", country: "Peru", flag: "🇵🇪" },
-  { code: "+507", country: "Panama", flag: "🇵🇦" },
-  { code: "+968", country: "Oman", flag: "🇴🇲" },
-  { code: "+64", country: "New Zealand", flag: "🇳🇿" },
-  { code: "+683", country: "Niue", flag: "🇳🇺" },
-  { code: "+674", country: "Nauru", flag: "🇳🇷" },
-  { code: "+977", country: "Nepal", flag: "🇳🇵" },
-  { code: "+47", country: "Norway", flag: "🇳🇴" },
-  { code: "+31", country: "Netherlands", flag: "🇳🇱" },
-  { code: "+505", country: "Nicaragua", flag: "🇳🇮" },
-  { code: "+234", country: "Nigeria", flag: "🇳🇬" },
-  { code: "+672", country: "Norfolk Island", flag: "🇳🇫" },
-  { code: "+227", country: "Niger", flag: "🇳🇪" },
-  { code: "+687", country: "New Caledonia", flag: "🇳🇨" },
-]
-
+// Form schema
 const formSchema = z.object({
-  firstName: z.string().min(2, {
-    message: "First name is required",
-  }),
-  lastName: z.string().min(2, {
-    message: "Last name is required",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address",
-  }),
-  mobileNumber: z.string().min(9, {
-    message: "Mobile number is required",
-  }),
+  firstName: z
+    .string()
+    .min(2, { message: "First name is required" })
+    .max(10, { message: "First name cannot exceed 10 characters" })
+    .regex(/^[a-zA-Z\s'-]+$/, {
+      message: "First name should only contain letters, spaces, hyphens, or apostrophes",
+    }),
+  lastName: z
+    .string()
+    .min(2, { message: "Last name is required" })
+    .max(10, { message: "Last name cannot exceed 10 characters" })
+    .regex(/^[a-zA-Z\s'-]+$/, {
+      message: "Last name should only contain letters, spaces, hyphens, or apostrophes",
+    }),
+  email: z
+    .string()
+    .email({ message: "Please enter a valid email address" })
+    .refine(
+      (email) => {
+        // Check for common legitimate email domains
+        const validDomains = [
+          "gmail.com",
+          "outlook.com",
+          "hotmail.com",
+          "yahoo.com",
+          "icloud.com",
+          "aol.com",
+          "protonmail.com",
+          "mail.com",
+        ]
+        // Check for temporary email domains
+        const tempDomains = [
+          "tempmail.com",
+          "temp-mail.org",
+          "guerrillamail.com",
+          "mailinator.com",
+          "yopmail.com",
+          "10minutemail.com",
+        ]
+
+        const domain = email.split("@")[1]?.toLowerCase()
+
+        if (!domain || !email.includes("@")) {
+          return false
+        }
+
+        if (tempDomains.includes(domain)) {
+          return false
+        }
+
+        // Either it's in our valid domains list or we'll accept it if it's not in the temp domains list
+        // and looks like a business domain
+        return validDomains.includes(domain) || (!tempDomains.includes(domain) && domain.includes("."))
+      },
+      { message: "Please use a valid email provider (Gmail, Outlook, or business email)" },
+    ),
+  mobileNumber: z
+    .string()
+    .min(7, { message: "Mobile number is required" })
+    .max(15, { message: "Mobile number cannot exceed 15 digits" })
+    .regex(/^\d+$/, { message: "Mobile number should only contain digits" }),
   jobType: z.string({
     required_error: "Job type is required",
   }),
-  termsAccepted: z.boolean({
-    required_error: "Terms accepted is required",
+  termsAccepted: z.boolean().refine((val) => val === true, {
+    message: "You must accept the terms and conditions",
   }),
   marketingConsent: z.boolean().optional(),
 })
@@ -116,7 +130,7 @@ function Dialog({ isOpen, onClose, onConfirm, title, message }: DialogProps) {
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-medium">{title}</h3>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
-            <X className="h-5 w-5" />
+            <AlertCircle className="h-5 w-5" />
           </button>
         </div>
         <p className="mb-6 text-gray-600">{message}</p>
@@ -142,6 +156,13 @@ function Dialog({ isOpen, onClose, onConfirm, title, message }: DialogProps) {
   )
 }
 
+// Email submission interface and functions
+interface EmailSubmission {
+  email: string
+  timestamp: number
+  jobType: string
+}
+
 function checkEmailRestriction(email: string): { restricted: boolean; daysLeft: number; jobType?: string } {
   try {
     const storedSubmissions = localStorage.getItem("email_submissions")
@@ -154,11 +175,12 @@ function checkEmailRestriction(email: string): { restricted: boolean; daysLeft: 
 
     const now = Date.now()
     const submissionTime = emailSubmission.timestamp
-    const oneMonthInMs = 30 * 24 * 60 * 60 * 1000
+    const oneDayInMs = 24 * 60 * 60 * 1000
     const timeDiff = now - submissionTime
 
-    if (timeDiff < oneMonthInMs) {
-      const daysLeft = Math.ceil((oneMonthInMs - timeDiff) / (24 * 60 * 60 * 1000))
+    if (timeDiff < oneDayInMs) {
+      const hoursLeft = Math.ceil((oneDayInMs - timeDiff) / (60 * 60 * 1000))
+      const daysLeft = hoursLeft > 24 ? Math.ceil(hoursLeft / 24) : 1
       return { restricted: true, daysLeft, jobType: emailSubmission.jobType }
     }
 
@@ -169,7 +191,6 @@ function checkEmailRestriction(email: string): { restricted: boolean; daysLeft: 
   }
 }
 
-// Function to save email submission
 function saveEmailSubmission(email: string, jobType: string) {
   try {
     const storedSubmissions = localStorage.getItem("email_submissions")
@@ -191,36 +212,27 @@ function saveEmailSubmission(email: string, jobType: string) {
   }
 }
 
-// Format date to display when user can apply again
-function formatNextApplicationDate(daysLeft: number): string {
-  const date = new Date()
-  date.setDate(date.getDate() + daysLeft)
-  return date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
-}
-
 export default function CVSubmissionForm() {
   const [file, setFile] = useState<File | null>(null)
   const [showJobTypeError, setShowJobTypeError] = useState(false)
-  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isResendDialogOpen, setIsResendDialogOpen] = useState(false)
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [submittedEmail, setSubmittedEmail] = useState("")
   const [emailRestriction, setEmailRestriction] = useState<{ restricted: boolean; daysLeft: number; jobType?: string }>(
-      {
-        restricted: false,
-        daysLeft: 0,
-      },
-    )
+    {
+      restricted: false,
+      daysLeft: 0,
+    },
+  )
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Get saved country code from cookies
   const { formData: savedFormData, countryCode: savedCountryCode } = getFormFromCookies()
-  const [selectedCountryCode, setSelectedCountryCode] = useState(() => {
-    return countryCodes.find((c) => c.code === savedCountryCode) || countryCodes[0]
-  })
-
-  const dropdownRef = useRef<HTMLDivElement>(null)
-  const { toast } = useToast() // Use the toast hook
+  const [selectedCountryCode, setSelectedCountryCode] = useState(savedCountryCode || "+966")
+  const { toast } = useToast()
+  const captchaRef = useRef<HCaptcha>(null)
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -235,39 +247,51 @@ export default function CVSubmissionForm() {
     },
   })
 
-  // Close dropdown when clicking outside
+  // Check email restriction when email changes
+  const watchEmail = form.watch("email")
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsCountryDropdownOpen(false)
-      }
+    if (watchEmail && watchEmail.includes("@")) {
+      const result = checkEmailRestriction(watchEmail)
+      setEmailRestriction(result)
+    } else {
+      setEmailRestriction({ restricted: false, daysLeft: 0 })
     }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
-   
-   // Check email restriction when email changes
-   const watchEmail = form.watch("email")
-     useEffect(() => {
-       if (watchEmail && watchEmail.includes("@")) {
-         const result = checkEmailRestriction(watchEmail)
-         setEmailRestriction(result)
-       } else {
-         setEmailRestriction({ restricted: false, daysLeft: 0 })
-       }
-     }, [watchEmail])
+  }, [watchEmail])
+
   // Save form data to cookies when values change
   useEffect(() => {
     const subscription = form.watch((value) => {
-      saveFormToCookies(value as Partial<FormValues>, selectedCountryCode.code)
+      saveFormToCookies(value as Partial<FormValues>, selectedCountryCode)
     })
     return () => subscription.unsubscribe()
   }, [form, selectedCountryCode])
 
-  // Then update the handleSubmit function
+  const handleCaptchaVerify = (token: string) => {
+    setCaptchaToken(token)
+    toast({
+      title: "Captcha Verified",
+      description: "Thank you for verifying you're human!",
+    })
+  }
+
+  const handleCaptchaExpire = () => {
+    setCaptchaToken(null)
+    toast({
+      title: "Captcha Expired",
+      description: "Please verify the captcha again.",
+      variant: "destructive",
+    })
+  }
+
   const handleSubmit = async (values: FormValues) => {
+    if (!captchaToken) {
+      toast({
+        title: "Captcha Required",
+        description: "Please complete the captcha verification.",
+        variant: "destructive",
+      })
+      return
+    }
 
     const restriction = checkEmailRestriction(values.email)
     if (restriction.restricted) {
@@ -277,7 +301,7 @@ export default function CVSubmissionForm() {
         variant: "destructive",
       })
       return
-    } 
+    }
 
     if (!file) {
       toast({
@@ -289,7 +313,8 @@ export default function CVSubmissionForm() {
     }
 
     // Save form data to cookies
-    saveFormToCookies(values, selectedCountryCode.code)
+    saveFormToCookies(values, selectedCountryCode)
+    setIsSubmitting(true)
 
     try {
       // Show loading toast
@@ -302,14 +327,26 @@ export default function CVSubmissionForm() {
       // and get a URL back. For now, we'll simulate this.
       const fileUrl = file ? URL.createObjectURL(file) : undefined
 
+      // Create a FormData object to pass to the server action
+      const formData = new FormData()
+      formData.append("firstName", values.firstName)
+      formData.append("lastName", values.lastName)
+      formData.append("email", values.email)
+      formData.append("mobileNumber", values.mobileNumber)
+      formData.append("countryCode", selectedCountryCode)
+      formData.append("jobType", values.jobType)
+      formData.append("termsAccepted", String(values.termsAccepted))
+      formData.append("marketingConsent", String(values.marketingConsent || false))
+      formData.append("captchaToken", captchaToken)
+      if (fileUrl) formData.append("fileUrl", fileUrl)
+
       // Call the server action with the form data
-      const result = await submitCV({
-        ...values,
-        countryCode: selectedCountryCode.code,
-        fileUrl,
-      })
+      const result = await submitCV(formData)
 
       if (result.success) {
+        // Save to local storage as a fallback
+        saveEmailSubmission(values.email, values.jobType)
+
         setSubmittedEmail(values.email)
         setFormSubmitted(true)
 
@@ -321,6 +358,10 @@ export default function CVSubmissionForm() {
 
         // Clear the form cookie after successful submission
         Cookies.remove(COOKIE_NAME)
+
+        // Reset captcha
+        captchaRef.current?.resetCaptcha()
+        setCaptchaToken(null)
       } else {
         if (result.limitExceeded) {
           toast({
@@ -343,17 +384,8 @@ export default function CVSubmissionForm() {
         description: "There was an error submitting your form. Please try again.",
         variant: "destructive",
       })
-    }
-  }
-
-  // Handle file upload
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0])
-      toast({
-        title: "File uploaded",
-        description: `${e.target.files[0].name} has been uploaded successfully.`,
-      })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -369,16 +401,17 @@ export default function CVSubmissionForm() {
   return (
     <div className="max-w-4xl mt-32 md:24 mx-auto px-8 lg:px-auto">
       <CookieConsentDialog />
+      {/* <EnvChecker /> */}
       <Link href="/">
-      <button className="flex items-center text-[#6208ca] mb-8 font-medium hover:text-[#5007a3] transition-colors">
-        <ChevronLeft className="h-5 w-5" />
-        Back
-      </button>
+        <button className="flex items-center text-[#6208ca] mb-8 font-medium hover:text-[#5007a3] transition-colors">
+          <ChevronLeft className="h-5 w-5" />
+          Back
+        </button>
       </Link>
 
       <div className="h-0.5 w-64 bg-[#6208CA] mb-10"></div>
 
-      <h1 className="text-3xl font-medium mb-6  text-[#6208ca]">Submit Your CV</h1>
+      <h1 className="text-3xl font-medium mb-6 text-[#6208ca]">Submit Your CV</h1>
 
       <p className="text-gray-700 mb-12 leading-relaxed">
         Welcome to our career opportunities page! We're excited to learn more about you and how you can contribute to
@@ -396,13 +429,13 @@ export default function CVSubmissionForm() {
             Thank you for your submission. A confirmation email has been sent to {submittedEmail}.
           </p>
           <div className="pl-9 mb-4 bg-yellow-50 p-3 rounded-md border border-yellow-200">
-                      <p className="text-amber-800 flex items-start">
-                        <AlertCircle className="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>
-                          <strong>Please note:</strong> You can submit another application after 30 days from today.
-                        </span>
-                      </p>
-                    </div>
+            <p className="text-amber-800 flex items-start">
+              <AlertCircle className="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" />
+              <span>
+                <strong>Please note:</strong> You can submit another application after 24 hours from now.
+              </span>
+            </p>
+          </div>
           <button
             type="button"
             onClick={() => setIsResendDialogOpen(true)}
@@ -420,13 +453,13 @@ export default function CVSubmissionForm() {
           if (formSubmitted) {
             setIsDialogOpen(true)
           } else {
-            form.handleSubmit(handleSubmit as SubmitHandler<FieldValues>)()
+            form.handleSubmit((values) => handleSubmit(values))()
           }
         }}
         className="space-y-12 bg-white rounded-xl p-8 shadow-sm border border-gray-100"
       >
         <div className="space-y-6">
-        <h2 className="text-2xl font-semibold mb-6 text-[#6208ca] flex items-center">
+          <h2 className="text-2xl font-semibold mb-6 text-[#6208ca] flex items-center">
             <div className="h-8 w-1 bg-[#6208ca] mr-3 rounded-full"></div>
             Personal details
           </h2>
@@ -470,41 +503,20 @@ export default function CVSubmissionForm() {
               {form.formState.errors.email && (
                 <p className="text-red-500 text-sm mt-1">{form.formState.errors.email.message}</p>
               )}
+              {emailRestriction.restricted && (
+                <p className="text-amber-600 text-sm mt-1">
+                  You've already applied for a {emailRestriction.jobType} position. Please wait{" "}
+                  {emailRestriction.daysLeft} days before applying again.
+                </p>
+              )}
             </div>
 
             <div className="grid grid-cols-4 gap-4">
-              <div className="col-span-1 relative" ref={dropdownRef}>
-                <div
-                  className="flex items-center border-b border-gray-300 h-10 mt-8 cursor-pointer"
-                  onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-                >
-                  <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xl">{selectedCountryCode.flag}</span>
-                      <span className="text-sm">{selectedCountryCode.code}</span>
-                    </div>
-                    <ChevronDown className="h-4 w-4 text-gray-500" />
-                  </div>
-                </div>
-
-                {isCountryDropdownOpen && (
-                  <div className="absolute z-10 mt-1 w-full max-h-60 overflow-auto bg-white border border-gray-200 rounded-sm shadow-lg">
-                    {countryCodes.map((country) => (
-                      <div
-                        key={country.code}
-                        className="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 cursor-pointer"
-                        onClick={() => {
-                          setSelectedCountryCode(country)
-                          setIsCountryDropdownOpen(false)
-                          saveFormToCookies(form.getValues(), country.code)
-                        }}
-                      >
-                        <span className="text-xl">{country.flag}</span>
-                        <span>{country.code}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+              <div className="col-span-1">
+                <label className="block mb-2">
+                  Country code <span className="text-red-500">*</span>
+                </label>
+                <CountryCodeSelector value={selectedCountryCode} onChange={(code) => setSelectedCountryCode(code)} />
               </div>
 
               <div className="col-span-3">
@@ -527,13 +539,13 @@ export default function CVSubmissionForm() {
           <h2 className="text-2xl font-medium mb-6">Please provide your details</h2>
 
           <div>
-            <label className="block mb-2 text-red-500 text-sm font-normal">
+            <label className="block mb-2">
               Job type <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <select
                 {...form.register("jobType")}
-                className="w-full border-0 border-b border-red-500 bg-transparent px-0 py-2 focus:outline-none focus:border-gray-500 appearance-none"
+                className="w-full border-0 border-b border-gray-300 bg-transparent px-0 py-2 focus:outline-none focus:border-gray-500 appearance-none"
                 onChange={(e) => {
                   form.setValue("jobType", e.target.value)
                   setShowJobTypeError(e.target.value === "")
@@ -545,23 +557,22 @@ export default function CVSubmissionForm() {
                   Select job type
                 </option>
                 <option value="audit">Audit</option>
-<option value="creative_arts_and_design">Creative Arts and Design</option>
-<option value="customer_service">Customer Service</option>
-<option value="finance_and_accounting">Finance and Accounting</option>
-<option value="human_resources">Human Resources (HR)</option>
-<option value="information_technology">Information Technology (IT)</option>
-<option value="legal">Legal</option>
-<option value="procurement">Procurement</option>
-<option value="sales_and_marketing">Sales and Marketing</option>
-<option value="cybersecurity_vapt">Cybersecurity Technical Assessment (VAPT)</option>
-<option value="supply_chain">Supply Chain</option>
-<option value="transportation_logistics">Transportation and Logistics</option>
-<option value="full_stack_developer">Full Stack Developer</option>
-<option value="front_end_developer">Front End Developer</option>
-<option value="backend_developer">Backend Developer</option>
-<option value="cloud_solution_architect">Cloud Solution Architect</option>
-<option value="operational_technology">Operational Technology (OT)</option>
-
+                <option value="creative_arts_and_design">Creative Arts and Design</option>
+                <option value="customer_service">Customer Service</option>
+                <option value="finance_and_accounting">Finance and Accounting</option>
+                <option value="human_resources">Human Resources (HR)</option>
+                <option value="information_technology">Information Technology (IT)</option>
+                <option value="legal">Legal</option>
+                <option value="procurement">Procurement</option>
+                <option value="sales_and_marketing">Sales and Marketing</option>
+                <option value="cybersecurity_vapt">Cybersecurity Technical Assessment (VAPT)</option>
+                <option value="supply_chain">Supply Chain</option>
+                <option value="transportation_logistics">Transportation and Logistics</option>
+                <option value="full_stack_developer">Full Stack Developer</option>
+                <option value="front_end_developer">Front End Developer</option>
+                <option value="backend_developer">Backend Developer</option>
+                <option value="cloud_solution_architect">Cloud Solution Architect</option>
+                <option value="operational_technology">Operational Technology (OT)</option>
               </select>
               <div className="absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none">
                 <svg
@@ -580,45 +591,37 @@ export default function CVSubmissionForm() {
                 </svg>
               </div>
             </div>
-            {showJobTypeError && <p className="text-red-500 text-sm mt-1">Job type is required</p>}
+            {form.formState.errors.jobType && (
+              <p className="text-red-500 text-sm mt-1">{form.formState.errors.jobType.message}</p>
+            )}
+            {showJobTypeError && !form.formState.errors.jobType && (
+              <p className="text-red-500 text-sm mt-1">Job type is required</p>
+            )}
+          </div>
+
+          <div className="mt-8">
+            <FileUpload onFileChange={setFile} accept=".pdf" maxSize={5} label="Upload your CV" required={true} />
           </div>
 
           <div className="mt-8">
             <label className="block mb-2">
-              Attachment <span className="text-red-500">*</span>
+              Verify you are human <span className="text-red-500">*</span>
             </label>
-            <p className="text-sm text-gray-600 mb-2">Maximum size: 5 MB (DOC, DOCX, PDF)</p>
-
-            <div className="border border-dashed border-gray-300 rounded-sm p-8 text-center">
-              <input
-                type="file"
-                id="cv-upload"
-                className="hidden"
-                accept=".pdf,.doc,.docx"
-                onChange={handleFileChange}
-              />
-              <label htmlFor="cv-upload" className="cursor-pointer flex flex-col items-center">
-                <Upload className="h-6 w-6 text-[#6208CA] mb-2" />
-                <p className="text-[#6208CA] font-medium mb-2">Upload a file</p>
-                <p className="text-sm text-gray-600">
-                  Drag and drop or <span className="text-[#6208CA] font-medium">Browse file</span>
-                </p>
-              </label>
-            </div>
-            {file && <p className="text-sm text-green-600 mt-2">File selected: {file.name}</p>}
+            <HCaptcha
+              sitekey="41b8bd2e-8c50-4e32-98d8-c5189bb4934c" // Replace with your actual hCaptcha site key
+              onVerify={handleCaptchaVerify}
+              onExpire={handleCaptchaExpire}
+              ref={captchaRef}
+            />
+            {!captchaToken && <p className="text-amber-600 text-sm mt-1">Please complete the captcha verification</p>}
           </div>
 
           <div className="space-y-4 mt-8">
             <div className="flex items-start">
-              <input
-                type="checkbox"
-                id="terms"
-                {...form.register("termsAccepted", { required: true })}
-                className="mt-1 mr-2"
-              />
+              <input type="checkbox" id="terms" {...form.register("termsAccepted")} className="mt-1 mr-2" />
               <label htmlFor="terms" className="text-sm">
                 I acknowledge that I have read and understand the{" "}
-                <Link href="/privacy" className="text-[#3c5bc0] underline">
+                <Link href="/terms" className="text-[#3c5bc0] underline">
                   Terms and Conditions
                 </Link>{" "}
                 and{" "}
@@ -628,6 +631,9 @@ export default function CVSubmissionForm() {
                 . <span className="text-red-500">*</span>
               </label>
             </div>
+            {form.formState.errors.termsAccepted && (
+              <p className="text-red-500 text-sm mt-1">{form.formState.errors.termsAccepted.message}</p>
+            )}
 
             <div className="flex items-start">
               <input type="checkbox" id="marketing" {...form.register("marketingConsent")} className="mt-1 mr-2" />
@@ -640,18 +646,26 @@ export default function CVSubmissionForm() {
           <div className="mt-8">
             <button
               type="submit"
-              className="bg-[#6208CA] text-white px-6 py-3 rounded hover:bg-[#3c0f6e] transition-colors"
+              className="bg-[#6208CA] text-white px-6 py-3 rounded hover:bg-[#3c0f6e] transition-colors flex items-center"
+              disabled={isSubmitting || !captchaToken}
             >
-              Submit Request
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Submitting...
+                </>
+              ) : (
+                "Submit Request"
+              )}
             </button>
 
             <p className="text-sm text-gray-500 mt-4">
               This site is protected by hCAPTCHA and the Google{" "}
-              <Link href="/privacy" className="text-[#3c5bc0]">
+              <Link href="/https://policies.google.com/privacy?hl=en" className="text-[#3c5bc0]">
                 Privacy Policy
               </Link>{" "}
               and{" "}
-              <Link href="/terms" className="text-[#3c5bc0]">
+              <Link href="/https://policies.google.com/terms?hl=en" className="text-[#3c5bc0]">
                 Terms of Service
               </Link>{" "}
               apply.
@@ -664,7 +678,7 @@ export default function CVSubmissionForm() {
       <Dialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
-        onConfirm={() => form.handleSubmit(handleSubmit as SubmitHandler<FieldValues>)()}
+        onConfirm={() => form.handleSubmit(handleSubmit)()}
         title="Confirm Resubmission"
         message="You have already submitted this form. Do you want to submit it again?"
       />

@@ -16,8 +16,7 @@ import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { sendRfp } from "@/action/sendRFP"
 import Cookies from "js-cookie"
-import { CookieConsentDialog } from "../cookies-dialog/consnet-dialog"
-
+import { CookieConsentDialog } from "@/components/cookies-dialog/consnet-dialog"
 
 const RFP_FORM_COOKIE = "rfp_form_data"
 const COOKIE_EXPIRY = 30 // days
@@ -179,16 +178,27 @@ export default function RfpForm() {
         description: "Please wait while we process your submission...",
       })
 
-      // Prepare file URLs if any
-      const fileUrls = Object.values(files)
-        .filter((file) => file !== null)
-        .map((file) => URL.createObjectURL(file as File))
+      // Create a FormData object to pass to the server action
+      const formDataObj = new FormData()
+
+      // Add form fields
+      Object.entries(formData).forEach(([key, value]) => {
+        formDataObj.append(key, String(value))
+      })
+
+      // Add captcha token
+      formDataObj.append("captchaToken", captchaToken)
+
+      // Add file URLs if any
+      Object.entries(files).forEach(([index, file]) => {
+        if (file) {
+          const fileUrl = URL.createObjectURL(file)
+          formDataObj.append(`fileUrl${index}`, fileUrl)
+        }
+      })
 
       // Call the server action with the form data
-      const result = await sendRfp({
-        ...formData,
-        files: fileUrls,
-      })
+      const result = await sendRfp(formDataObj)
 
       if (result.success) {
         // Reset form after successful submission
@@ -226,6 +236,17 @@ export default function RfpForm() {
         window.scrollTo({ top: 0, behavior: "smooth" })
       } else {
         setFormStatus("error")
+
+        // If there are validation errors, update the errors state
+        if (result.errors) {
+          const newErrors: Partial<Record<keyof FormData, string>> = {}
+          result.errors.forEach((issue) => {
+            const path = issue.path[0] as keyof FormData
+            newErrors[path] = issue.message
+          })
+          setErrors(newErrors)
+        }
+
         toast({
           title: "Submission Failed",
           description: result.error || "There was an error submitting your form. Please try again.",
@@ -268,7 +289,7 @@ export default function RfpForm() {
   }
 
   return (
-    <div className=" mx-auto ">
+    <div className="mx-auto">
       <CookieConsentDialog />
 
       {formStatus === "error" && (
@@ -280,9 +301,8 @@ export default function RfpForm() {
           </AlertDescription>
         </Alert>
       )}
-      <div className="relative ">
-      <div className="bg-white rounded-lg max-w-full sm:max-w-2xl lg:max-w-5xl shadow-md p-6 mb-8 mx-auto relative z-10">
-
+      <div className="relative">
+        <div className="bg-white rounded-lg max-w-full sm:max-w-2xl lg:max-w-5xl shadow-md p-6 mb-8 mx-auto relative z-10">
           <div className="mb-6">
             <h1 className="text-xl font-bold">Submit RFP</h1>
             <h2 className="text-2xl font-bold mt-2">Request for proposal for services</h2>
@@ -299,7 +319,6 @@ export default function RfpForm() {
               </Link>{" "}
               page.
             </p>
-
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">

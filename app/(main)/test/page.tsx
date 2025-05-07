@@ -10,7 +10,11 @@ import type { StaticImageData } from "next/image"
 
 
 const Hello = () => {
-    return<div>test</div>
+    return(<main className="min-h-screen p-4 md:p-8 relative overflow-hidden flex flex-col items-center justify-center">
+    <h1> WHY CHOOSE DEVEDGE CONSULTING FOR INTERNAL AUDIT </h1> 
+
+
+    </main>)
 }
 export default Hello
 

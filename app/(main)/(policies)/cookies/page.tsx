@@ -34,7 +34,7 @@ function CookieNotice() {
 
       <div className="space-y-4 text-gray-700 leading-relaxed">
         <p>
-          This Cookie Notice explains how DevEdge ("we", "us", "our") uses cookies and similar tracking technologies on our website (e.g., www.devedge.consulting) (the "Website"). This notice should be read alongside our <Link href="/privacy-notice" className="text-blue-600 hover:underline">Privacy Notice</Link>, which provides more detail on how we process personal information.
+          This Cookie Notice explains how DevEdge ("we", "us", "our") uses cookies and similar tracking technologies on our website (e.g., www.devedge.consulting) (the "Website"). This notice should be read alongside our <Link href="/privacy" className="text-blue-600 hover:underline">Privacy Notice</Link>, which provides more detail on how we process personal information.
         </p>
 
         <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">1. What are Cookies?</h2>
@@ -85,7 +85,7 @@ function CookieNotice() {
 
         <h2 className="text-lg font-semibold text-gray-800 mt-6 mb-2">6. Contact Us</h2>
         <p>
-          If you have any questions about our use of cookies, please refer to our <Link href="/privacy" className="text-blue-600 hover:underline">Privacy Notice</Link> for contact details or email us at <a href="mailto:privacy@devedge.consulting" className="text-blue-600 hover:underline">privacy@devedge.consulting</a>.
+          If you have any questions about our use of cookies, please refer to our <Link href="/privacy" className="text-blue-600 hover:underline">Privacy Notice</Link> for contact details or email us at <a href="mailto:contact@devedgeconsulting.com" className="text-blue-600 hover:underline">contact@devedgeconsulting.com</a>.
         </p>
       </div>
     </div>

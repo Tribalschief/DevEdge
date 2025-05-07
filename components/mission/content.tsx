@@ -16,7 +16,7 @@ export default function ContentSection({ title, icon, content }: ContentSectionP
 
       <div className="text-center lg:text-left px-4 lg:px-0">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-3">{title}</h2>
-        <p className="text-sm sm:text-base md:text-md text-gray-600 max-w-md mx-auto lg:mx-0">{content}</p>
+        <p className="text-sm sm:text-base md:text-md text-gray-600 max-w-md mx-auto lg:mx-0 text-justify">{content}</p>
       </div>
     </div>
   )

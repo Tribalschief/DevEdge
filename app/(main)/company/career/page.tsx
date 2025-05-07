@@ -5,6 +5,8 @@ import career from '@/public/carrer.png'
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useInView } from "react-intersection-observer"
+
 function BenefitCard({ title, items, icon = "✓" }:{title:string, items:string[], icon?:string}) { // Added icon prop
   const [isHovered, setIsHovered] = useState(false);
 
@@ -183,100 +185,237 @@ const hiringSteps = [
 // --- Define Unique Icon Components ---
 
 // Icon for the main "Culture" section
+
+
+// Icon for the main "Culture" section
 const CultureIcon = ({ className = "w-7 h-7 text-white" }) => (
   <svg className={className} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-    {/* Placeholder Path: Represents people/team */}
-    <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+    />
   </svg>
-);
+)
 
 // Icon for "Diverse Industry Exposure"
 const IndustryIcon = ({ className = "w-7 h-7 text-white" }) => (
   <svg className={className} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-    {/* Placeholder Path: Represents briefcase/business */}
-    <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+    />
   </svg>
-);
+)
 
 // Icon for "High Earning Potential"
 const EarningsIcon = ({ className = "w-7 h-7 text-white" }) => (
   <svg className={className} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-    {/* Placeholder Path: Represents growth/graph */}
     <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
   </svg>
-);
-
-
-// --- Main Component ---
+)
 
 function ConsultingBenefits() {
+  const [hoverCard, setHoverCard] = useState<number | null>(null)
+
+  const [cultureRef, cultureInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  })
+
+  const [industryRef, industryInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  })
+
+  const [earningsRef, earningsInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  })
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  }
+
+  const iconVariants = {
+    initial: { scale: 1 },
+    hover: {
+      scale: 1.1,
+      rotate: 5,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+      },
+    },
+  }
+
   return (
-    <main className="mt-20 sm:mt-24 lg:mt-32 px-4 sm:px-6 lg:px-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Left Section */}
-        <div className="bg-white rounded-2xl p-8 shadow-md flex flex-col justify-center w-full">
-          <div className="flex flex-col sm:flex-row items-start gap-5 w-full">
-            <div className="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-full flex-shrink-0">
-              {/* Use the Culture Icon */}
-              <CultureIcon />
+    <main className="mt-20 sm:mt-24 lg:mt-32 px-4 sm:px-6 lg:px-20 pb-20">
+      <div className="max-w-7xl mx-auto">
+       
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* Left Section */}
+          <motion.div
+            ref={cultureRef}
+            variants={cardVariants}
+            initial="hidden"
+            animate={cultureInView ? "visible" : "hidden"}
+            className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 relative overflow-hidden"
+            onMouseEnter={() => setHoverCard(1)}
+            onMouseLeave={() => setHoverCard(null)}
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-100 rounded-bl-full opacity-30 -mr-10 -mt-10 z-0"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-indigo-100 rounded-tr-full opacity-30 -ml-6 -mb-6 z-0"></div>
+
+            <div className="flex flex-col sm:flex-row items-start gap-6 w-full relative z-10">
+              <motion.div
+                className="bg-gradient-to-br from-purple-600 to-indigo-700 p-5 rounded-2xl flex-shrink-0 shadow-lg"
+                variants={iconVariants}
+                initial="initial"
+                animate={hoverCard === 1 ? "hover" : "initial"}
+              >
+                <CultureIcon className="w-8 h-8 text-white" />
+              </motion.div>
+              <div className="w-full">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-indigo-700">
+                  A Culture of Curiosity, Integrity & Impact
+                </h2>
+                <div className="h-1 w-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mb-5"></div>
+                <p className="text-gray-600 text-base leading-relaxed">
+                  At DevEdge Consulting, we don't just hire talent — we invest in it. Join a team where innovation meets
+                  impact, where you're empowered to lead, learn, and leave a mark.
+                </p>
+
+                <motion.button
+                  className="mt-6 text-sm font-medium text-purple-600 flex items-center group"
+                  whileHover={{ x: 5 }}
+                >
+                  Learn more about our culture
+                  <svg
+                    className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </motion.button>
+              </div>
             </div>
-            <div className="w-full">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-3 leading-snug">
-                A Culture of Curiosity, Integrity & Impact
-              </h2>
-              <hr className="border-t-2 border-gray-200 my-4 w-full" />
-              <p className="text-gray-600 text-base leading-relaxed">
-                At DevEdge Consulting, we don’t just hire talent — we invest in it.
-                Join a team where innovation meets impact, where you're empowered
-                to lead, learn, and leave a mark.
-              </p>
-            </div>
+          </motion.div>
+
+          {/* Right Section */}
+          <div className="flex flex-col gap-8 w-full">
+            {/* Box 1 */}
+            <motion.div
+              ref={industryRef}
+              variants={cardVariants}
+              initial="hidden"
+              animate={industryInView ? "visible" : "hidden"}
+              className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 relative overflow-hidden"
+              onMouseEnter={() => setHoverCard(2)}
+              onMouseLeave={() => setHoverCard(null)}
+            >
+              <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-100 rounded-bl-full opacity-30 -mr-6 -mt-6 z-0"></div>
+
+              <div className="flex flex-col sm:flex-row items-start gap-6 w-full relative z-10">
+                <motion.div
+                  className="bg-gradient-to-br from-indigo-600 to-purple-700 p-5 rounded-2xl flex-shrink-0 shadow-lg"
+                  variants={iconVariants}
+                  initial="initial"
+                  animate={hoverCard === 2 ? "hover" : "initial"}
+                >
+                  <IndustryIcon className="w-8 h-8 text-white" />
+                </motion.div>
+                <div className="w-full">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                    Diverse Industry Exposure
+                  </h3>
+                  <div className="h-1 w-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full mb-5"></div>
+                  <p className="text-gray-600 text-base leading-relaxed">
+                    Consultants work with clients across various industries, gaining broad knowledge, experience, and
+                    problem-solving skills that accelerate career growth.
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {["Finance", "Healthcare", "Tech", "Retail"].map((industry, i) => (
+                      <span key={i} className="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-medium rounded-full">
+                        {industry}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Box 2 */}
+            <motion.div
+              ref={earningsRef}
+              variants={cardVariants}
+              initial="hidden"
+              animate={earningsInView ? "visible" : "hidden"}
+              className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 relative overflow-hidden"
+              onMouseEnter={() => setHoverCard(3)}
+              onMouseLeave={() => setHoverCard(null)}
+            >
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-100 rounded-tr-full opacity-30 -ml-6 -mb-6 z-0"></div>
+
+              <div className="flex flex-col sm:flex-row items-start gap-6 w-full relative z-10">
+                <motion.div
+                  className="bg-gradient-to-br from-purple-600 to-indigo-700 p-5 rounded-2xl flex-shrink-0 shadow-lg"
+                  variants={iconVariants}
+                  initial="initial"
+                  animate={hoverCard === 3 ? "hover" : "initial"}
+                >
+                  <EarningsIcon className="w-8 h-8 text-white" />
+                </motion.div>
+                <div className="w-full">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
+                    High Earning Potential
+                  </h3>
+                  <div className="h-1 w-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mb-5"></div>
+                  <p className="text-gray-600 text-base leading-relaxed">
+                    Consulting roles often offer competitive salaries, performance-based bonuses, and opportunities for
+                    rapid financial growth.
+                  </p>
+
+                  <div className="mt-6 grid grid-cols-3 gap-2">
+                    {[
+                      { label: "Base Salary", value: "Competitive" },
+                      { label: "Bonuses", value: "Performance" },
+                      { label: "Growth", value: "Accelerated" },
+                    ].map((item, i) => (
+                      <div key={i} className="text-center">
+                        <div className="text-xs text-gray-500">{item.label}</div>
+                        <div className="font-semibold text-indigo-700">{item.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Right Section */}
-        <div className="flex flex-col gap-8 w-full">
-          {/* Box 1 */}
-          <div className="bg-white rounded-2xl p-8 shadow-md w-full">
-            <div className="flex flex-col sm:flex-row items-start gap-5 w-full">
-              <div className="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-full flex-shrink-0">
-                 {/* Use the Industry Icon */}
-                 <IndustryIcon />
-              </div>
-              <div className="w-full">
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-snug">
-                  Diverse Industry Exposure
-                </h3>
-                <hr className="border-t-2 border-gray-200 my-4 w-full" />
-                <p className="text-gray-600 text-base leading-relaxed">
-                  Consultants work with clients across various industries, gaining broad
-                  knowledge, experience, and problem-solving skills that accelerate career growth.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Box 2 */}
-          <div className="bg-white rounded-2xl p-8 shadow-md w-full">
-            <div className="flex flex-col sm:flex-row items-start gap-5 w-full">
-              <div className="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-full flex-shrink-0">
-                 {/* Use the Earnings Icon */}
-                 <EarningsIcon />
-              </div>
-              <div className="w-full">
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-snug">
-                  High Earning Potential
-                </h3>
-                <hr className="border-t-2 border-gray-200 my-4 w-full" />
-                <p className="text-gray-600 text-base leading-relaxed">
-                  Consulting roles often offer competitive salaries, performance-based
-                  bonuses, and opportunities for rapid financial growth.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <motion.div
+          className="mt-16 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+        >
+          
+        </motion.div>
       </div>
     </main>
-  );
+  )
 }

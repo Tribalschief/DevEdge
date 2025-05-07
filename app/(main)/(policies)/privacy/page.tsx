@@ -164,7 +164,7 @@ function PrivacyNotice() {
           <p className="mb-4">
             If you have any questions, concerns, or requests regarding this Privacy Notice or our privacy practices, please contact us at:
           </p>
-          <p className="mb-1">Email: <a href="mailto:contact@devedgeconsulting.com" className="text-blue-600 hover:underline">contact@devedgeconsulting.coms</a></p>
+          <p className="mb-1">Email: <a href="mailto:contact@devedgeconsulting.com" className="text-blue-600 hover:underline">contact@devedgeconsulting.com</a></p>
           {/* Add physical address or phone if appropriate */}
           <p>Address: Al Ruqa Al Hamra - Near Souk Al Haraj
           Sharjah</p>

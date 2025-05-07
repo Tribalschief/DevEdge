@@ -12,7 +12,10 @@ import HeroCarousel from "@/components/home/carousel";
 import core from "@/public/core.jpeg"
 import { CoreDivider } from "@/components/core/coredivider";
 import { Try } from "@/components/choose/try/choose";
+
+import { Resend } from "resend";
 export default function Home() {
+  
   return (
     <div className="min-h-screen h-full">
       <HeroCarousel />

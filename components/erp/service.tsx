@@ -43,9 +43,9 @@ export default function ERMService() {
     );
   }
   return (
-    <main className="flex min-h-screen flex-col items-center">
+    <main className="flex h-full flex-col items-center">
       {/* Hero Section */}
-      <section className="w-full py-12 md:py-16 lg:py-20 px-4 text-center">
+      <section className="w-full mt-12 md:mt-16 lg:mt-20 px-4 text-center">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-purple-700 max-w-3xl mx-auto">
           DevEdge is a multi functional all-in-one platform for business
         </h1>
@@ -93,7 +93,7 @@ export default function ERMService() {
       
 
       {/* Customizable Modules with Service Tabs */}
-      <section className="w-full py-12 px-auto ">
+      <section className="w-full pt-12 px-auto ">
         <div className="w-full sm:mx-auto text-center">
           
 

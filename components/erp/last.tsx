@@ -21,7 +21,7 @@ export default function LastERM() {
           One Powerful Platform
           </p>
           <div className="pt-4" >
-            <Button id="target-section" variant="outline" className="bg-white text-black hover:bg-gray-100 rounded-full px-6">
+            <Button onClick={scrollToSection} variant="outline" className="bg-white text-black hover:bg-gray-100 rounded-full px-6">
               <CalendarIcon className="w-4 h-4 mr-2" />
               Book a Live Demo
             </Button>

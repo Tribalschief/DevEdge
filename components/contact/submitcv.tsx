@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logoremovebg.png"; // update if needed
-import cvBackground from "@/public/CV.png"; 
+import cvBackground from "@/public/CV.jpg"; 
 function JoinSection() {
   return (
     <section className="relative w-full bg-gradient-to-b from-[#e7c2ff] to-[#b88cff] py-20 overflow-hidden">

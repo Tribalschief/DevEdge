@@ -139,7 +139,7 @@ export function CoreValues() {
               <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#061f33] font-bold mb-1 sm:mb-2">
                 {value.title}
               </h2>
-              <p className="text-xs sm:text-sm md:text-base text-[#5b5675]">{value.description}</p>
+              <p className="text-xs sm:text-sm md:text-base text-[#5b5675] text-justify">{value.description}</p>
             </div>
 
             {/* Animated Line */}
