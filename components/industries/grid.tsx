@@ -76,7 +76,7 @@ export default function IndustryGrid() {
   return (
 <div className="relative bg-[#f6ebff] ">
     <div className="px-4  md:py-12 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {industries.slice(0, 12).map((industry, index) => (
           <IndustryCard key={index} title={industry.title} icon={industry.icon} color={industry.color} />
         ))}

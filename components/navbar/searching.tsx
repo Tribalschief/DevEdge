@@ -260,7 +260,7 @@ export default function Searching() {
       const expectedPath = lastSelectedItem.path.split("#")[0]
 
       if (currentPath === expectedPath) {
-        console.log("Page loaded, attempting to scroll to:", lastSelectedItem.elementId)
+        
 
         // Try to scroll immediately
         if (!scrollToElement(lastSelectedItem.elementId)) {
@@ -269,7 +269,7 @@ export default function Searching() {
 
           attempts.forEach((delay, index) => {
             setTimeout(() => {
-              console.log(`Attempt ${index + 1} to scroll to ${lastSelectedItem?.elementId}`)
+              
               scrollToElement(lastSelectedItem?.elementId || "")
             }, delay)
           })
@@ -292,12 +292,12 @@ export default function Searching() {
 
     // For offering items, store the item for post-navigation scrolling
     if (result.type === "offeringItem" && result.elementId) {
-      console.log("Selected offering item:", result.title, "with ID:", result.elementId)
+      
       lastSelectedItem = result
 
       // Navigate to the page without the hash
       const basePath = result.path.split("#")[0]
-      console.log("Navigating to:", basePath)
+      
 
       // Use window.location for a full page navigation
       window.location.href = result.path
@@ -344,7 +344,7 @@ export default function Searching() {
           <Input
             ref={inputRef}
             type="search"
-            placeholder="Search offerings and pages..."
+            placeholder="Search..."
             className="w-full pl-8 pr-10 h-9 md:h-10"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -359,9 +359,7 @@ export default function Searching() {
                 <span className="sr-only">Clear</span>
               </Button>
             )}
-            <kbd className="hidden sm:flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100">
-              <span className="text-xs">⌘</span>K
-            </kbd>
+            
           </div>
         </div>
 

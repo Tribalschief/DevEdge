@@ -21,7 +21,7 @@ export default function MissionVision() {
     <div className="w-full px-4 py-8 sm:px-6 sm:py-10 md:px-8 lg:px-20 xl:px-24 2xl:px-32">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 md:gap-x-12 lg:gap-x-16 xl:gap-x-24 items-center max-w-7xl mx-auto">
         {/* Text Section */}
-        <div className="flex flex-col lg:flex-row gap-10 md:gap-12 lg:gap-16 items-start">
+        <div className="flex  lg:flex-row gap-2 md:gap-3 lg:gap-4 items-start">
         <ContentSection title="Our Mission" icon={Om.src} content={missionContent} />
         <ContentSection title="Our Vision" icon={Ov.src} content={visionContent} />
       </div>

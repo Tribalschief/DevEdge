@@ -10,6 +10,9 @@ import { NewServicesList } from "@/components/details/new/NewSL"
 
 import { notFound } from "next/navigation"
 import WM from "./_components/wm"
+
+import {Features}  from "@/components/details/new/features"
+import { FeaturesList } from '../../../../components/details/components/flist';
 // type RegularService = {
 //   type: "regular"
 //   title: string
@@ -82,6 +85,13 @@ export default async function ServicePage({ params }: any) {
              <div className="flex items-center justify-center overflow-hidden">
               <CardGrid services={service.offering} title={service.title} />
               </div>
+            </div>
+            <div className="lg:relative lg:left-[calc(15%-50px)]"> {/* Adjust z-index as needed */}
+            {service.features && 
+            
+            <Features features={service.features} />
+            
+            }
             </div>
           </div>
 

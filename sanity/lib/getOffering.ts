@@ -12,24 +12,9 @@ export const getServiceBySlug = async (slug: string) => {
         url
       }
     },
-    features {
-      heading,
-      highlightedText,
-      headingDescription,
-      imageSrc {
-        asset -> {
-          url
-        }
-      },
-      imageAlt,
-      features[] {
-        iconSrc {
-          asset -> {
-            url
-          }
-        },
-        text,
-      }
+    features[]{
+      featuresTitle,
+      featuresList
     },
     offering[] {
         ...,
@@ -47,24 +32,7 @@ export const getServiceBySlug = async (slug: string) => {
           title
         }
       },
-      secondaryOffering[] {
-        ...,
-        _type == "offeringItem" => {
-          type,
-          title,
-          description,
-          backgroundImage {
-            asset -> { url }
-          },
-          imageSrc {
-            asset -> { url }
-          },
-          coverageItems
-        },
-        _type == "sectionTitle" => {
-          title
-        }
-      },
+      
     
   } 
 `);

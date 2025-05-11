@@ -69,7 +69,7 @@ export async function submitContact(formData: FormData): Promise<SubmitContactRe
   const validatedFields = await ContactFormSchema.safeParseAsync(rawFormData)
 
   if (!validatedFields.success) {
-    console.log("Zod Validation Errors:", validatedFields.error.flatten().fieldErrors)
+    console.error("Zod Validation Errors:", validatedFields.error.flatten().fieldErrors)
     return {
       success: false,
       error: "Invalid form data. Please check your inputs.",
@@ -123,7 +123,7 @@ export async function submitContact(formData: FormData): Promise<SubmitContactRe
       }
     }
 
-    console.log("Email sent successfully:", emailResponseData)
+    
     return { success: true }
   } catch (error) {
     console.error("Unhandled exception in submitContact:", error)

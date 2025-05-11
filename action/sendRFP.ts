@@ -165,7 +165,7 @@ export async function sendRfp(formData: FormData): Promise<SubmitRFPResult> {
       }
     }
 
-    console.log("Email sent successfully:", emailResponseData)
+   
     return { success: true }
   } catch (error) {
     console.error("Unhandled exception in sendRfp:", error)

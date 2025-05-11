@@ -97,7 +97,7 @@ export default function ERMService() {
         <div className="w-full sm:mx-auto text-center">
           
 
-          <Tabs defaultValue="vehicle-shipping" className="w-full">
+          <Tabs defaultValue="vehicle-shipping" className="w-full ">
           
       {/* Your TabsList (remains the same) */}
       <TabsList className="w-full h-full bg-gray-900 text-white py-16 px-4">
@@ -168,7 +168,7 @@ export default function ERMService() {
       </TabsList>
       
       {/* ====== Vehicle Shipping Content ====== */}
-      <TabsContent value="vehicle-shipping" className="pt-6">
+      <TabsContent value="vehicle-shipping" className="pt-6 container mx-auto">
         <Card className="border border-gray-200 shadow-lg rounded-lg overflow-hidden">
           <h2 className="text-xl font-bold mt-4 mb-2">Experience Customizable Modules</h2>
           <p className="text-gray-600 mb-2">with Dynamic Vehicle Shipping Services</p>

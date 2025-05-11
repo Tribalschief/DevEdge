@@ -17,18 +17,14 @@ export default function LeadershipPage() {
       company2: "Galaxy World-wide Shipping",
       imageSrc: "/placeholder.svg?height=300&width=300",
       background: [
-        "Zabeeh Ullah Abid is the Founder and CEO of DevEdge Consulting, a visionary leader with over 12 years of experience in enterprise architecture, cybersecurity, digital transformation, and intelligent systems development. Throughout his career, he has worked with leading organizations across the Middle East, helping them navigate complex business challenges through strategic technology solutions.",
-        "His expertise spans enterprise IT governance, risk management, AI-driven platforms, business automation, and secure cloud architecture development. By aligning his technical expertise with business strategy and technology execution, Zabeeh brings a hands-on approach to leadership— shaping DevEdge into a results-driven consulting firm recognized for innovation, integrity, and impact.",
-        "Under his leadership, DevEdge Consulting has become a trusted partner for organizations seeking tailored solutions in internal audit, cybersecurity, AI, and digital transformations. He is a thought leader in the fields of risk intelligence, automation, and enterprise resilience, with a passion for empowering businesses to grow smarter and operate safer.",
+        "I'm a technology leader, product strategist, and entrepreneur focused on transforming operations through AI-integrated ERP systems, custom software development, and automation. As the founder and CTO of a multi-solution software company, I help logistics, finance, and import/export businesses optimize their workflows, reduce manual processes, and deliver seamless customer experiences.",
+        "Over the years, I've architected and delivered complex enterprise systems including vehicle import/export ERPs, financial operations platforms, mobile tracking apps, and real-time customer support chatbots (voice/text, multilingual). I lead with a vision that connects business goals, technical depth, and human-centric design.",
+        "Now, I'm focused on building intelligent systems by integrating AI/ ML, real-time data, and automation to simplify operations and scale business impact."
       ],
       education: [
         { title: "BSc Computer Science" },
         { title: "Certified Cloud Security Professional (CCSP)" },
-        { title: "The Open Group Certified (regarding Risk and Security)" },
-        { title: "AWS Cloud Practitioner" },
-        { title: "Blockchain Essentials" },
-        { title: "Certified Hacking Forensic Investigator (CHFI)" },
-        { title: "Microsoft Certified Technology Specialist (MCTS)" },
+        {title: "TOGAF 9.2 Certified" },
         
         
       ],

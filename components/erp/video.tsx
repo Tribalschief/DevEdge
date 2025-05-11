@@ -8,7 +8,7 @@ export default function VideoPlayer() {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.play().catch((error) => {
-        console.log("Autoplay prevented:", error)
+
       })
     }
   }, [])

@@ -6,6 +6,7 @@ import vehicle from "@/public/section/sec/vehicleshippingservices.jpg"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { Button } from "../ui/button"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 export default function Solutions() {
   const [carouselIndex, setCarouselIndex] = useState(0)
@@ -21,6 +22,11 @@ export default function Solutions() {
       element.scrollIntoView({ behavior: "smooth", block: "start" })
     }
   }
+  const goToSlide = (index: number) => {
+  // implementation to navigate to the slide at the given index
+  setCarouselIndex(index);
+};
+
 
   // Auto-rotate carousel
   useEffect(() => {
@@ -32,7 +38,7 @@ export default function Solutions() {
   }, [])
 
   return (
-    <div className="h-full lg:my-32 my-12 sm:mt-20 w-full bg-white text-[#0e0628] flex items-center justify-center">
+    <div className="h-full lg:my-16 my-12 sm:mt-20 w-full bg-white text-[#0e0628] flex items-center justify-center">
       <div className="w-full max-w-[1400px] flex flex-col lg:flex-row items-center">
         {/* Left Section with Text */}
         <div className="w-full lg:w-1/2 p-6 md:p-10 lg:p-16">
@@ -75,9 +81,7 @@ export default function Solutions() {
                   sizes="100vw"
                   quality={90}
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 w-full">
-                  <h3 className="text-white text-xl font-bold">Vehicle Shipping Services</h3>
-                </div>
+                
               </div>
 
               {/* Slide 2 */}
@@ -92,9 +96,7 @@ export default function Solutions() {
                   sizes="100vw"
                   quality={90}
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 w-full">
-                  <h3 className="text-white text-xl font-bold">Cybersecurity Risk Management</h3>
-                </div>
+                
               </div>
 
               {/* Slide 3 */}
@@ -109,9 +111,7 @@ export default function Solutions() {
                   sizes="100vw"
                   quality={90}
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 w-full">
-                  <h3 className="text-white text-xl font-bold">Car Selling Platform</h3>
-                </div>
+               
               </div>
 
               {/* Slide 4 */}
@@ -126,23 +126,40 @@ export default function Solutions() {
                   sizes="100vw"
                   quality={90}
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 w-full">
-                  <h3 className="text-white text-xl font-bold">Human Resource Management</h3>
-                </div>
+                
               </div>
             </div>
-
+            <button
+                    onClick={() => setCarouselIndex((prevIndex) => (prevIndex - 1) % 4)}
+                    className="absolute left-6 lg:top-1/2 top-[45%] transform -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/90 hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
+                    aria-label="Previous slide"
+                  >
+                    <ChevronLeft className="w-6 h-6 text-gray-700 hover:text-white" />
+                  </button>
+            
+                  <button
+                    onClick={() =>  setCarouselIndex((prevIndex) => (prevIndex + 1) % 4)}
+                    className="absolute right-6 lg:top-1/2 top-[45%] transform -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/90 hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
+                    aria-label="Next slide"
+                  >
+                    <ChevronRight className="w-6 h-6 text-gray-700 hover:text-white" />
+                  </button>
             {/* Carousel Controls */}
-            <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-3 z-10">
+            <div className="absolute lg:top-[55%] top-[45%] gap-x-2 right-20 z-10 flex items-center">
               {[0, 1, 2, 3].map((index) => (
                 <button
-                  key={index}
-                  onClick={() => setCarouselIndex(index)}
-                  className={`w-4 h-4 rounded-full transition-all ${
-                    carouselIndex === index ? "bg-[#6208ca] scale-110" : "bg-white/70 hover:bg-white"
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
+        key={index}
+        onClick={() => goToSlide(index)}
+        className={`
+          transition-all duration-300 ease-in-out  
+          ${
+            carouselIndex === index
+              ? "bg-[#6208ac] w-12 h-[6px] rounded-md" // Active: short bar, h-[6px] is 1.5 (0.375rem)
+              : "bg-gray-300 w-2 h-2 rounded-full" // Inactive: circle (used gray-300 for better visibility than gray-100 if on light bg)
+          }
+        `}
+        aria-label={`Go to slide ${index + 1}`}
+      />
               ))}
             </div>
           </div>

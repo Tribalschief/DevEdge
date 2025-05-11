@@ -38,16 +38,16 @@ export const DetailedHeader = ({
           {/* Top Row: Back button and Title */}
           <div className="absolute lg:top-40 left-10 right-0 top-10 ">
           <div className="flex items-center gap-10 text-white">
-            <Link href="/" className="rounded-full border border-white hover:border-purple w-10 h-10 flex items-center justify-center hover:text-purple-400">
+            <Link href="/" className="absolute  rounded-full border border-white hover:border-purple w-10 h-10 flex items-center justify-center hover:text-purple-400">
               <ArrowLeft className="h-6 w-6" />
             </Link>
-            <h1 className="2xl:text-5xl text-2xl hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-110 sm:text-3xl md:text-4xl font-bold tracking-wide">
+            <h1 className="absolute left-[4%] lg:top-0 top-[10%] 2xl:text-5xl text-2xl hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-110 sm:text-3xl md:text-4xl font-bold tracking-wide">
               {title}
             </h1>
           
           </div>
           {/* Bottom Buttons */}
-          <div className="flex gap-4 flex-col sm:flex-row  sm:gap-x-8 md:gap-x-10 lg:gap-x-16 xl:gap-x-16 2xl:gap-x-16 mx-20 items-center mt-12   md:mt-12 xl:mt-16 2xl:mt-20 ">
+          <div className="flex gap-4 flex-col sm:flex-row  sm:gap-x-8 md:gap-x-10 lg:gap-x-16 xl:gap-x-16 2xl:gap-x-16 mx-20 items-center mt-20   md:mt-12 xl:mt-16 2xl:mt-20 ">
             <Link href="/rfp">
               <Button variant="outline" className="text-sm sm:text-base hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-110"  >Submit Your RFP</Button>
             </Link>

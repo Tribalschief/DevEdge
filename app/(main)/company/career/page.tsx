@@ -28,7 +28,7 @@ function BenefitCard({ title, items, icon = "✓" }:{title:string, items:string[
       <ul className="space-y-2">
         {items.map((item, index) => (
           <li key={index} className="flex gap-2 items-start"> {/* Added items-start for better alignment */}
-            <span className="text-green-500 font-bold mt-1">{icon}</span> {/* Styled icon */}
+            <span className="text-[#6208CA] font-bold mt-1">{icon}</span> {/* Styled icon */}
             <span>{item}</span>
           </li>
         ))}
@@ -296,20 +296,7 @@ function ConsultingBenefits() {
                   impact, where you're empowered to lead, learn, and leave a mark.
                 </p>
 
-                <motion.button
-                  className="mt-6 text-sm font-medium text-purple-600 flex items-center group"
-                  whileHover={{ x: 5 }}
-                >
-                  Learn more about our culture
-                  <svg
-                    className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </motion.button>
+                
               </div>
             </div>
           </motion.div>

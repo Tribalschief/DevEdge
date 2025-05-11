@@ -80,19 +80,19 @@ export function CoreValues() {
 
   return (
     <motion.div
-      className="bg-purple-100 p-6 sm:p-10 md:p-16 lg:p-20 
-                h-full lg:h-[720px] xl:h-[800px] 
+      className="bg-purple-100 p-4 sm:p-6 md:p-10 lg:p-16 xl:p-20 
+                min-h-[600px] h-auto lg:h-[720px] xl:h-[800px] 
                 flex justify-center items-center rounded-lg w-full mx-auto"
       ref={ref}
     >
       {/* Core Values Grid */}
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto w-full">
+      <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-6xl sm:mx-2 md:mx-auto w-full">
         {coreValues.map((value, i) => (
           <motion.div
             key={i}
             variants={fadeInUp}
             custom={i + 3}
-            className="flex gap-4 w-full relative  p-4 rounded-lg shadow-sm"
+            className="flex gap-2 sm:gap-4 w-full relative p-3 sm:p-4 rounded-lg shadow-sm"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -102,7 +102,7 @@ export function CoreValues() {
           >
             {/* Icon */}
             <div className="flex-shrink-0">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center">
+              <div className="w-5 h-5 xs:w-6 xs:h-6 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 flex items-center justify-center">
                 <motion.div
                   className="flex justify-center"
                   animate={
@@ -136,10 +136,12 @@ export function CoreValues() {
 
             {/* Content */}
             <div className="flex-1">
-              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#061f33] font-bold mb-1 sm:mb-2">
+              <h2 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-[#061f33] font-bold mb-0.5 xs:mb-1 sm:mb-2">
                 {value.title}
               </h2>
-              <p className="text-xs sm:text-sm md:text-base text-[#5b5675] text-justify">{value.description}</p>
+              <p className="text-[10px] xs:text-xs sm:text-sm md:text-base text-[#5b5675] text-justify">
+                {value.description}
+              </p>
             </div>
 
             {/* Animated Line */}

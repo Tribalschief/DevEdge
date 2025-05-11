@@ -1,29 +1,40 @@
-
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from "react"
-import { motion, AnimatePresence, type PanInfo, useAnimation } from "framer-motion"
+import { motion, AnimatePresence, type PanInfo } from "framer-motion"
 import { useMediaQuery } from "@/hooks/use-media-query"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import HeroSection from "./hero"
 import VisionSection from "./vision"
 import ServicesSection from "./services-hero"
 
 const slides = [
-  { id: 0, component: <ServicesSection /> },
-  { id: 1, component: <VisionSection /> },
-  { id: 2, component: <HeroSection /> },
+  {
+    id: 0,
+    component: <ServicesSection />,
+    
+  },
+  {
+    id: 1,
+    component: <VisionSection />,
+    
+  },
+  {
+    id: 2,
+    component: <HeroSection />,
+   
+  },
 ]
 
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [direction, setDirection] = useState(0)
-  
+
   const constraintsRef = useRef(null)
   const [width, setWidth] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const isMobile = useMediaQuery("(max-width: 768px)")
-  const isTablet = useMediaQuery("(max-width: 1024px)")
 
   // Update width on resize for responsive behavior
   useEffect(() => {
@@ -111,7 +122,6 @@ export default function Carousel() {
   return (
     <div
       className="relative w-full overflow-hidden"
-      
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       ref={constraintsRef}
@@ -140,22 +150,49 @@ export default function Carousel() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation controls */}
-      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 space-x-4 z-10">
-        {slides.map((slide, index) => (
-          <button
-            key={slide.id}
-            onClick={() => goToSlide(index)}
-            className={`h-3 w-3 rounded-full transition-all ${
-              currentSlide === index ? "bg-[#6208CA] scale-125" : "bg-gray-400"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-
-      {/* Arrow navigation */}
       
+
+      {/* Navigation buttons - DGDA style */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-6 lg:top-1/2 top-[45%] transform -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/90 hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-6 h-6 text-gray-700 hover:text-white" />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        className="absolute right-6 lg:top-1/2 top-[45%] transform -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/90 hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-6 h-6 text-gray-700 hover:text-white" />
+      </button>
+
+      {/* Pagination indicators - DGDA style */}
+      <div className="absolute lg:top-1/2 top-[45%] right-20 z-10 flex items-center">
+  <span className="text-[#6208ac] text-sm mr-4 font-medium">
+    {String(currentSlide + 1).padStart(2, "0")}
+  </span>
+  {/* Added items-center here for better alignment if heights differ slightly */}
+  <div className="flex space-x-1 items-center">
+    {slides.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => goToSlide(index)}
+        className={`
+          transition-all duration-300 ease-in-out  
+          ${
+            currentSlide === index
+              ? "bg-[#6208ac] w-12 h-[6px] rounded-md" // Active: short bar, h-[6px] is 1.5 (0.375rem)
+              : "bg-gray-300 w-2 h-2 rounded-full" // Inactive: circle (used gray-300 for better visibility than gray-100 if on light bg)
+          }
+        `}
+        aria-label={`Go to slide ${index + 1}`}
+      />
+    ))}
+  </div>
+</div>
     </div>
   )
 }

@@ -86,16 +86,21 @@ export const Navbar = () => {
         scrolled ? "bg-black shadow-md" : "bg-white"
       }`}
     >
-      <div className="flex items-center justify-between px-4 sm:px-5 md:px-6 lg:px-8 xl:px-16 2xl:px-32 h-[60px] sm:h-[70px] md:h-[90px] lg:h-[100px] xl:h-[110px]">
+      <div className="flex items-center justify-between px-2 sm:px-5 md:px-6 lg:px-8 xl:px-16 2xl:px-32 h-[60px] sm:h-[70px] md:h-[90px] lg:h-[100px] xl:h-[110px]">
         {/* Logo - Scale down on smaller screens */}
-        <div className="lg:flex-none scale-75 sm:scale-90 md:scale-95 lg:scale-100">
+        <div className="block lg:hidden scale-75 sm:scale-90 md:scale-95 ">
           <Link href="/" className="">
             <Logo dark={scrolled} />
           </Link>
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex lg:flex-1 lg:justify-center">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-center">
+          <div className="flex-none scale-75 sm:scale-90 md:scale-95 lg:mr-48 mr-0 lg:scale-100">
+            <Link href="/" className="">
+              <Logo dark={scrolled} />
+            </Link>
+          </div>
           <div
             className={`flex items-center justify-center whitespace-nowrap md:gap-x-1 lg:gap-x-1.5 xl:gap-x-3 2xl:gap-x-6 ${
               scrolled ? "text-gray-50" : "text-gray-900"
@@ -103,7 +108,7 @@ export const Navbar = () => {
           >
             <NavLink
               href="/"
-              className="text-sm lg:text-sm xl:text-base font-medium  hover:border-[#6208ac] hover:border-b-2 transition-all duration-200"
+              className="text-sm lg:text-sm xl:text-base font-medium hover:border-[#6208ac] hover:border-b-2 transition-all duration-200"
             >
               Home
             </NavLink>
@@ -159,7 +164,7 @@ export const Navbar = () => {
         </div>
 
         {/* Mobile Menu - Scale down button on smaller screens */}
-        <div className="md:hidden">
+        <div className="block lg:hidden">
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -170,45 +175,54 @@ export const Navbar = () => {
                 <FaBars className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px] z-[60]">
-              <div className="flex flex-col gap-6 pt-6">
+            <SheetContent
+              side="left"
+              className="w-[300px] sm:w-[200px] z-[60] mt-[60px] sm:mt-[70px] md:mt-[90px] overflow-y-auto"
+              onOpenAutoFocus={(e) => e.preventDefault()}
+            >
+              <div className="flex flex-col pt-6 pb-6">
                 <SheetClose asChild>
                   {isActive("/") ? (
                     <span className="text-lg font-semibold opacity-70 cursor-default">Home</span>
                   ) : (
-                    <Link href="/" className="text-lg font-semibold" onClick={() => setScrolled(false)}>
+                    <Link
+                      href="/"
+                      className="text-lg font-semibold hover:bg-black hover:text-white p-2 rounded-md transition-colors"
+                      onClick={() => setScrolled(false)}
+                    >
                       Home
                     </Link>
                   )}
                 </SheetClose>
                 <SheetClose asChild>
                   {isActive("/about") ? (
-                    <span className="text-base xl:text-xl lg:text-lg font-medium opacity-70 cursor-default">
+                    <span className="text-base xl:text-xl lg:text-lg font-semibold opacity-70 cursor-default">
                       About Us
                     </span>
                   ) : (
-                    <Link href="/about" className="text-base xl:text-xl lg:text-lg font-medium hover:opacity-80">
+                    <Link
+                      href="/about"
+                      className="text-base xl:text-xl lg:text-lg font-semibold hover:bg-black hover:text-white p-2 rounded-md transition-colors"
+                    >
                       About Us
                     </Link>
                   )}
                 </SheetClose>
                 <div className="text-lg font-semibold">
                   <div className="flex flex-col">
-                    <SheetClose asChild>
-                      <button
-                        onClick={() => setServicesOpen(!servicesOpen)}
-                        className="text-lg font-semibold flex items-center gap-x-2"
+                    <button
+                      onClick={() => setServicesOpen(!servicesOpen)}
+                      className="text-lg font-semibold flex items-center gap-x-2 hover:bg-black hover:text-white p-2 rounded-md transition-colors w-full text-left"
+                    >
+                      Our Playground
+                      <motion.span
+                        className="mt-1"
+                        animate={{ rotate: servicesOpen ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
                       >
-                        Our Playground
-                        <motion.span
-                          className="mt-1"
-                          animate={{ rotate: servicesOpen ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <FaAngleDown />
-                        </motion.span>
-                      </button>
-                    </SheetClose>
+                        <FaAngleDown />
+                      </motion.span>
+                    </button>
 
                     <AnimatePresence>
                       {servicesOpen && Array.isArray(services) && (
@@ -239,34 +253,32 @@ export const Navbar = () => {
                                   animate="visible"
                                   custom={i}
                                 >
-                                  <SheetClose asChild>
-                                    {isServiceActive ? (
-                                      <span className="text-base flex font-normal gap-x-2 opacity-70 cursor-default">
-                                        <Image
-                                          src={service.icon.asset.url || "/placeholder.svg"}
-                                          alt={service.title}
-                                          width={20}
-                                          height={20}
-                                          className="h-4 w-4 rounded-full mt-1"
-                                        />{" "}
-                                        {service.title}
-                                      </span>
-                                    ) : (
-                                      <Link
-                                        href={serviceUrl}
-                                        className="text-base flex font-normal gap-x-2 hover:text-[#6208CA]"
-                                      >
-                                        <Image
-                                          src={service.icon.asset.url || "/placeholder.svg"}
-                                          alt={service.title}
-                                          width={20}
-                                          height={20}
-                                          className="h-4 w-4 rounded-full mt-1"
-                                        />{" "}
-                                        {service.title}
-                                      </Link>
-                                    )}
-                                  </SheetClose>
+                                  {isServiceActive ? (
+                                    <span className="text-base flex font-normal gap-x-2 opacity-70 cursor-default">
+                                      <Image
+                                        src={service.icon.asset.url || "/placeholder.svg"}
+                                        alt={service.title}
+                                        width={20}
+                                        height={20}
+                                        className="h-4 w-4 rounded-full mt-1"
+                                      />{" "}
+                                      <SheetClose asChild>{service.title}</SheetClose>
+                                    </span>
+                                  ) : (
+                                    <Link
+                                      href={serviceUrl}
+                                      className="text-base flex font-normal text-black gap-x-2 hover:bg-black hover:text-white p-2 rounded-md transition-colors"
+                                    >
+                                      <Image
+                                        src={service.icon.asset.url || "/placeholder.svg"}
+                                        alt={service.title}
+                                        width={20}
+                                        height={20}
+                                        className="h-4 w-4 rounded-full mt-1"
+                                      />{" "}
+                                      <SheetClose asChild >{service.title}</SheetClose>
+                                    </Link>
+                                  )}
                                 </motion.div>
                               )
                             })}
@@ -280,7 +292,7 @@ export const Navbar = () => {
                   <div className="flex flex-col">
                     <button
                       onClick={() => setCompanyOpen(!companyOpen)}
-                      className="text-lg font-semibold flex items-center gap-x-2"
+                      className="text-lg font-semibold flex items-center gap-x-2 hover:bg-black hover:text-white p-2 rounded-md transition-colors w-full text-left"
                     >
                       Company
                       <motion.span
@@ -322,7 +334,10 @@ export const Navbar = () => {
                                       {item.title}
                                     </span>
                                   ) : (
-                                    <Link href={item.path} className="text-base font-normal">
+                                    <Link
+                                      href={item.path}
+                                      className="text-base font-normal hover:bg-black hover:text-white p-2 rounded-md transition-colors block"
+                                    >
                                       {item.title}
                                     </Link>
                                   )}
@@ -339,7 +354,10 @@ export const Navbar = () => {
                   {isActive("/erp") ? (
                     <span className="text-lg font-semibold opacity-70 cursor-default">Our Solutions</span>
                   ) : (
-                    <Link href="/erp" className="text-lg font-semibold">
+                    <Link
+                      href="/erp"
+                      className="text-lg font-semibold hover:bg-black hover:text-white p-2 rounded-md transition-colors"
+                    >
                       Our Solutions
                     </Link>
                   )}
