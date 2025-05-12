@@ -1,7 +1,7 @@
 
 import Image from 'next/image'
 import React from 'react'
-import about from '@/public/about.jpg'
+import about from '@/public/delevired.jpg'
 import {Extra} from '@/components/extra'
 import MissionVision from '@/components/mission/main'
 import IndustriesSection from '@/components/industries/ind'
@@ -9,6 +9,7 @@ import IndustriesGrid from '@/components/industries/grid'
 import FeatureGrid from '@/components/choose/grid'
 import { AboutHero } from '@/components/about'
 import { Try } from '@/components/choose/try/choose'
+
 
 const About = () => {
     

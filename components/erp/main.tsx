@@ -131,18 +131,18 @@ export default function Solutions() {
             </div>
             <button
                     onClick={() => setCarouselIndex((prevIndex) => (prevIndex - 1) % 4)}
-                    className="absolute left-6 lg:top-1/2 top-[45%] transform -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/90 hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
+                    className="absolute left-6 lg:top-[62%] top-[45%] transform -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/90 hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
                     aria-label="Previous slide"
                   >
-                    <ChevronLeft className="w-6 h-6 text-gray-700 hover:text-white" />
+                    <ChevronLeft className="w-4 h-4 text-gray-700 hover:text-white" />
                   </button>
             
                   <button
                     onClick={() =>  setCarouselIndex((prevIndex) => (prevIndex + 1) % 4)}
-                    className="absolute right-6 lg:top-1/2 top-[45%] transform -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/90 hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
+                    className="absolute right-6 lg:top-[62%] top-[45%] transform -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/90 hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
                     aria-label="Next slide"
                   >
-                    <ChevronRight className="w-6 h-6 text-gray-700 hover:text-white" />
+                    <ChevronRight className="w-4 h-4 text-gray-700 hover:text-white" />
                   </button>
             {/* Carousel Controls */}
             <div className="absolute lg:top-[65%] top-[45%] gap-x-2 right-20 z-10 flex items-center">

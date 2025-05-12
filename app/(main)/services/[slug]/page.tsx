@@ -58,7 +58,7 @@ export default async function ServicePage({ params }: any) {
   return (
     <>
       {/* Wrap in a fragment or a single root element */}
-      <div className="min-h-screen">
+      <div className="">
         {/* Pass fetched data as props */}
         <DetailedHeader
           // Ensure asset and url exist before accessing
@@ -66,10 +66,10 @@ export default async function ServicePage({ params }: any) {
           title={service.title}
         />
 
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row gap-8   px-4 sm:px-6 lg:px-8">
           {/* Left column */}
           {/* Added 'relative' here so the absolutely positioned WM inside it is positioned correctly */}
-          <div className="relative flex flex-col  lg:w-3/4"> {/* Adjust bg color or remove */}
+          <div className="relative flex flex-col lg:w-full "> {/* Adjust bg color or remove */}
             <Overview overview={service.overview} />
 
             {/* Render the WM Client Component */}
@@ -79,14 +79,22 @@ export default async function ServicePage({ params }: any) {
 
             {/* Ensure content below WM has a positive z-index or is positioned later */}
             <div className="mt-8 relative z-[1]"> {/* Adjust z-index as needed */}
+
+              
               <div className="absolute inset-0 flex top-20 items-center justify-center -z-10 opacity-10 pointer-events-none overflow-hidden">
               <WM />
              </div>
-             <div className="flex items-center justify-center overflow-hidden">
+             <div className="flex items-center justify-center overflow-hidden ">
               <CardGrid services={service.offering} title={service.title} />
+              <div className="hidden lg:flex justify-center lg:mt-[-1rem] xl:mt-[-23rem]"> {/* Adjust bg color or remove */}
+            <NewServicesList /> {/* Assuming this fetches its own data or receives static props */}
+          </div>
               </div>
+             
+             
+              
             </div>
-            <div className="lg:relative lg:left-[calc(15%-50px)]"> {/* Adjust z-index as needed */}
+            <div className=" mb-[10px]"> {/* Adjust z-index as needed */}
             {service.features && 
             
             <Features features={service.features} />
@@ -96,7 +104,7 @@ export default async function ServicePage({ params }: any) {
           </div>
 
           {/* Right column */}
-          <div className="lg:w-1/4 "> {/* Adjust bg color or remove */}
+          <div className="lg:hidden md:block  "> {/* Adjust bg color or remove */}
             <NewServicesList /> {/* Assuming this fetches its own data or receives static props */}
           </div>
         </div>

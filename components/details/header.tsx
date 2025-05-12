@@ -1,31 +1,28 @@
-'use client'
+"use client"
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { ArrowLeft } from 'lucide-react' // Assuming you use lucide icons
+import Image from "next/image"
+import Link from "next/link"
+import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import { ArrowLeft } from "lucide-react"
 
 interface DetailedHeaderProps {
   image?: string
   title?: string
 }
 
-export const DetailedHeader = ({
-  image = "/placeholder.svg",
-  title = "Service Title",
-}: DetailedHeaderProps) => {
+export const DetailedHeader = ({ image = "/placeholder.svg", title = "Service Title" }: DetailedHeaderProps) => {
   return (
     <div className="relative w-full">
       <motion.div
         className="relative mt-16 min-h-[300px] h-[40vh] sm:h-[50vh] max-h-[500px]"
         initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
       >
         {/* Background Image */}
         <Image
-          src={image}
+          src={image} // Removed || "/placeholder.svg" because default prop handles it
           alt={`Header - ${title}`}
           fill
           priority
@@ -34,29 +31,51 @@ export const DetailedHeader = ({
         />
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/60  flex flex-col   p-4 sm:p-6 lg:p-10">
-          {/* Top Row: Back button and Title */}
-          <div className="absolute lg:top-40 left-10 right-0 top-10 ">
-          <div className="flex items-center gap-10 text-white">
-            <Link href="/" className="absolute  rounded-full border border-white hover:border-purple w-10 h-10 flex items-center justify-center hover:text-purple-400">
-              <ArrowLeft className="h-6 w-6" />
-            </Link>
-            <h1 className="absolute left-[4%] lg:top-0 top-[10%] 2xl:text-5xl text-2xl hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-110 sm:text-3xl md:text-4xl font-bold tracking-wide">
-              {title}
-            </h1>
-          
-          </div>
-          {/* Bottom Buttons */}
-          <div className="flex gap-4 flex-col sm:flex-row  sm:gap-x-8 md:gap-x-10 lg:gap-x-16 xl:gap-x-16 2xl:gap-x-16 mx-20 items-center mt-20   md:mt-12 xl:mt-16 2xl:mt-20 ">
-            <Link href="/rfp">
-              <Button variant="outline" className="text-sm sm:text-base hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-110"  >Submit Your RFP</Button>
-            </Link>
-            <Link href="/contact">
-              <Button variant="outline" className="text-sm sm:text-base text-black border-white hover:bg-white hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-110">
-                Contact Us
-              </Button>
-            </Link>
-          </div>
+        {/* Key change: Added items-center justify-center to center the content block */}
+        <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-10">
+          {/* This container will now be centered. Its children are positioned relative to it. */}
+          {/* Simplified flex properties here as children are absolute. Added w-full. */}
+          <div className="relative w-full h-full max-w-screen-res">
+            {/* Back button */}
+            {/* Added text-white to Link for default state, hover color will override for icon */}
+            <div className="absolute top-10 left-10">
+              <Link
+                href="/"
+                className="rounded-full border border-white text-white hover:border-purple-500 w-10 h-10 flex items-center justify-center hover:text-purple-400 transition-colors duration-200"
+              >
+                {/* Removed explicit text-white from icon, it will inherit from Link */}
+                <ArrowLeft className="h-6 w-6" />
+              </Link>
+            </div>
+
+            {/* Title */}
+            <div className="absolute top-10 left-24 sm:left-28">
+              <h1 className="text-2xl text-white hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-105 sm:text-3xl md:text-4xl 2xl:text-5xl font-bold tracking-wide">
+                {title}
+              </h1>
+            </div>
+
+            {/* Buttons - positioned below title */}
+            <div className="absolute top-28 sm:top-32 md:top-36 lg:top-40 left-24 sm:left-28">
+              <div className="flex gap-4 flex-col sm:flex-row sm:gap-x-8 md:gap-x-10 lg:gap-x-16">
+                <Link href="/rfp">
+                  <Button
+                    variant="outline"
+                    className="text-sm sm:text-base border-white text-black hover:bg-white hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-105"
+                  >
+                    Submit Your RFP
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button
+                    variant="outline"
+                    className="text-sm sm:text-base border-white text-black hover:bg-white hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-105"
+                  >
+                    Contact Us
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </motion.div>
