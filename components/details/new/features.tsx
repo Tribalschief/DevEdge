@@ -68,7 +68,7 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
 
               {/* Image Viewport (relative, overflow, rounding) */}
               {/* Added overflow-hidden back here, crucial for clipping if needed */}
-              <div className="relative w-auto h-full top-[50px] overflow-hidden rounded-tr-[50px] sm:rounded-t-[100px]">
+              <div className="relative w-auto h-full  overflow-hidden rounded-tr-[50px] sm:rounded-t-[100px]">
 
                 {/* Mobile Image - Use fill again */}
                 <div className="absolute inset-0 bottom-[-50px] block lg:hidden">
@@ -113,7 +113,7 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
                       CHOOSE US
                     </span>
                   </h1>
-                  <h2 className="mt-2 sm:mt-3 text-[10px] xs:text-[11px] sm:text-xs md:text-sm lg:text-base text-justify text-black tracking-wider leading-snug max-w-[600px] mx-auto lg:mx-0">
+                  <h2 className="mt-2 sm:mt-3 text-[10px] xs:text-[11px] sm:text-xs md:text-sm lg:text-base lg:text-justify text-center  text-black tracking-wider leading-snug max-w-[600px] mx-auto lg:mx-0">
                     Take Your Business To The Next Level With <br/> Our Digital Transformation Solutions And <br/> Start Your
                     Transformation Journey With <br/> Solutions Made For Real-World Results
                   </h2>
