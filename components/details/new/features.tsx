@@ -79,7 +79,7 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
               </div>
 
               {/* Darker overlay - WIDENED MORE */}
-              <div className="absolute -left-[15%] -right-[15%] z-10 top-0 md:top-0 lg:top-[36px] bottom-[-50px] lg:rounded-tr-[650px] bg-[#310455] opacity-60"></div>
+              <div className="absolute -left-[15%] -right-[15%] z-10 top-0 md:top-0 lg:top-[36px] bottom-[-50px] lg:rounded-tr-[650px] bg-[#e0cef5] opacity-60"></div>
             </div>
 
             {/* "WHY CHOOSE US" Text Block - Overlaying the image */}

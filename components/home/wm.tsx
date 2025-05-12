@@ -96,8 +96,8 @@ const WM = () => {
   if (!isMounted) return null
 
   return (
-    <section className="relative w-full flex justify-center items-center py-12 sm:py-16 md:py-24 lg:py-32 overflow-visible">
-      <div className="relative z-10">
+    <section className="relative w-full flex justify-center items-center py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-12 overflow-visible">
+      <div className="relative z-10 ">
         <Earthmap width={dimensions.width} height={dimensions.height} />
       </div>
       <GlobeMap />

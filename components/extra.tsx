@@ -2,8 +2,8 @@ import React from 'react';
 
 export function Extra({ src }: { src: string }) {
   return (
-    <section className="w-full bg-white py-10 sm:py-12 md:py-16 lg:py-24">
-      <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8">
+    <section className="w-full max-w-7xl  mx-auto bg-white py-10 sm:py-12 md:py-16 lg:py-24">
+      <div className=" px-4 sm:px-5 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
           {/* Text Section - Modified Text Sizes */}
           <div className="space-y-4 sm:space-y-5 md:space-y-6 order-2 md:order-1 text-center sm:text-center md:text-left flex flex-col justify-center items-center md:items-start">

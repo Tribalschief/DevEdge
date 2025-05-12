@@ -101,7 +101,7 @@ export default function HeroSection() {
 
           {/* Right Side - Map */}
           <motion.div
-            className="relative mx-auto lg:mx-0 w-full max-w-[280px] sm:max-w-md md:max-w-lg lg:max-w-xl order-1 lg:order-2"
+            className="relative left-0 lg:left-[25%] mx-auto xl:mx-0 w-full max-w-[280px] sm:max-w-md md:max-w-lg lg:max-w-xl order-1 lg:order-2"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}

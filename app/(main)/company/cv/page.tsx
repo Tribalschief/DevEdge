@@ -399,7 +399,7 @@ export default function CVSubmissionForm() {
   }
 
   return (
-    <div className="max-w-4xl mt-32 md:24 mx-auto px-8 lg:px-auto">
+    <div className="max-w-7xl mt-32 md:24 mx-auto px-8 lg:px-auto">
       <CookieConsentDialog />
       {/* <EnvChecker /> */}
       <Link href="/">

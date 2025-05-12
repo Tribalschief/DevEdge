@@ -12,9 +12,9 @@ export const AboutHero = () => {
           
           // Small screens: Taller aspect ratio for better readability
           aspect-[3/2]  // Mobile default (more square-ish)
-          sm:aspect-[4/2] // Small tablets
-          md:aspect-[6/2] // Medium screens
-          lg:aspect-[9/2] // Large screens (as you had before)
+          sm:h-[360px]  // Small tablets
+          md:h-[360px]  // Medium screens
+          lg:h-[360px] w-full
         "
       >
         <Image src={about || "/placeholder.svg"} alt="About DevEdgeConsulting" fill priority className="object-cover" />

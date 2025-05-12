@@ -10,7 +10,7 @@ function customLog(message) {
 export default async function Main() {
   
   const services = await getServiceForHome()
-  customLog("Test log outside of map");
+
  
   return (
     <ServiceSection title="What We Do" highlight="We" columns={{ sm: 2, md: 2, lg: 3 }} gap="small" centered={true}>

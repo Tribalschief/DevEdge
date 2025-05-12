@@ -38,7 +38,7 @@ export default function Solutions() {
   }, [])
 
   return (
-    <div className="h-full lg:my-16 my-12 sm:mt-20 w-full bg-white text-[#0e0628] flex items-center justify-center">
+    <div className="h-full lg:my-2 my-12 sm:mt-20 w-full bg-white text-[#0e0628] flex items-center justify-center">
       <div className="w-full max-w-[1400px] flex flex-col lg:flex-row items-center">
         {/* Left Section with Text */}
         <div className="w-full lg:w-1/2 p-6 md:p-10 lg:p-16">
@@ -145,7 +145,7 @@ export default function Solutions() {
                     <ChevronRight className="w-6 h-6 text-gray-700 hover:text-white" />
                   </button>
             {/* Carousel Controls */}
-            <div className="absolute lg:top-[55%] top-[45%] gap-x-2 right-20 z-10 flex items-center">
+            <div className="absolute lg:top-[65%] top-[45%] gap-x-2 right-20 z-10 flex items-center">
               {[0, 1, 2, 3].map((index) => (
                 <button
         key={index}
