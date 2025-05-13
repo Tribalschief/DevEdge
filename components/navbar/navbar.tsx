@@ -24,32 +24,42 @@ export const Navbar = () => {
   const pathname = usePathname()
   const [isClient, setIsClient] = useState(false)
   const [servicesData, setServicesData] = React.useState<any[]>([]) // Type the state
+ 
+useEffect(() => {
+  console.log("Setting isClient to true"); // <== Add this
+  setIsClient(true);
+}, []);
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    console.log("isClient state:", isClient);
+  if (!isClient) {
+    console.log("Not client yet");
+    return;
+  }
 
-  useEffect(() => {
-    if (!isClient) return
+  console.log("Running fetchServices");
 
-    async function fetchServices() {
+   async function fetchServices() {
       try {
-        const fetchedServices = await getService()
-        const filteredServices = fetchedServices.filter(
-          (service: any) => // Add type for service
-            service.title !== null &&
-            service.slug?.current !== null &&
-            service.icon?.asset?.url !== null,
-        )
-        setServicesData(filteredServices)
+        const fetchedServices = await getService();
+        console.log("Fetched Services:", fetchedServices); // Still keep this log!
+        if (!Array.isArray(fetchedServices)) { // Good check
+          console.error("fetchServices ERROR: getService did not return an array.");
+          setServicesData([]);
+          return;
+        }
+        
+        console.log("Filtered Services after slug change:", fetchedServices); // Add this log
+        setServicesData(fetchedServices);
       } catch (error) {
-        console.error("Error fetching services:", error)
-        setServicesData([])
+        console.error("Error fetching services:", error);
+        setServicesData([]) // Good to reset on error
       }
     }
 
-    fetchServices()
-  }, [isClient])
+  fetchServices();
+}, [isClient]);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -243,53 +253,65 @@ export const Navbar = () => {
                       className="overflow-hidden" // Crucial for height animation
                     >
                       {/* Only render the list if the dropdown should be "visible" */}
-                      {servicesOpen && Array.isArray(servicesData) && servicesData.length > 0 && (
-                        <div className="flex flex-col pl-4 gap-2"> {/* Removed mt-2, handled by parent motion.div */}
-                          {servicesData.map((service: any, i) => { // Added type for service
-                            if (!service.slug?.current || !service.icon?.asset?.url) return null;
-                            const serviceUrl = `/services/${service.slug.current}`
-                            const isServiceActive = isActive(serviceUrl)
+                      {(() => {
+  console.log("Services Data (before map):", servicesData);
+  // Now, the actual conditional rendering expression follows
+  return servicesOpen && Array.isArray(servicesData) && servicesData.length > 0 && (
+    <div className="flex flex-col pl-4 gap-2">
+      {servicesData.map((service: any, i) => {
+        // Remember you fixed the slug access issue earlier, make sure it's still correct:
+        // service.slug is the string, not service.slug.current, based on your GROQ
+        if (!service.slug || !service.icon?.asset?.url) { 
+          console.warn("Skipping in map (after slug fix):", service.title, service);
+          return null;
+        }
+        const serviceUrl = `/services/${service.slug}`; // Use service.slug
 
-                            return (
-                              <motion.div
-                                key={service.slug.current}
-                                initial={{ opacity: 0, y: -5 }}
-                                animate={{ opacity: 1, y: 0, transition: { delay: i * 0.05 } }}
-                                // Removed variants and custom as this is a simpler direct animation
-                              >
-                                <SheetClose asChild>
-                                  {isServiceActive ? (
-                                    <span className="text-base flex font-normal items-center gap-x-2 text-black hover:text-white opacity-70 cursor-default p-2">
-                                      <Image
-                                        src={service.icon.asset.url}
-                                        alt={service.title || "Service Icon"}
-                                        width={16}
-                                        height={16}
-                                        className="h-4 w-4 rounded-full"
-                                      />
-                                      {service.title}
-                                    </span>
-                                  ) : (
-                                    <Link
-                                      href={serviceUrl}
-                                      className="text-base flex font-normal items-center text-black gap-x-2 hover:bg-black hover:text-white p-2 rounded-md transition-colors"
-                                    >
-                                      <Image
-                                        src={service.icon.asset.url}
-                                        alt={service.title || "Service Icon"}
-                                        width={16}
-                                        height={16}
-                                        className="h-4 w-4 rounded-full"
-                                      />
-                                      {service.title}
-                                    </Link>
-                                  )}
-                                </SheetClose>
-                              </motion.div>
-                            )
-                          })}
-                        </div>
-                      )}
+        // ... rest of your map logic ...
+        console.log("Mapping Service Item:", service.title, service.slug, service.icon?.asset?.url); // Log inside map
+
+        const isServiceActive = isActive(serviceUrl);
+
+        return (
+          <motion.div
+            key={service.slug} // Use service.slug
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0, transition: { delay: i * 0.05 } }}
+          >
+            <SheetClose asChild>
+              {isServiceActive ? (
+                <span className="text-base flex font-normal items-center gap-x-2 text-black hover:text-white opacity-70 cursor-default p-2">
+                  <Image
+                    src={service.icon.asset.url}
+                    alt={service.title || "Service Icon"}
+                    width={16}
+                    height={16}
+                    className="h-4 w-4 rounded-full"
+                  />
+                  {service.title}
+                </span>
+              ) : (
+                <Link
+                  href={serviceUrl}
+                  className="text-base flex font-normal items-center text-black gap-x-2 hover:bg-black hover:text-white p-2 rounded-md transition-colors"
+                >
+                  <Image
+                    src={service.icon.asset.url}
+                    alt={service.title || "Service Icon"}
+                    width={16}
+                    height={16}
+                    className="h-4 w-4 rounded-full"
+                  />
+                  {service.title}
+                </Link>
+              )}
+            </SheetClose>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+})()}
                     </motion.div>
                   </div>
                 </div>
