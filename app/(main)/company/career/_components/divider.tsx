@@ -8,7 +8,10 @@ import { Button } from '@/components/ui/button' // Assuming you have a Button co
 
 export const DividerWithButton = ({ heading = "Why Choose", image }: { heading: string, image: any }) => {
     return (
-      <div className="relative w-full h-[200px] sm:h-[300px] md:h-[350px] lg:h-[400px] overflow-hidden">
+      <div className="relative  aspect-[3/2]  // Mobile default (more square-ish)
+          sm:h-[360px]  // Small tablets
+          md:h-[360px]  // Medium screens
+          lg:h-[360px] w-full overflow-hidden">
         {/* Background Image */}
         <Image
           src={image.src}

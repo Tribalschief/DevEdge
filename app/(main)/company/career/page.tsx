@@ -116,7 +116,7 @@ export default function CareerPage() {
   return (
     <main className="min-h-screen xl:mt-[120px] mt-24 h-full">
     <DividerWithButton heading="Join Our Team" image={career} />
-    <div className="container mx-auto px-4 py-12  mt-[100px]">
+    <div className="container mx-auto px-4 py-4  mt-[100px]">
       
       
       
@@ -366,29 +366,29 @@ function ConsultingBenefits() {
                 >
                   <EarningsIcon className="w-8 h-8 text-white" />
                 </motion.div>
-                <div className="w-full">
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
-                    High Earning Potential
-                  </h3>
-                  <div className="h-1 w-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mb-5"></div>
-                  <p className="text-gray-600 text-base leading-relaxed">
-                    Consulting roles often offer competitive salaries, performance-based bonuses, and opportunities for
-                    rapid financial growth.
-                  </p>
+                <div className="w-full p-4 sm:p-6 lg:p-8">
+  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
+    High Earning Potential
+  </h3>
+  <div className="h-1 w-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mb-5"></div>
+  <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+    Consulting roles often offer competitive salaries, performance-based bonuses, and opportunities for
+    rapid financial growth.
+  </p>
 
-                  <div className="mt-6 grid grid-cols-3 gap-2">
-                    {[
-                      { label: "Base Salary", value: "Competitive" },
-                      { label: "Bonuses", value: "Performance" },
-                      { label: "Growth", value: "Accelerated" },
-                    ].map((item, i) => (
-                      <div key={i} className="text-center">
-                        <div className="text-xs text-gray-500">{item.label}</div>
-                        <div className="font-semibold text-indigo-700">{item.value}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+    {[
+      { label: "Base Salary", value: "Competitive" },
+      { label: "Bonuses", value: "Performance" },
+      { label: "Growth", value: "Accelerated" },
+    ].map((item, i) => (
+      <div key={i} className="text-center">
+        <div className="text-xs sm:text-sm text-gray-500">{item.label}</div>
+        <div className="font-semibold text-indigo-700">{item.value}</div>
+      </div>
+    ))}
+  </div>
+</div>
               </div>
             </motion.div>
           </div>
