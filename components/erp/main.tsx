@@ -5,16 +5,26 @@ import hr from "@/public/section/sec/HRM.jpg"
 import vehicle from "@/public/section/sec/vehicleshippingservices.jpg"
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import { Button } from "../ui/button"
+import { Button } from "../ui/button" // Assuming Button is correctly imported
 import { ChevronLeft, ChevronRight } from "lucide-react"
+
+// Define the slide data - easier to manage
+const slides = [
+  { src: vehicle, alt: "Vehicle Shipping Services", id: "vehicle" },
+  { src: cyber, alt: "Cybersecurity Risk Management", id: "cyber" },
+  { src: carSelling, alt: "Car Selling Platform", id: "carSelling" },
+  { src: hr, alt: "Human Resource Management", id: "hr" },
+];
+
+const totalSlides = slides.length; // Dynamically get the total number of slides
 
 export default function Solutions() {
   const [carouselIndex, setCarouselIndex] = useState(0)
-  const [loadedImages, setLoadedImages] = useState(0)
+  // const [loadedImages, setLoadedImages] = useState(0) // This seems unused, can be removed if not needed
 
-  const handleImageLoad = () => {
-    setLoadedImages((prev) => prev + 1)
-  }
+  // const handleImageLoad = () => {
+  //   setLoadedImages((prev) => prev + 1) // Can be removed if not used
+  // }
 
   const scrollToSection = () => {
     const element = document.getElementById("target-section")
@@ -22,20 +32,31 @@ export default function Solutions() {
       element.scrollIntoView({ behavior: "smooth", block: "start" })
     }
   }
+
   const goToSlide = (index: number) => {
-  // implementation to navigate to the slide at the given index
-  setCarouselIndex(index);
-};
+    // Ensure index is within bounds
+    if (index >= 0 && index < totalSlides) {
+      setCarouselIndex(index);
+    }
+  };
+
+  const nextSlide = () => {
+    setCarouselIndex((prevIndex) => (prevIndex + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCarouselIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
+  };
 
 
   // Auto-rotate carousel
   useEffect(() => {
     const interval = setInterval(() => {
-      setCarouselIndex((prevIndex) => (prevIndex + 1) % 4)
+      nextSlide(); // Use nextSlide for consistency
     }, 3000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, []) // Empty dependency array ensures this runs once on mount and cleans up on unmount
 
   return (
     <div className="h-full lg:my-2 my-12 sm:mt-20 w-full bg-white text-[#0e0628] flex items-center justify-center">
@@ -63,104 +84,70 @@ export default function Solutions() {
         </div>
 
         {/* Right Section with Carousel */}
-        <div className="w-full lg:w-1/2 lg:h-[800px] h-[60vh] md:h-[70vh]  relative">
+        <div className="w-full lg:w-1/2 lg:h-[800px] h-[60vh] md:h-[70vh] relative">
           <div className="h-full w-full overflow-hidden">
             <div
               className="flex h-full transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(${-100 * carouselIndex}%)` }}
             >
-              {/* Slide 1 */}
-              <div className="min-w-full h-full relative  p-2">
-                <Image
-                  src={vehicle || "/placeholder.svg"}
-                  alt="Vehicle Shipping Services"
-                  className="object-contain"
-                  fill
-                  priority
-                  onLoad={handleImageLoad}
-                  sizes="100vw"
-                  quality={90}
-                />
-                
-              </div>
-
-              {/* Slide 2 */}
-              <div className="min-w-full h-full relative  p-2">
-                <Image
-                  src={cyber || "/placeholder.svg"}
-                  alt="Cybersecurity Risk Management"
-                  className="object-contain"
-                  fill
-                  priority
-                  onLoad={handleImageLoad}
-                  sizes="100vw"
-                  quality={90}
-                />
-                
-              </div>
-
-              {/* Slide 3 */}
-              <div className="min-w-full h-full relative  p-2">
-                <Image
-                  src={carSelling || "/placeholder.svg"}
-                  alt="Car Selling Platform"
-                  className="object-contain"
-                  fill
-                  priority
-                  onLoad={handleImageLoad}
-                  sizes="100vw"
-                  quality={90}
-                />
-               
-              </div>
-
-              {/* Slide 4 */}
-              <div className="min-w-full h-full relative  p-2">
-                <Image
-                  src={hr || "/placeholder.svg"}
-                  alt="Human Resource Management"
-                  className="object-contain"
-                  fill
-                  priority
-                  onLoad={handleImageLoad}
-                  sizes="100vw"
-                  quality={90}
-                />
-                
-              </div>
-            </div>
-            <button
-                    onClick={() => setCarouselIndex((prevIndex) => (prevIndex - 1) % 4)}
-                    className="absolute left-6 lg:top-[62%] top-[45%] transform -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/90 hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
-                    aria-label="Previous slide"
-                  >
-                    <ChevronLeft className="w-4 h-4 text-gray-700 hover:text-white" />
-                  </button>
-            
-                  <button
-                    onClick={() =>  setCarouselIndex((prevIndex) => (prevIndex + 1) % 4)}
-                    className="absolute right-6 lg:top-[62%] top-[45%] transform -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/90 hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
-                    aria-label="Next slide"
-                  >
-                    <ChevronRight className="w-4 h-4 text-gray-700 hover:text-white" />
-                  </button>
-            {/* Carousel Controls */}
-            <div className="absolute lg:top-[65%] top-[45%] gap-x-2 right-20 z-10 flex items-center">
-              {[0, 1, 2, 3].map((index) => (
-                <button
-        key={index}
-        onClick={() => goToSlide(index)}
-        className={`
-          transition-all duration-300 ease-in-out  
-          ${
-            carouselIndex === index
-              ? "bg-[#6208ac] w-12 h-[6px] rounded-md" // Active: short bar, h-[6px] is 1.5 (0.375rem)
-              : "bg-gray-300 w-2 h-2 rounded-full" // Inactive: circle (used gray-300 for better visibility than gray-100 if on light bg)
-          }
-        `}
-        aria-label={`Go to slide ${index + 1}`}
-      />
+              {slides.map((slide, index) => (
+                <div key={slide.id} className="min-w-full h-full relative p-2">
+                  <Image
+                    src={slide.src || "/placeholder.svg"}
+                    alt={slide.alt}
+                    className="object-contain"
+                    fill
+                    priority={index === 0} // Only first image is high priority initially
+                    // onLoad={handleImageLoad} // Can be removed if not used
+                    sizes="100vw" // Consider refining this if the carousel is never full viewport width
+                    quality={90}
+                  />
+                </div>
               ))}
+            </div>
+
+            {/* Previous Button */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-6 lg:top-[62%] top-[45%] transform -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black hover:bg-[#6208ac] flex items-center justify-center shadow-md transition-colors"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-4 h-4 text-white" />
+            </button>
+
+            {/* Next Button */}
+            <button
+              onClick={nextSlide}
+              className="absolute right-6 lg:top-[62%] top-[45%] transform -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black hover:bg-[#6208ac] flex items-center justify-center shadow-md transition-colors"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-4 h-4 text-white" />
+            </button>
+
+            {/* Carousel Controls & Current Index */}
+            <div className="absolute lg:top-[65%] top-[45%] gap-x-2 right-20 z-10 flex items-center">
+              {/* Current slide text */}
+              
+
+              {/* Dot/Bar indicators */}
+              {slides.map((_, index) => ( // Use slides.map for indicators to match total slides
+                <button
+                  key={`indicator-${index}`}
+                  onClick={() => goToSlide(index)}
+                  className={`
+                    transition-all duration-300 ease-in-out
+                    ${
+                      carouselIndex === index
+                        ? "bg-[#6208ac] w-12 h-[6px] rounded-md" // Active
+                        : "bg-gray-300 w-2 h-2 rounded-full"   // Inactive
+                    }
+                  `}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+              <span className="text-sm text-gray-700 dark:text-gray-300 mr-3">
+                {carouselIndex + 1} 
+              </span>
             </div>
           </div>
         </div>
