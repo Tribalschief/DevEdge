@@ -48,12 +48,12 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
           className="absolute top-[calc(1%-30px)] sm:top-[calc(1%-30px)] md:top-[calc(1%-50px)] left-[calc(50%-50px)] z-40
                     scale-[0.5] sm:scale-75 md:scale-90 lg:scale-100
                     origin-top-left
-                    xl:top-0 lg:top-10 lg:left-0"
+                    xl:top-0 lg:top-10 lg:-left-16"
         >
           <Image src={Logo ?? defaultLogo} alt="DevEdge Logo" width={160} height={160} priority />
         </div>
         {/* Layout container */}
-        <div className="w-full flex flex-col lg:flex-row lg:gap-y-8 max-w-screen-res">
+        <div className="w-full flex flex-col lg:flex-row lg:gap-y-8 max-w-screen-res relative">
           {/* --- Left Column --- */}
           <div
             className="w-full lg:w-[50%] xl:w-[30%] relative mb-10 lg:mb-0 z-20
@@ -84,13 +84,13 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
               </div>
 
               {/* Overlay - Positioned relative to Background Container */}
-              <div className="absolute -left-[15%] -right-[15%] lg:left-[-60px] h-full z-10 top-0 md:top-0 lg:top-[36px] xl:top-[50px] lg:rounded-tr-full bg-[#e0cef5] opacity-60 pointer-events-none"></div>
+              <div className="absolute -left-[15%] -right-[15%] lg:left-[-60px] xl:left-[-36px] h-full z-10 top-0 md:top-0 lg:-top-[8px] xl:-top-[6px] lg:rounded-tr-full bg-[#e0cef5] opacity-60 pointer-events-none"></div>
             </div>
             {/* "WHY CHOOSE US" Text Block - Needs higher Z-index than overlay */}
-            <div className="relative z-20 flex flex-col justify-start h-full p-4 xs:p-5 sm:p-6 md:p-8 text-white lg:mt-10 pointer-events-none">
+            <div className="relative z-20 lg:w-[75%]  flex flex-col justify-start h-full p-4 xs:p-5 sm:p-6 md:p-8  text-white lg:mt-10 pointer-events-none">
               <div className="relative pointer-events-auto">
-                <ArrowRight className="absolute top-[calc(60%-50px)] lg:top-20 xl:top-16 left-1/2 lg:-left-[20px] -translate-x-1/2 lg:translate-x-0 -translate-y-1/2 text-black w-8 h-8 xs:w-8 xs:h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-16 lg:h-16" />
-                <div className="mt-36 sm:mt-40 md:mt-44 lg:mt-36 xl:mt-24 mx-auto text-center pl-0 xs:pl-0 sm:pl-0 md:pl-0 lg:-ml-[32px] xl:ml-[-20px] lg:text-left">
+                <ArrowRight className="absolute top-[calc(60%-50px)] lg:top-20 xl:top-24 left-1/2 lg:-left-[20px] -translate-x-1/2 lg:translate-x-0 -translate-y-1/2 text-black w-8 h-8 xs:w-8 xs:h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-16 lg:h-16" />
+                <div className="mt-36 sm:mt-40 md:mt-44 lg:mt-36 xl:mt-40 mx-auto text-center pl-0 xs:pl-0 sm:pl-0 md:pl-0 lg:-ml-[32px] xl:ml-[-20px] lg:text-left">
                   <h1 className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-wider">
                     <span className="font-extrabold text-[26px] xs:text-[30px] sm:text-[36px] md:text-[48px] lg:text-[60px] text-[#6208ac]">
                       WHY
@@ -101,17 +101,23 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
                     </span>
                   </h1>
                   <h2 className="mt-2 sm:mt-3 text-[10px] xs:text-[11px] sm:text-xs md:text-sm lg:text-base lg:text-justify text-center text-black tracking-wider leading-snug max-w-[600px] mx-auto lg:mx-0">
-                    Take Your Business To The Next Level With <br /> Our Digital Transformation Solutions And <br />{" "}
-                    Start Your Transformation Journey With <br /> Solutions Made For Real-World Results
+                    Take Your Business To The Next Level With 
+<br className="hidden xl:hidden 2xl:block" /> 
+Our Digital Transformation Solutions And 
+<br className="hidden xl:hidden 2xl:block" />
+{" "}
+Start Your Transformation Journey With 
+<br className="hidden xl:hidden 2xl:block" /> 
+Solutions Made For Real-World Results
                   </h2>
                 </div>
               </div>
             </div>
           </div>
           {/* --- Right Column --- */}
-          <div className="w-full relative right-0 lg:right-[100px] z-40 px-1 sm:px-2 lg:mt-16 lg:w-[70%] xl:w-[65%] lg:min-w-[700px]">
+          <div className="w-full relative right-0 lg:right-[80px] xl:right-[100px] z-40 px-1 sm:px-2 lg:mt-16 lg:w-[70%] xl:w-[65%] lg:min-w-[700px]">
             {/* Feature list container with relative positioning */}
-            <div className="relative w-full">
+            <div className=" w-full">
               {featuresList.map((point, index) => (
                 <div
                   key={index}
