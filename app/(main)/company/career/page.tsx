@@ -98,7 +98,7 @@ const benefitsData = [
 
 function BenefitsSection() {
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
       {benefitsData.map((benefit, index) => (
         <BenefitCard
           key={index} // It's better to use a unique ID if available, otherwise index is okay for static lists
@@ -122,7 +122,7 @@ export default function CareerPage() {
       
 
       <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8 text-center">Join Us</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center ">Join Us</h2>
         <BenefitsSection/>
       </section>
 

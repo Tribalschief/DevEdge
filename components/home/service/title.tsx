@@ -6,7 +6,7 @@ const TaglineBar = () => {
   return (
     <div className="w-full bg-[#6208CA]  text-white  px-4 py-2 md:px-10 md:py-3 lg:px-20 lg:py-4">
       {/* Tagline - full width on mobile, proportional on larger screens */}
-      <div className='mx-auto container flex flex-col md:flex-row items-center   justify-between'>
+      <div className='mx-auto container flex flex-col md:flex-row max-w-7xl items-center   justify-between'>
       <h2 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold text-center  sm:text-left mb-2 md:mb-1">
         Elite Services, Tailored for You
       </h2>

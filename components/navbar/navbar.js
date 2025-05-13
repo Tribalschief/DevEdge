@@ -269,7 +269,7 @@ export const Navbar = () => {
                                 >
                                   <SheetClose asChild>
                                     {isServiceActive ? (
-                                      <span className="text-base flex font-normal items-center gap-x-2 opacity-70 cursor-default p-2">
+                                      <span className="text-base flex font-normal items-center gap-x-2 text-black hover:text-white opacity-70 cursor-default p-2">
                                         <Image
                                           src={service.icon.asset.url}
                                           alt={service.title || "Service Icon"}
