@@ -56,7 +56,7 @@ export default function FAQSection() {
     setOpenIndex(openIndex === index ? null : index)
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold  mb-10">
         <span className="text-black">Frequently Ask </span>
         <span className="text-purple-600 block">Questions</span>

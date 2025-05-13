@@ -20,7 +20,7 @@ export default function HeroSection() {
       overflow-y-auto
     "
     >
-      <div className="container mx-auto h-full w-full">
+      <div className="container mx-auto lg:max-w-7xl h-full w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4 items-center">
           {/* Left Side */}
           <motion.div

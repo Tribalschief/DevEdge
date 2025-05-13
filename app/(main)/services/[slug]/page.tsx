@@ -66,7 +66,7 @@ export default async function ServicePage({ params }: any) {
           title={service.title}
         />
 
-        <div className="flex flex-col lg:flex-row gap-8   px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row gap-8   px-4 sm:px-6 lg:px-2">
           {/* Left column */}
           {/* Added 'relative' here so the absolutely positioned WM inside it is positioned correctly */}
           <div className="relative flex flex-col lg:w-full "> {/* Adjust bg color or remove */}
@@ -86,7 +86,7 @@ export default async function ServicePage({ params }: any) {
              </div>
              <div className="flex items-center justify-center overflow-hidden ">
               <CardGrid services={service.offering} title={service.title} />
-              <div className="hidden lg:flex justify-center lg:mt-[-1rem] xl:mt-[-23rem]"> {/* Adjust bg color or remove */}
+              <div className="hidden lg:flex items-start  lg:-mt-[415px]"> {/* Adjust bg color or remove */}
             <NewServicesList /> {/* Assuming this fetches its own data or receives static props */}
           </div>
               </div>

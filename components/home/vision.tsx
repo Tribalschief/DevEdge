@@ -12,8 +12,8 @@ export default function VisionSection() {
   const isTablet = useMediaQuery("(max-width: 1024px)")
 
   return (
-    <section className="w-full h-full flex items-center justify-center bg-white pt-[100px] md:pt-[120px] pb-16 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-12 overflow-y-auto">
-      <div className="container mx-auto w-full">
+    <section className="w-full h-full flex items-center  justify-center bg-white pt-[100px] md:pt-[120px] pb-16 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-12 overflow-y-auto">
+      <div className="container mx-auto lg:max-w-7xl w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div
             className="space-y-4 md:space-y-6"

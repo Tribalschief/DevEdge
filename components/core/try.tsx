@@ -80,13 +80,13 @@ export function CoreValues() {
 
   return (
     <motion.div
-      className="bg-purple-100 p-4 sm:p-6 md:p-10 lg:p-16 xl:p-20 
+      className="bg-purple-100 p-4 sm:p-6 md:p-10 lg:p-16 xl:p-12 
                 min-h-[600px] h-auto lg:h-[720px] xl:h-[800px] 
                 flex justify-center items-center rounded-lg w-full mx-auto"
       ref={ref}
     >
       {/* Core Values Grid */}
-      <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-6xl sm:mx-2 md:mx-auto w-full">
+      <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-7xl lg:mx-0 sm:mx-2 md:mx-auto w-full">
         {coreValues.map((value, i) => (
           <motion.div
             key={i}
