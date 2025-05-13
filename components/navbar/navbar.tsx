@@ -12,11 +12,9 @@ import { Company } from "./com" // Assuming this is your company dropdown
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Searching from "./searching" // Assuming this is your search component
 import { getService } from "@/sanity/lib/getLinks" // Assuming this fetches services
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion" // AnimatePresence might not be needed here anymore
 import Image from "next/image"
 import { cn } from "@/lib/utils"
-
-
 
 
 export const Navbar = () => {
@@ -25,7 +23,7 @@ export const Navbar = () => {
   const [companyOpen, setCompanyOpen] = useState(false)
   const pathname = usePathname()
   const [isClient, setIsClient] = useState(false)
-  const [services, setServicesData] = React.useState([]) // Typed state
+  const [servicesData, setServicesData] = React.useState<any[]>([]) // Type the state
 
   useEffect(() => {
     setIsClient(true)
@@ -38,10 +36,10 @@ export const Navbar = () => {
       try {
         const fetchedServices = await getService()
         const filteredServices = fetchedServices.filter(
-          (service) =>
+          (service: any) => // Add type for service
             service.title !== null &&
-            service.slug?.current !== null && // Check slug.current
-            service.icon?.asset?.url !== null, // Check icon.asset.url
+            service.slug?.current !== null &&
+            service.icon?.asset?.url !== null,
         )
         setServicesData(filteredServices)
       } catch (error) {
@@ -66,11 +64,11 @@ export const Navbar = () => {
     return null
   }
 
-  const isActive = (path) => {
+  const isActive = (path: string) => { // Add type for path
     return pathname === path
   }
 
-  const NavLink = ({ href, children, className }) => {
+  const NavLink = ({ href, children, className }: { href: string, children: React.ReactNode, className?: string }) => { // Type props
     const active = isActive(href)
 
     if (active) {
@@ -90,6 +88,7 @@ export const Navbar = () => {
         scrolled ? "bg-black shadow-md" : "bg-white"
       }`}
     >
+      {/* ...rest of your Navbar JSX top section ... */}
       <div className="flex items-center justify-between px-2 sm:px-5 md:px-6 lg:px-8 xl:px-16 2xl:px-32 h-[60px] sm:h-[70px] md:h-[90px] lg:h-[100px] xl:h-[110px]">
         {/* Logo - For mobile and tablet */}
         <div className="block lg:hidden scale-75 sm:scale-90 md:scale-95 ">
@@ -98,20 +97,16 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        {/* Desktop Navigation - This outer div will take available space and center its single child */}
+        {/* Desktop Navigation */}
         <div className="hidden lg:flex flex-1 justify-center items-center">
-          {/* This inner div groups all desktop nav items and is centered by its parent */}
-          <div className="flex items-center gap-x-3 lg:gap-x-8 xl:gap-x-32 ">
-            {/* Desktop Logo - Now part of the centered group */}
-            <div className="flex-none  scale-75 sm:scale-90 md:scale-95 lg:scale-100"> {/* Removed lg:mr-48 */}
+          <div className="flex items-center gap-x-3 lg:gap-x-10 xl:gap-x-32 ">
+            <div className="flex-none  scale-75 sm:scale-90 md:scale-95 lg:mr-auto lg:scale-100">
               <Link href="/" className="">
                 <Logo dark={scrolled} />
               </Link>
             </div>
-
-            {/* Links, Search, and Buttons Container */}
             <div
-              className={`flex items-center whitespace-nowrap gap-x-1 lg:gap-x-1.5 xl:gap-x-3 2xl:gap-x-4 ${ // Adjusted gaps
+              className={`flex items-center whitespace-nowrap gap-x-1 lg:gap-x-1.5 xl:gap-x-3 2xl:gap-x-4 ${
                 scrolled ? "text-gray-50" : "text-gray-900"
               }`}
             >
@@ -122,7 +117,7 @@ export const Navbar = () => {
                 Home
               </NavLink>
               <div className="text-sm lg:text-sm xl:text-base font-medium">
-                <Services heading="Our Playground" /> {/* Your Services Dropdown */}
+                <Services heading="Our Playground" />
               </div>
               <NavLink
                 href="/about"
@@ -131,7 +126,7 @@ export const Navbar = () => {
                 About Us
               </NavLink>
               <div className="text-sm lg:text-sm xl:text-base font-medium">
-                <Company title="Company" /> {/* Your Company Dropdown */}
+                <Company title="Company" />
               </div>
               <NavLink
                 href="/erp"
@@ -140,11 +135,9 @@ export const Navbar = () => {
                 <span className="hidden xl:inline">Our Solution</span>
                 <span className="xl:hidden">Solution</span>
               </NavLink>
-              {/* Search Component - ensure it doesn't grow too wide */}
               <div className="w-auto md:min-w-[80px] lg:min-w-[100px] xl:w-[150px] 2xl:w-[200px] flex-shrink-0">
                 <Searching />
               </div>
-              {/* Buttons */}
               <div className="hidden md:flex items-center gap-x-1 lg:gap-x-2 flex-shrink-0">
                 <Link href="/rfp">
                   <Button
@@ -189,10 +182,11 @@ export const Navbar = () => {
             </SheetTrigger>
             <SheetContent
               side="left"
-              className="w-[300px] sm:w-[200px] z-[60] mt-[60px] sm:mt-[70px] md:mt-[90px] overflow-y-auto" // Ensure mt matches navbar height at respective breakpoints
+              className="w-[300px] sm:w-[200px] z-[60] mt-[60px] sm:mt-[70px] md:mt-[90px] overflow-y-auto"
               onOpenAutoFocus={(e) => e.preventDefault()}
             >
               <div className="flex flex-col pt-6 pb-6">
+                {/* ... other mobile links ... */}
                 <SheetClose asChild>
                   {isActive("/") ? (
                     <span className="text-lg font-semibold opacity-70 cursor-default p-2">Home</span>
@@ -200,7 +194,7 @@ export const Navbar = () => {
                     <Link
                       href="/"
                       className="text-lg font-semibold hover:bg-black hover:text-white p-2 rounded-md transition-colors"
-                      onClick={() => setScrolled(false)} // Optional: reset scroll state if needed on nav
+                      onClick={() => setScrolled(false)}
                     >
                       Home
                     </Link>
@@ -220,7 +214,8 @@ export const Navbar = () => {
                     </Link>
                   )}
                 </SheetClose>
-                {/* Services Dropdown for Mobile */}
+
+                {/* Services Dropdown for Mobile - IMPLEMENTING OPTION 2 */}
                 <div className="text-lg font-semibold">
                   <div className="flex flex-col">
                     <button
@@ -236,75 +231,70 @@ export const Navbar = () => {
                         <FaAngleDown />
                       </motion.span>
                     </button>
-                    <AnimatePresence>
-                      {servicesOpen && Array.isArray(services) && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="flex flex-col pl-4 mt-2 gap-2">
-                            {services.map((service, i) => {
-                              // Ensure service.slug and service.icon are not null before accessing nested properties
-                              if (!service.slug?.current || !service.icon?.asset?.url) return null;
-                              const serviceUrl = `/services/${service.slug.current}`
-                              const isServiceActive = isActive(serviceUrl)
+                    <motion.div
+                      key="services-dropdown-content-mobile" // Add a key
+                      initial={false} // No initial animation unless servicesOpen is true
+                      animate={{
+                        height: servicesOpen && Array.isArray(servicesData) && servicesData.length > 0 ? "auto" : 0,
+                        opacity: servicesOpen && Array.isArray(servicesData) && servicesData.length > 0 ? 1 : 0,
+                        marginTop: servicesOpen && Array.isArray(servicesData) && servicesData.length > 0 ? "0.5rem" : "0rem", // For the mt-2
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden" // Crucial for height animation
+                    >
+                      {/* Only render the list if the dropdown should be "visible" */}
+                      {servicesOpen && Array.isArray(servicesData) && servicesData.length > 0 && (
+                        <div className="flex flex-col pl-4 gap-2"> {/* Removed mt-2, handled by parent motion.div */}
+                          {servicesData.map((service: any, i) => { // Added type for service
+                            if (!service.slug?.current || !service.icon?.asset?.url) return null;
+                            const serviceUrl = `/services/${service.slug.current}`
+                            const isServiceActive = isActive(serviceUrl)
 
-                              return (
-                                <motion.div
-                                  key={service.slug.current}
-                                  variants={{
-                                    hidden: { opacity: 0, y: -5 },
-                                    visible: (customI) => ({ // Use customI to avoid conflict
-                                      opacity: 1,
-                                      y: 0,
-                                      transition: { delay: customI * 0.1 },
-                                    }),
-                                  }}
-                                  initial="hidden"
-                                  animate="visible"
-                                  custom={i}
-                                >
-                                  <SheetClose asChild>
-                                    {isServiceActive ? (
-                                      <span className="text-base flex font-normal items-center gap-x-2 text-black hover:text-white opacity-70 cursor-default p-2">
-                                        <Image
-                                          src={service.icon.asset.url}
-                                          alt={service.title || "Service Icon"}
-                                          width={16} // Adjusted size
-                                          height={16} // Adjusted size
-                                          className="h-4 w-4 rounded-full" // Removed mt-1, relying on flex alignment
-                                        />
-                                        {service.title}
-                                      </span>
-                                    ) : (
-                                      <Link
-                                        href={serviceUrl}
-                                        className="text-base flex font-normal items-center text-black gap-x-2 hover:bg-black hover:text-white p-2 rounded-md transition-colors"
-                                      >
-                                        <Image
-                                          src={service.icon.asset.url}
-                                          alt={service.title || "Service Icon"}
-                                          width={16}
-                                          height={16}
-                                          className="h-4 w-4 rounded-full"
-                                        />
-                                        {service.title}
-                                      </Link>
-                                    )}
-                                  </SheetClose>
-                                </motion.div>
-                              )
-                            })}
-                          </div>
-                        </motion.div>
+                            return (
+                              <motion.div
+                                key={service.slug.current}
+                                initial={{ opacity: 0, y: -5 }}
+                                animate={{ opacity: 1, y: 0, transition: { delay: i * 0.05 } }}
+                                // Removed variants and custom as this is a simpler direct animation
+                              >
+                                <SheetClose asChild>
+                                  {isServiceActive ? (
+                                    <span className="text-base flex font-normal items-center gap-x-2 text-black hover:text-white opacity-70 cursor-default p-2">
+                                      <Image
+                                        src={service.icon.asset.url}
+                                        alt={service.title || "Service Icon"}
+                                        width={16}
+                                        height={16}
+                                        className="h-4 w-4 rounded-full"
+                                      />
+                                      {service.title}
+                                    </span>
+                                  ) : (
+                                    <Link
+                                      href={serviceUrl}
+                                      className="text-base flex font-normal items-center text-black gap-x-2 hover:bg-black hover:text-white p-2 rounded-md transition-colors"
+                                    >
+                                      <Image
+                                        src={service.icon.asset.url}
+                                        alt={service.title || "Service Icon"}
+                                        width={16}
+                                        height={16}
+                                        className="h-4 w-4 rounded-full"
+                                      />
+                                      {service.title}
+                                    </Link>
+                                  )}
+                                </SheetClose>
+                              </motion.div>
+                            )
+                          })}
+                        </div>
                       )}
-                    </AnimatePresence>
+                    </motion.div>
                   </div>
                 </div>
-                {/* Company Dropdown for Mobile */}
+
+                {/* Company Dropdown for Mobile - Apply similar Option 2 logic */}
                 <div className="text-lg font-semibold">
                   <div className="flex flex-col">
                     <button
@@ -320,54 +310,52 @@ export const Navbar = () => {
                         <FaAngleDown />
                       </motion.span>
                     </button>
-                    <AnimatePresence>
+                    <motion.div
+                      key="company-dropdown-content-mobile"
+                      initial={false}
+                      animate={{
+                        height: companyOpen ? "auto" : 0,
+                        opacity: companyOpen ? 1 : 0,
+                        marginTop: companyOpen ? "0.5rem" : "0rem",
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
                       {companyOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="flex flex-col pl-4 mt-2 gap-2">
-                            {[
-                              { path: "/company/leadership", title: "Leadership" },
-                              { path: "/company/career", title: "Career" },
-                              { path: "/company/cv", title: "Submit CV" },
-                            ].map((item, i) => ( // Renamed index to avoid conflict
-                              <motion.div
-                                key={item.path}
-                                variants={{
-                                  hidden: { opacity: 0, y: -5 },
-                                  visible: (customI) => ({ opacity: 1, y: 0, transition: { delay: customI * 0.1 } }),
-                                }}
-                                initial="hidden"
-                                animate="visible"
-                                custom={i}
-                              >
-                                <SheetClose asChild>
-                                  {isActive(item.path) ? (
-                                    <span className="text-base font-normal opacity-70 cursor-default p-2">
-                                      {item.title}
-                                    </span>
-                                  ) : (
-                                    <Link
-                                      href={item.path}
-                                      className="text-base font-normal hover:bg-black hover:text-white p-2 rounded-md transition-colors block"
-                                    >
-                                      {item.title}
-                                    </Link>
-                                  )}
-                                </SheetClose>
-                              </motion.div>
-                            ))}
-                          </div>
-                        </motion.div>
+                        <div className="flex flex-col pl-4 gap-2">
+                          {[
+                            { path: "/company/leadership", title: "Leadership" },
+                            { path: "/company/career", title: "Career" },
+                            { path: "/company/cv", title: "Submit CV" },
+                          ].map((item, i) => (
+                            <motion.div
+                              key={item.path}
+                              initial={{ opacity: 0, y: -5 }}
+                              animate={{ opacity: 1, y: 0, transition: { delay: i * 0.05 } }}
+                            >
+                              <SheetClose asChild>
+                                {isActive(item.path) ? (
+                                  <span className="text-base font-normal opacity-70 cursor-default p-2">
+                                    {item.title}
+                                  </span>
+                                ) : (
+                                  <Link
+                                    href={item.path}
+                                    className="text-base font-normal hover:bg-black hover:text-white p-2 rounded-md transition-colors block"
+                                  >
+                                    {item.title}
+                                  </Link>
+                                )}
+                              </SheetClose>
+                            </motion.div>
+                          ))}
+                        </div>
                       )}
-                    </AnimatePresence>
+                    </motion.div>
                   </div>
                 </div>
-                <SheetClose asChild>
+                 {/* ... rest of your mobile menu ... */}
+                 <SheetClose asChild>
                   {isActive("/erp") ? (
                     <span className="text-lg font-semibold opacity-70 cursor-default p-2">Our Solutions</span>
                   ) : (
