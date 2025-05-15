@@ -109,7 +109,7 @@ export default function Solutions() {
             {/* Previous Button */}
             <button
               onClick={prevSlide}
-              className="absolute left-6 top-[73%]  transform -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black hover:bg-[#6208ac] flex items-center justify-center shadow-md transition-colors"
+              className="absolute left-6 top-[83%]  transform -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black hover:bg-[#6208ac] flex items-center justify-center shadow-md transition-colors"
               aria-label="Previous slide"
             >
               <ChevronLeft className="w-4 h-4 text-white" />
@@ -118,14 +118,14 @@ export default function Solutions() {
             {/* Next Button */}
             <button
               onClick={nextSlide}
-              className="absolute right-6 top-[73%]  transform -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black hover:bg-[#6208ac] flex items-center justify-center shadow-md transition-colors"
+              className="absolute right-6 top-[83%]  transform -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black hover:bg-[#6208ac] flex items-center justify-center shadow-md transition-colors"
               aria-label="Next slide"
             >
               <ChevronRight className="w-4 h-4 text-white" />
             </button>
 
             {/* Carousel Controls & Current Index */}
-            <div className="absolute top-[75%]  gap-x-2 right-20 z-10 flex items-center">
+            <div className="absolute top-[85%]  gap-x-2 right-20 z-10 flex items-center">
               {/* Current slide text */}
               
 
