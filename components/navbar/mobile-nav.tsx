@@ -330,7 +330,7 @@ interface MenuItem {
 }
 
 const menuData: MenuItem[] = [
-  { slug: "home", label: "Home", href: "/home", isActive: true }, // Ensure href starts with / for proper Link behavior
+  { slug: "home", label: "Home", href: "/", isActive: true }, // Ensure href starts with / for proper Link behavior
   {
     slug: "about",
     label: "About",
