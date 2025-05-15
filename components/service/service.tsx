@@ -30,7 +30,7 @@ export function ServiceSection({
   centered = true,
 }: ServiceSectionProps) {
   return (
-    <section className={cn("py-16 px-8 lg:px-0 bg-white", className)}>
+    <section className={cn("py-16 px-2 lg:px-0 bg-white", className)}>
       <div className="max-w-7xl mx-auto">
         <SectionTitle title={title} highlight={highlight} subtitle={subtitle} centered={centered} />
 

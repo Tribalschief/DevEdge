@@ -56,7 +56,7 @@ export const DetailedHeader = ({ image = "/placeholder.svg", title = "Service Ti
             </div>
 
             {/* Buttons - positioned below title */}
-            <div className="absolute top-28 sm:top-32 md:top-36 lg:top-40 left-24 sm:left-28">
+            <div className="absolute top-[70%] sm:top-32 md:top-36 lg:top-40 left-24 sm:left-28">
               <div className="flex gap-4 flex-col sm:flex-row sm:gap-x-8 md:gap-x-10 lg:gap-x-16">
                 <Link href="/rfp">
                   <Button

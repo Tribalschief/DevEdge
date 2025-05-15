@@ -80,19 +80,19 @@ export function CoreValues() {
 
   return (
     <motion.div
-      className="bg-purple-100 p-4 sm:p-6 md:p-10 lg:p-16 xl:p-12 
+      className="bg-purple-100 p-1 sm:p-4 md:p-8 lg:p-16 xl:p-20
                 min-h-[600px] h-auto lg:h-[720px] xl:h-[800px] 
                 flex justify-center items-center rounded-lg w-full mx-auto"
       ref={ref}
     >
       {/* Core Values Grid */}
-      <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-7xl lg:mx-0 sm:mx-2 md:mx-auto w-full">
+      <div className="grid grid-cols-2 gap-2 sm:gap-4 max-w-7xl lg:mx-0 mx-0 md:mx-auto w-full">
         {coreValues.map((value, i) => (
           <motion.div
             key={i}
             variants={fadeInUp}
             custom={i + 3}
-            className="flex gap-2 sm:gap-4 w-full relative p-3 sm:p-4 rounded-lg shadow-sm"
+            className="flex gap-1 md:gap-4 w-full relative p-2 rounded-lg shadow-sm"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: i * 0.1 }}

@@ -22,7 +22,7 @@ interface CoreValueCardProps {
 
 export const Try = () => {
   return (
-    <main className="h-full p-4 md:p-8 ">
+    <main className="h-full p-1 md:p-8 ">
       <section>
         <GlobalExpertise />
       </section>
@@ -45,7 +45,7 @@ function GlobalExpertiseCard({ icon, title, description, index }: CoreValueCardP
       {/* Main card */}
       <motion.div
         ref={ref}
-        className="relative bg-white h-[320px] xs:h-[350px] sm:h-[420px] md:h-[440px] lg:h-[460px] xl:h-[480px] p-4 sm:p-6 md:p-8 flex flex-col justify-evenly rounded-2xl shadow-lg"
+        className="relative bg-white h-[320px] xs:h-[350px] sm:h-[420px] md:h-[440px] lg:h-[460px] xl:h-[480px] p-2 sm:p-4 md:p-6  flex flex-col justify-stretch md:justify-evenly rounded-2xl shadow-lg"
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -55,7 +55,7 @@ function GlobalExpertiseCard({ icon, title, description, index }: CoreValueCardP
       >
         {/* Icon */}
         <motion.div
-          className="flex justify-center mb-4"
+          className="flex justify-center mb-[2px] md:mb-4"
           animate={isHovered ? { y: [0, -5, 0], transition: { repeat: Number.POSITIVE_INFINITY, duration: 2 } } : {}}
         >
           <motion.div
@@ -74,12 +74,12 @@ function GlobalExpertiseCard({ icon, title, description, index }: CoreValueCardP
         </motion.div>
 
         {/* Title */}
-        <h2 className="text-center text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[28px] font-bold text-gray-900 mb-2">
+        <h2 className="text-center text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[28px] font-bold text-gray-900 ">
           {title}
         </h2>
 
         {/* Description */}
-        <p className="text-center text-[10px] xs:text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[16px] mt-4 sm:mt-6 md:mt-8 lg:mt-10 font-medium text-[#585675] line-clamp-6 sm:line-clamp-none">
+        <p className="text-center text-[10px] xs:text-[11px] sm:text-[12px] md:text-[13px] lg:text-[13px] xl:text-[16px] 2xl:text-[16px] mt-4 sm:mt-6 md:mt-8 lg:mt-10 font-medium text-[#585675] line-clamp-5 sm:line-clamp-none">
           {description}
         </p>
 
@@ -141,9 +141,9 @@ function GlobalExpertise() {
   ]
 
   return (
-    <div ref={ref} className="relative p-6 md:p-10 lg:p-16 rounded-2xl flex justify-center items-center">
+    <div ref={ref} className="relative p-2 md:p-10 lg:p-16 rounded-2xl flex justify-center items-center">
       {/* Changed grid-cols-1 to grid-cols-2 for mobile view */}
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
         {expertiseData.map((item, index) => (
           <motion.div
             key={index}

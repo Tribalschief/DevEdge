@@ -1,17 +1,17 @@
 import React from 'react'
 import { IndustryCard } from './newCard'
-import WM from '@/app/(main)/services/[slug]/_components/wm'
+
 
 export const CardGrid = ({services , title}:{services: any, title: string}) => {
   
   return (
     <main className="relative overflow-hidden flex flex-col items-center justify-center">
-      <h2 className="px-4 ml-4 sm:ml-6 md:ml-10 lg:ml-16 xl:ml-24 2xl:ml-32 text-2xl sm:text-3xl font-bold lg:mt-4 text-[#0e0f0c]">
+      <h2 className="px-1 lg:px-4 ml-4 sm:ml-6 md:ml-10 lg:ml-16 xl:ml-24 2xl:ml-32 text-2xl sm:text-3xl font-bold lg:mt-4 text-[#0e0f0c]">
         DevEdge {title} Services Offerings
       </h2>
 
-      <div className="py-8 md:py-12 max-w-7xl mt-10 sm:mt-16 mx-4 sm:ml-6 md:ml-10 lg:mx-auto lg:ml-16 xl:ml-24 2xl:ml-32">
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+      <div className="py-8  md:py-12 max-w-7xl mt-10 sm:mt-16 mx-0 md:mx-4 ml-0 sm:ml-6 md:ml-10 lg:mx-auto lg:ml-16 xl:ml-24 2xl:ml-32">
+        <div className="flex flex-wrap justify-center gap-2 gap-y-8 sm:gap-y-10 md:gap-y-12 lg:gap-y-16 lg:gap-4 sm:gap-2">
           {services.map((service: any, index: number) => {
             const serviceId = service.title ? service.title.toLowerCase().replace(/\s+/g, "-") : `service-${index}`
             return (

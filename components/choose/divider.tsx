@@ -28,7 +28,7 @@ export const Divider = ({ image }: { image: any }) => {
 
       {/* Foreground Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-20 text-center px-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+        <h1 className="text-xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
           Why Choose <span className="text-purple-600">DevEdge Consulting</span>
         </h1>
         <h2 className="text-sm sm:text-base md:text-lg lg:text-2xl mt-6 max-w-4xl font-medium">

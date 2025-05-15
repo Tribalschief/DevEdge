@@ -49,7 +49,7 @@ export default function Footer() {
 
         {/* Our Playground Column */}
         <div className="text-center md:text-left">
-          <h3 className="text-lg font-medium mb-4">Our Playground</h3>
+          <h3 className="text-lg font-medium  mb-4">Our Playground</h3>
           <ul className="space-y-2 text-sm">
       <li>
         <Link href="/services/internal-audit" className="hover:underline">
@@ -166,7 +166,7 @@ export default function Footer() {
         <div className="text-center md:text-left">
           <h3 className="text-lg font-medium mb-4">Find Us</h3>
           <ul className="space-y-2 text-sm">
-            <li>
+            <li className="hover:underline flex justify-center items-center">
               
                 
                  <Services heading="Our Playground" />

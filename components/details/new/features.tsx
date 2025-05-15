@@ -84,7 +84,7 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
               </div>
 
               {/* Overlay - Positioned relative to Background Container */}
-              <div className="absolute -left-[15%] -right-[15%] lg:left-[-60px] xl:left-[-36px] h-full z-10 top-0 md:top-0 lg:-top-[8px] xl:-top-[6px] lg:rounded-tr-full bg-[#e0cef5] opacity-60 pointer-events-none"></div>
+              <div className="absolute -left-[15%] -right-[15%] lg:left-[-60px] xl:left-[-36px] h-full z-10 top-0 md:top-0 lg:top-7 xl:-top-[6px] lg:rounded-tr-full bg-[#e0cef5] opacity-60 pointer-events-none"></div>
             </div>
             {/* "WHY CHOOSE US" Text Block - Needs higher Z-index than overlay */}
             <div className="relative z-20 lg:w-[75%]  flex flex-col justify-start h-full p-4 xs:p-5 sm:p-6 md:p-8  text-white lg:mt-10 pointer-events-none">
@@ -115,36 +115,33 @@ Solutions Made For Real-World Results
             </div>
           </div>
           {/* --- Right Column --- */}
-          <div className="w-full relative right-0 lg:right-[80px] xl:right-[100px] z-40 px-1 sm:px-2 lg:mt-16 lg:w-[70%] xl:w-[65%] lg:min-w-[700px]">
-            {/* Feature list container with relative positioning */}
-            <div className=" w-full">
-              {featuresList.map((point, index) => (
-                <div
-                  key={index}
-                  className="flex w-full gap-2 sm:gap-3 mt-4 items-start p-2 sm:p-3 relative h-[40px] xs:h-[45px] sm:h-[50px] md:h-[60px] lg:h-[70px]"
-                >
-                  {/* Number indicator */}
-                  <div className="text-sm sm:text-base md:text-lg lg:text-xl font-bold min-w-[35px] sm:min-w-[30px] md:min-w-[35px] lg:min-w-[40px] pt-0.5 text-center z-10">
-                    {index + 1}
-                  </div>
+        <div className="w-full relative right-0 lg:right-[80px] xl:right-[100px] z-40 px-1 sm:px-2 lg:mt-16 lg:w-[70%] xl:w-[65%] lg:min-w-[700px]">
+  {/* Feature list container with relative positioning */}
+  <div className="w-full">
+    {featuresList.map((point, index) => (
+      <div
+        key={index}
+        className="flex w-full gap-2 lg:gap-0 sm:gap-3 mt-4 items-start p-2 sm:p-3 relative h-auto lg:h-[70px]"
+      >
+        {/* Number indicator */}
+        <div className="flex-shrink-0 text-sm sm:text-base md:text-lg lg:text-xl font-bold min-w-[35px] sm:min-w-[30px] md:min-w-[35px] lg:min-w-[40px] pt-0.5 text-center z-10">
+          {index + 1}
+        </div>
 
-                  {/* Feature text with absolute positioning - full width on lg */}
-                  <div
-                    className="absolute left-[45px] sm:left-[50px] md:left-[55px] lg:left-[60px] right-2 font-bold text-[11px] xs:text-xs sm:text-sm md:text-base lg:text-lg text-gray-800 lg:pr-8 whitespace-normal"
-                    // Removed: lg:w-full (let left/right define width for absolute elements)
-                    // Removed: lg:whitespace-nowrap (to allow wrapping on lg+)
-                    // Removed: lg:min-w-[600px] (to allow shrinking below 600px on lg+)
-                  >
-                    {typeof point === "object" && point !== null && "text" in point
-                      ? point.text
-                      : typeof point === "string"
-                        ? point
-                        : "Invalid feature item"}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Feature text with relative positioning on smaller screens and absolute on larger screens */}
+        <div className="flex-1 lg:relative lg:left-[60px] right-1 font-bold text-[11px] xs:text-xs sm:text-sm md:text-base lg:text-lg text-gray-800 lg:pr-8 whitespace-normal lg:w-auto"
+          style={{ top: '50%', transform: 'translateY(-50%)' }}
+        >
+          {typeof point === "object" && point !== null && "text" in point
+            ? point.text
+            : typeof point === "string"
+              ? point
+              : "Invalid feature item"}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
         </div>
       </div>
     </main>

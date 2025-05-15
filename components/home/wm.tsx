@@ -67,40 +67,55 @@
 // }
 
 // export default WorldMap
-'use client'
-import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
-import map1 from '@/public/home/map.svg'
-import map2 from '@/public/home/map2.svg'
-import globe from '@/public/home/Group.svg'
+"use client"
+import Image from "next/image"
+import { useEffect, useState } from "react"
+import map1 from "@/public/home/map.svg"
+import map2 from "@/public/home/map2.svg"
+import globe from "@/public/home/Group.svg"
 
 const WM = () => {
   const [isMounted, setIsMounted] = useState(false)
-  const [dimensions, setDimensions] = useState({ width: 600, height: 500 })
+  const [dimensions, setDimensions] = useState({ width: 600, height: 450 })
 
   useEffect(() => {
     setIsMounted(true)
 
     const updateSize = () => {
-      const isMobile = window.innerWidth < 768
-      const width = isMobile ? window.innerWidth - 40 : 600
-      const height = isMobile ? 250 : 450
+      // More consistent sizing logic with smoother transitions
+      const screenWidth = window.innerWidth
+      let width, height
+
+      if (screenWidth >= 1024) {
+        // Desktop
+        width = 600
+        height = 450
+      } else if (screenWidth >= 768) {
+        // Tablet
+        width = Math.min(screenWidth * 0.7, 600)
+        height = width * 0.75
+      } else {
+        // Mobile
+        width = Math.min(screenWidth - 40, 500)
+        height = width * 0.75
+      }
+
       setDimensions({ width, height })
     }
 
     updateSize()
-    window.addEventListener('resize', updateSize)
-    return () => window.removeEventListener('resize', updateSize)
+    window.addEventListener("resize", updateSize)
+    return () => window.removeEventListener("resize", updateSize)
   }, [])
 
   if (!isMounted) return null
 
   return (
     <section className="relative w-full flex justify-center items-center py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 lg:px-12 overflow-visible">
-      <div className="relative z-10 ">
+      <div className="relative z-10">
         <Earthmap width={dimensions.width} height={dimensions.height} />
       </div>
-      <GlobeMap />
+      <GlobeMap mapWidth={dimensions.width} />
     </section>
   )
 }
@@ -131,76 +146,75 @@ const Earthmap = ({ width, height }: { width: number; height: number }) => {
   )
 }
 
-const GlobeMap = () => {
-  const [dimensions, setDimensions] = useState({ width: 328, height: 328 })
-  const [scale, setScale] = useState(1)
+const GlobeMap = ({ mapWidth }: { mapWidth: number }) => {
+  // Calculate globe size based on map width for consistent proportions
+  const globeSize = Math.min(328, mapWidth * 0.55)
 
-  useEffect(() => {
-    const updateSize = () => {
-      const screenWidth = window.innerWidth
-      const baseWidth = 328
-
-      const width =
-        screenWidth >= 1024
-          ? 328
-          : screenWidth < 400
-          ? screenWidth - 40
-          : screenWidth / 2
-      const height = width
-      const newScale = width / baseWidth
-
-      setDimensions({ width, height })
-      setScale(newScale)
-    }
-
-    updateSize()
-    window.addEventListener('resize', updateSize)
-    return () => window.removeEventListener('resize', updateSize)
-  }, [])
+  // Calculate font size based on globe size
+  const fontSize = Math.max(10, Math.min(12, globeSize * 0.036))
 
   return (
     <div className="absolute top-1/2 left-1/2 z-20 pointer-events-none transform -translate-x-1/2 -translate-y-1/2">
-      <div
-        className="relative"
-        style={{ width: `${dimensions.width}px`, height: `${dimensions.height}px` }}
-      >
+      <div className="relative" style={{ width: `${globeSize}px`, height: `${globeSize}px` }}>
         <Image
-          src={globe}
+          src={globe || "/placeholder.svg"}
           alt="Globe Map"
-          width={dimensions.width}
-          height={dimensions.height}
+          width={globeSize}
+          height={globeSize}
           className="w-full h-auto"
         />
 
-        {/* Labels */}
-        <div
-          className="absolute top-0 left-0 origin-top-left"
-          style={{
-            transform: `scale(${scale})`,
-            width: '328px',
-            height: '328px',
-          }}
-        >
+        {/* Labels container with fixed size reference */}
+        <div className="absolute top-0 left-0 w-full h-full">
           {/* Saudi Arabia */}
-          <div className="absolute top-[12%] left-[35.5%] text-xs">
-            <div className="bg-white text-black px-2 py-1 rounded shadow">
+          <div className="absolute top-[12%] left-[35.5%]" style={{ fontSize: `${fontSize}px` }}>
+            <div
+              className="bg-white text-black px-2 py-1 rounded shadow whitespace-nowrap"
+              style={{ fontSize: `${fontSize}px` }}
+            >
               Kingdom of Saudi Arabia
             </div>
-            <div className="bg-white w-[40px] h-[1px] mt-[20px] rotate-[75deg] ml-[105px]" />
+            <div
+              className="bg-white h-[1px] rotate-[75deg]"
+              style={{
+                width: `${globeSize * 0.12}px`,
+                marginTop: `${globeSize * 0.06}px`,
+                marginLeft: `${globeSize * 0.32}px`,
+              }}
+            />
           </div>
 
           {/* UAE */}
-          <div className="absolute top-[50%] left-[71%] text-xs">
-            <div className="bg-white w-[40px] h-[1px] mb-[20px] rotate-[65deg]" />
-            <div className="bg-white text-black px-2 py-1 ml-4 rounded shadow">
+          <div className="absolute top-[50%] left-[71%]" style={{ fontSize: `${fontSize}px` }}>
+            <div
+              className="bg-white h-[1px] rotate-[65deg]"
+              style={{
+                width: `${globeSize * 0.12}px`,
+                marginBottom: `${globeSize * 0.06}px`,
+              }}
+            />
+            <div
+              className="bg-white text-black px-2 py-1 rounded shadow whitespace-nowrap"
+              style={{ marginLeft: `${globeSize * 0.012}px`, fontSize: `${fontSize}px` }}
+            >
               United Arab Emirates
             </div>
           </div>
 
           {/* Pakistan */}
-          <div className="absolute top-[62%] left-[32%] text-xs">
-            <div className="bg-white w-[40px] h-[1px] mb-[20px] rotate-[105deg] ml-[5px]" />
-            <div className="bg-white text-black px-2 py-1 rounded shadow">
+          <div className="absolute top-[62%] left-[32%]" style={{ fontSize: `${fontSize}px` }}>
+            <div
+              className="bg-white h-[1px] rotate-[105deg]"
+              style={{
+                width: `${globeSize * 0.12}px`,
+                marginBottom: `${globeSize * 0.06}px`,
+                marginLeft: `${globeSize * 0.015}px`,
+              }}
+            />
+            <div
+              className="bg-white text-black px-2 py-1 rounded shadow whitespace-nowrap"
+              style={{ fontSize: `${fontSize}px` }}
+            >
               Pakistan
             </div>
           </div>
@@ -211,5 +225,7 @@ const GlobeMap = () => {
 }
 
 export default WM
+
+
 
 

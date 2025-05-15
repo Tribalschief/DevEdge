@@ -66,7 +66,7 @@ export default async function ServicePage({ params }: any) {
           title={service.title}
         />
 
-        <div className="flex flex-col lg:flex-row gap-8   px-4 sm:px-6 lg:px-2">
+        <div className="flex flex-col lg:flex-row gap-3 sm:px-6 lg:px-2">
           {/* Left column */}
           {/* Added 'relative' here so the absolutely positioned WM inside it is positioned correctly */}
           <div className="relative flex flex-col lg:w-full "> {/* Adjust bg color or remove */}

@@ -31,7 +31,7 @@ export function ServiceCard({
   return (
     <motion.div
       className={cn(
-        "relative flex flex-col items-center text-center p-6 rounded-lg shadow transition-all",
+        "relative flex flex-col items-center text-center p-1 lg:p-6 rounded-lg shadow transition-all",
         className
       )}
       initial={{ opacity: 0, y: 20 }}
