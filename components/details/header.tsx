@@ -38,7 +38,7 @@ export const DetailedHeader = ({ image = "/placeholder.svg", title = "Service Ti
           <div className="relative w-full h-full max-w-screen-res">
             {/* Back button */}
             {/* Added text-white to Link for default state, hover color will override for icon */}
-            <div className="absolute top-10 left-10">
+            <div className="absolute top-2 left-2 sm:top-10 sm:left-10">
               <Link
                 href="/"
                 className="rounded-full border border-white text-white hover:border-purple-500 w-10 h-10 flex items-center justify-center hover:text-purple-400 transition-colors duration-200"
@@ -49,7 +49,7 @@ export const DetailedHeader = ({ image = "/placeholder.svg", title = "Service Ti
             </div>
 
             {/* Title */}
-            <div className="absolute top-10 left-24 sm:left-28">
+            <div className="absolute top-2 sm:top-10 left-24 sm:left-28">
               <h1 className="text-2xl text-white hover:text-[#6208CA] transition duration-300 ease-in-out hover:scale-105 sm:text-3xl md:text-4xl 2xl:text-5xl font-bold tracking-wide">
                 {title}
               </h1>

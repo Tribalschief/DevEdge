@@ -1,6 +1,6 @@
 import Image from "next/image"
 import InternalAudit from "@/public/IA.png" // Ensure this path is correct
-import { ArrowRight } from "lucide-react"
+import { ArrowDown, ArrowRight } from "lucide-react"
 import Logo from "@/public/logoremovebg.png" // Ensure this path is correct
 
 interface FeatureItem {
@@ -37,15 +37,26 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
     <main className="mt-16 sm:mt-24 lg:mt-4 relative overflow-hidden container h-full mx-auto p-4 md:p-6 lg:px-8 max-w-screen-res">
       <div className="relative flex flex-col items-center justify-center lg:mb-4">
         {/* Pink curved shape */}
-        <div className="w-[900px] h-[450px] lg:hidden absolute z-30 flex -top-[248px] 2xs:-top-[248px] xs:-top-[274px] sm:-top-[238px] md:-top-[262px] rounded-b-full bg-[#6208ac] opacity-10" />
+        <div className="w-full max-w-[500px]: sm:max-w-7xl 2xs:max-h-[710px]  xs:max-h-[810px] h-full max-h-[700px] sm:max-h-[813px] md:max-h-[818px] flex lg:hidden absolute z-30 -top-[260px] lg:-left-[340px]  bg-[#6208ac] opacity-10" />
         <div className="w-[900px] h-[450px] hidden lg:flex absolute z-30 -top-[260px] lg:-left-[340px] rounded-br-full bg-[#6208ac] opacity-10" />
+          <div className="absolute z-20 -top-[60px] sm:-top-[55px] md:-top-[50px] left-1/2 -translate-x-1/2 w-[90vw] max-w-[500px] block lg:hidden">
+  <Image
+    src={InternalAudit ?? defaultImage}
+    alt={featuresTitle}
+    width={900}
+    height={900}
+    className="w-full h-auto object-contain"
+    sizes="(max-width: 1023px) 100vw, 50vw"
+  />
+</div>
+
         {/* Title */}
         <h1 className="text-center text-xl sm:text-2xl lg:text-3xl mt-12 sm:mt-20 lg:mt-10 font-bold z-30 mb-2 md:mb-8 px-2 max-w-[1400px]">
           WHY CHOOSE DEVEDGE CONSULTING FOR {featuresTitle.toUpperCase()}
         </h1>
         {/* Logo */}
         <div
-          className="absolute top-[calc(1%-30px)] sm:top-[calc(1%-30px)] md:top-[calc(1%-50px)] left-[calc(50%-50px)] z-40
+          className="absolute top-[calc(1%-35px)] sm:top-[calc(1%-40px)] md:top-[calc(1%-55px)] left-[calc(50%-50px)] z-40
                     scale-[0.5] sm:scale-75 md:scale-90 lg:scale-100
                     origin-top-left
                     xl:top-0 lg:top-10 lg:-left-16"
@@ -54,6 +65,7 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
         </div>
         {/* Layout container */}
         <div className="w-full flex flex-col lg:flex-row lg:gap-y-8 max-w-screen-res relative">
+
           {/* --- Left Column --- */}
           <div
             className="w-full lg:w-[50%] xl:w-[30%] relative mb-10 lg:mb-0 z-20
@@ -64,15 +76,7 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
               {/* Image Viewport (relative, overflow, rounding) */}
               <div className="relative w-auto h-full overflow-hidden sm:rounded-t-[100px]">
                 {/* Mobile Image - Use fill again */}
-                <div className="absolute inset-0 bottom-[-50px] block lg:hidden">
-                  <Image
-                    src={InternalAudit ?? defaultImage}
-                    alt={featuresTitle}
-                    fill
-                    className="w-full h-full object-contain"
-                    sizes="(max-width: 1023px) 100vw, 50vw"
-                  />
-                </div>
+              
 
                 {/* Desktop Image - Using IMG with object-contain */}
                 <img
@@ -84,12 +88,13 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
               </div>
 
               {/* Overlay - Positioned relative to Background Container */}
-              <div className="absolute -left-[15%] -right-[15%] lg:left-[-60px] xl:left-[-36px] h-full z-10 top-0 md:top-0 lg:top-7 xl:-top-[6px] lg:rounded-tr-full bg-[#e0cef5] opacity-60 pointer-events-none"></div>
+              <div className="absolute -left-[15%] hidden lg:block -right-[15%] lg:left-[-60px] xl:left-[-36px] h-full z-10 top-0 md:top-0 lg:top-7 xl:-top-[6px] lg:rounded-tr-full bg-[#e0cef5] opacity-60 pointer-events-none"></div>
             </div>
             {/* "WHY CHOOSE US" Text Block - Needs higher Z-index than overlay */}
             <div className="relative z-20 lg:w-[75%]  flex flex-col justify-start h-full p-4 xs:p-5 sm:p-6 md:p-8  text-white lg:mt-10 pointer-events-none">
               <div className="relative pointer-events-auto">
-                <ArrowRight className="absolute top-[calc(60%-50px)] lg:top-20 xl:top-24 left-1/2 lg:-left-[20px] -translate-x-1/2 lg:translate-x-0 -translate-y-1/2 text-black w-8 h-8 xs:w-8 xs:h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-16 lg:h-16" />
+                <ArrowRight className="lg:block hidden absolute top-[calc(60%-50px)] lg:top-20 xl:top-24 left-1/2 lg:-left-[20px] -translate-x-1/2 lg:translate-x-0 -translate-y-1/2 text-black w-8 h-8 xs:w-8 xs:h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-16 lg:h-16" />
+                <ArrowDown className="lg:hidden absolute top-[calc(60%-50px)] lg:top-20 xl:top-24 left-1/2 lg:-left-[20px] -translate-x-1/2 lg:translate-x-0 -translate-y-1/2 text-black w-8 h-8 xs:w-8 xs:h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-16 lg:h-16" />
                 <div className="mt-36 sm:mt-40 md:mt-44 lg:mt-36 xl:mt-40 mx-auto text-center pl-0 xs:pl-0 sm:pl-0 md:pl-0 lg:-ml-[32px] xl:ml-[-20px] lg:text-left">
                   <h1 className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-wider">
                     <span className="font-extrabold text-[26px] xs:text-[30px] sm:text-[36px] md:text-[48px] lg:text-[60px] text-[#6208ac]">
@@ -115,7 +120,7 @@ Solutions Made For Real-World Results
             </div>
           </div>
           {/* --- Right Column --- */}
-        <div className="w-full relative right-0 lg:right-[80px] xl:right-[100px] z-40 px-1 sm:px-2 lg:mt-16 lg:w-[70%] xl:w-[65%] lg:min-w-[700px]">
+        <div className="w-full relative 2xs:-mt-[64px] xs:-mt-[2px] sm:-mt-[130px] right-0 lg:right-[80px] xl:right-[100px] z-40 px-1 sm:px-2 lg:mt-16 lg:w-[70%] xl:w-[65%] lg:min-w-[700px]">
   {/* Feature list container with relative positioning */}
   <div className="w-full">
     {featuresList.map((point, index) => (
@@ -124,7 +129,7 @@ Solutions Made For Real-World Results
         className="flex w-full gap-2 lg:gap-0 sm:gap-3 mt-4 items-start p-2 sm:p-3 relative h-auto lg:h-[70px]"
       >
         {/* Number indicator */}
-        <div className="flex-shrink-0 text-sm sm:text-base md:text-lg lg:text-xl font-bold min-w-[35px] sm:min-w-[30px] md:min-w-[35px] lg:min-w-[40px] pt-0.5 text-center z-10">
+        <div className="flex-shrink-0 -mt-4 lg:mt-0 text-sm sm:text-base md:text-lg lg:text-xl font-bold min-w-[35px] sm:min-w-[30px] md:min-w-[35px] lg:min-w-[40px] lg:pt-0.5 text-center z-10">
           {index + 1}
         </div>
 

@@ -22,7 +22,7 @@ interface CoreValueCardProps {
 
 export const Try = () => {
   return (
-    <main className="h-full p-1 md:p-8 ">
+    <main className="h-full px-1 py-4  md:p-8 ">
       <section>
         <GlobalExpertise />
       </section>
@@ -38,14 +38,14 @@ function GlobalExpertiseCard({ icon, title, description, index }: CoreValueCardP
   })
 
   return (
-    <div className="relative w-full max-w-sm z-10">
+    <div className="relative w-full max-w-sm  z-10">
       {/* Purple background shadow */}
-      <div className="absolute bottom-2 right-2 w-full h-full rounded-2xl bg-purple-700"></div>
+      <div className="absolute bottom-1 lg:bottom-2 right-1 lg:right-2 w-full h-full rounded-2xl bg-purple-700"></div>
 
       {/* Main card */}
       <motion.div
         ref={ref}
-        className="relative bg-white h-[320px] xs:h-[350px] sm:h-[420px] md:h-[440px] lg:h-[460px] xl:h-[480px] p-2 sm:p-4 md:p-6  flex flex-col justify-stretch md:justify-evenly rounded-2xl shadow-lg"
+        className="relative bg-white h-[320px] xs:h-[350px] sm:h-[420px] md:h-[440px] lg:h-[460px] xl:h-[480px] p-3 sm:p-4 md:p-6  flex flex-col justify-stretch md:justify-evenly rounded-2xl shadow-lg"
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: index * 0.1 }}

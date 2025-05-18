@@ -213,7 +213,7 @@ export const IndustryCard = ({ number, title, description, backgroundIcon }: Ind
             </span>
 
             {/* Title with line clamp */}
-            <h3 className="text-sm sm:text-base font-semibold text-[#A174E4] uppercase mb-2 leading-tight drop-shadow-sm line-clamp-1">
+            <h3 className="text-sm sm:text-base font-semibold text-[#A174E4] uppercase mb-2 leading-tight drop-shadow-sm ">
               {title}
             </h3>
 

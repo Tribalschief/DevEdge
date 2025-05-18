@@ -86,15 +86,15 @@ export default async function ServicePage({ params }: any) {
              </div>
              <div className="flex items-center justify-center overflow-hidden ">
               <CardGrid services={service.offering} title={service.title} />
-              <div className="hidden lg:flex items-start  lg:-mt-[415px]"> {/* Adjust bg color or remove */}
-            <NewServicesList /> {/* Assuming this fetches its own data or receives static props */}
-          </div>
+              {/* <div className="hidden lg:flex items-start  lg:-mt-[415px]"> Adjust bg color or remove */}
+            {/* <NewServicesList /> Assuming this fetches its own data or receives static props */}
+          {/* </div> */}
               </div>
              
              
               
             </div>
-            <div className=" mb-[10px]"> {/* Adjust z-index as needed */}
+            <div className=" mb-[10px] "> {/* Adjust z-index as needed */}
             {service.features && 
             
             <Features features={service.features} />

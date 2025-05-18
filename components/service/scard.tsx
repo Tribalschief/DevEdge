@@ -31,7 +31,7 @@ export function ServiceCard({
   return (
     <motion.div
       className={cn(
-        "relative flex flex-col items-center text-center p-1 lg:p-6 rounded-lg shadow transition-all",
+        "relative flex flex-col items-center bg-white text-center p-1 lg:p-6 rounded-lg shadow transition-all",
         className
       )}
       initial={{ opacity: 0, y: 20 }}
@@ -50,7 +50,7 @@ export function ServiceCard({
             transition: { repeat: Infinity, duration: 2 },
           }}
         >
-          <img src={icon!} alt="Icon" width={80} height={80} />
+          <img src={icon!} alt="Icon" width={80} height={80} className="scale-75 sm:scale-90 md:scale-100 lg:scale-105" />
         </motion.div>
         <span className="ml-2 text-lg font-semibold">{index + 1}</span>
       </div>

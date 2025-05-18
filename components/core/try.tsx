@@ -80,7 +80,7 @@ export function CoreValues() {
 
   return (
     <motion.div
-      className="bg-purple-100 p-1 sm:p-4 md:p-8 lg:p-16 xl:p-20
+      className="bg-purple-100 p-1 sm:p-2 md:p-4 lg:p-12 xl:p-16
                 min-h-[600px] h-auto lg:h-[720px] xl:h-[800px] 
                 flex justify-center items-center rounded-lg w-full mx-auto"
       ref={ref}

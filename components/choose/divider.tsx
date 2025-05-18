@@ -3,31 +3,30 @@
 import React from 'react'
 import Image from 'next/image'
 import why from '@/public/Why.svg'
+import { useInView } from 'react-intersection-observer'
 
 export const Divider = ({ image }: { image: any }) => {
+  const { ref: sectionRef, inView } = useInView({
+          threshold: 0.1,
+          triggerOnce: true,
+        })
   return (
-   <div className="relative w-full h-[200px] sm:h-[300px] md:h-[350px] lg:h-[400px] overflow-hidden">
+   <div ref={sectionRef} className="relative  w-full h-[350px]  py-20 overflow-hidden">
       {/* Background Image - updated to use newer Next.js Image API */}
       <div className="absolute inset-0">
         <Image
           src={image.src || "/placeholder.svg"}
           alt="Service background"
-          fill
-          priority
-          sizes="100vw"
-          style={{
-            objectFit: "cover",
-            objectPosition: "center center", // This keeps the image centered
-          }}
-          className="z-0"
+          fill className="object-cover" priority
+          
         />
       </div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/70 z-10" />
+      <div className="absolute inset-0 bg-black/30 z-10" />
 
       {/* Foreground Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-20 text-center px-4">
+      <div className="absolute inset-0  flex flex-col items-center  justify-center text-white z-20 text-center px-4">
         <h1 className="text-xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
           Why Choose <span className="text-purple-600">DevEdge Consulting</span>
         </h1>
