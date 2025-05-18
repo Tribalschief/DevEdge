@@ -12,7 +12,7 @@ export default function VisionSection() {
   const isTablet = useMediaQuery("(max-width: 1024px)")
 
   return (
-    <section className="w-full h-full flex items-center  justify-center bg-white pt-[100px] md:pt-[120px] pb-16 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-12 overflow-y-auto">
+    <section className="w-full h-full flex items-center  justify-center bg-white pt-[100px] md:pt-[140px] pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12 overflow-y-auto">
       <div className="container mx-auto lg:max-w-7xl w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div
@@ -23,7 +23,7 @@ export default function VisionSection() {
           >
             <div className="space-y-2">
               <motion.h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-purple-700"
+                className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-purple-700"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -31,7 +31,7 @@ export default function VisionSection() {
                 Vision 2030:
               </motion.h1>
               <motion.h2
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-black"
+                className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-black"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}

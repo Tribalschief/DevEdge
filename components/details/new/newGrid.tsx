@@ -12,7 +12,7 @@ export const CardGrid = ({services , title}:{services: any, title: string}) => {
       </h2>
 
       <div className="py-8 flex md:py-12 max-w-full  mt-10 sm:mt-16 mx-0 md:mx-4 ml-0 sm:ml-6 md:ml-10 lg:mx-auto lg:ml-16 xl:ml-24 2xl:ml-32">
-        <div className="flex flex-wrap justify-center lg:w-[70%] gap-3 gap-y-8 sm:gap-y-10 md:gap-y-12 lg:gap-y-16 lg:gap-4 sm:gap-2">
+        <div className="flex flex-wrap max-w-7xl justify-center lg:w-[70%] gap-3 gap-y-8 sm:gap-y-10 md:gap-y-12 lg:gap-y-16 lg:gap-4 sm:gap-2">
           {services.map((service: any, index: number) => {
             const serviceId = service.title ? service.title.toLowerCase().replace(/\s+/g, "-") : `service-${index}`
             return (

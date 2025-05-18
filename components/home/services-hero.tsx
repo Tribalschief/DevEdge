@@ -24,7 +24,7 @@ export default function ServicesSection() {
           >
             <div className="space-y-2">
               <motion.h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-purple-700"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-purple-700"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -32,7 +32,7 @@ export default function ServicesSection() {
                 Our Services
               </motion.h1>
               <motion.h2
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-black"
+                className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-black"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
