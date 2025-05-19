@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowRight, Car, Clock, Package, Users,  Globe, Import, Ship, Truck, } from "lucide-react"
+import { MdIosShare } from 'react-icons/md'
 import Link from "next/link"
 import { ERPFAQSection } from "./faq"
 import { FaShieldAlt } from "react-icons/fa"
@@ -190,7 +191,7 @@ export default function ERMService() {
                             value="export"
                             className="flex flex-col items-center w-auto min-w-[120px] sm:min-w-[160px] py-4 px-4 sm:px-6 rounded-none data-[state=active]:bg-purple-50 data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-purple-600 text-gray-600 data-[state=active]:text-purple-700 font-medium"
                         >
-                            <Globe className="h-8 w-8 sm:h-10 sm:w-10 mb-2 text-purple-600" />
+                            <MdIosShare className="h-8 w-8 sm:h-10 sm:w-10 mb-2 text-purple-600" />
                             <span className="text-base sm:text-lg md:text-xl">Export</span>
                         </TabsTrigger>
                     </TabsList>

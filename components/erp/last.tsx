@@ -13,7 +13,7 @@ export default function LastERM() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <div className="w-full bg-gradient-to-b from-purple-900 via-slate-950 to-black text-white py-16 px-4 text-center">
+      <div className="w-full bg-gradient-to-b from-slate-900 via-slate-950 to-black text-white py-16 px-4 text-center">
         <div className="max-w-3xl mx-auto space-y-4">
           <h1 className="text-3xl sm:text-4xl font-semibold">Take the Next Step</h1>
           <p className="text-sm sm:text-base opacity-80 max-w-xl mx-auto">

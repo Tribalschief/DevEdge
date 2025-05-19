@@ -166,7 +166,7 @@ export default function Footer() {
         <div className="text-center md:text-left">
           <h3 className="text-lg font-medium mb-4">Find Us</h3>
           <ul className="space-y-2 text-sm">
-            <li className="hover:underline flex justify-center items-center">
+            <li className="hover:underline font-bold lg:flex justify-center items-center md:mr-40">
               
                 
                  <Services heading="Our Playground" />
