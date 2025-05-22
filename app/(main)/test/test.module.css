@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+/* You would need to source and host P22 Mackinac and Graphik or find web font alternatives */
+
+:root {
+  /* From original site CSS variables */
+  --primary: #0755e9;
+  --secondary: #1B232E; /* tkxel-secondary */
+  --black: #1b232e; /* tkxel-secondary - seems same as their --secondary */
+  --white: #fff;
+  --color-ash: #f8f8f8; /* tkxel-light */
+  --accent: #61CE70; /* tkxel-accent */
+  --tkxel-orange: #EE4200;
+
+
+  --header-height-li: clamp(64px, 5vw, 80px);
+  --header-height: calc(clamp(64px, 5vw, 80px) + 20px);
+
+  /* Font families - apply these in body or specific elements */
+  --font-outfit: 'Outfit', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-graphik: "Graphik", sans-serif; /* Define @font-face for this */
+  --font-mackinac: "P22 Mackinac", serif; /* Define @font-face for this */
+  --font-manrope: "Manrope", sans-serif;
+
+  /* Example content widths - adjust as needed */
+  --content-max-width: 1664px;
+  --global-x-padding-value: 2rem; /* Example: 32px */
+}
+
+@media (min-width: 1025px) {
+ :root {
+    --global-x-padding-value: 5rem; /* Example: 80px for larger screens */
+  }
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-outfit); /* Default font */
+  color: var(--black);
+  background-color: var(--white);
+  overflow-x: hidden; /* Crucial for Framer Motion animations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* Basic reset */
+h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Global container style (optional) */
+.container-global {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--global-x-padding-value);
+  padding-right: var(--global-x-padding-value);
+  max-width: var(--content-max-width);
+}
+
+/* Styling for elements you want to look like links but are buttons/divs */
+.custom-link-style {
+  color: var(--primary);
+  text-decoration: none; /* if you want underline, add it */
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+}
+.custom-link-style:hover {
+  text-decoration: underline; /* or a different color */
+  color: #053ea3; /* darker blue */
+}
+
+/* Button from original .cta-contact-us a */
+.cta-button-primary {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: clamp(10px, 0.75vw, 12px) clamp(16px, 1.25vw, 20px);
+  transition: 0.3s ease; /* Matched to original --transition */
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500; /* from --e-global-typography-accent-font-weight */
+  line-height: normal;
+  text-transform: capitalize;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+.cta-button-primary:hover {
+  background-color: var(--white);
+  color: var(--primary);
+}
