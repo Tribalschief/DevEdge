@@ -9,7 +9,7 @@ import { AboutHero } from '@/components/about'
 import { Try } from '@/components/choose/try/choose'
 import { Locations } from './_components/location'
 import { PageProgressIndicator } from './_components/page-progress-indicator'
-import AboutStats from './_components/aboutstats'
+
 
 
 
