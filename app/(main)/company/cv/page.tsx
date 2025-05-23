@@ -608,7 +608,7 @@ export default function CVSubmissionForm() {
               Verify you are human <span className="text-red-500">*</span>
             </label>
             <HCaptcha
-              sitekey="41b8bd2e-8c50-4e32-98d8-c5189bb4934c" // Replace with your actual hCaptcha site key
+        sitekey={process.env.HCAPTCHA_SITE_KEY} // Replace with your actual hCaptcha site key
               onVerify={handleCaptchaVerify}
               onExpire={handleCaptchaExpire}
               ref={captchaRef}
