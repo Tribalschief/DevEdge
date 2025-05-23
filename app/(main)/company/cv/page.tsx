@@ -600,7 +600,7 @@ export default function CVSubmissionForm() {
           </div>
 
           <div className="mt-8">
-            <FileUpload onFileChange={setFile} accept=".pdf" maxSize={5} label="Upload your CV" required={true} />
+            <FileUpload onFileChange={setFile} accept=".pdf" maxSize={100} label="Upload your CV" required={true} />
           </div>
 
           <div className="mt-8">
