@@ -16,11 +16,11 @@ export default function HeroSection() {
       sm:pb-4 md:pb-8 pb-10
        h-full
       flex items-center justify-center
-      px-4 sm:px-6 md:px-8 lg:px-12
+      px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20
       overflow-y-auto
     "
     >
-      <div className="container mx-auto lg:max-w-7xl h-full w-full">
+      <div className=" mx-auto lg:max-w-6xl h-full ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-2 xl:gap-4 items-center">
           {/* Left Side */}
           <motion.div
@@ -101,7 +101,7 @@ export default function HeroSection() {
 
           {/* Right Side - Map */}
           <motion.div
-            className="relative left-0 lg:left-[15%] xl:left-[25%] mx-auto xl:mx-0 w-full max-w-[280px] sm:max-w-md md:max-w-lg lg:max-w-xl order-1 lg:order-2"
+            className="relative left-0 lg:left-[15%] xl:left-[25%] mx-auto xl:mx-0 w-full max-w-[280px] sm:max-w-md md:max-w-lg lg:max-w-[480px]  order-1 lg:order-2"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}
