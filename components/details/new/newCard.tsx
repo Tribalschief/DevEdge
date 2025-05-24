@@ -159,7 +159,7 @@ export const IndustryCard = ({ number, title, description, backgroundIcon }: Ind
   return (
     <>
       <motion.div
-        className="relative h-full w-full max-w-sm mx-auto"
+        className="relative lg:h-[200px] md:h-full w-full max-w-sm mx-auto"
         initial={{ opacity: 0.8, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ y: -5 }}

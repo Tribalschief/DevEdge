@@ -13,6 +13,7 @@ import WM from "./_components/wm"
 
 import {Features}  from "@/components/details/new/features"
 import { FeaturesList } from '../../../../components/details/components/flist';
+import { PageProgressIndicator } from "../../about/_components/page-progress-indicator"
 // type RegularService = {
 //   type: "regular"
 //   title: string
@@ -54,24 +55,32 @@ export default async function ServicePage({ params }: any) {
   }
 
   // No more useState, useEffect, loading, error states needed here for the main data fetch
-
+  const sections = [
+    { id: "header", title: "Header" },
+    
+    { id: "services", title: "Services" },
+    { id: "features", title: "Features" },
+  ]
   return (
     <>
+    <PageProgressIndicator sections={sections} />
       {/* Wrap in a fragment or a single root element */}
       <div className="">
         {/* Pass fetched data as props */}
+        <section id="header">
         <DetailedHeader
           // Ensure asset and url exist before accessing
           image={service.image?.asset?.url}
           title={service.title}
         />
-
+         </section>
         <div className="flex flex-col lg:flex-row gap-3 sm:px-6 lg:px-2">
           {/* Left column */}
           {/* Added 'relative' here so the absolutely positioned WM inside it is positioned correctly */}
           <div className="relative flex flex-col lg:w-full "> {/* Adjust bg color or remove */}
+            
             <Overview overview={service.overview} />
-
+            
             {/* Render the WM Client Component */}
             {/* Wrap WM for positioning and styling */}
             {/* This div places WM behind other content (-z-10) and makes it non-interactive */}
@@ -84,17 +93,16 @@ export default async function ServicePage({ params }: any) {
               <div className="absolute inset-0 flex top-20 items-center justify-center -z-10 opacity-10 pointer-events-none overflow-hidden">
               <WM />
              </div>
-             <div className="flex items-center justify-center overflow-hidden ">
+             <div className="flex items-center justify-center overflow-hidden " id="services">
               <CardGrid services={service.offering} title={service.title} />
-              {/* <div className="hidden lg:flex items-start  lg:-mt-[415px]"> Adjust bg color or remove */}
-            {/* <NewServicesList /> Assuming this fetches its own data or receives static props */}
-          {/* </div> */}
+      
               </div>
-             
+            
              
               
             </div>
-            <div className=" mb-[10px] "> {/* Adjust z-index as needed */}
+            
+            <div className=" mb-[10px] " id="features"> {/* Adjust z-index as needed */}
             {service.features && 
             
             <Features features={service.features} />

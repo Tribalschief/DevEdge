@@ -88,7 +88,7 @@ export const Features = ({ features }: { features: FeatureSection[] }) => {
               </div>
 
               {/* Overlay - Positioned relative to Background Container */}
-              <div className="absolute -left-[15%] hidden lg:block -right-[15%] lg:left-[-60px] xl:left-[-36px] h-full z-10 top-0 md:top-0 lg:top-7 xl:-top-[6px] lg:rounded-tr-full bg-[#e0cef5] opacity-60 pointer-events-none"></div>
+              <div className="absolute -left-[15%] hidden lg:block -right-[15%] lg:left-[-60px] xl:left-[-36px] h-full z-10 top-0 md:top-0 lg:top-7 xl:top-[30px] lg:rounded-tr-full bg-[#e0cef5] opacity-60 pointer-events-none"></div>
             </div>
             {/* "WHY CHOOSE US" Text Block - Needs higher Z-index than overlay */}
             <div className="relative z-20 lg:w-[75%]  flex flex-col justify-start h-full p-4 xs:p-5 sm:p-6 md:p-8  text-white lg:mt-10 pointer-events-none">
@@ -129,7 +129,7 @@ Solutions Made For Real-World Results
         className="flex w-full gap-2 lg:gap-0 sm:gap-3 mt-4 items-start p-2 sm:p-3 relative h-auto lg:h-[70px]"
       >
         {/* Number indicator */}
-        <div className="flex-shrink-0 -mt-4 lg:mt-0 text-sm sm:text-base md:text-lg lg:text-xl font-bold min-w-[35px] sm:min-w-[30px] md:min-w-[35px] lg:min-w-[40px] lg:pt-0.5 text-center z-10">
+        <div className="flex-shrink-0 -mt-4 lg:mt-0 xl:mt-[6px] text-sm sm:text-base md:text-lg lg:text-xl font-bold min-w-[35px] sm:min-w-[30px] md:min-w-[35px] lg:min-w-[40px] lg:pt-0.5 text-center z-10">
           {index + 1}
         </div>
 

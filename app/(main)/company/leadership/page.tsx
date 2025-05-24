@@ -5,6 +5,7 @@ import type { Leader } from "@/components/leaders/types"
 import { Advisory } from '@/components/leaders/advisory'
 import a from '@/public/leaders/a.jpg'
 import b from '@/public/leaders/b.jpg'
+import { PageProgressIndicator } from '../../about/_components/page-progress-indicator'
 export default function LeadershipPage() {
   // Sample data - in a real app, this would come from an API or CMS
   const leaders: Leader[] = [
@@ -183,14 +184,22 @@ export default function LeadershipPage() {
         ],
     }
   ]
-
+  const sections = [
+    { id: "leaders", title: "Leaders" },
+    { id: "advisor", title: "Advisor" },
+  ]
   return (
     <main className="container mx-auto py-8">
+      <PageProgressIndicator sections={sections} />
         <div className="w-full mt-10 lg:mt-20">
         <h1 className="text-4xl font-bold text-center py-6 text-black">Our Leaders</h1>
       </div>
+      <section id="leaders">
       <LeadershipSection leaders={leaders} />
+      </section>
+      <section id="advisor">
       <Advisory advisor={advisor[0]}/>
+      </section>
     </main>
   )
 }

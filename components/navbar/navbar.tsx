@@ -149,8 +149,8 @@ export const Navbar = () => {
             </div>
 
             {/* Column 3: Search - with maximum width */}
-            <div className="flex items-center justify-center px-8 col-span-3 mr-12">
-              <div className="w-full max-w-[500px]">
+            <div className="flex items-center justify-center lg:pl-10 xl:pl-16 ml-2 px-10 col-span-3 mr-12">
+              <div className="w-full max-w-[calc(100%-10px)]">
                 <Searching />
               </div>
             </div>

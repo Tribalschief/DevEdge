@@ -155,7 +155,7 @@ export default function Carousel() {
       {/* Navigation buttons - DGDA style */}
       <button
         onClick={prevSlide}
-        className="absolute left-6 lg:top-1/2 top-[95%] transform -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
+        className="absolute left-6 lg:top-[85%] top-[95%] transform -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-6 h-6 text-white" />
@@ -163,14 +163,14 @@ export default function Carousel() {
 
       <button
         onClick={nextSlide}
-        className="absolute right-6 lg:top-1/2 top-[95%] transform -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
+        className="absolute right-6 lg:top-[85%] top-[95%] transform -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black hover:bg-[#6208ac] flex items-center justify-center shadow-md  transition-colors"
         aria-label="Next slide"
       >
         <ChevronRight className="w-6 h-6 text-white" />
       </button>
 
       {/* Pagination indicators - DGDA style */}
-      <div className="absolute lg:top-1/2 top-[97%] right-20 z-30 flex items-center">
+      <div className="absolute lg:top-[85%] top-[97%] right-20 z-30 flex items-center">
   <span className="text-[#6208ac] text-sm mr-4 font-medium">
     {String(currentSlide + 1).padStart(2, "0")}
   </span>

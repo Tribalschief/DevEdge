@@ -14,6 +14,7 @@ import { CookieConsentDialog } from "@/components/cookies-dialog/consnet-dialog"
 import { FileUpload } from "@/components/file-upload"
 import { CountryCodeSelector } from "@/components/country-code-selector"
 import HCaptcha from "@hcaptcha/react-hcaptcha"
+import { PageProgressIndicator } from "../../about/_components/page-progress-indicator"
 
 // Form schema
 const formSchema = z.object({
@@ -398,9 +399,20 @@ export default function CVSubmissionForm() {
     })
   }
 
+  const sections = [
+    { id: "name", title: "Name" },
+
+    { id: "details", title: "Details" },
+    { id: "upload", title: "Upload" },
+
+    
+    
+    
+  ]
   return (
     <div className="max-w-7xl mt-32 md:24 mx-auto px-8 lg:px-auto">
       <CookieConsentDialog />
+      <PageProgressIndicator sections={sections} />
       {/* <EnvChecker /> */}
       <Link href="/">
         <button className="flex items-center text-[#6208ca] mb-8 font-medium hover:text-[#5007a3] transition-colors">
@@ -464,7 +476,7 @@ export default function CVSubmissionForm() {
             Personal details
           </h2>
 
-          <div className="space-y-6">
+          <div className="space-y-6" id="name">
             <div>
               <label className="block mb-2">
                 First name <span className="text-red-500">*</span>
@@ -538,7 +550,7 @@ export default function CVSubmissionForm() {
         <div className="space-y-6">
           <h2 className="text-2xl font-medium mb-6">Please provide your details</h2>
 
-          <div>
+          <div id="details">
             <label className="block mb-2">
               Job type <span className="text-red-500">*</span>
             </label>
@@ -599,7 +611,7 @@ export default function CVSubmissionForm() {
             )}
           </div>
 
-          <div className="mt-8">
+          <div className="mt-8" id="upload">
             <FileUpload onFileChange={setFile} accept=".pdf" maxSize={100} label="Upload your CV" required={true} />
           </div>
 
@@ -608,7 +620,7 @@ export default function CVSubmissionForm() {
               Verify you are human <span className="text-red-500">*</span>
             </label>
             <HCaptcha
-        sitekey={process.env.HCAPTCHA_SITE_KEY} // Replace with your actual hCaptcha site key
+              sitekey='41b8bd2e-8c50-4e32-98d8-c5189bb4934c' // Replace with your actual hCaptcha site key
               onVerify={handleCaptchaVerify}
               onExpire={handleCaptchaExpire}
               ref={captchaRef}

@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer"
+import { PageProgressIndicator } from "../../about/_components/page-progress-indicator";
 
 function BenefitCard({ title, items, icon = "✓" }:{title:string, items:string[], icon?:string}) { // Added icon prop
   const [isHovered, setIsHovered] = useState(false);
@@ -113,20 +114,31 @@ function BenefitsSection() {
 
 
 export default function CareerPage() {
+   const sections = [
+    { id: "benefits", title: "Benefits" },
+
+    { id: "Hiring", title: "Hiring" },
+    { id: "gains", title: "Gains" },
+
+    
+    { id: "Join", title: "Join" },
+    
+  ]
   return (
     <main className="min-h-screen xl:mt-[120px] mt-24 h-full">
+      <PageProgressIndicator sections={sections} />
     <DividerWithButton heading="Join Our Team" image={career} />
     <div className="container mx-auto px-4 py-4  mt-[100px]">
       
       
       
 
-      <section className="mb-16">
+      <section className="mb-16" id="benefits">
         <h2 className="text-3xl font-bold mb-8 text-center ">Join Us</h2>
         <BenefitsSection/>
       </section>
 
-      <section className="mb-16">
+      <section className="mb-16" id="Hiring">
         <h2 className="text-3xl font-bold mb-8 text-center">Our Hiring Process</h2>
         <div className="max-w-3xl mx-auto">
           <ol className="relative border-l border-muted-foreground/20">
@@ -143,10 +155,10 @@ export default function CareerPage() {
         </div>
       </section>
 
-      <section className="text-center mb-12">
+      <section className="text-center mb-12" id="gains">
       <ConsultingBenefits/>
       </section>
-      <div className="mb-12">
+      <div className="mb-12" id="Join">
          <JoinSection/>
       </div>
     </div>

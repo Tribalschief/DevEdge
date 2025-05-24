@@ -19,6 +19,7 @@ import { useToast } from "@/hooks/use-toast"
 import { sendRfp } from "@/action/sendRFP" // Assuming this action exists and works as expected
 import Cookies from "js-cookie"
 import { CookieConsentDialog } from "@/components/cookies-dialog/consnet-dialog"
+import { PageProgressIndicator } from "@/app/(main)/about/_components/page-progress-indicator"
 
 const RFP_FORM_COOKIE = "rfp_form_data"
 const COOKIE_EXPIRY = 30 // days
@@ -325,6 +326,7 @@ export default function RfpForm() {
     return (
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <CookieConsentDialog />
+        
         <Alert className="bg-green-50 border-green-200">
           <CheckCircle2 className="h-5 w-5 text-green-600" />
           <AlertTitle className="text-green-800 text-lg font-semibold">Submission Successful</AlertTitle>
@@ -341,11 +343,15 @@ export default function RfpForm() {
       </div>
     )
   }
-
+  const sections = [
+    { id: "details", title: "Details" },
+    { id: "company", title: "Company" },
+    { id: "additional", title: "Additional" },
+  ]
   return (
     <div className="mx-auto">
       <CookieConsentDialog />
-
+      <PageProgressIndicator sections={sections} />
       {formStatus === "error" && !form.formState.isDirty && Object.keys(form.formState.errors).length === 0 && (
         <Alert className="mb-6 bg-red-50 border-red-200">
           <AlertCircle className="h-5 w-5 text-red-600" />
@@ -363,7 +369,7 @@ export default function RfpForm() {
             <p className="text-gray-600">How can we help your business?</p>
           </div>
 
-          <div className="my-4 text-sm">
+          <div className="my-4 text-sm" >
             <p>
               Thank you for your interest in our member firm services. Please take a few moments to complete this form.
               Documents can be uploaded if needed to clarify your request. This mailbox only accepts qualified proposal
@@ -376,7 +382,7 @@ export default function RfpForm() {
           </div>
 
           <form onSubmit={form.handleSubmit(processSubmit)} className="space-y-6">
-            <div className="border-t border-b py-4 my-6">
+            <div className="border-t border-b py-4 my-6" id='details'>
               <h3 className="text-center text-lg font-medium mb-4">Your details</h3>
               <p className="text-sm mb-4">Fields marked with an asterisk (*) are required.</p>
 
@@ -494,7 +500,7 @@ export default function RfpForm() {
               </div>
             </div>
 
-            <div className="border-b py-4 mb-6">
+            <div className="border-b py-4 mb-6" id='company'>
               <h3 className="text-center text-lg font-medium mb-4">Company details</h3>
               <div className="space-y-4">
                 <div>
@@ -563,7 +569,7 @@ export default function RfpForm() {
               </div>
             </div>
 
-            <div className="py-4 mb-6">
+            <div className="py-4 mb-6" id='additional'>
               <h3 className="text-center text-lg font-medium mb-4">Additional information</h3>
               <div className="mb-4 text-sm">
                 <p>Please note that the total size of your attachment(s) must not exceed {MAX_TOTAL_FILE_SIZE / (1024 * 1024)} MB.</p>
@@ -643,7 +649,7 @@ export default function RfpForm() {
                 <div className="mt-6">
                   <Label className="text-sm block mb-2">*Verify you are human</Label>
                   <HCaptcha
-                    sitekey={process.env.HCAPTCHA_SITE_KEY!} // Use environment variable or fallback to test key
+                    sitekey='41b8bd2e-8c50-4e32-98d8-c5189bb4934c' // Use environment variable or fallback to test key
                     onVerify={handleCaptchaVerify}
                     onExpire={handleCaptchaExpire}
                     ref={captchaRef}
