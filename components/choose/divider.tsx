@@ -12,6 +12,7 @@ export const Divider = ({ image }: { image: any }) => {
         })
   return (
    <div ref={sectionRef} className="relative  w-full h-[350px]  py-20 overflow-hidden">
+    <div className=" max-w-screen-res  ">
       {/* Background Image - updated to use newer Next.js Image API */}
       <div className="absolute inset-0">
         <Image
@@ -37,7 +38,7 @@ export const Divider = ({ image }: { image: any }) => {
       </div>
 
       {/* Floating Image (Only on large screens) */}
-      <div className="hidden lg:block absolute top-1 right-[calc(30%-75px)] z-30">
+      <div className="hidden lg:block absolute top-1 lg:right-10 xl:right-[calc(20%-100px)] z-30">
         <Image
           src={why || "/placeholder.svg"}
           alt="Why DevEdge logo"
@@ -45,6 +46,7 @@ export const Divider = ({ image }: { image: any }) => {
           height={160}
           className="w-32 h-32 lg:w-40 lg:h-40"
         />
+      </div>
       </div>
     </div>
   )
