@@ -673,11 +673,11 @@ export default function CVSubmissionForm() {
 
             <p className="text-sm text-gray-500 mt-4">
               This site is protected by hCAPTCHA and the Google{" "}
-              <Link href="/https://policies.google.com/privacy?hl=en" className="text-[#3c5bc0]">
+              <Link href="https://policies.google.com/privacy?hl=en" className="text-[#3c5bc0]">
                 Privacy Policy
               </Link>{" "}
               and{" "}
-              <Link href="/https://policies.google.com/terms?hl=en" className="text-[#3c5bc0]">
+              <Link href="https://policies.google.com/terms?hl=en" className="text-[#3c5bc0]">
                 Terms of Service
               </Link>{" "}
               apply.
