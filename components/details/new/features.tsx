@@ -134,7 +134,7 @@ Solutions Made For Real-World Results
         </div>
 
         {/* Feature text with relative positioning on smaller screens and absolute on larger screens */}
-        <div className="flex-1 lg:relative lg:left-[60px] right-1 font-bold text-[11px] xs:text-xs sm:text-sm md:text-base lg:text-lg text-gray-800 lg:pr-8 whitespace-normal lg:w-auto"
+        <div className="flex-1 lg:relative lg:left-[20px] right-0 lg:-right-1 font-bold text-[11px] xs:text-xs sm:text-sm md:text-base lg:text-lg text-gray-800 lg:pr-4 whitespace-normal lg:w-auto"
           style={{ top: '50%', transform: 'translateY(-50%)' }}
         >
           {typeof point === "object" && point !== null && "text" in point
