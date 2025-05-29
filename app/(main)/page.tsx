@@ -16,48 +16,44 @@ import { Try } from "@/components/choose/try/choose";
 import { Resend } from "resend";
 import { PageProgressIndicator } from "./about/_components/page-progress-indicator";
 export default function Home() {
-//   const sections = [
-//     { id: "main", title: "Main" },
+  const sections = [
+    { id: "main", title: "Main" },
 
-//     { id: "services", title: "Services" },
-//     { id: "Features", title: "Features" },
+    { id: "services", title: "Services" },
+    { id: "Features", title: "Features" },
 
-//     { id: "Core", title: "Our Core" },
-//     { id: "tech", title: "Tech" },
-//     { id: "faq", title: "FAQ" },
-//   ]
+    { id: "Core", title: "Our Core" },
+    { id: "tech", title: "Tech" },
+    { id: "faq", title: "FAQ" },
+  ]
   
-//   return (
-//     <div className="min-h-screen h-full">
-//       <PageProgressIndicator sections={sections} />
-//       <section id="main">
-//       <HeroCarousel />
-//       </section>
+  return (
+    <div className="min-h-screen h-full">
+      <PageProgressIndicator sections={sections} />
+      <section id="main">
+      <HeroCarousel />
+      </section>
 
-//       <TaglineBar  />
-//       <section id="services">
-//       <Main/>
-//       </section>
-//       <Divider image={divider}/>
-//       <section id="Features">
-//       <Try/>
-//       </section>
-//       <CoreDivider core={core}/>
-//       <section id="Core">
-//       <CoreValues/>
-// </section>
-// <section id="tech">
-//       <Tech />
-//       </section>
-//       <section id="faq" >
-//       <FAQSection/>
-//       </section>
-//     </div>
-//   );
+      <TaglineBar  />
+      <section id="services">
+      <Main/>
+      </section>
+      <Divider image={divider}/>
+      <section id="Features">
+      <Try/>
+      </section>
+      <CoreDivider core={core}/>
+      <section id="Core">
+      <CoreValues/>
+</section>
+<section id="tech">
+      <Tech />
+      </section>
+      <section id="faq" >
+      <FAQSection/>
+      </section>
+    </div>
+  );
 
-return(
-  <main className="min-h-screen flex items-center justify-center">
-    Server Down
-  </main>
-)
+
 }

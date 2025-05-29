@@ -130,15 +130,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* <Navbar/>
+        <Navbar/>
         <CookieConsentProvider>
-          <Suspense fallback={<Loading/>}> */}
+          <Suspense fallback={<Loading/>}>
           {children}
-          {/* </Suspense>
+          </Suspense>
           <CookieConsentDialog />
           <CookieScriptLoader googleAnalyticsId={process.env.GOOGLE_ID}/>
         </CookieConsentProvider>
-        <Footer/> */}
+        <Footer/>
         
       </body>
     </html>
