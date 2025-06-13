@@ -97,9 +97,9 @@ export const Navbar = () => {
       }`}
     >
       {/* ...rest of your Navbar JSX top section ... */}
-      <div className="flex items-center justify-between px-[2px] sm:px-3 md:px-2 lg:px-4 xl:px-8 2xl:px-12 h-[60px] sm:h-[70px] md:h-[90px] lg:h-[100px] xl:h-[110px]">
+      <div className="flex items-center justify-between px-[2px] sm:px-3 md:px-2 lg:px-4 h-[60px] sm:h-[70px] md:h-[90px] lg:h-[100px] xl:h-[110px]">
         {/* Logo - For mobile and tablet */}
-        <div className="block lg:hidden scale-75 sm:scale-90 md:scale-95 ">
+        <div className="block lg:hidden xl:mx-2 scale-75 sm:scale-90 md:scale-95 ">
           <Link href="/" className="">
             <Logo dark={scrolled} />
           </Link>
@@ -109,7 +109,7 @@ export const Navbar = () => {
         <div className="hidden lg:flex flex-1 items-center justify-center w-full">
           <div className="w-full max-w-[1350px] grid grid-cols-12 items-center">
             {/* Column 1: Logo */}
-            <div className="flex-none scale-100 px-4 col-span-2">
+            <div className="flex-none scale-100 px-2 col-span-2">
               <Link href="/" className="">
                 <Logo dark={scrolled} />
               </Link>
@@ -117,7 +117,7 @@ export const Navbar = () => {
 
             {/* Column 2: Navigation Links */}
             <div
-              className={`flex items-center justify-start whitespace-nowrap gap-x-2 lg:gap-x-6 xl:gap-x-8 2xl:gap-x-10 px-4 col-span-5 ${
+              className={`flex  whitespace-nowrap gap-x-1 lg:gap-x-4 xl:gap-x-4  px-2 col-span-5 ${
                 scrolled ? "text-gray-50" : "text-gray-900"
               }`}
             >
@@ -149,14 +149,14 @@ export const Navbar = () => {
             </div>
 
             {/* Column 3: Search - with maximum width */}
-            <div className="flex items-center justify-center lg:pl-10 xl:pl-16 ml-2 px-10 col-span-3 mr-12">
-              <div className="w-full max-w-[calc(100%-10px)]">
+            <div className="flex  lg:pl-1 xl:pl-4 ml-2 px-1 col-span-3 lg:mr-20">
+              <div className="w-full max-w-sm">
                 <Searching />
               </div>
             </div>
 
             {/* Column 4: Buttons */}
-            <div className="flex items-center justify-end gap-x-3 px-4 col-span-2">
+            <div className="flex items-center justify-end gap-x-3 px-2 col-span-2">
               <Link href="/rfp">
                 <Button
                   size="sm"
