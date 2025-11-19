@@ -2,23 +2,21 @@
 
 import { Resend } from "resend"
 import { CVSubmissionSchema } from "@/lib/validation-schema"
-import { saveCVSubmission } from "@/lib/supabase"
+import { prisma } from "@/lib/prisma"
 import type { z } from "zod"
 
 const resend = new Resend(process.env.RESEND_API!)
 
-// Define the return type for your action
 interface SubmitCVResult {
   success: boolean
   error?: string
   limitExceeded?: boolean
-  errors?: z.ZodIssue[] // To pass back validation errors
+  errors?: z.ZodIssue[]
 }
 
 export async function submitCV(formData: FormData): Promise<SubmitCVResult> {
   // Verify hCaptcha token
   const captchaToken = formData.get("captchaToken") as string
-
   if (!captchaToken) {
     return {
       success: false,
@@ -38,7 +36,6 @@ export async function submitCV(formData: FormData): Promise<SubmitCVResult> {
     })
 
     const captchaResult = await captchaResponse.json()
-
     if (!captchaResult.success) {
       return {
         success: false,
@@ -53,7 +50,7 @@ export async function submitCV(formData: FormData): Promise<SubmitCVResult> {
     }
   }
 
-  // 1. Convert FormData to a plain object (excluding captchaToken)
+  // Convert FormData to plain object
   const rawFormData = {
     firstName: formData.get("firstName"),
     lastName: formData.get("lastName"),
@@ -61,40 +58,39 @@ export async function submitCV(formData: FormData): Promise<SubmitCVResult> {
     mobileNumber: formData.get("mobileNumber"),
     countryCode: formData.get("countryCode"),
     jobType: formData.get("jobType"),
-    termsAccepted: formData.get("termsAccepted"), // This will be a string 'true' or 'false' or null
-    fileUrl: formData.get("fileUrl"), // Make sure this is passed from client
+    termsAccepted: formData.get("termsAccepted"),
+    marketingConsent: formData.get("marketingConsent")?.toString() === "true",
+    fileUrl: formData.get("fileUrl"),
   }
 
-  // 2. Validate the plain object
-  const validatedFields = await CVSubmissionSchema.safeParseAsync(rawFormData)
-
+  // Validate the data
+  const validatedFields = CVSubmissionSchema.safeParse(rawFormData)
   if (!validatedFields.success) {
-    console.log("Zod Validation Errors:", validatedFields.error.flatten().fieldErrors)
+    console.log("Validation Errors:", validatedFields.error.flatten().fieldErrors)
     return {
       success: false,
       error: "Invalid form data. Please check your inputs.",
-      errors: validatedFields.error.issues, // Send back detailed Zod errors
+      errors: validatedFields.error.issues,
     }
   }
 
-  // Now validatedFields.data contains the correctly typed and validated data
   const data = validatedFields.data
 
   try {
-    const { hasRecentSubmission, error: dbError } = await saveCVSubmission(
-      {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        mobileNumber: data.mobileNumber,
-        jobType: data.jobType,
-        marketingConsent: data.marketingConsent,
-        fileUrl: data.fileUrl,
-      },
-      data.countryCode,
-    )
+    // Check if user has submitted in the last 24 hours
+    const twentyFourHoursAgo = new Date()
+    twentyFourHoursAgo.setHours(twentyFourHoursAgo.getHours() - 24)
 
-    if (hasRecentSubmission) {
+    const existingSubmission = await prisma.cvSubmission.findFirst({
+      where: {
+        email: data.email.toLowerCase(),
+        createdAt: {
+          gte: twentyFourHoursAgo,
+        },
+      },
+    })
+
+    if (existingSubmission) {
       return {
         success: false,
         error: "You have already submitted a CV in the last 24 hours. Please try again later.",
@@ -102,16 +98,31 @@ export async function submitCV(formData: FormData): Promise<SubmitCVResult> {
       }
     }
 
-    if (dbError) {
-      console.error("Database error:", dbError)
-      // Be careful about exposing raw DB errors to the client
-      return { success: false, error: "Failed to save submission to the database." }
+    // After validation, before saving to database, add:
+    let cvUrl: string | null = null
+    const cvFile = formData.get("cvFile") as File
+    if (cvFile && cvFile.size > 0) {
+      const { saveFile } = await import("@/lib/file-upload")
+      cvUrl = await saveFile(cvFile)
     }
 
+    // Save the new submission
+    await prisma.cvSubmission.create({
+      data: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email.toLowerCase(),
+        phoneNumber: `${data.countryCode}${data.mobileNumber}`,
+        jobType: data.jobType,
+        marketingConsent: data.marketingConsent || false,
+        cvUrl: cvUrl,
+      },
+    })
+
     // Send email with Resend
-    const { data: emailResponseData, error: emailError } = await resend.emails.send({
-      from: "noreply@devedgeconsulting.com", // CHANGE THIS: Must be a verified domain in Resend
-      to: [data.email], // `to` expects an array of strings
+    const { error: emailError } = await resend.emails.send({
+      from: "noreply@devedgeconsulting.com",
+      to: [data.email],
       subject: "CV Submission Received - Confirmation",
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6;">
@@ -133,20 +144,16 @@ export async function submitCV(formData: FormData): Promise<SubmitCVResult> {
     })
 
     if (emailError) {
-      console.error("Resend Email Error:", emailError)
-      // You might want to proceed with success even if email fails,
-      // or handle it as a partial success, depending on your requirements.
+      console.error("Email Error:", emailError)
       return {
-        success: false, // Or true, if DB save is the primary goal
-        error:
-          "Your submission was saved, but we couldn't send a confirmation email. Please contact support if needed.",
+        success: false,
+        error: "Your submission was saved, but we couldn't send a confirmation email.",
       }
     }
 
-    console.log("Email sent successfully:", emailResponseData)
     return { success: true }
   } catch (error) {
-    console.error("Unhandled exception in submitCV:", error)
+    console.error("Database error:", error)
     return {
       success: false,
       error: "An unexpected error occurred. Please try again.",

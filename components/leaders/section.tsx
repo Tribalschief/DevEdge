@@ -1,3 +1,4 @@
+'use client'
 import LeaderProfile from "./profile"
 import type { Leader } from "./types"
 

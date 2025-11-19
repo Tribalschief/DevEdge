@@ -2,22 +2,20 @@
 
 import { Resend } from "resend"
 import { ContactFormSchema } from "@/lib/validation-schema"
-import { saveContactFormSubmission } from "@/lib/supabase"
+import { prisma } from "@/lib/prisma"
 import type { z } from "zod"
 
 const resend = new Resend(process.env.RESEND_API!)
 
-// Define the return type for your action
 interface SubmitContactResult {
   success: boolean
   error?: string
-  errors?: z.ZodIssue[] // To pass back validation errors
+  errors?: z.ZodIssue[]
 }
 
 export async function submitContact(formData: FormData): Promise<SubmitContactResult> {
   // Verify hCaptcha token
   const captchaToken = formData.get("captchaToken") as string
-
   if (!captchaToken) {
     return {
       success: false,
@@ -37,7 +35,6 @@ export async function submitContact(formData: FormData): Promise<SubmitContactRe
     })
 
     const captchaResult = await captchaResponse.json()
-
     if (!captchaResult.success) {
       return {
         success: false,
@@ -52,7 +49,7 @@ export async function submitContact(formData: FormData): Promise<SubmitContactRe
     }
   }
 
-  // 1. Convert FormData to a plain object
+  // Convert FormData to plain object
   const rawFormData = {
     firstName: formData.get("firstName"),
     lastName: formData.get("lastName"),
@@ -65,34 +62,39 @@ export async function submitContact(formData: FormData): Promise<SubmitContactRe
     optIn: formData.get("optIn")?.toString() === "true",
   }
 
-  // 2. Validate the plain object
-  const validatedFields = await ContactFormSchema.safeParseAsync(rawFormData)
-
+  // Validate the data
+  const validatedFields = ContactFormSchema.safeParse(rawFormData)
   if (!validatedFields.success) {
-    console.error("Zod Validation Errors:", validatedFields.error.flatten().fieldErrors)
+    console.error("Validation Errors:", validatedFields.error.flatten().fieldErrors)
     return {
       success: false,
       error: "Invalid form data. Please check your inputs.",
-      errors: validatedFields.error.issues, // Send back detailed Zod errors
+      errors: validatedFields.error.issues,
     }
   }
 
-  // Now validatedFields.data contains the correctly typed and validated data
   const data = validatedFields.data
 
   try {
-    // Save to database
-    const { error: dbError } = await saveContactFormSubmission(data)
-
-    if (dbError) {
-      console.error("Database error:", dbError)
-      return { success: false, error: "Failed to save submission to the database." }
-    }
+    // Save to database using Prisma
+    await prisma.contactFormSubmission.create({
+      data: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
+        country: data.country,
+        industry: data.industry,
+        message: data.message,
+        optIn: data.optIn || false,
+      },
+    })
 
     // Send email with Resend
-    const { data: emailResponseData, error: emailError } = await resend.emails.send({
-      from: "noreply@devedgeconsulting.com", // CHANGE THIS: Must be a verified domain in Resend
-      to: [data.email], // `to` expects an array of strings
+    const { error: emailError } = await resend.emails.send({
+      from: "noreply@devedgeconsulting.com",
+      to: [data.email],
       subject: "Contact Form Submission Received",
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6;">
@@ -115,18 +117,16 @@ export async function submitContact(formData: FormData): Promise<SubmitContactRe
     })
 
     if (emailError) {
-      console.error("Resend Email Error:", emailError)
+      console.error("Email Error:", emailError)
       return {
         success: false,
-        error:
-          "Your submission was saved, but we couldn't send a confirmation email. Please contact support if needed.",
+        error: "Your submission was saved, but we couldn't send a confirmation email.",
       }
     }
 
-    
     return { success: true }
   } catch (error) {
-    console.error("Unhandled exception in submitContact:", error)
+    console.error("Database error:", error)
     return {
       success: false,
       error: "An unexpected error occurred. Please try again.",

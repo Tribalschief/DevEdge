@@ -1,6 +1,6 @@
 "use client"
-
-import { useState, useEffect, useRef } from "react"
+export const dynamic = "force-dynamic"
+import { useState, useRef, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -10,25 +10,23 @@ import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import { submitCV } from "@/action/submitCV"
 import { CookieConsentDialog } from "@/components/cookies-dialog/consnet-dialog"
-// import { EnvChecker } from "@/components/env-checker"
 import { FileUpload } from "@/components/file-upload"
-import { CountryCodeSelector } from "@/components/country-code-selector"
 import HCaptcha from "@hcaptcha/react-hcaptcha"
-import { PageProgressIndicator } from "../../about/_components/page-progress-indicator"
+import { PageProgressIndicator } from "@/app/(main)/about/_components/page-progress-indicator"
 
 // Form schema
 const formSchema = z.object({
   firstName: z
     .string()
     .min(2, { message: "First name is required" })
-    .max(10, { message: "First name cannot exceed 10 characters" })
+    .max(50, { message: "First name cannot exceed 50 characters" })
     .regex(/^[a-zA-Z\s'-]+$/, {
       message: "First name should only contain letters, spaces, hyphens, or apostrophes",
     }),
   lastName: z
     .string()
     .min(2, { message: "Last name is required" })
-    .max(10, { message: "Last name cannot exceed 10 characters" })
+    .max(50, { message: "Last name cannot exceed 50 characters" })
     .regex(/^[a-zA-Z\s'-]+$/, {
       message: "Last name should only contain letters, spaces, hyphens, or apostrophes",
     }),
@@ -37,42 +35,70 @@ const formSchema = z.object({
     .email({ message: "Please enter a valid email address" })
     .refine(
       (email) => {
-        // Check for common legitimate email domains
-        const validDomains = [
+        const allowedEmailDomains = [
           "gmail.com",
+          "googlemail.com",
           "outlook.com",
           "hotmail.com",
+          "live.com",
+          "msn.com",
           "yahoo.com",
+          "yahoo.co.uk",
+          "yahoo.ca",
+          "yahoo.com.au",
           "icloud.com",
+          "me.com",
+          "mac.com",
           "aol.com",
           "protonmail.com",
+          "proton.me",
           "mail.com",
+          "zoho.com",
+          "zohomail.com",
+          "fastmail.com",
+          "tutanota.com",
+          "gmx.com",
+          "gmx.net",
+          "yandex.com",
+          "yandex.ru",
         ]
-        // Check for temporary email domains
-        const tempDomains = [
+
+        const blockedEmailDomains = [
+          "10minutemail.com",
           "tempmail.com",
           "temp-mail.org",
           "guerrillamail.com",
           "mailinator.com",
           "yopmail.com",
-          "10minutemail.com",
+          "disposablemail.com",
+          "sharklasers.com",
+          "trashmail.com",
+          "example.com",
+          "example.org",
+          "test.com",
+          "dummy.com",
+          "fake.com",
+          "sample.com",
+          "demo.com",
         ]
 
         const domain = email.split("@")[1]?.toLowerCase()
+        if (!domain || !email.includes("@")) return false
+        if (blockedEmailDomains.includes(domain)) return false
+        if (domain.includes("fake") || domain.includes("test") || domain.includes("dummy")) return false
 
-        if (!domain || !email.includes("@")) {
-          return false
-        }
-
-        if (tempDomains.includes(domain)) {
-          return false
-        }
-
-        // Either it's in our valid domains list or we'll accept it if it's not in the temp domains list
-        // and looks like a business domain
-        return validDomains.includes(domain) || (!tempDomains.includes(domain) && domain.includes("."))
+        return (
+          allowedEmailDomains.includes(domain) ||
+          (domain.includes(".") &&
+            !blockedEmailDomains.includes(domain) &&
+            domain.split(".").length >= 2 &&
+            domain.split(".").every((part) => part.length > 0))
+        )
       },
-      { message: "Please use a valid email provider (Gmail, Outlook, or business email)" },
+      {
+        message:
+          "Please use a valid email provider (Gmail, Outlook, business email, etc.). Temporary emails are not allowed.",
+      },
     ),
   mobileNumber: z
     .string()
@@ -232,6 +258,7 @@ export default function CVSubmissionForm() {
   // Get saved country code from cookies
   const { formData: savedFormData, countryCode: savedCountryCode } = getFormFromCookies()
   const [selectedCountryCode, setSelectedCountryCode] = useState(savedCountryCode || "+966")
+
   const { toast } = useToast()
   const captchaRef = useRef<HCaptcha>(null)
 
@@ -315,18 +342,14 @@ export default function CVSubmissionForm() {
 
     // Save form data to cookies
     saveFormToCookies(values, selectedCountryCode)
-    setIsSubmitting(true)
 
+    setIsSubmitting(true)
     try {
       // Show loading toast
       toast({
         title: "Submitting Form",
         description: "Please wait while we process your submission...",
       })
-
-      // In a real app, you would upload the file to a storage service
-      // and get a URL back. For now, we'll simulate this.
-      const fileUrl = file ? URL.createObjectURL(file) : undefined
 
       // Create a FormData object to pass to the server action
       const formData = new FormData()
@@ -339,7 +362,11 @@ export default function CVSubmissionForm() {
       formData.append("termsAccepted", String(values.termsAccepted))
       formData.append("marketingConsent", String(values.marketingConsent || false))
       formData.append("captchaToken", captchaToken)
-      if (fileUrl) formData.append("fileUrl", fileUrl)
+
+      // Add the actual file to FormData
+      if (file) {
+        formData.append("cvFile", file)
+      }
 
       // Call the server action with the form data
       const result = await submitCV(formData)
@@ -347,19 +374,15 @@ export default function CVSubmissionForm() {
       if (result.success) {
         // Save to local storage as a fallback
         saveEmailSubmission(values.email, values.jobType)
-
         setSubmittedEmail(values.email)
         setFormSubmitted(true)
-
         toast({
           title: "Success",
           description: "Form submitted successfully! A confirmation has been sent to your email.",
           variant: "default",
         })
-
         // Clear the form cookie after successful submission
         Cookies.remove(COOKIE_NAME)
-
         // Reset captcha
         captchaRef.current?.resetCaptcha()
         setCaptchaToken(null)
@@ -401,19 +424,15 @@ export default function CVSubmissionForm() {
 
   const sections = [
     { id: "name", title: "Name" },
-
     { id: "details", title: "Details" },
     { id: "upload", title: "Upload" },
-
-    
-    
-    
   ]
+
   return (
     <div className="max-w-7xl mt-32 md:24 mx-auto px-8 lg:px-auto">
       <CookieConsentDialog />
       <PageProgressIndicator sections={sections} />
-      {/* <EnvChecker /> */}
+
       <Link href="/">
         <button className="flex items-center text-[#6208ca] mb-8 font-medium hover:text-[#5007a3] transition-colors">
           <ChevronLeft className="h-5 w-5" />
@@ -424,7 +443,6 @@ export default function CVSubmissionForm() {
       <div className="h-0.5 w-64 bg-[#6208CA] mb-10"></div>
 
       <h1 className="text-3xl font-medium mb-6 text-[#6208ca]">Submit Your CV</h1>
-
       <p className="text-gray-700 mb-12 leading-relaxed">
         Welcome to our career opportunities page! We're excited to learn more about you and how you can contribute to
         our team. To get started, please submit your CV using the form below. This is your chance to showcase your
@@ -530,7 +548,6 @@ export default function CVSubmissionForm() {
                 </label>
                 <CountryCodeSelector value={selectedCountryCode} onChange={(code) => setSelectedCountryCode(code)} />
               </div>
-
               <div className="col-span-3">
                 <label className="block mb-2">
                   Mobile number <span className="text-red-500">*</span>
@@ -612,7 +629,13 @@ export default function CVSubmissionForm() {
           </div>
 
           <div className="mt-8" id="upload">
-            <FileUpload onFileChange={setFile} accept=".pdf" maxSize={100} label="Upload your CV" required={true} />
+            <FileUpload
+              onFileChange={setFile}
+              accept=".pdf,.doc,.docx"
+              maxSize={5}
+              label="Upload your CV"
+              required={true}
+            />
           </div>
 
           <div className="mt-8">
@@ -620,7 +643,7 @@ export default function CVSubmissionForm() {
               Verify you are human <span className="text-red-500">*</span>
             </label>
             <HCaptcha
-              sitekey='41b8bd2e-8c50-4e32-98d8-c5189bb4934c' // Replace with your actual hCaptcha site key
+              sitekey="41b8bd2e-8c50-4e32-98d8-c5189bb4934c"
               onVerify={handleCaptchaVerify}
               onExpire={handleCaptchaExpire}
               ref={captchaRef}
@@ -670,7 +693,6 @@ export default function CVSubmissionForm() {
                 "Submit Request"
               )}
             </button>
-
             <p className="text-sm text-gray-500 mt-4">
               This site is protected by hCAPTCHA and the Google{" "}
               <Link href="https://policies.google.com/privacy?hl=en" className="text-[#3c5bc0]">
@@ -703,6 +725,78 @@ export default function CVSubmissionForm() {
         title="Resend Confirmation Email"
         message={`Do you want to resend the confirmation email to ${submittedEmail}?`}
       />
+    </div>
+  )
+}
+
+import { ChevronDown } from "lucide-react"
+
+interface CountryCodeSelectorProps {
+  value: string
+  onChange: (code: string) => void
+}
+
+const countryCodes = [
+  { code: "+1", country: "US/CA", flag: "🇺🇸" },
+  { code: "+44", country: "UK", flag: "🇬🇧" },
+  { code: "+91", country: "India", flag: "🇮🇳" },
+  { code: "+86", country: "China", flag: "🇨🇳" },
+  { code: "+81", country: "Japan", flag: "🇯🇵" },
+  { code: "+49", country: "Germany", flag: "🇩🇪" },
+  { code: "+33", country: "France", flag: "🇫🇷" },
+  { code: "+39", country: "Italy", flag: "🇮🇹" },
+  { code: "+34", country: "Spain", flag: "🇪🇸" },
+  { code: "+31", country: "Netherlands", flag: "🇳🇱" },
+  { code: "+61", country: "Australia", flag: "🇦🇺" },
+  { code: "+55", country: "Brazil", flag: "🇧🇷" },
+  { code: "+52", country: "Mexico", flag: "🇲🇽" },
+  { code: "+7", country: "Russia", flag: "🇷🇺" },
+  { code: "+82", country: "S. Korea", flag: "🇰🇷" },
+  { code: "+966", country: "Saudi Arabia", flag: "🇸🇦" },
+  { code: "+971", country: "UAE", flag: "🇦🇪" },
+  { code: "+20", country: "Egypt", flag: "🇪🇬" },
+  { code: "+27", country: "S. Africa", flag: "🇿🇦" },
+  { code: "+234", country: "Nigeria", flag: "🇳🇬" },
+]
+
+function CountryCodeSelector({ value, onChange }: CountryCodeSelectorProps) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const selectedCountry = countryCodes.find((country) => country.code === value) || countryCodes[0]
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full border-0 border-b border-gray-300 bg-transparent px-0 py-2 focus:outline-none focus:border-gray-500 flex items-center justify-between"
+      >
+        <span className="flex items-center gap-2">
+          <span>{selectedCountry.flag}</span>
+          <span>{selectedCountry.code}</span>
+        </span>
+        <ChevronDown className="h-4 w-4 text-gray-500" />
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-md shadow-lg z-10 max-h-60 overflow-y-auto">
+          {countryCodes.map((country) => (
+            <button
+              key={country.code}
+              type="button"
+              onClick={() => {
+                onChange(country.code)
+                setIsOpen(false)
+              }}
+              className="w-full px-3 py-2 text-left hover:bg-gray-50 flex items-center gap-2"
+            >
+              <span>{country.flag}</span>
+              <span>{country.code}</span>
+              <span className="text-sm text-gray-500">{country.country}</span>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

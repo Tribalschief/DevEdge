@@ -12,7 +12,7 @@ export default function HeroSection() {
     <section
       className="
       bg-[rgb(243,237,248)] w-full
-      mt-[60px] md:mt-[80px] lg:mt-[105px] xl:mt-[120px] 
+      mt-[60px] md:mt-[80px] lg:mt-[105px] xl:mt-[120px] 2xl:mt-[132px] 
       sm:pb-4 md:pb-8 pb-10
        h-full
       flex items-center justify-center

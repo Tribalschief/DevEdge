@@ -2,6 +2,7 @@
 
 import React from "react"
 import { usePathname } from "next/navigation"
+import { useEffect } from "react"
 import Link from "next/link"
 import { FaAngleDown } from "react-icons/fa"
 import {
@@ -22,6 +23,12 @@ export function Services({ heading }) {
   const [isHovered, setIsHovered] = React.useState(false)
   const timeoutRef = React.useRef(null)
   const pathname = usePathname()
+  const [isClient, setIsClient] = React.useState(false)
+
+  useEffect(() => {
+      console.log("Setting isClient to true") // <== Add this
+      setIsClient(true)
+    }, [])
 
   React.useEffect(() => {
     async function fetchServices() {

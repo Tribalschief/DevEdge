@@ -3,8 +3,8 @@
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm, Controller, FieldPath } from "react-hook-form"
-import { z, ZodIssue } from "zod";
+import { useForm, Controller, type FieldPath } from "react-hook-form"
+import { z, type ZodIssue } from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -16,7 +16,7 @@ import HCaptcha from "@hcaptcha/react-hcaptcha"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
-import { sendRfp } from "@/action/sendRFP" // Assuming this action exists and works as expected
+import { sendRfp } from "@/action/sendRFP"
 import Cookies from "js-cookie"
 import { CookieConsentDialog } from "@/components/cookies-dialog/consnet-dialog"
 import { PageProgressIndicator } from "@/app/(main)/about/_components/page-progress-indicator"
@@ -24,20 +24,20 @@ import { PageProgressIndicator } from "@/app/(main)/about/_components/page-progr
 const RFP_FORM_COOKIE = "rfp_form_data"
 const COOKIE_EXPIRY = 30 // days
 
-// Form schema based on CVSubmissionForm's validation rules
+// Enhanced form schema with strict email validation
 const rfpFormSchema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
   firstName: z
     .string()
     .min(2, { message: "First name is required" })
-    .max(50, { message: "First name cannot exceed 50 characters" }) // Adjusted from 10 for practicality
+    .max(50, { message: "First name cannot exceed 50 characters" })
     .regex(/^[a-zA-Z\s'-]+$/, {
       message: "First name should only contain letters, spaces, hyphens, or apostrophes",
     }),
   lastName: z
     .string()
     .min(2, { message: "Last name is required" })
-    .max(50, { message: "Last name cannot exceed 50 characters" }) // Adjusted from 10
+    .max(50, { message: "Last name cannot exceed 50 characters" })
     .regex(/^[a-zA-Z\s'-]+$/, {
       message: "Last name should only contain letters, spaces, hyphens, or apostrophes",
     }),
@@ -48,26 +48,77 @@ const rfpFormSchema = z.object({
     .email({ message: "Please enter a valid email address" })
     .refine(
       (email) => {
-        const validDomains = [
-          "gmail.com", "outlook.com", "hotmail.com", "yahoo.com",
-          "icloud.com", "aol.com", "protonmail.com", "mail.com",
+        const allowedEmailDomains = [
+          "gmail.com",
+          "googlemail.com",
+          "outlook.com",
+          "hotmail.com",
+          "live.com",
+          "msn.com",
+          "yahoo.com",
+          "yahoo.co.uk",
+          "yahoo.ca",
+          "yahoo.com.au",
+          "icloud.com",
+          "me.com",
+          "mac.com",
+          "aol.com",
+          "protonmail.com",
+          "proton.me",
+          "mail.com",
+          "zoho.com",
+          "zohomail.com",
+          "fastmail.com",
+          "tutanota.com",
+          "gmx.com",
+          "gmx.net",
+          "yandex.com",
+          "yandex.ru",
         ]
-        const tempDomains = [
-          "tempmail.com", "temp-mail.org", "guerrillamail.com",
-          "mailinator.com", "yopmail.com", "10minutemail.com",
+
+        const blockedEmailDomains = [
+          "10minutemail.com",
+          "tempmail.com",
+          "temp-mail.org",
+          "guerrillamail.com",
+          "mailinator.com",
+          "yopmail.com",
+          "disposablemail.com",
+          "sharklasers.com",
+          "trashmail.com",
+          "example.com",
+          "example.org",
+          "test.com",
+          "dummy.com",
+          "fake.com",
+          "sample.com",
+          "demo.com",
         ]
+
         const domain = email.split("@")[1]?.toLowerCase()
         if (!domain || !email.includes("@")) return false
-        if (tempDomains.includes(domain)) return false
-        return validDomains.includes(domain) || (!tempDomains.includes(domain) && domain.includes("."))
+        if (blockedEmailDomains.includes(domain)) return false
+        if (domain.includes("fake") || domain.includes("test") || domain.includes("dummy")) return false
+
+        return (
+          allowedEmailDomains.includes(domain) ||
+          (domain.includes(".") &&
+            !blockedEmailDomains.includes(domain) &&
+            domain.split(".").length >= 2 &&
+            domain.split(".").every((part) => part.length > 0))
+        )
       },
-      { message: "Please use a valid email provider (Gmail, Outlook, or business email)" },
+      {
+        message:
+          "Please use a valid email provider (Gmail, Outlook, business email, etc.). Temporary emails are not allowed.",
+      },
     ),
   phone: z
     .string()
-    .regex(/^\d*$/, { message: "Phone number should only contain digits" }) // Allow empty string
-    .min(7, { message: "Phone number must be at least 7 digits if provided" })
-    .max(15, { message: "Phone number cannot exceed 15 digits" })
+    .regex(/^\d*$/, { message: "Phone number should only contain digits" })
+    .refine((phone) => !phone || (phone.length >= 7 && phone.length <= 15), {
+      message: "Phone number must be 7-15 digits if provided",
+    })
     .optional()
     .or(z.literal("")),
   country: z.string().min(1, { message: "Country is required" }),
@@ -100,6 +151,111 @@ const defaultFormValues: RfpFormValues = {
   termsAccepted: false,
 }
 
+// Comprehensive country list
+const countries = [
+  { value: "us", label: "United States" },
+  { value: "ca", label: "Canada" },
+  { value: "uk", label: "United Kingdom" },
+  { value: "au", label: "Australia" },
+  { value: "de", label: "Germany" },
+  { value: "fr", label: "France" },
+  { value: "it", label: "Italy" },
+  { value: "es", label: "Spain" },
+  { value: "nl", label: "Netherlands" },
+  { value: "be", label: "Belgium" },
+  { value: "ch", label: "Switzerland" },
+  { value: "at", label: "Austria" },
+  { value: "se", label: "Sweden" },
+  { value: "no", label: "Norway" },
+  { value: "dk", label: "Denmark" },
+  { value: "fi", label: "Finland" },
+  { value: "ie", label: "Ireland" },
+  { value: "pt", label: "Portugal" },
+  { value: "gr", label: "Greece" },
+  { value: "pl", label: "Poland" },
+  { value: "cz", label: "Czech Republic" },
+  { value: "hu", label: "Hungary" },
+  { value: "ro", label: "Romania" },
+  { value: "bg", label: "Bulgaria" },
+  { value: "hr", label: "Croatia" },
+  { value: "si", label: "Slovenia" },
+  { value: "sk", label: "Slovakia" },
+  { value: "lt", label: "Lithuania" },
+  { value: "lv", label: "Latvia" },
+  { value: "ee", label: "Estonia" },
+  { value: "ru", label: "Russia" },
+  { value: "ua", label: "Ukraine" },
+  { value: "by", label: "Belarus" },
+  { value: "jp", label: "Japan" },
+  { value: "kr", label: "South Korea" },
+  { value: "cn", label: "China" },
+  { value: "in", label: "India" },
+  { value: "sg", label: "Singapore" },
+  { value: "hk", label: "Hong Kong" },
+  { value: "tw", label: "Taiwan" },
+  { value: "my", label: "Malaysia" },
+  { value: "th", label: "Thailand" },
+  { value: "ph", label: "Philippines" },
+  { value: "id", label: "Indonesia" },
+  { value: "vn", label: "Vietnam" },
+  { value: "sa", label: "Saudi Arabia" },
+  { value: "ae", label: "United Arab Emirates" },
+  { value: "qa", label: "Qatar" },
+  { value: "kw", label: "Kuwait" },
+  { value: "bh", label: "Bahrain" },
+  { value: "om", label: "Oman" },
+  { value: "jo", label: "Jordan" },
+  { value: "lb", label: "Lebanon" },
+  { value: "il", label: "Israel" },
+  { value: "tr", label: "Turkey" },
+  { value: "eg", label: "Egypt" },
+  { value: "ma", label: "Morocco" },
+  { value: "za", label: "South Africa" },
+  { value: "ng", label: "Nigeria" },
+  { value: "ke", label: "Kenya" },
+  { value: "gh", label: "Ghana" },
+  { value: "br", label: "Brazil" },
+  { value: "mx", label: "Mexico" },
+  { value: "ar", label: "Argentina" },
+  { value: "cl", label: "Chile" },
+  { value: "co", label: "Colombia" },
+  { value: "pe", label: "Peru" },
+  { value: "ve", label: "Venezuela" },
+  { value: "uy", label: "Uruguay" },
+  { value: "py", label: "Paraguay" },
+  { value: "ec", label: "Ecuador" },
+  { value: "bo", label: "Bolivia" },
+  { value: "nz", label: "New Zealand" },
+  { value: "other", label: "Other" },
+]
+
+// Comprehensive industry list
+const industries = [
+  { value: "technology", label: "Technology" },
+  { value: "finance", label: "Finance & Banking" },
+  { value: "healthcare", label: "Healthcare & Medical" },
+  { value: "education", label: "Education" },
+  { value: "manufacturing", label: "Manufacturing" },
+  { value: "retail", label: "Retail & E-commerce" },
+  { value: "consulting", label: "Consulting" },
+  { value: "real_estate", label: "Real Estate" },
+  { value: "automotive", label: "Automotive" },
+  { value: "energy", label: "Energy & Utilities" },
+  { value: "telecommunications", label: "Telecommunications" },
+  { value: "media", label: "Media & Entertainment" },
+  { value: "transportation", label: "Transportation & Logistics" },
+  { value: "hospitality", label: "Hospitality & Tourism" },
+  { value: "construction", label: "Construction" },
+  { value: "agriculture", label: "Agriculture" },
+  { value: "aerospace", label: "Aerospace & Defense" },
+  { value: "pharmaceuticals", label: "Pharmaceuticals" },
+  { value: "insurance", label: "Insurance" },
+  { value: "legal", label: "Legal Services" },
+  { value: "government", label: "Government" },
+  { value: "non_profit", label: "Non-Profit" },
+  { value: "other", label: "Other" },
+]
+
 // File validation constants
 const MAX_TOTAL_FILE_SIZE = 10 * 1024 * 1024 // 10 MB
 const ALLOWED_FILE_EXTENSIONS = [".doc", ".docx", ".pdf", ".ppt", ".pptx", ".txt", ".xlsx", ".zip"]
@@ -113,7 +269,6 @@ export default function RfpForm() {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle")
-
   const captchaRef = useRef<HCaptcha>(null)
   const { toast } = useToast()
 
@@ -128,13 +283,12 @@ export default function RfpForm() {
     if (savedData) {
       try {
         const parsedData = JSON.parse(savedData)
-        // Validate parsedData against a partial schema or ensure keys match
         const validKeys = Object.keys(defaultFormValues) as (keyof RfpFormValues)[]
         const sanitizedData: Partial<RfpFormValues> = {}
-        validKeys.forEach(key => {
-            if (parsedData[key] !== undefined) {
-                sanitizedData[key] = parsedData[key]
-            }
+        validKeys.forEach((key) => {
+          if (parsedData[key] !== undefined) {
+            sanitizedData[key] = parsedData[key]
+          }
         })
         form.reset({ ...defaultFormValues, ...sanitizedData })
       } catch (e) {
@@ -142,35 +296,31 @@ export default function RfpForm() {
         form.reset(defaultFormValues)
       }
     }
-  }, [form.reset]) // form.reset is stable
+  }, [form])
 
   // Save form data to cookies when it changes
   useEffect(() => {
     const subscription = form.watch((value) => {
-      if (value.firstName || value.email) { // Keep original condition for saving
+      if (value.firstName || value.email) {
         Cookies.set(RFP_FORM_COOKIE, JSON.stringify(value), { expires: COOKIE_EXPIRY })
       }
     })
     return () => subscription.unsubscribe()
-  }, [form.watch]) // form.watch is stable
+  }, [form])
 
   const handleFileChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0]
       const extension = `.${file.name.split(".").pop()?.toLowerCase()}`
-
       if (!ALLOWED_FILE_EXTENSIONS.includes(extension)) {
         toast({
           title: "Invalid File Type",
           description: `File ${file.name} has an unsupported type. Allowed types: ${ALLOWED_FILE_EXTENSIONS.join(", ")}.`,
           variant: "destructive",
         })
-        e.target.value = "" // Clear the input
+        e.target.value = ""
         return
       }
-      
-      // Individual file size check (optional, as total is checked later)
-      // if (file.size > SOME_INDIVIDUAL_MAX_SIZE) { ... }
 
       setFiles((prevFiles) => ({ ...prevFiles, [index]: file }))
       toast({
@@ -209,10 +359,9 @@ export default function RfpForm() {
       return
     }
 
-    // File validation (total size and individual types again for safety)
+    // File validation
     let totalSize = 0
     const uploadedFiles = Object.values(files).filter((f) => f !== null) as File[]
-
     for (const file of uploadedFiles) {
       totalSize += file.size
       const extension = `.${file.name.split(".").pop()?.toLowerCase()}`
@@ -222,21 +371,21 @@ export default function RfpForm() {
           description: `File ${file.name} has an unsupported type. Allowed: ${ALLOWED_FILE_EXTENSIONS.join(", ")}`,
           variant: "destructive",
         })
-        return // Stop submission
+        return
       }
     }
 
     if (totalSize > MAX_TOTAL_FILE_SIZE) {
       toast({
         title: "File Size Exceeded",
-        description: `Total file size (${(totalSize / (1024*1024)).toFixed(2)} MB) exceeds the ${MAX_TOTAL_FILE_SIZE / (1024*1024)} MB limit.`,
+        description: `Total file size (${(totalSize / (1024 * 1024)).toFixed(2)} MB) exceeds the ${MAX_TOTAL_FILE_SIZE / (1024 * 1024)} MB limit.`,
         variant: "destructive",
       })
-      return // Stop submission
+      return
     }
 
     setIsSubmitting(true)
-    setFormStatus("idle") // Reset error status from previous attempts
+    setFormStatus("idle")
 
     try {
       toast({
@@ -252,11 +401,11 @@ export default function RfpForm() {
 
       Object.entries(files).forEach(([index, file]) => {
         if (file) {
-          formDataObj.append(`file${index}`, file, file.name) // Changed key to file${index} for clarity
+          formDataObj.append(`file${index}`, file, file.name)
         }
       })
 
-      const result = await sendRfp(formDataObj) // Assuming sendRfp is your server action
+      const result = await sendRfp(formDataObj)
 
       if (result.success) {
         setFormStatus("success")
@@ -271,43 +420,36 @@ export default function RfpForm() {
         })
         window.scrollTo({ top: 0, behavior: "smooth" })
       } else {
-        setFormStatus("error");
-        // Assuming result.errors from your server is an array of ZodIssue or a compatible structure
+        setFormStatus("error")
         if (result.errors && Array.isArray(result.errors)) {
-           // Cast result.errors to ZodIssue[] to inform TypeScript of its structure
-           (result.errors as ZodIssue[]).forEach((issue: ZodIssue) => { // <-- CORRECTED TYPING HERE
+          ;(result.errors as ZodIssue[]).forEach((issue: ZodIssue) => {
             if (issue.path && issue.path.length > 0) {
-              const firstPathSegment = issue.path[0];
-
-              // Form field names are typically strings.
-              // issue.path[0] could be a number if it's an error within an array element.
-              if (typeof firstPathSegment === 'string') {
-                const fieldName = firstPathSegment as FieldPath<RfpFormValues>;
-
-                // Check if this fieldName is actually a key in our form schema's shape
+              const firstPathSegment = issue.path[0]
+              if (typeof firstPathSegment === "string") {
+                const fieldName = firstPathSegment as FieldPath<RfpFormValues>
                 if (fieldName in rfpFormSchema.shape) {
-                   form.setError(fieldName, { type: "server", message: issue.message });
+                  form.setError(fieldName, { type: "server", message: issue.message })
                 } else {
-                  // This handles cases where the server might report an error on a path
-                  // not directly mappable to a top-level form field (e.g., nested objects).
-                  console.warn(`Server validation error for unhandled path: ${issue.path.join('.')}. Message: ${issue.message}`);
+                  console.warn(
+                    `Server validation error for unhandled path: ${issue.path.join(".")}. Message: ${issue.message}`,
+                  )
                 }
               } else {
-                // Handles cases where the first path segment is a number (e.g., error in an array at root).
-                console.warn(`Server validation error for path with initial number segment: ${issue.path.join('.')}. Message: ${issue.message}`);
+                console.warn(
+                  `Server validation error for path with initial number segment: ${issue.path.join(".")}. Message: ${issue.message}`,
+                )
               }
             } else {
-              // Error without a path, perhaps a general validation error from the server
-              console.warn(`Server validation error without a path: ${issue.message}`);
+              console.warn(`Server validation error without a path: ${issue.message}`)
             }
-          });
+          })
         }
-
         toast({
           title: "Submission Failed",
-          description: result.error || "There was an error submitting your form. Please check highlighted fields or try again.",
+          description:
+            result.error || "There was an error submitting your form. Please check highlighted fields or try again.",
           variant: "destructive",
-        });
+        })
       }
     } catch (error) {
       console.error("Form submission error:", error)
@@ -326,7 +468,6 @@ export default function RfpForm() {
     return (
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <CookieConsentDialog />
-        
         <Alert className="bg-green-50 border-green-200">
           <CheckCircle2 className="h-5 w-5 text-green-600" />
           <AlertTitle className="text-green-800 text-lg font-semibold">Submission Successful</AlertTitle>
@@ -343,15 +484,18 @@ export default function RfpForm() {
       </div>
     )
   }
+
   const sections = [
     { id: "details", title: "Details" },
     { id: "company", title: "Company" },
     { id: "additional", title: "Additional" },
   ]
+
   return (
     <div className="mx-auto">
       <CookieConsentDialog />
       <PageProgressIndicator sections={sections} />
+
       {formStatus === "error" && !form.formState.isDirty && Object.keys(form.formState.errors).length === 0 && (
         <Alert className="mb-6 bg-red-50 border-red-200">
           <AlertCircle className="h-5 w-5 text-red-600" />
@@ -361,6 +505,7 @@ export default function RfpForm() {
           </AlertDescription>
         </Alert>
       )}
+
       <div className="relative">
         <div className="bg-white rounded-lg max-w-full sm:max-w-2xl lg:max-w-5xl shadow-md p-6 sm:p-8 mb-8 mx-auto relative z-10">
           <div className="mb-6">
@@ -369,7 +514,7 @@ export default function RfpForm() {
             <p className="text-gray-600">How can we help your business?</p>
           </div>
 
-          <div className="my-4 text-sm" >
+          <div className="my-4 text-sm">
             <p>
               Thank you for your interest in our member firm services. Please take a few moments to complete this form.
               Documents can be uploaded if needed to clarify your request. This mailbox only accepts qualified proposal
@@ -382,7 +527,7 @@ export default function RfpForm() {
           </div>
 
           <form onSubmit={form.handleSubmit(processSubmit)} className="space-y-6">
-            <div className="border-t border-b py-4 my-6" id='details'>
+            <div className="border-t border-b py-4 my-6" id="details">
               <h3 className="text-center text-lg font-medium mb-4">Your details</h3>
               <p className="text-sm mb-4">Fields marked with an asterisk (*) are required.</p>
 
@@ -396,7 +541,10 @@ export default function RfpForm() {
                     control={form.control}
                     render={({ field }) => (
                       <Select onValueChange={field.onChange} value={field.value}>
-                        <SelectTrigger id="title" className={`w-full ${form.formState.errors.title ? "border-red-500" : ""}`}>
+                        <SelectTrigger
+                          id="title"
+                          className={`w-full ${form.formState.errors.title ? "border-red-500" : ""}`}
+                        >
                           <SelectValue placeholder="Select title" />
                         </SelectTrigger>
                         <SelectContent>
@@ -409,7 +557,9 @@ export default function RfpForm() {
                       </Select>
                     )}
                   />
-                  {form.formState.errors.title && <p className="text-red-500 text-xs mt-1">{form.formState.errors.title.message}</p>}
+                  {form.formState.errors.title && (
+                    <p className="text-red-500 text-xs mt-1">{form.formState.errors.title.message}</p>
+                  )}
                 </div>
 
                 <div>
@@ -421,7 +571,9 @@ export default function RfpForm() {
                     {...form.register("firstName")}
                     className={form.formState.errors.firstName ? "border-red-500" : ""}
                   />
-                  {form.formState.errors.firstName && <p className="text-red-500 text-xs mt-1">{form.formState.errors.firstName.message}</p>}
+                  {form.formState.errors.firstName && (
+                    <p className="text-red-500 text-xs mt-1">{form.formState.errors.firstName.message}</p>
+                  )}
                 </div>
 
                 <div>
@@ -433,7 +585,9 @@ export default function RfpForm() {
                     {...form.register("lastName")}
                     className={form.formState.errors.lastName ? "border-red-500" : ""}
                   />
-                  {form.formState.errors.lastName && <p className="text-red-500 text-xs mt-1">{form.formState.errors.lastName.message}</p>}
+                  {form.formState.errors.lastName && (
+                    <p className="text-red-500 text-xs mt-1">{form.formState.errors.lastName.message}</p>
+                  )}
                 </div>
 
                 <div>
@@ -441,7 +595,9 @@ export default function RfpForm() {
                     Position/Job title
                   </Label>
                   <Input id="position" {...form.register("position")} />
-                   {form.formState.errors.position && <p className="text-red-500 text-xs mt-1">{form.formState.errors.position.message}</p>}
+                  {form.formState.errors.position && (
+                    <p className="text-red-500 text-xs mt-1">{form.formState.errors.position.message}</p>
+                  )}
                 </div>
 
                 <div>
@@ -454,7 +610,9 @@ export default function RfpForm() {
                     {...form.register("email")}
                     className={form.formState.errors.email ? "border-red-500" : ""}
                   />
-                  {form.formState.errors.email && <p className="text-red-500 text-xs mt-1">{form.formState.errors.email.message}</p>}
+                  {form.formState.errors.email && (
+                    <p className="text-red-500 text-xs mt-1">{form.formState.errors.email.message}</p>
+                  )}
                 </div>
 
                 <div>
@@ -467,7 +625,9 @@ export default function RfpForm() {
                     {...form.register("phone")}
                     className={form.formState.errors.phone ? "border-red-500" : ""}
                   />
-                  {form.formState.errors.phone && <p className="text-red-500 text-xs mt-1">{form.formState.errors.phone.message}</p>}
+                  {form.formState.errors.phone && (
+                    <p className="text-red-500 text-xs mt-1">{form.formState.errors.phone.message}</p>
+                  )}
                 </div>
 
                 <div>
@@ -479,28 +639,30 @@ export default function RfpForm() {
                     control={form.control}
                     render={({ field }) => (
                       <Select onValueChange={field.onChange} value={field.value}>
-                        <SelectTrigger id="country" className={`w-full ${form.formState.errors.country ? "border-red-500" : ""}`}>
+                        <SelectTrigger
+                          id="country"
+                          className={`w-full ${form.formState.errors.country ? "border-red-500" : ""}`}
+                        >
                           <SelectValue placeholder="Select your location" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="us">United States</SelectItem>
-                          <SelectItem value="ca">Canada</SelectItem>
-                          <SelectItem value="uk">United Kingdom</SelectItem>
-                          <SelectItem value="au">Australia</SelectItem>
-                          {/* Add more countries as needed */}
-                           <SelectItem value="sa">Saudi Arabia</SelectItem>
-                          <SelectItem value="ae">United Arab Emirates</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
+                          {countries.map((country) => (
+                            <SelectItem key={country.value} value={country.value}>
+                              {country.label}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     )}
                   />
-                  {form.formState.errors.country && <p className="text-red-500 text-xs mt-1">{form.formState.errors.country.message}</p>}
+                  {form.formState.errors.country && (
+                    <p className="text-red-500 text-xs mt-1">{form.formState.errors.country.message}</p>
+                  )}
                 </div>
               </div>
             </div>
 
-            <div className="border-b py-4 mb-6" id='company'>
+            <div className="border-b py-4 mb-6" id="company">
               <h3 className="text-center text-lg font-medium mb-4">Company details</h3>
               <div className="space-y-4">
                 <div>
@@ -508,7 +670,9 @@ export default function RfpForm() {
                     Company/Organization name
                   </Label>
                   <Input id="company" {...form.register("company")} />
-                  {form.formState.errors.company && <p className="text-red-500 text-xs mt-1">{form.formState.errors.company.message}</p>}
+                  {form.formState.errors.company && (
+                    <p className="text-red-500 text-xs mt-1">{form.formState.errors.company.message}</p>
+                  )}
                 </div>
 
                 <div>
@@ -520,32 +684,32 @@ export default function RfpForm() {
                     control={form.control}
                     render={({ field }) => (
                       <Select onValueChange={field.onChange} value={field.value}>
-                        <SelectTrigger id="industry" className={`w-full ${form.formState.errors.industry ? "border-red-500" : ""}`}>
+                        <SelectTrigger
+                          id="industry"
+                          className={`w-full ${form.formState.errors.industry ? "border-red-500" : ""}`}
+                        >
                           <SelectValue placeholder="Select industry" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="tech">Technology</SelectItem>
-                          <SelectItem value="finance">Finance</SelectItem>
-                          <SelectItem value="healthcare">Healthcare</SelectItem>
-                          <SelectItem value="education">Education</SelectItem>
-                          <SelectItem value="manufacturing">Manufacturing</SelectItem>
-                          <SelectItem value="retail">Retail</SelectItem>
-                          <SelectItem value="energy">Energy</SelectItem>
-                           <SelectItem value="consulting">Consulting</SelectItem>
-                          <SelectItem value="government">Government</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
+                          {industries.map((industry) => (
+                            <SelectItem key={industry.value} value={industry.value}>
+                              {industry.label}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     )}
                   />
-                  {form.formState.errors.industry && <p className="text-red-500 text-xs mt-1">{form.formState.errors.industry.message}</p>}
+                  {form.formState.errors.industry && (
+                    <p className="text-red-500 text-xs mt-1">{form.formState.errors.industry.message}</p>
+                  )}
                 </div>
 
                 <div>
                   <Label htmlFor="revenue" className="text-sm">
                     Yearly revenue
                   </Label>
-                   <Controller
+                  <Controller
                     name="revenue"
                     control={form.control}
                     render={({ field }) => (
@@ -564,15 +728,20 @@ export default function RfpForm() {
                       </Select>
                     )}
                   />
-                  {form.formState.errors.revenue && <p className="text-red-500 text-xs mt-1">{form.formState.errors.revenue.message}</p>}
+                  {form.formState.errors.revenue && (
+                    <p className="text-red-500 text-xs mt-1">{form.formState.errors.revenue.message}</p>
+                  )}
                 </div>
               </div>
             </div>
 
-            <div className="py-4 mb-6" id='additional'>
+            <div className="py-4 mb-6" id="additional">
               <h3 className="text-center text-lg font-medium mb-4">Additional information</h3>
               <div className="mb-4 text-sm">
-                <p>Please note that the total size of your attachment(s) must not exceed {MAX_TOTAL_FILE_SIZE / (1024 * 1024)} MB.</p>
+                <p>
+                  Please note that the total size of your attachment(s) must not exceed{" "}
+                  {MAX_TOTAL_FILE_SIZE / (1024 * 1024)} MB.
+                </p>
                 <p>Appropriate attachment types are: {ALLOWED_FILE_EXTENSIONS.join(", ")}.</p>
               </div>
 
@@ -586,7 +755,7 @@ export default function RfpForm() {
                       <Button
                         type="button"
                         variant="outline"
-                        className="mr-2 h-9 text-xs mb-1 sm:mb-0"
+                        className="mr-2 h-9 text-xs mb-1 sm:mb-0 bg-transparent"
                         onClick={() => document.getElementById(`attachment-${index}`)?.click()}
                       >
                         Choose File
@@ -614,23 +783,25 @@ export default function RfpForm() {
                     {...form.register("comments")}
                     className={`min-h-[120px] ${form.formState.errors.comments ? "border-red-500" : ""}`}
                   />
-                  {form.formState.errors.comments && <p className="text-red-500 text-xs mt-1">{form.formState.errors.comments.message}</p>}
+                  {form.formState.errors.comments && (
+                    <p className="text-red-500 text-xs mt-1">{form.formState.errors.comments.message}</p>
+                  )}
                 </div>
 
                 <div className="mt-4">
                   <p className="text-sm mb-2">*Mandatory Field</p>
                   <div className="flex items-start space-x-2">
                     <Controller
-                        name="termsAccepted"
-                        control={form.control}
-                        render={({ field }) => (
-                           <Checkbox
-                            id="terms"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                            className={form.formState.errors.termsAccepted ? "border-red-500" : ""}
-                            />
-                        )}
+                      name="termsAccepted"
+                      control={form.control}
+                      render={({ field }) => (
+                        <Checkbox
+                          id="terms"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                          className={form.formState.errors.termsAccepted ? "border-red-500" : ""}
+                        />
+                      )}
                     />
                     <Label htmlFor="terms" className="text-sm font-normal">
                       I have read and agree to the{" "}
@@ -643,18 +814,20 @@ export default function RfpForm() {
                       </Link>
                     </Label>
                   </div>
-                  {form.formState.errors.termsAccepted && <p className="text-red-500 text-xs mt-1 ml-6">{form.formState.errors.termsAccepted.message}</p>}
+                  {form.formState.errors.termsAccepted && (
+                    <p className="text-red-500 text-xs mt-1 ml-6">{form.formState.errors.termsAccepted.message}</p>
+                  )}
                 </div>
 
                 <div className="mt-6">
                   <Label className="text-sm block mb-2">*Verify you are human</Label>
                   <HCaptcha
-                    sitekey='41b8bd2e-8c50-4e32-98d8-c5189bb4934c' // Use environment variable or fallback to test key
+                    sitekey="41b8bd2e-8c50-4e32-98d8-c5189bb4934c"
                     onVerify={handleCaptchaVerify}
                     onExpire={handleCaptchaExpire}
                     ref={captchaRef}
                   />
-                  {!captchaToken && form.formState.isSubmitted && ( // Show only after first submit attempt if not verified
+                  {!captchaToken && form.formState.isSubmitted && (
                     <p className="text-amber-600 text-xs mt-1">Please complete the captcha verification</p>
                   )}
                 </div>
@@ -671,13 +844,24 @@ export default function RfpForm() {
                 "Submit"
               )}
             </Button>
-             <p className="text-xs text-gray-500 mt-2">
+
+            <p className="text-xs text-gray-500 mt-2">
               This site is protected by hCaptcha and its{" "}
-              <Link href="https://hcaptcha.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <Link
+                href="https://hcaptcha.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
                 Privacy Policy
               </Link>{" "}
               and{" "}
-              <Link href="https://hcaptcha.com/terms" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <Link
+                href="https://hcaptcha.com/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
                 Terms of Service
               </Link>{" "}
               apply.
@@ -688,4 +872,3 @@ export default function RfpForm() {
     </div>
   )
 }
-

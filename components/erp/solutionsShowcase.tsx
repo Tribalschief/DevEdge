@@ -33,16 +33,6 @@ export default function SolutionsShowcase() {
     },
   ]
 
-  // Update active solution periodically
-  // useEffect(() => {
-  //   // const interval = setInterval(() => {
-  //   //   setActiveIndex((prevIndex) => (prevIndex + 1) % solutions.length)
-  //   // }, 4000) // Change heading every 4 seconds
-
-  //   // return () => clearInterval(interval)
-  // }, [solutions.length])
-
-  // Also update when all images are loaded
   useEffect(() => {
     if (loadedImages === solutions.length) {
       // Move to next solution immediately when images are loaded

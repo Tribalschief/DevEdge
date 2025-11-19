@@ -1,5 +1,7 @@
+
 import Image from "next/image"
 import type { Leader } from "./types"
+
 
 interface LeaderProfileProps {
   leader: Leader
